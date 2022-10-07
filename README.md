@@ -10,7 +10,7 @@ Api de proyecto final para Soy Henry - FT-29a
 
 1. Instalar las dependencias, ejecuta el comando `npm install`.
 
-2. Clonar el archivo `.env.template`y renombrarlo a `.env`.
+2. Clonar el archivo `.env.template` y renombrarlo a `.env`.
 
 3. Ejecutar el comando `npm start`.
    
