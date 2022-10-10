@@ -2,21 +2,31 @@ import { Route, Routes } from "react-router-dom";
 import Home from "../components/home/Home.jsx";
 import SignUp from "../components/signUp/SignUp.jsx";
 import LogIn from "../components/logIn/LogIn.jsx";
-import './App.css';
-
+import Landing from "../components/Landing/Landing.jsx";
+import Admin from "../components/admin/Admin.jsx";
+import Employee from "../components/employee/Employee.jsx";
+import Client from "../components/client/Client.jsx";
+import Error from "../components/error/Error.jsx";
+import Products from "../components/products/Products.jsx";
+import "./App.css";
 
 function App() {
-  return (
-    <div className="App">
-          <Routes>
-            {/* falta la ruta de la pag inicial (Landing Page) */}
-            <Route path="/Home" element={<Home/>}/>
-            <Route path="/Sign Up" element={<SignUp/>}/>
-            <Route path="/Log In" element={<LogIn/>}/>
-          </Routes>
-        </div>
+	return (
+		<div className="App">
+			<Routes>
+				<Route path="/" element={<Landing />} />
+				<Route path="/home" element={<Home />} />
+				<Route path="/menu" element={<Products />} />
+				<Route path="/signUp" element={<SignUp />} />
+				<Route path="/logIn" element={<LogIn />} />
+				<Route path="/admin" element={<Admin />} />
+				<Route path="/employee" element={<Employee />} />
+				<Route path="/client" element={<Client />} />
+				<Route path="*" element={<Error />} />
 
-  );
+			</Routes>
+		</div>
+	);
 }
 
 export default App;
