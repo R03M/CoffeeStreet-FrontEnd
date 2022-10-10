@@ -1,0 +1,32 @@
+.contenedor-nav{
+    background-color: rgb(226, 209, 209);
+    width: 100%;
+    height: 11vh;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+}
+
+.contenedor-logo{
+  width: 100px;
+  height: 100px;
+  background-position: center;
+  margin-left: 1rem;
+}
+.logo{
+  width: 100px;
+  height: 100px;
+  background-image: url('../navbar/img/coffeeStreet.png') ;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  
+}
+
+.botones{
+  display: flex;
+	justify-content: space-around;
+	align-items: flex-end;
+	
+	}
+
+

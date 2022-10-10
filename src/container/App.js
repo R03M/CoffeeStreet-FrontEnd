@@ -1,20 +1,21 @@
-import Navbar from "../components/navbar/Navbar"
-import Home from "../components/home/Home"
-import duck from "../media/duckJs2.png"
-import Landing from "../components/Landing/Landing";
-import About from "../components/About/About";
+import { Route, Routes } from "react-router-dom";
+import Home from "../components/home/Home.jsx";
+import SignUp from "../components/signUp/SignUp.jsx";
+import LogIn from "../components/logIn/LogIn.jsx";
 import './App.css';
 
 
 function App() {
   return (
     <div className="App">
-      <Landing/>
-      <About/>
-      <Navbar/>
-      <img src= {duck} alt= "duckJs"/>
-      <Home/>
-    </div>
+          <Routes>
+            {/* falta la ruta de la pag inicial (Landing Page) */}
+            <Route path="/Home" element={<Home/>}/>
+            <Route path="/Sign Up" element={<SignUp/>}/>
+            <Route path="/Log In" element={<LogIn/>}/>
+          </Routes>
+        </div>
+
   );
 }
 
