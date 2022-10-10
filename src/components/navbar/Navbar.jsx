@@ -1,15 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./navbar.css";
-import Logo from "./img/coffeeStreet.png";
+
 
 const NavBar = () => {
     return (
         <div className="contenedor-nav">
-            <div className="logo">
+            <div className="contenedor-logo">
               <Link to="/">
-                {/* Link a pagina inicial se puede poner en el logo */}
-                <img src={Logo} alt="not found" width={100} />  
+                {/* Link a pagina inicial en el logo */}
+                <div className="logo"></div>
               </Link>
             </div>
             
@@ -20,8 +20,8 @@ const NavBar = () => {
               </Link>
 
               {/* Link a pagina para registrarse */}
-              <Link to="/Sing Up">
-                  <button>Sing Up</button>
+              <Link to="/Sign Up">
+                  <button>Sign Up</button>
               </Link>
 
               {/* Link a pagina para ingresar */}
