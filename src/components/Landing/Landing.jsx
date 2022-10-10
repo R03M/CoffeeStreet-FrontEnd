@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from "./img/coffeeStreet.png";
+import logo from "../../media/coffeeStreet.png";
 import { Link } from 'react-router-dom';
 import "./Landing.css";
 
