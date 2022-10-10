@@ -1,32 +1,34 @@
-.contenedor-nav{
-    background-color: rgb(226, 209, 209);
-    width: 100%;
-    height: 11vh;
-    display: grid;
-    grid-template-columns: 1fr 3fr;
+.contenedor-nav {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	background-color: rgba(221, 213, 213, 0.712);
+	backdrop-filter: blur(25px);
+	height: 15%;
+	border: 15px;
 }
 
-.contenedor-logo{
-  width: 100px;
-  height: 100px;
-  background-position: center;
-  margin-left: 1rem;
-}
-.logo{
-  width: 100px;
-  height: 100px;
-  background-image: url('../navbar/img/coffeeStreet.png') ;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  
+.logo {
+	width: 100px;
+	height: 100px;
+	background-image: url("../../media/coffeeStreet.png");
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
+	margin: 5px;
 }
 
-.botones{
-  display: flex;
+.botones {
+	display: flex;
 	justify-content: space-around;
 	align-items: flex-end;
-	
-	}
+}
 
-
+.btonesHome {
+	margin-left: 25px;
+	margin-right: 25px;
+	color: black;
+	font-size: 1.5rem;
+	font-weight: 700;
+}

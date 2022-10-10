@@ -1,7 +1,7 @@
 # CoffeeStreet-front-end
 
 <p align="center">
-  <img height="350" src="./img/coffeeStreet.png" />
+  <img height="350" src="./src/media/coffeeStreet.png" />
 </p>
 
 Api de proyecto final para Soy Henry - FT-29a
@@ -13,14 +13,14 @@ Api de proyecto final para Soy Henry - FT-29a
 2. Clonar el archivo `.env.template` y renombrarlo a `.env`.
 
 3. Ejecutar el comando `npm start`.
-   
+
 ## Construido con:
 
 1. ReactJS, Redux.
 
 ### Componentes
 ----------------------
-| Componente            | Status  | 
+| Componente            | Status  |
 | --------------------- | :-----: |
 | **START SPRINT 1**    | ******* |
 | Landing               | pending |
