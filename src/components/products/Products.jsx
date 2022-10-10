@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import NavBar from "../navbar/Navbar";
 import CardP from "./card/CardP";
 import NavbarProduc from "./navbarProducts/NavbarProduc";
 
@@ -18,6 +19,7 @@ const Products = () => {
 
 	return (
 		<div className="productsDiv">
+			<NavBar/>
 			<div className="navbarProduc">
 				<NavbarProduc />
 			</div>
