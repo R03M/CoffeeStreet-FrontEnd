@@ -1,0 +1,31 @@
+.cardDiv {
+	display: inline-block;
+	position: relative;
+	align-items: center;
+	justify-items: center;
+	margin: 1rem;
+	width: 410px;
+	height: 450px;
+	background-color: rgba(211, 217, 222, 0.589);
+	border-radius: 15px;
+	backdrop-filter: blur(10px);
+	padding: 15px;
+}
+
+.nameCard {
+	font-size: 1.5rem;
+	margin: 5px;
+}
+
+.descripCard {
+	margin: 5px;
+	height: 100px;
+	max-height: 100px;
+}
+
+.imgCard {
+	height: 15rem;
+	max-height: 15rem;
+	margin: 1rem;
+	border-radius: 15px;
+}

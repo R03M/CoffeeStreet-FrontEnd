@@ -13,7 +13,7 @@
     height: 70vh;
     grid-area: 1 / 1 / 6 / 4;
     cursor: pointer;
-    background-image: url(./img/img.jpg);
+    background-image: url(../../media/img.jpg);
     background-size: cover;
     border-radius: 5px;
     border: 1px solid #6E4923;
@@ -36,7 +36,7 @@
     transform: scale(1.1);
     box-shadow: #f5f3f1 1px 1px 10px 1px;
     border-radius: 100%;
-} 
+}
 
 
 

@@ -1,0 +1,37 @@
+.errorDiv {
+	height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(to bottom, #2b2b2b41 0%, #0000005f 80%),
+    url("../../media/mk0.jpg");
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-position: center;
+  background-size: cover;
+}
+
+.nro1 {
+  font-size: 4rem;
+  font-weight: bolder;
+  color: white;
+}
+.nro2 {
+  font-size: 2rem;
+  color: white;
+
+}
+.nro3 {
+  font-size: 2rem;
+  font-weight: bolder;
+  border-radius: 15px;
+	padding: 0.5rem;
+  background-color: rgb(170, 117, 45);
+}
+
+.nro3:hover {
+    background-color: rgb(200, 187, 187);
+    cursor: pointer;
+    color: rgb(170, 117, 45);
+}
