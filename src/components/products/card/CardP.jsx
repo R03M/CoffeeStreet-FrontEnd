@@ -7,7 +7,7 @@ const CardP = ({ product }) => {
 			<div className="descripCard">{product.description}</div>
 			{/* <div>{product.ingredients}</div> */}
 			<div>
-				<img className="imgCard" src={product.image}/>
+				<img className="imgCard" src={product.image} alt="coffe-tea"/>
 			</div>
 		</div>
 	);

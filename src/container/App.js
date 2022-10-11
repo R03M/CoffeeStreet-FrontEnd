@@ -8,6 +8,7 @@ import Employee from "../components/employee/Employee.jsx";
 import Client from "../components/client/Client.jsx";
 import Error from "../components/error/Error.jsx";
 import Products from "../components/products/Products.jsx";
+import About from "../components/About/About.jsx";
 import "./App.css";
 
 function App() {
@@ -23,7 +24,7 @@ function App() {
 				<Route path="/employee" element={<Employee />} />
 				<Route path="/client" element={<Client />} />
 				<Route path="*" element={<Error />} />
-
+				<Route path="/about" element={<About />} />
 			</Routes>
 		</div>
 	);
