@@ -5,7 +5,7 @@ const initialState = {
 };
 
 export default function rootReducer(state = initialState, action) {
-	switch (action.payload) {
+	switch (action.type) {
 		case "GET_PRODUCTS":
 			return {
 				...state,
@@ -45,18 +45,46 @@ export default function rootReducer(state = initialState, action) {
 			};
 
 		case "FILTER_BY_TYPE":
-			const filterType =
-				action.payload === "all"
-					? state.allProducts
-					: state.allProducts.filter(c => c.type && c.type.includes(action.payload));
-			return {
-				...state,
-				products: filterType
-			};
+			if (action.payload === "all") {
+				return {
+					...state,
+					products: state.allProducts
+				};
+			} else if (action.payload === "lactose") {
+				return {
+					...state,
+					products: state.allProducts.filter(p => p.lactose === true)
+				};
+			} else if (action.payload === "lactoseFree") {
+				return {
+					...state,
+					products: state.allProducts.filter(p => p.lactose === false)
+				};
+			} else if (action.payload === "alcohol") {
+				return {
+					...state,
+					products: state.allProducts.filter(p => p.alcohol === true)
+				};
+			} else if (action.payload === "alcoholFree") {
+				return {
+					...state,
+					products: state.allProducts.filter(p => p.alcohol === false)
+				};
+			} else if (action.payload === "gluten") {
+				return {
+					...state,
+					products: state.allProducts.filter(p => p.gluten === true)
+				};
+			} else if (action.payload === "glutenFree") {
+				return {
+					...state,
+					products: state.allProducts.filter(p => p.gluten === false)
+				};
+			}
 
 		case "ORDER_BY_NAME":
 			const orderName =
-				action.payload === "desc"
+				action.payload === "asc"
 					? [...state.products].sort(function (a, b) {
 							if (a.name.toLowerCase() > b.name.toLowerCase()) {
 								return 1;
