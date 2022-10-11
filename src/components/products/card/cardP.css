@@ -12,6 +12,28 @@
 	padding: 15px;
 }
 
+.cardDivF {
+	display: inline-block;
+	position: relative;
+	align-items: center;
+	justify-items: center;
+	margin: 1rem;
+	width: 410px;
+	height: 450px;
+	background-color: rgba(77, 77, 77, 0.589);
+	border-radius: 15px;
+	backdrop-filter: blur(20px);
+	padding: 15px;
+	cursor: no-drop;
+}
+.cardDivF:hover {
+	color: white;
+}
+.linkCardP {
+	color: black;
+	text-decoration: none;
+}
+
 .nameCard {
 	font-size: 1.5rem;
 	margin: 5px;
@@ -28,4 +50,81 @@
 	max-height: 15rem;
 	margin: 1rem;
 	border-radius: 15px;
+}
+
+.divTypeCardP {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.trueBtn {
+	background-color: rgba(35, 137, 35, 0.802);
+	backdrop-filter: blur(10px);
+	padding: 0px 10px 0px;
+	border-radius: 5px;
+	font-size: 2rem;
+}
+
+.falseBtn {
+	background-color: rgba(225, 45, 45, 0.802);
+	backdrop-filter: blur(10px);
+	padding: 0px 10px 0px;
+	border-radius: 5px;
+	font-size: 2rem;
+}
+
+.btnInfoCardP {
+	background-color: rgba(39, 122, 161, 0.802);
+	backdrop-filter: blur(10px);
+	padding: 0px 10px 0px;
+	border-radius: 5px;
+	font-size: 2rem;
+}
+
+.btnInfoCardP:hover {
+	color: rgba(39, 122, 161);
+	background-color: rgba(0, 0, 0, 0.802);
+}
+
+.divTempCart {
+	display: grid;
+	grid-template-columns: 1fr 1fr 0.5fr 0.5fr;
+	align-items: center;
+	font-size: 1.3rem;
+}
+
+.pCartTemp {
+	align-content: center;
+}
+
+.inputCartTemp {
+	height: 45%;
+	width: 50%;
+	border-radius: 5px;
+	margin: 1rem;
+}
+
+.btnBCartTemp {
+	background-color: rgb(0, 0, 0);
+	color: white;
+	border-radius: 5px;
+	margin: 4px;
+	padding: 2px 1px;
+	cursor: pointer;
+}
+
+.btnBCartTemp:hover {
+	background-color: rgba(137, 129, 129, 0.802);
+}
+
+.btnACartTemp {
+	background-color: rgb(0, 0, 0);
+	border-radius: 5px;
+	margin: 4px;
+	padding: 2px 1px;
+	cursor: pointer;
+}
+
+.btnACartTemp:hover {
+	background-color: rgba(141, 132, 132, 0.802);
 }
