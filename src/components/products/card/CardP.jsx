@@ -1,13 +1,74 @@
 import React from "react";
-import "./cardP.css"
+import { Link } from "react-router-dom";
+import { BiDrink } from "react-icons/bi"
+import { GiMilkCarton, GiWheat } from "react-icons/gi"
+import { BsInfo } from "react-icons/bs"
+import swal from "sweetalert";
+import "./cardP.css";
+
 const CardP = ({ product }) => {
+
+	const alcohol = () => {
+		if (product.alcohol === true) {
+			return <p><BiDrink className="trueBtn"/></p>
+		}
+		else {
+			return <p><BiDrink className="falseBtn"/></p>
+		}
+
+	}
+	const lactose = () => {
+		if (product.lactose === true) {
+			return <p><GiMilkCarton className="trueBtn"/></p>
+		}
+		else {
+			return <p><GiMilkCarton className="falseBtn"/></p>
+		}
+
+	}
+	const gluten = () => {
+		if (product.gluten === true) {
+			return <p><GiWheat className="trueBtn"/></p>
+		}
+		else {
+			return <p><GiWheat className="falseBtn"/></p>
+		}
+
+	}
+
+	const handlerTemp = () => {
+		swal({
+			title: "Proximamente...",
+			text: "Tal vez en el segundo Sprint",
+			icon: "info",
+			button: "Ok"
+		});
+	}
+
 	return (
-		<div className="cardDiv">
-			<div className="nameCard">{product.title}</div>
-			<div className="descripCard">{product.description}</div>
-			{/* <div>{product.ingredients}</div> */}
+		<div className={product.stock === true ? "cardDiv" : "cardDivF" }>
+			<div className="nameCard">{product.name}</div>
 			<div>
-				<img className="imgCard" src={product.image} alt="coffe-tea"/>
+
+
+				<img className="imgCard" src={product.image} alt={`Pic to ${product.name}`} />
+			</div>
+			<div className="divTypeCardP">
+				<div>{alcohol()}</div>
+				<div>{lactose()}</div>
+				<div>{gluten()}</div>
+				<Link className="linkCardP" to={`/products/${product.id}`}>
+					<p>{<BsInfo className="btnInfoCardP"/>}</p>
+				</Link>
+			</div>
+			<div className="divTempCart">
+				<p className="pCartTemp">{`Quantity >`}</p>
+				<input
+					type="number"
+					className="inputCartTemp"
+				/>
+				<p className="btnBCartTemp" onClick={(e)=> handlerTemp(e)}>Buy</p>
+				<p className="btnACartTemp" onClick={(e)=> handlerTemp(e)}>🛒</p>
 			</div>
 		</div>
 	);
