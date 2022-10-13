@@ -44,7 +44,7 @@ const Pagination = ({ currentPage, setPage, max }) => {
 				onClick={prevPage}
 				className="btnNP"
 			>
-				Previus
+				Previous
 			</button>
 			<input
 				onChange={e => onChange(e)}
