@@ -1,6 +1,6 @@
 import React from "react";
-import "./new.css";
 import { Link } from "react-router-dom";
+import "./new.css";
 
 const noticias = [
 	{
