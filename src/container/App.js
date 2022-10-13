@@ -8,9 +8,9 @@ import Employee from "../components/employee/Employee.jsx";
 import Client from "../components/client/Client.jsx";
 import Error from "../components/error/Error.jsx";
 import Products from "../components/products/Products.jsx";
+import CurrentNews from "../components/new/currentNews/CurrentNews.jsx";
 import About from "../components/About/About.jsx";
 import ProductsDetails from "../components/productsDetails/ProductsDetails.jsx";
-
 
 import "./App.css";
 
@@ -20,6 +20,7 @@ function App() {
 			<Routes>
 				<Route path="/" element={<Landing />} />
 				<Route path="/home" element={<Home />} />
+				<Route path="/home/currentNews" element={<CurrentNews />} />
 				<Route path="/menu" element={<Products />} />
 				<Route path="/products/:id" element={<ProductsDetails />} />
 				<Route path="/signUp" element={<SignUp />} />
