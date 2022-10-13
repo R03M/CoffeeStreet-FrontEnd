@@ -1,0 +1,176 @@
+.adminDiv {
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	object-fit: cover;
+	overflow-y: scroll;
+	background: linear-gradient(to bottom, #2b2b2b41 0%, #0000005f 100%),url("../../media/mk02.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+}
+
+.goHome {
+	display: flex;
+	height: 100px;
+	width: 10%;
+	background-size: cover;
+	margin: 1rem;
+}
+
+.btnImg {
+	height: 100px;
+	width: 100px;
+}
+
+.imgBtn {
+	height: 7rem;
+	width: 7rem;
+}
+
+.imgBtn:hover {
+	background-color: aliceblue;
+	border-radius: 60%;
+}
+
+.divCardAd {
+	margin: 0px 250px 0px;
+	margin-top: 2.5rem;
+}
+
+.cardsProducA {
+	display: inline-block;
+	position: relative;
+	align-items: center;
+	justify-items: center;
+	font-weight: bold;
+	margin: 1rem;
+	width: 210px;
+	height: 200px;
+	background-color: rgba(100, 195, 68, 0.589);
+	border-radius: 15px;
+	backdrop-filter: blur(10px);
+	padding: 15px;
+	cursor: pointer;
+}
+.cardsUsersA {
+	display: inline-block;
+	position: relative;
+	align-items: center;
+	justify-items: center;
+	font-weight: bold;
+	margin: 1rem;
+	width: 210px;
+	height: 200px;
+	background-color: rgba(199, 73, 35, 0.589);
+	border-radius: 15px;
+	backdrop-filter: blur(10px);
+	padding: 15px;
+	cursor: pointer;
+}
+.cardsNewsA {
+	display: inline-block;
+	position: relative;
+	align-items: center;
+	justify-items: center;
+	font-weight: bold;
+	margin: 1rem;
+	width: 210px;
+	height: 200px;
+	background-color: rgba(90, 127, 157, 0.589);
+	border-radius: 15px;
+	backdrop-filter: blur(10px);
+	padding: 15px;
+	cursor: pointer;
+}
+.cardsDiscouA {
+	display: inline-block;
+	position: relative;
+	align-items: center;
+	justify-items: center;
+	font-weight: bold;
+	margin: 1rem;
+	width: 210px;
+	height: 200px;
+	background-color: rgba(206, 193, 54, 0.589);
+	border-radius: 15px;
+	backdrop-filter: blur(10px);
+	padding: 15px;
+	cursor: pointer;
+}
+.cardsProfitsA {
+	display: inline-block;
+	position: relative;
+	align-items: center;
+	justify-items: center;
+	font-weight: bold;
+	margin: 1rem;
+	width: 210px;
+	height: 200px;
+	background-color: rgba(50, 134, 202, 0.589);
+	border-radius: 15px;
+	backdrop-filter: blur(10px);
+	padding: 15px;
+	cursor: pointer;
+}
+.cardsMyAccA {
+	display: inline-block;
+	position: relative;
+	align-items: center;
+	justify-items: center;
+	font-weight: bold;
+	margin: 1rem;
+	width: 210px;
+	height: 200px;
+	background-color: rgba(198, 133, 42, 0.589);
+	border-radius: 15px;
+	backdrop-filter: blur(10px);
+	padding: 15px;
+	cursor: pointer;
+}
+
+.navbarAdmin {
+	display: flex;
+	justify-content: center;
+	margin-top: -90px;
+}
+
+.nbAd {
+	margin: 10px;
+	background-color: aliceblue;
+	width: 150px;
+	cursor: pointer;
+	border-radius: 10px;
+	font-weight: bold;
+}
+
+.nbAd:hover {
+	background-color: rgb(0, 0, 0);
+	color: aliceblue;
+}
+
+.nbAdMoreC {
+	margin: 10px;
+	background-color: rgb(136, 205, 62);
+	color: rgb(15, 15, 16);
+	width: 150px;
+	cursor: pointer;
+	border-radius: 10px;
+	font-weight: bold;
+}
+
+
+.activeTabsA {
+	margin: 10px;
+	background-color: rgb(47, 119, 183);
+	color: aliceblue;
+	width: 150px;
+	cursor: pointer;
+	border-radius: 10px;
+	font-weight: bold;
+}
+
+.activeTabsA:hover {
+	color: rgb(47, 119, 183);
+	background-color: rgb(1, 1, 1);
+}

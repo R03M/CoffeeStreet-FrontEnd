@@ -5,7 +5,7 @@
 	align-items: center;
 	object-fit: cover;
 	overflow-y: scroll;
-	background: url("../../media/mk2.jpg");
+	background: linear-gradient(to bottom, #2b2b2b41 0%, #0000005f 100%),url("../../media/mk04.jpg");
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: center;
@@ -14,4 +14,9 @@
 .navbarProduc {
 	margin-top: 1rem;
 	margin-bottom: 1rem;
+}
+
+.cardsProd {
+	margin-left: 80px;
+	margin-right: 80px;
 }

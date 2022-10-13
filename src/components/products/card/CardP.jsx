@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { BiDrink } from "react-icons/bi"
 import { GiMilkCarton, GiWheat } from "react-icons/gi"
-import { BsInfo } from "react-icons/bs"
+import { BsInfo, BsFillCartPlusFill } from "react-icons/bs"
 import swal from "sweetalert";
 import "./cardP.css";
 
@@ -60,13 +60,14 @@ const CardP = ({ product }) => {
 				</Link>
 			</div>
 			<div className="divTempCart">
-				<p className="pCartTemp">{`Quantity >`}</p>
+				<p className="pCartTemp">{`Qty`}</p>
 				<input
 					type="number"
 					className="inputCartTemp"
+					value={1}
 				/>
 				<p className="btnBCartTemp" onClick={(e)=> handlerTemp(e)}>Buy</p>
-				<p className="btnACartTemp" onClick={(e)=> handlerTemp(e)}>🛒</p>
+				<p className="btnACartTemp" onClick={(e)=> handlerTemp(e)}><BsFillCartPlusFill/></p>
 			</div>
 		</div>
 	);
