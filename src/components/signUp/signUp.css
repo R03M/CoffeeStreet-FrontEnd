@@ -1,4 +1,4 @@
-.productsDiv {
+.signUpDiv {
 	height: 100vh;
 	display: flex;
 	flex-direction: column;
@@ -9,14 +9,4 @@
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: center;
-}
-
-.navbarProduc {
-	margin-top: 1rem;
-	margin-bottom: 1rem;
-}
-
-.cardsProd {
-	margin-left: 80px;
-	margin-right: 80px;
 }

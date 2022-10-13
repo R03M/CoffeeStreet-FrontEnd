@@ -9,7 +9,8 @@ import Client from "../components/client/Client.jsx";
 import Error from "../components/error/Error.jsx";
 import Products from "../components/products/Products.jsx";
 import CurrentNews from "../components/new/currentNews/CurrentNews.jsx";
-// import ProductsDetails from "../components/productsDetails/ProductsDetails.jsx";
+import About from "../components/About/About.jsx";
+import ProductsDetails from "../components/productsDetails/ProductsDetails.jsx";
 
 import "./App.css";
 
@@ -21,14 +22,14 @@ function App() {
 				<Route path="/home" element={<Home />} />
 				<Route path="/home/currentNews" element={<CurrentNews />} />
 				<Route path="/menu" element={<Products />} />
-				{/* <Route path="/products/:id" element={<ProductsDetails />} /> */}
+				<Route path="/products/:id" element={<ProductsDetails />} />
 				<Route path="/signUp" element={<SignUp />} />
 				<Route path="/logIn" element={<LogIn />} />
 				<Route path="/admin" element={<Admin />} />
 				<Route path="/employee" element={<Employee />} />
 				<Route path="/client" element={<Client />} />
 				<Route path="*" element={<Error />} />
-
+				<Route path="/about" element={<About />} />
 			</Routes>
 		</div>
 	);
