@@ -58,3 +58,14 @@ export function orderByPrice(payload){
 		payload
 	}
 }
+
+export function productDetails(id) {
+	return async function (dispatch) {
+		const response = await axios.get(`${url}/products/${id}`);
+		dispatch({
+			type: "PRODUCT_DETAILS",
+			payload: response.data
+		});
+	};
+	
+}
