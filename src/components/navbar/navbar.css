@@ -4,7 +4,11 @@
 	align-items: center;
 	justify-content: space-between;
 	background-color: rgba(221, 213, 213, 0.712);
-	backdrop-filter: blur(25px);
+	background: linear-gradient(to bottom, #7d383841 100%, #0000005f 0%),url("../../media/mk03.jpg");
+	/* backdrop-filter: blur(25px); */
+	background-repeat: no-repeat;
+	background-size: cover;
+	/* background-position: center; */
 	height: 15%;
 	border: 15px;
 }
@@ -12,7 +16,7 @@
 .logo {
 	width: 100px;
 	height: 100px;
-	background-image: url("../../media/coffeeStreet.png");
+	background-image: url("../../media/mk01.jpg");
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-position: center;
@@ -28,7 +32,7 @@
 .btonesHome {
 	margin-left: 25px;
 	margin-right: 25px;
-	color: black;
+	color: rgb(255, 253, 253);
 	font-size: 1.5rem;
 	font-weight: 700;
 }
