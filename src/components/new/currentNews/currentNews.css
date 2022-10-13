@@ -1,0 +1,34 @@
+.contenedor-CurrentNews{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+.hedder{
+  display: flex;
+  width: 80%;
+  background-image: url("https://www.nadaincluido.com/wp-content/uploads/Paisaje-de-Bali-Indonesia.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  border-radius: 10px;
+  margin: 10px;
+  height: 300px;
+}
+.footer{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20%;
+  background-color: rgba(0, 0, 0, 0.486);
+  width: 100%;
+  margin-top: 10px;
+  height: auto;
+}
+.butonlike{
+ 
+  
+}
+

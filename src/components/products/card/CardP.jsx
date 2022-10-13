@@ -49,6 +49,8 @@ const CardP = ({ product }) => {
 		<div className={product.stock === true ? "cardDiv" : "cardDivF" }>
 			<div className="nameCard">{product.name}</div>
 			<div>
+
+
 				<img className="imgCard" src={product.image} alt={`Pic to ${product.name}`} />
 			</div>
 			<div className="divTypeCardP">
