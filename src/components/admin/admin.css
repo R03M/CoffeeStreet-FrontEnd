@@ -10,32 +10,35 @@
 	background-position: center;
 }
 
-.goHome {
+.linkAdmin {
 	display: flex;
-	height: 100px;
-	width: 10%;
+	height: 0px;
+
+}
+
+.imgBackHome {
+	display: inline-flex;
+	justify-content: flex-start;
+	height: 6rem;
+	width: 6rem;
+	margin: 5px;
+	background: url(../../media/mk01.jpg);
 	background-size: cover;
-	margin: 1rem;
 }
 
-.btnImg {
-	height: 100px;
-	width: 100px;
-}
+.imgBackHome:hover {
+	border: 1px;
+	border-radius: 50%;
+	border-color: rgb(255, 255, 255);
+	border-style:solid
 
-.imgBtn {
-	height: 7rem;
-	width: 7rem;
-}
-
-.imgBtn:hover {
-	background-color: aliceblue;
-	border-radius: 60%;
 }
 
 .divCardAd {
-	margin: 0px 250px 0px;
-	margin-top: 2.5rem;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	margin: 100px 250px;
 }
 
 .cardsProducA {
@@ -132,7 +135,7 @@
 .navbarAdmin {
 	display: flex;
 	justify-content: center;
-	margin-top: -90px;
+	margin: 2rem 7rem;
 }
 
 .nbAd {
@@ -159,6 +162,10 @@
 	font-weight: bold;
 }
 
+.nbAdMoreC:hover {
+	color: rgb(136, 205, 62);
+	background-color: rgb(15, 15, 16);
+}
 
 .activeTabsA {
 	margin: 10px;
@@ -173,4 +180,12 @@
 .activeTabsA:hover {
 	color: rgb(47, 119, 183);
 	background-color: rgb(1, 1, 1);
+}
+
+.iconAdminCards {
+	font-size: 8rem;
+}
+
+.lettersCardsA {
+	font-size: 1.5rem;
 }
