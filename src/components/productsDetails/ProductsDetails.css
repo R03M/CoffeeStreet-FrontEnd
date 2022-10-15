@@ -16,14 +16,14 @@
     grid-gap: 1rem;
 
 }
-img{
+/* img{
     width: 80%;
     height: 80%;
     object-fit: cover;
     border-radius: 2rem;
     box-shadow: #141414 0px 0px 10px;
     margin-top: 1rem;
-}
+} */
 .details{
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -35,7 +35,7 @@ img{
     border-radius: 2rem;
     font-family: 'Times New Roman', Times, serif;
 }
-h1{
+/* h1{
     font-size: 2rem;
     font-weight: 600;
     background-color: rgba(122, 104, 104, 0.479);
@@ -54,7 +54,7 @@ h2{
     text-align: center;
     color: aliceblue;
     text-shadow: #141414 1px 01px 10px;
-}
+} */
 .productDetails__button{
     width: 40%;
     height: 40%;

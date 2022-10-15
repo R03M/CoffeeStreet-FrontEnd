@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { MdOutlineInventory } from "react-icons/md";
 import { ImUsers } from "react-icons/im";
 import { GiNewspaper, GiProfit } from "react-icons/gi";
@@ -12,12 +12,13 @@ import News from "./news/News";
 import Discounts from "../discounts/Discounts";
 import Profits from "./profits/Profits";
 import "./admin.css";
+import NewProducts from "../productsEdit/formNewProducts/NewProducts";
 
 const Admin = () => {
-	const navigate = useNavigate();
-
 	let [cards, setCards] = useState(true);
 	let [nav, setNav] = useState(false);
+
+	const [switchNewProduct, setSwitchNewProduct] = useState(false);
 
 	let [products, setProducts] = useState(false);
 	let [users, setUsers] = useState(false);
@@ -36,6 +37,7 @@ const Admin = () => {
 			setDiscounts(false);
 			setProfits(false);
 			setMyAcc(false);
+			setSwitchNewProduct(false);
 		} else if (nav === true && products === false) {
 			setProducts(true);
 			setUsers(false);
@@ -43,6 +45,7 @@ const Admin = () => {
 			setDiscounts(false);
 			setProfits(false);
 			setMyAcc(false);
+			setSwitchNewProduct(false);
 		}
 	};
 
@@ -56,6 +59,7 @@ const Admin = () => {
 			setDiscounts(false);
 			setProfits(false);
 			setMyAcc(false);
+			setSwitchNewProduct(false);
 		} else if (nav === true && users === false) {
 			setUsers(true);
 			setProducts(false);
@@ -63,6 +67,7 @@ const Admin = () => {
 			setDiscounts(false);
 			setProfits(false);
 			setMyAcc(false);
+			setSwitchNewProduct(false);
 		}
 	};
 
@@ -76,6 +81,7 @@ const Admin = () => {
 			setDiscounts(false);
 			setProfits(false);
 			setMyAcc(false);
+			setSwitchNewProduct(false);
 		} else if (nav === true && news === false) {
 			setNews(true);
 			setProducts(false);
@@ -83,6 +89,7 @@ const Admin = () => {
 			setDiscounts(false);
 			setProfits(false);
 			setMyAcc(false);
+			setSwitchNewProduct(false);
 		}
 	};
 
@@ -96,6 +103,7 @@ const Admin = () => {
 			setNews(false);
 			setProfits(false);
 			setMyAcc(false);
+			setSwitchNewProduct(false);
 		} else if (nav === true && discounts === false) {
 			setDiscounts(true);
 			setProducts(false);
@@ -103,19 +111,21 @@ const Admin = () => {
 			setNews(false);
 			setProfits(false);
 			setMyAcc(false);
+			setSwitchNewProduct(false);
 		}
 	};
 
 	const handlerProfits = () => {
 		if (profits === false) {
 			setProfits(true);
+			setNav(true);
 			setCards(false);
 			setProducts(false);
 			setUsers(false);
 			setNews(false);
 			setDiscounts(false);
-
 			setMyAcc(false);
+			setSwitchNewProduct(false);
 		} else if (nav === true && profits === false) {
 			setProfits(true);
 			setProducts(false);
@@ -123,6 +133,7 @@ const Admin = () => {
 			setNews(false);
 			setDiscounts(false);
 			setMyAcc(false);
+			setSwitchNewProduct(false);
 		}
 	};
 
@@ -136,6 +147,8 @@ const Admin = () => {
 			setNews(false);
 			setDiscounts(false);
 			setProfits(false);
+			setSwitchNewProduct(false);
+
 		} else if (nav === true && myAcc === false) {
 			setMyAcc(true);
 			setProducts(false);
@@ -143,6 +156,7 @@ const Admin = () => {
 			setNews(false);
 			setDiscounts(false);
 			setProfits(false);
+			setSwitchNewProduct(false);
 		}
 	};
 
@@ -155,6 +169,8 @@ const Admin = () => {
 		setDiscounts(false);
 		setProfits(false);
 		setMyAcc(false);
+		setSwitchNewProduct(false);
+
 	}
 
 	function cardsAdmin() {
@@ -166,23 +182,23 @@ const Admin = () => {
 						<p className="lettersCardsA">Products</p>
 					</div>
 					<div className="cardsUsersA" onClick={() => handlerUsers()}>
-					<ImUsers className="iconAdminCards"/>
+						<ImUsers className="iconAdminCards" />
 						<p className="lettersCardsA">Users</p>
 					</div>
 					<div className="cardsNewsA" onClick={() => handlerNews()}>
-					<GiNewspaper className="iconAdminCards"/>
+						<GiNewspaper className="iconAdminCards" />
 						<p className="lettersCardsA">News</p>
 					</div>
 					<div className="cardsDiscouA" onClick={() => handlerDiscounts()}>
-					<TbDiscount2 className="iconAdminCards"/>
+						<TbDiscount2 className="iconAdminCards" />
 						<p className="lettersCardsA">Discounts</p>
 					</div>
 					<div className="cardsProfitsA" onClick={() => handlerProfits()}>
-					<GiProfit className="iconAdminCards"/>
+						<GiProfit className="iconAdminCards" />
 						<p className="lettersCardsA">Profits</p>
 					</div>
 					<div className="cardsMyAccA" onClick={() => handlerMyAcc()}>
-					<RiAccountPinCircleFill className="iconAdminCards"/>
+						<RiAccountPinCircleFill className="iconAdminCards" />
 						<p className="lettersCardsA">My account</p>
 					</div>
 				</div>
@@ -234,6 +250,11 @@ const Admin = () => {
 		}
 	}
 
+	function activeNewProduct(){
+			setSwitchNewProduct(true)
+			setProducts(false)
+	}
+
 	return (
 		<div className="adminDiv">
 			<Link className="linkAdmin" to={"/menu"}>
@@ -242,7 +263,16 @@ const Admin = () => {
 
 			{cardsAdmin()}
 
-			{products === true && nav === true ? <ProductsEdit /> : null}
+			{products === true && nav === true ? (
+				<div className="divProductsAdmin">
+					<button className="newProductBtnPe" onClick={() => activeNewProduct()}>
+						Add New Product
+					</button>
+					<ProductsEdit />
+
+				</div>
+			) : null}
+			{switchNewProduct === true && nav === true ? <NewProducts/> : null}
 			{users === true && nav === true ? <UsersE /> : null}
 			{myAcc === true && nav === true ? <MyAccount /> : null}
 			{news === true && nav === true ? <News /> : null}

@@ -4,6 +4,7 @@ const url = process.env.REACT_APP_BACK_URL;
 
 export function getProducts() {
 	return async function (dispatch) {
+
 		const response = await axios.get(`${url}/products`);
 		dispatch({
 			type: "GET_PRODUCTS",
@@ -45,9 +46,9 @@ export function filterByType(payload){
 	}
 }
 
-export function orderByName(payload){
+export function filterByPrepared(payload){
 	return{
-		type: "ORDER_BY_NAME",
+		type: "FILTER_BY_PREPARED",
 		payload
 	}
 }
@@ -67,5 +68,5 @@ export function productDetails(id) {
 			payload: response.data
 		});
 	};
-	
+
 }
