@@ -34,8 +34,10 @@
 	width: 95%;
 	margin: 1rem;
 	height: 440px;
+	max-height: 440px;
 	display: flex;
 	max-width: 95%;
+	flex-direction: column;
 	flex-wrap: wrap;
 	max-height: 440px;
 	border-radius: 10px;
@@ -48,8 +50,10 @@
 
 .discountsC {
 	margin: 5px;
-	width: 250px;
-	height: 190px;
+	width: 40%;
+	max-width: 40%;
+	height: 40%;
+	max-height: 40%;
 	color: white;
 	border-radius: 5px;
 	position: relative;

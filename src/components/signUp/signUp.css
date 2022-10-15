@@ -10,3 +10,8 @@
 	background-size: cover;
 	background-position: center;
 }
+
+.signUpBody {
+	height: 100%;
+	margin: 1rem;
+}
