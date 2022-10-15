@@ -8,7 +8,7 @@
 	height: 480px;
 	background-color: rgba(223, 213, 213, 0.336);
 	border-radius: 15px;
-	backdrop-filter: blur(4px);
+	backdrop-filter: blur(5px);
 	box-shadow: #541911 0px 0px 8px;
 	padding: 1rem;
 }

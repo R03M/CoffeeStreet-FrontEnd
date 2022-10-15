@@ -18,13 +18,11 @@ const New = () => {
 	}
 
 	return (
-		<div className="contenedor-new">
-			<div className="titulo-noticia">{noticias[0].title}</div>
-			<div className="contenedor-descripcion-img">
-				<div className="descripcion-noticia">{noticias[0].description}</div>
-				<div className="img-noticia">
-					<img src={noticias[0].img} width={500} alt="imagen" />
-				</div>
+		<div className="newDiv">
+			<div className="titleNew">{noticias[0].title}</div>
+			<div className="descripAPicNew">
+				<div className="descripNewBody">{noticias[0].description}</div>
+				<img className="imgNewC" src={noticias[0].img} width={500} alt="imagen" />
 			</div>
 
 			<div>
