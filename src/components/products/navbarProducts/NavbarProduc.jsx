@@ -4,7 +4,7 @@ import SearchP from "../search/SearchP";
 import {
 	filterByCategory,
 	filterByType,
-	orderByName,
+	filterByPrepared,
 	orderByPrice
 } from "../../../redux/action";
 import "./navbarProducts.css";
@@ -20,9 +20,9 @@ const NavbarProduc = () => {
 		e.preventDefault();
 		dispatch(filterByType(e.target.value));
 	};
-	const orderName = e => {
+	const filterPrepared = e => {
 		e.preventDefault();
-		dispatch(orderByName(e.target.value));
+		dispatch(filterByPrepared(e.target.value));
 	};
 	const orderPrice = e => {
 		e.preventDefault();
@@ -43,7 +43,6 @@ const NavbarProduc = () => {
 					<option value="coffee">Coffee</option>
 					<option value="tea">Tea</option>
 					<option value="sweetBakery">Sweet Bakery</option>
-					<option value="snacks">Snacks</option>
 					<option value="other">Other</option>
 				</select>
 
@@ -61,13 +60,15 @@ const NavbarProduc = () => {
 					<option value="glutenFree">Gluten-free</option>
 				</select>
 
-				<select onChange={e => orderName(e)} className="selectNavProd">
-					<option hidden>Order by name</option>
+				<select onChange={e => filterPrepared(e)} className="selectNavProd">
+					<option hidden>Filter by Status</option>
 					<option disabled="disabled" default={true} value="">
-						Order by name
+						Filter by Status
 					</option>
-					<option value="asc"> Ascending (A-Z) </option>
-					<option value="desc"> Descending (Z-A) </option>
+					<option value="all">All</option>
+					<option value="prepared">To prepare</option>
+					<option value="consumption">Ready to eat</option>
+
 				</select>
 
 				<select onChange={e => orderPrice(e)} className="selectNavProd">
@@ -75,8 +76,8 @@ const NavbarProduc = () => {
 					<option disabled="disabled" default={true} value="">
 						Order by price
 					</option>
-					<option value="asc"> Ascending (1-9) </option>
-					<option value="desc"> Descending (9-1) </option>
+					<option value="asc"> Lower price </option>
+					<option value="desc"> Higher price </option>
 				</select>
 			</div>
 		</div>

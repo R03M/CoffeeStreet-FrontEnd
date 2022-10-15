@@ -1,0 +1,11 @@
+.formNewProductDiv {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+
+}
+
+.formBodyNP {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+}

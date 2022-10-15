@@ -189,3 +189,26 @@
 .lettersCardsA {
 	font-size: 1.5rem;
 }
+
+.divProductsAdmin{
+	display: flex;
+	flex-direction: column;
+}
+
+.newProductBtnPe {
+	width: 100px;
+	display: inline-flex;
+	justify-content: flex-start;
+	margin: 5px;
+	padding: 0.9rem;
+	border-radius: 50%;
+	font-weight: bold;
+	font-size: 1.1rem;
+	color: aliceblue;
+	background-color: rgb(58, 187, 58);
+}
+
+.newProductBtnPe:hover {
+	color: rgb(58, 187, 58);
+	background-color: aliceblue;
+}

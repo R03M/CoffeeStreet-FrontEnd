@@ -31,32 +31,32 @@ export function clearError() {
 	};
 }
 
-export function filterByCategory(payload){
-	return{
+export function filterByCategory(payload) {
+	return {
 		type: "FILTER_BY_CATEGORY",
 		payload
-	}
+	};
 }
 
-export function filterByType(payload){
-	return{
+export function filterByType(payload) {
+	return {
 		type: "FILTER_BY_TYPE",
 		payload
-	}
+	};
 }
 
-export function orderByName(payload){
-	return{
-		type: "ORDER_BY_NAME",
+export function filterByPrepared(payload) {
+	return {
+		type: "FILTER_BY_PREPARED",
 		payload
-	}
+	};
 }
 
-export function orderByPrice(payload){
-	return{
+export function orderByPrice(payload) {
+	return {
 		type: "ORDER_BY_PRICE",
 		payload
-	}
+	};
 }
 
 export function productDetails(id) {
@@ -67,5 +67,15 @@ export function productDetails(id) {
 			payload: response.data
 		});
 	};
-	
+}
+
+export function postNewProduct(payload) {
+	try {
+		return async function () {
+			const response = await axios.post(`${url}/products`, payload);
+			console.log(response)
+		};
+	} catch (error) {
+		return error;
+	}
 }

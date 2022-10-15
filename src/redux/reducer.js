@@ -15,10 +15,10 @@ export default function rootReducer(state = initialState, action) {
 			};
 
 		case "GET_PRODUCTS_NAME":
-			if (action.payload === "Non-exitent") {
+			if (action.payload.errorMessage === "There is no product with that name") {
 				return {
 					...state,
-					errorSProducts: action.payload
+					errorSProducts: action.payload.errorMessage
 				};
 			} else {
 				return {
@@ -83,31 +83,23 @@ export default function rootReducer(state = initialState, action) {
 				};
 			}
 
-		case "ORDER_BY_NAME":
-			const orderName =
-				action.payload === "asc"
-					? [...state.products].sort(function (a, b) {
-							if (a.name.toLowerCase() > b.name.toLowerCase()) {
-								return 1;
-							}
-							if (b.name.toLowerCase() > a.name.toLowerCase()) {
-								return -1;
-							}
-							return 0;
-					  })
-					: [...state.products].sort(function (a, b) {
-							if (a.name.toLowerCase() > b.name.toLowerCase()) {
-								return -1;
-							}
-							if (b.name.toLowerCase() > a.name.toLowerCase()) {
-								return 1;
-							}
-							return 0;
-					  });
-			return {
-				...state,
-				products: orderName
-			};
+		case "FILTER_BY_PREPARED":
+			if (action.payload === "all") {
+				return {
+					...state,
+					products: state.allProducts
+				};
+			} else if (action.payload === "prepared") {
+				return {
+					...state,
+					products: state.allProducts.filter(e => e.isPrepared === false)
+				};
+			} else if (action.payload === "consumption") {
+				return {
+					...state,
+					products: state.allProducts.filter(e => e.isPrepared === true)
+				};
+			}
 
 		case "ORDER_BY_PRICE":
 			const orderPrice =
@@ -122,12 +114,11 @@ export default function rootReducer(state = initialState, action) {
 				...state,
 				products: orderPrice
 			};
-		case "PRODUCT_DETAILS"	:
+		case "PRODUCT_DETAILS":
 			return {
 				...state,
 				productDetails: action.payload
-			}
-
+			};
 
 		default:
 			return state;

@@ -1,11 +1,11 @@
 import { CATEGORIES } from "./categories.enum";
 
-export class Products {
+export class Product {
 	name = String;
 	description = String;
 	image = String;
 	price = Number;
-	category = CATEGORIES.OTHER;
+	category = CATEGORIES;
 	lactose = Boolean;
 	gluten = Boolean;
 	alcohol = Boolean;
@@ -13,6 +13,7 @@ export class Products {
 	ingredients = String;
 	originCountry = String;
 	isPrepared = true;
+	state = "active"
 	constructor(
 		name,
 		description,
@@ -23,7 +24,10 @@ export class Products {
 		gluten,
 		alcohol,
 		stock,
-		ingredients
+		ingredients,
+		originCountry,
+		isPrepared,
+		state
 	) {
 		this.name = name;
 		this.description = description;
@@ -35,5 +39,8 @@ export class Products {
 		this.alcohol = alcohol;
 		this.stostock = stock;
 		this.ingredients = ingredients;
+		this.originCountry = originCountry;
+		this.isPrepared = isPrepared;
+		this.state = state;
 	}
 }
