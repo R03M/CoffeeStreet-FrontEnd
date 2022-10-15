@@ -1,39 +1,31 @@
 import React from "react";
 import NavBar from "../navbar/Navbar.jsx";
 import New from "../new/New.jsx";
-import "./home.css"
+import "./home.css";
 
-
-
-
-
-const descuentos = [
-	{title: "descuento del 10%", id: 1},
-	{title: "descuento del 20%", id: 2},
-	{title: "descuento del 30%", id: 3},
-	{title: "descuento del 15%", id: 4},
-	{title: "descuento del 45%", id: 5},
-
-
+const discounts = [
+	{ title: "10% off", descrip: "on Salty Bakery", id: 1 },
+	{ title: "20% off", descrip: "on Coffee", id: 2 },
+	{ title: "15% off", descrip: "on Tea", id: 3 },
+	{ title: "22% off", descrip: "on Sweet Bakery", id: 4 }
 ];
-
 
 const Home = () => {
 	return (
 		<div className="homeDiv">
-				<NavBar />
-			<div className="banner">
+			<NavBar />
+			<div className="banner"></div>
+			<div className="discountsAndNews">
+				<div className="discounts">
+					{discounts?.map(discounts => (
+						<div className="discountsC">
+							<p className="titleDiscountNew">{discounts.title}</p>
+							<p className="descripDiscountNew">{discounts.descrip}</p>
+						</div>
+					))}
+				</div>
+				<New />
 			</div>
-			<div className="descuentos">
-				{descuentos?.map((descuento) => (
-					<div className="descuento">
-						{descuento.title}
-					</div>
-				))}
-			</div>
-				
-				<New/>
-				
 		</div>
 	);
 };

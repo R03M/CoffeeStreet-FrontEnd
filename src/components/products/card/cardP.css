@@ -8,8 +8,9 @@
 	height: 480px;
 	background-color: rgba(223, 213, 213, 0.336);
 	border-radius: 15px;
-	backdrop-filter: blur(4px);
-	padding: 15px;
+	backdrop-filter: blur(5px);
+	box-shadow: #541911 0px 0px 8px;
+	padding: 1rem;
 }
 
 /*clase para cuando no exista stock(en proceso)*/
@@ -21,9 +22,8 @@
 	margin: 20px;
 	width: 380px;
 	height: 480px;
-	background-color: rgba(77, 77, 77, 0.589);
+	background-color: rgba(77, 77, 77);
 	border-radius: 15px;
-	backdrop-filter: blur(20px);
 	padding: 15px;
 	cursor: no-drop;
 }
@@ -36,6 +36,8 @@
 }
 
 .nameCard {
+	height: 40px;
+	max-height: 40px;
 	font-size: 1.5rem;
 	margin: 5px;
 	font-weight: bold;
@@ -48,10 +50,9 @@
 }
 
 .imgCard {
-	height: 15rem;
-	max-height: 15rem;
-	margin: 1rem;
-	border-radius: 15px;
+	height: 40%;
+	max-height: 40%;
+	margin: 5px;
 }
 
 .divTypeCardP {

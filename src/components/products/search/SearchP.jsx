@@ -14,12 +14,10 @@ const SearchP = () => {
 		!e.target.value
 			? dispatch(getProducts())
 			: dispatch(getProductsName(e.target.value));
-		dispatch(clearError())
 	}
 
 	return (
 		<div>
-		<form>
 			<input
 				className='searchProduct'
 				type="search"
@@ -27,7 +25,6 @@ const SearchP = () => {
 				placeholder= "🔎 Start typing to search..."
 				onChange={(e) => handlerChange(e)}
 			/>
-		</form>
 		</div>
 	);
 }

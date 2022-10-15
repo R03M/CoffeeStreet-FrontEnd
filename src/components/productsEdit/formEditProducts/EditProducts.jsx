@@ -1,6 +1,6 @@
 import React from 'react';
 
-const NavbarPe = () => {
+const EditProducts = () => {
 	return (
 		<div>
 
@@ -8,4 +8,4 @@ const NavbarPe = () => {
 	);
 }
 
-export default NavbarPe;
+export default EditProducts;
