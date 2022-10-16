@@ -25,6 +25,31 @@ const ProductsDetails = () => {
 		});
 	};
 
+	function moreDetails() {
+		if (product.isPrepared === true && product.category === "coffee") {
+			return (
+				<div>
+					<p className="productDetailsIngred">The attributes for this coffee are:</p>
+					<div className="attributesPDetailsC">
+						<p>Texture ➡ {product.attribute.texture}</p>
+						<p>Body ➡ {product.attribute.body}</p>
+						<p>Acidity ➡ {product.attribute.acidity}</p>
+						<p>Bitterness ➡ {product.attribute.bitterness}</p>
+						<p>Roast ➡ {product.attribute.roast}</p>
+						<p>Color ➡ {product.attribute.color}</p>
+					</div>
+						<p className="attributesPDetailsCCream">Cream ➡ {product.attribute.cream === true ? "Yes" : "No"}</p>
+				</div>
+			);
+		} else if (product.isPrepared === false) {
+			return (
+				<p className="productDetailsCategory">
+					This product comes from {product.originCountry}.
+				</p>
+			);
+		}
+	}
+
 	return (
 		<div className="productDetailsDiv">
 			<NavBar />
@@ -37,42 +62,31 @@ const ProductsDetails = () => {
 						src={product.image}
 						alt={`Pic of ${product.name}`}
 					/>
+
 					<div className="ingredientsACDescripC">
-						<div>
-							<p>This product falls into the category of {product.category}</p>
-						</div>
+						<p className="productDetailsCategory">
+							This product falls into the category of {product.category}.
+						</p>
 
 						<div>
-							Its main ingredients are:
-							{product.ingredients &&
-								product.ingredients.map(ingredient => {
-									return <p>{`✔ ${ingredient}`}</p>;
-								})}
+							<p className="productDetailsIngred">Its main ingredients are:</p>
+							<div className="productDetailsIngredCu">
+								{product.ingredients &&
+									product.ingredients.map(ingredient => {
+										return <p>{`✔ ${ingredient}`}</p>;
+									})}
+							</div>
 						</div>
 					</div>
 
 					<div className="typeDescripC">
-						<div>
-							<p>This product is:</p>
-							<p>{product.lactose === false ? "Lactose-free" : "With lactose"}</p>
-							<p>{product.gluten === false ? "Gluten-free" : "With gluten"}</p>
-							<p>{product.alcohol === false ? "Alcohol-free" : "With alcohol"}</p>
+							<p className="titleTypeDescripC">This product is:</p>
+							<div className="typeDetailsProductC">
+								<p>{product.lactose === false ? "● Lactose-free" : "● With lactose"}</p>
+								<p>{product.gluten === false ? "● Gluten-free" : "● With gluten"}</p>
+								<p>{product.alcohol === false ? "● Alcohol-free" : "● With alcohol"}</p>
 						</div>
-						<div>
-							{product.isPrepared === true ? (
-								<div>
-									<p>{product.attribute.cream}</p>
-									<p>{product.attribute.texture}</p>
-									<p>{product.attribute.body}</p>
-									<p>{product.attribute.acidity}</p>
-									<p>{product.attribute.bitterness}</p>
-									<p>{product.attribute.roast}</p>
-									<p>{product.attribute.color}</p>
-								</div>
-							) : (
-								<p>This product comes from {product.originCountry}</p>
-							)}
-						</div>
+						{moreDetails()}
 					</div>
 				</div>
 
