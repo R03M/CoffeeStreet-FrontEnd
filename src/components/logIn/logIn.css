@@ -5,7 +5,7 @@
 	align-items: center;
 	object-fit: cover;
 	overflow-y: scroll;
-	background: linear-gradient(to bottom, #2b2b2b41 0%, #0000005f 100%),url("../../media/mk04.jpg");
+	background: linear-gradient(to bottom, #2b2b2b41 0%, #0000005f 100%),url("../../media/mk17.jpg");
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: center;
@@ -13,4 +13,5 @@
 
 .logInBody {
 	height: 100%;
+	margin: 1rem;
 }

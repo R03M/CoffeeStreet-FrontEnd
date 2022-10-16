@@ -13,8 +13,7 @@ import { COLOR } from "../../../models/color.enum";
 import "./newProducts.css";
 
 const NewProducts = () => {
-
-	const dispatch = useDispatch()
+	const dispatch = useDispatch();
 
 	const initialValues = {
 		name: String,
@@ -30,15 +29,15 @@ const NewProducts = () => {
 		originCountry: String,
 		isPrepared: null,
 		state: "active",
-		attribute: {
-			cream: null,
-			texture: String,
-			body: String,
-			acidity: String,
-			bitterness: String,
-			roast: String,
-			color: String
-		}
+		// attribute: {
+		cream: null,
+		texture: String,
+		body: String,
+		acidity: String,
+		bitterness: String,
+		roast: String,
+		color: String
+		// }
 	};
 
 	const addProduct = values => {
@@ -56,21 +55,21 @@ const NewProducts = () => {
 			originCountry: values.originCountry,
 			isPrepared: values.isPrepared ? true : false,
 			state: "active",
-			attribute:
-				values.category === CATEGORIES.COFFEE
-					? {
-							cream: values.attribute.cream ? true : false,
-							texture: values.attribute.texture,
-							body: values.attribute.body,
-							acidity: values.attribute.acidity,
-							bitterness: values.attribute.bitterness,
-							roast: values.attribute.roast,
-							color: values.attribute.color
-					  }
-					: null
+			// attribute:
+			// 	values.category === CATEGORIES.COFFEE
+			// 		? {
+			cream: values.cream ? true : false,
+			texture: values.texture,
+			body: values.body,
+			acidity: values.acidity,
+			bitterness: values.bitterness,
+			roast: values.roast,
+			color: values.color
+			// }
+			// : null
 		};
-		console.log(newProduct)
-		console.log(typeof(newProduct))
+		console.log(newProduct);
+		console.log(typeof newProduct);
 		dispatch(postNewProduct(newProduct));
 	};
 
@@ -273,9 +272,9 @@ const NewProducts = () => {
 								// * Inicio de los Atributos
 						*/}
 
-						<label htmlFor="attribute">Attributes</label>
+						<label >Attributes</label>
 
-						<Field as="select" name="attribute.cream">
+						<Field as="select" name="cream">
 							<option hidden>Does it contain cream?</option>
 							<option disabled="disabled" default={true}>
 								Does it contain cream?
@@ -284,7 +283,7 @@ const NewProducts = () => {
 							<option value={""}>No cream</option>
 						</Field>
 
-						<Field as="select" name="attribute.texture">
+						<Field as="select" name="texture">
 							<option hidden>Texture</option>
 							<option disabled="disabled" default={true}>
 								Texture
@@ -296,7 +295,7 @@ const NewProducts = () => {
 							<option value={TEXTURES.VERY_FINE}>Very Fine</option>
 						</Field>
 
-						<Field as="select" name="attribute.body">
+						<Field as="select" name="body">
 							<option hidden>Body</option>
 							<option disabled="disabled" default={true}>
 								Body
@@ -308,7 +307,7 @@ const NewProducts = () => {
 							<option value={BODY.THICK}>thick</option>
 						</Field>
 
-						<Field as="select" name="attribute.acidity">
+						<Field as="select" name="acidity">
 							<option hidden>Acidity</option>
 							<option disabled="disabled" default={true}>
 								Acidity
@@ -320,7 +319,7 @@ const NewProducts = () => {
 							<option value={ACIDITY.PERCEIVABLE}>Perceivable</option>
 						</Field>
 
-						<Field as="select" name="attribute.bitterness">
+						<Field as="select" name="bitterness">
 							<option hidden>Bitterness</option>
 							<option disabled="disabled" default={true}>
 								Bitterness
@@ -332,7 +331,7 @@ const NewProducts = () => {
 							<option value={BITTERNESS.VERY_HIGH}>Very High</option>
 						</Field>
 
-						<Field as="select" name="attribute.roast">
+						<Field as="select" name="roast">
 							<option hidden>Roast</option>
 							<option disabled="disabled" default={true}>
 								Roast
@@ -346,7 +345,7 @@ const NewProducts = () => {
 							<option value={ROAST.LIGHT}>Light</option>
 						</Field>
 
-						<Field as="select" name="attribute.color">
+						<Field as="select" name="color">
 							<option hidden>Color</option>
 							<option disabled="disabled" default={true}>
 								Color
