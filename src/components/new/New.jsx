@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { MdReadMore } from "react-icons/md";
 import "./new.css";
 
 const noticias = [
@@ -19,15 +20,9 @@ const New = () => {
 			<div className="descripAPicNew">
 				<div className="descripNewBody">{noticias[0].description}</div>
 				<img className="imgNewC" src={noticias[0].img} width={500} alt="imagen" />
-			</div>
-
-			<div>
 				<Link to="/home/currentNews">
-					<button class="learn-more">
-						<span className="circle" aria-hidden="true">
-							<span className="icon arrow"></span>
-						</span>
-						<span className="button-text">Learn More</span>
+					<button className="buttonNewC">
+						<MdReadMore />
 					</button>
 				</Link>
 			</div>
