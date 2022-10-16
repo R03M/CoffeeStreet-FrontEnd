@@ -1,34 +1,124 @@
-.contenedor-CurrentNews{
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  height: 100%;
+.currentNewDiv {
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	object-fit: cover;
+	overflow-y: scroll;
+	background-image: linear-gradient(to bottom, #40404041 0%, #3231315f 100%),
+		url(../../../media/mk18.jpg);
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
 }
-.hedder{
-  display: flex;
-  width: 80%;
-  background-image: url("https://www.nadaincluido.com/wp-content/uploads/Paisaje-de-Bali-Indonesia.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  border-radius: 10px;
-  margin: 10px;
-  height: 300px;
+
+.headerCurrentNew {
+	width: 100%;
+	height: 250px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-content: center;
+	background-image: linear-gradient(to bottom, #40404041 0%, #3231315f 0%),
+		url("https://www.nadaincluido.com/wp-content/uploads/Paisaje-de-Bali-Indonesia.jpg");
+	background-size: cover;
+	background-position: center;
 }
-.footer{
-  display:flex;
-  justify-content: center;
-  align-items: center;
-  gap: 20%;
-  background-color: rgba(0, 0, 0, 0.486);
-  width: 100%;
-  margin-top: 10px;
-  height: auto;
+
+.titleCurrentNew {
+	color: aliceblue;
+	font-size: 3.5rem;
+	font-weight: 700;
+	font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
-.butonlike{
- 
-  
+
+.allBodyCurrentNew {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin: 2rem;
+}
+
+.body1CurrentNew {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	align-items: center;
+	justify-items: center;
+	height: 420px;
+	max-height: 420px;
+	width: 90%;
+	margin: 1rem;
+	background-color: rgba(141, 183, 111, 0.616);
+	backdrop-filter: blur(5px);
+	border-radius: 15px;
+	padding: 2rem;
+}
+
+.textBody1CurrentNew {
+	font-size: 1.5rem;
+	font-weight: 700;
+	font-style: oblique;
+}
+
+.img1CurrentNew {
+	width: 80%;
+	height: 80%;
+	margin: 1rem;
+	border-radius: 15px;
+	background: url(https://media.istockphoto.com/photos/kopi-luwak-or-civet-coffee-coffee-beans-excreted-by-the-civet-on-picture-id843888026?k=20&m=843888026&s=170667a&w=0&h=YUwp4osNLUWkyrdin3h14tYqcSJkUNxtOnz5q7AmPy8=);
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+}
+
+.body2CurrentNew {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	align-items: center;
+	justify-items: center;
+	height: 420px;
+	max-height: 420px;
+	width: 90%;
+	margin: 1rem;
+	background-color: rgba(128, 81, 34, 0.616);
+	backdrop-filter: blur(5px);
+	border-radius: 15px;
+	padding: 2rem;
+}
+
+.textBody2CurrentNew {
+	font-size: 1.5rem;
+	font-weight: 600;
+}
+
+.img2CurrentNew {
+	width: 90%;
+	height: 80%;
+	margin: 1rem;
+	border-radius: 15px;
+	background: url(https://www.cafetearte.es/img/cms/Fotos%20Blog%20Caf%C3%A9/planta-cafe-cafe-te-arte.jpeg);
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+}
+
+.body3CurrentNew {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	align-items: center;
+	justify-items: center;
+	height: 640px;
+	max-height: 640px;
+	width: 90%;
+	margin: 1rem;
+	background-color: rgba(184, 175, 70, 0.616);
+	backdrop-filter: blur(5px);
+	border-radius: 15px;
+	padding: 2rem;
+}
+
+.textBody3CurrentNew {
+	font-size: 1.5rem;
+	font-weight: 600;
 }
 
