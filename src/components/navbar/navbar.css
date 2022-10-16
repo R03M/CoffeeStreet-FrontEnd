@@ -1,16 +1,15 @@
 .contenedor-nav {
+	height: 120px;
+	border: 15px;
 	width: 100%;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
 	background-color: rgba(221, 213, 213, 0.712);
-	background: linear-gradient(to bottom, #7d383841 100%, #0000005f 0%),url("../../media/mk03.jpg");
-	/* backdrop-filter: blur(25px); */
+	background: linear-gradient(to bottom, #7d383841 100%, #0000005f 0%),
+		url("../../media/mk03.jpg");
 	background-repeat: no-repeat;
 	background-size: cover;
-	/* background-position: center; */
-	height: 15%;
-	border: 15px;
 }
 
 .logo {
@@ -21,6 +20,19 @@
 	background-repeat: no-repeat;
 	background-position: center;
 	margin: 5px;
+}
+
+.logo:hover {
+	width: 100px;
+	height: 100px;
+	transition: all 0.55s cubic-bezier(0.65, 0, 0.076, 1);
+	background: linear-gradient(to bottom, #bfbfbf41 0%, #0000005f 100%),
+		url("../../media/mk13.jpg");
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-color: aliceblue;
+	border-radius: 50%;
 }
 
 .botones {

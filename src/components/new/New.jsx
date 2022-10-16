@@ -13,10 +13,6 @@ const noticias = [
 ];
 
 const New = () => {
-	if (!Array.isArray(noticias) || noticias.length <= 0) {
-		return;
-	}
-
 	return (
 		<div className="newDiv">
 			<div className="titleNew">{noticias[0].title}</div>

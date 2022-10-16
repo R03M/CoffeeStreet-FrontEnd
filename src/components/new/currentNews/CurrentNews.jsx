@@ -1,82 +1,78 @@
 import React from "react";
-import "./currentNews.css";
 import { Link } from "react-router-dom";
+import "./currentNews.css";
 
 const CurrentNews = () => {
 	return (
-		<div className="contenedor-CurrentNews">
-			<div className="hedder">
-				<p>.</p>
+		<div className="currentNewDiv">
+			<div className="headerCurrentNew">
+				<p className="titleCurrentNew">KOPI LUWAK, THE MOST EXOTIC COFFEE IN THE WORLD</p>
 			</div>
-			<div>
-				<p>KOPI LUWAK, EL CAFÉ MÁS EXÓTICO DEL MUNDO</p>
-				<p>
-					Se conoce por ser el café más costoso del mundo, pero también el más exótico en
-					su origen y proceso de elaboración. El Kopi Luwak proviene de Indonesia y la
-					forma en cómo se obtienen los granos no es del agrado de muchos. Kopi significa
-					café y luwak es el nombre de la civeta en indonesio, un pequeño animal parecido
-					a los gatos, que vive en distintas zonas del mundo. En las islas de Sumatra,
-					Java, Sulawesi y Bali existe una variedad de civeta que originó el Kopi Luwak.
-				</p>
-			</div>
-			<img
-				src="https://www.cafetearte.es/img/cms/Fotos%20Blog%20Caf%C3%A9/kopiluwak-cafe-te-arte.jpg"
-				alt="Heces de civeta"
-			/>
-			<h3>¿Qué es el Kopi Luwak?</h3>
-			<p>
-				Es un café gourmet que se obtiene de las cerezas del café en un estado de
-				maduración óptimo tras ser digeridas por la civeta. La planta del café produce
-				unos frutos carnosos, de color rojo o púrpura y raramente amarillo; son las
-				llamadas cerezas. Estas contienen dos núcleos o huesos, cada uno de ellos con un
-				grano de café. Los huesos son una especie de cascos semirrígidos transparentes de
-				aspecto apergaminado. Cuando se retiran se obtienen los granos de café verde
-				listos para tostar y envasar.
-			</p>
-			<img
-				src="https://www.cafetearte.es/img/cms/Fotos%20Blog%20Caf%C3%A9/planta-cafe-cafe-te-arte.jpeg"
-				alt="Fruto de la planta de cafe"
-			/>
-			<h3>¿Cómo se obtiene el Kopi Luwak?</h3>
-			<p>
-				Las civetas son mamíferos que se alimentan casi exclusivamente de café. Tienen la
-				capacidad de seleccionar los mejores granos para su consumo y suelen atiborrarse
-				con ellos después de elegirlos de acuerdo a su momento óptimo de maduración
-			</p>
-			<p>
-				Tras comerse el café, los frutos pasan por el sistema digestivo en el que ocurren
-				algunas pequeñas modificaciones: el grano interno del café no es digerido, pero
-				parece ser que sí es modificado químicamente por las enzimas presentes en el
-				estómago de la civeta, que añaden sabor al café rompiendo las proteínas que
-				producen su amargor. Los desperdicios o granos resultantes de este proceso son
-				recogidos por los agricultores locales que los lavan y someten a una ligera
-				tostación para no influir mucho en su sabor. Y esto es lo que se vende a precio de
-				oro en todo el mundo.
-			</p>
-			<iframe
-        title="video"
-				width="560"
-				height="315"
-				src="https://www.youtube.com/embed/1Q7IYpLYQ7Q"
-				frameborder="0"
-				allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-				allowfullscreen="allowfullscreen"
-			></iframe>
-			<div className="footer">
-        <div className="butonlike">
-          <span>Te gusto este articulo ?</span>
-          <button className="like">
-            
-          </button>
-        </div>
-
-				<div>
+			<div className="allBodyCurrentNew">
+				<div className="body1CurrentNew">
+					<p className="textBody1CurrentNew">
+						It is known for being the most expensive coffee in the world, but also the
+						most exotic in its origin and production process. Kopi Luwak comes from
+						Indonesia and the way in which the grains are obtained is not to the liking of
+						many. kopi means coffee and luwak is the name of the civet in Indonesian, a
+						small animal similar to cats, which lives in different parts of the world. In
+						the islands of Sumatra, Java, Sulawesi and Bali there is a variety of civet
+						that originated the Kopi Luwak.
+					</p>
+					<div className="img1CurrentNew"></div>
+				</div>
+				<div className="body2CurrentNew">
+					<div className="img2CurrentNew"></div>
+					<div>
+						<p className="textBody1CurrentNew">What is Kopi Luwak?</p>
+						<p className="textBody2CurrentNew">
+							It is a gourmet coffee that is obtained from coffee cherries in a state of
+							optimal maturation after being digested by the civet. the coffee plant it
+							produces fleshy fruits, red or purple in color and rarely yellow; They are
+							called cherries. These contain two nuclei or bones, each of them with a
+							coffee bean. The bones are a kind of helmets transparent semi-rigid with a
+							parchment-like appearance. When they withdraw they obtain the green coffee
+							beans ready for roasting and packaging.
+						</p>
+					</div>
+				</div>
+				<div className="body3CurrentNew">
+					<div>
+						<p className="textBody1CurrentNew">How is Kopi Luwak obtained?</p>
+						<p className="textBody3CurrentNew">
+							Civets are mammals that feed almost exclusively on coffee. They have the
+							ability to select the best grains for consumption and they tend to stuff
+							themselves with them after choosing them according to their moment optimum
+							maturation.
+						</p>
+						<p className="textBody3CurrentNew">
+							After eating the coffee, the fruits pass through the digestive system in
+							which some small modifications occur: the internal coffee bean is not
+							digested, but it seems that it is chemically modified by the enzymes present
+							in the stomach of the civet, which add flavor to the coffee by breaking the
+							proteins that produce its bitterness. The waste or resulting grains from
+							this process are collected by local farmers who wash and They are lightly
+							roasted so as not to greatly influence their flavour. And this is what is
+							sold at the price of gold throughout the world.
+						</p>
+					</div>
+					<iframe
+						title="video"
+						width="600"
+						height="415"
+						src="https://www.youtube.com/embed/1Q7IYpLYQ7Q"
+						frameborder="0"
+						allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+						allowfullscreen="allowfullscreen"
+					></iframe>
+				</div>
+				<div className="footer">
 					<Link to="/home">
 						<button class="learn-more">
 							<span className="circle" aria-hidden="true">
 								<span className="icon arrow"></span>
 							</span>
-							<span className="button-text">BACK</span>
+							<span className="button-text">Go BACK</span>
 						</button>
 					</Link>
 				</div>
