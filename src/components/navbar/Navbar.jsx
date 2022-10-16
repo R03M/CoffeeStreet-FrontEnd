@@ -28,6 +28,9 @@ const NavBar = () => {
 				<Link to="/logIn">
 					<button className="btonesHome">Log In</button>
 				</Link>
+				<Link to="/admin">
+					<button className="btonesHome">Admin(temp)</button>
+				</Link>
 			</div>
 		</div>
 	);

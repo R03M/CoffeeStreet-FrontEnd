@@ -1,19 +1,20 @@
-import React from 'react';
-import NavBar from '../navbar/Navbar.jsx';
-import FormS from './formS/FormS.jsx';
-import "./signUp.css"
+import React from "react";
+import NavBar from "../navbar/Navbar.jsx";
+import TempNd from "../tempNoDelete/TempNd.jsx";
+import FormS from "./formS/FormS.jsx";
+import "./signUp.css";
 
 const SignUp = () => {
-    return (
-        <div className="signUpDiv">
-            <NavBar/>
-            <h1 style={{color: "white", fontSize: "3rem"}}>Proximamente... Sign Up</h1>
+	return (
+		<div className="signUpDiv">
+			<NavBar />
 
-						<div>
-							<FormS />
-						</div>
-        </div>
-    );
-}
+			<div className="signUpBody">
+			<h1 style={{ fontSize: "2rem" }}>Sign Up</h1>
+				<TempNd/>
+			</div>
+		</div>
+	);
+};
 
 export default SignUp;
