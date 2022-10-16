@@ -1,4 +1,4 @@
-.contenedor-nav {
+.navbarDivC {
 	height: 120px;
 	border: 15px;
 	width: 100%;
@@ -35,16 +35,23 @@
 	border-radius: 50%;
 }
 
-.botones {
+.btnNavbarDiv {
 	display: flex;
 	justify-content: space-around;
 	align-items: flex-end;
 }
 
-.btonesHome {
+.btnNBCU {
 	margin-left: 25px;
 	margin-right: 25px;
 	color: rgb(255, 253, 253);
 	font-size: 1.5rem;
 	font-weight: 700;
+	border: none;
+	background-color: rgba(179, 16, 16, 0);
+	cursor: pointer;
+}
+
+.btnNBCU:hover {
+	color: black;
 }

@@ -1,145 +1,90 @@
-.contenedor-landing{
-    background-color: #282936;
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: repeat(5, 1fr);
-    grid-column-gap: 0px;
-    grid-row-gap: 0px;
-    width: 100%;
-    height: 100vh;
-}
-.card {
-    width: 50vh;
-    height: 70vh;
-    grid-area: 1 / 1 / 6 / 4;
-    cursor: pointer;
-    background-image: url(../../media/img.jpg);
-    background-size: cover;
-    border-radius: 5px;
-    border: 1px solid #6E4923;
-    transition: all .2s;
-    box-shadow: 12px 12px 2px 1px #6E4923;
-    margin-left: 25%;
-    margin-top: 10%;
+.landingDiv {
+	height: 100vh;
+	display: flex;
+	align-items: center;
+	object-fit: cover;
+	background: url(../../media/mk19.jpg);
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+	background-attachment: scroll;
 }
 
-.card:hover {
-    box-shadow: -12px 12px 2px -1px #6E4923;
+.bodyLandingC {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-around;
+	align-content: center;
+	object-fit: cover;
+	margin: 1rem;
+	height: 90%;
+	width: 25%;
+	border-radius: 15px;
+	background-color: rgba(140, 173, 173, 0.176);
+	backdrop-filter: blur(5px);
+	box-shadow: #000000 0px 0px 8px;
 }
 
-.img{
-    width: 40vh;
-
+.imgLandingC {
+	display: inline-flex;
+	justify-content: flex-start;
+	height: 17rem;
+	width: 17rem;
+	margin: 1rem;
+	background: url(../../media/mk20.png);
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-position: center;
+	background-color: rgba(11, 11, 11, 0.455);
+	border-radius: 50%;
+	backdrop-filter: blur(2px);
+	box-shadow: #ffffff 0px 0px 8px;
 }
 
-.img:hover {
-    transform: scale(1.1);
-    box-shadow: #f5f3f1 1px 1px 10px 1px;
-    border-radius: 100%;
+.imgLandingC:hover {
+	height: 17rem;
+	width: 17rem;
+	margin: 1rem;
+	background: url(../../media/mk21.png);
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
+	transition: all 0.55s cubic-bezier(0.65, 0, 0.076, 1);
+	background-color: rgba(183, 60, 60, 0.454);
+	box-shadow: #000000 0px 0px 8px;
+	backdrop-filter: blur(4px);
 }
 
-
-
-.contendor-descripcion{
-    grid-area: 1 / 4 / 6 / 6;
-    background-color:#F7C45A;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100vh;
-}
-.buttons{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-}
-button {
-    position: relative;
-    display: inline-block;
-    cursor: pointer;
-    outline: none;
-    border: 0;
-    vertical-align: middle;
-    text-decoration: none;
-    background: transparent;
-    padding: 0;
-    font-size: inherit;
-    font-family: inherit;
+.parrfLandingC {
+	height: 250px;
+	max-height: 250px;
+	align-items: center;
+	justify-content: center;
+	padding: 10%;
+	font-style: italic;
+	font-size: 2rem;
+	font-weight: 700;
+	color: rgb(255, 255, 255);
 }
 
-button.learn-more {
-    width: 12rem;
-    height: auto;
+.btnsLandingsDivs {
+	margin: 1rem;
 }
 
-button.learn-more .circle {
-    transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
-    position: relative;
-    display: block;
-    margin: 0;
-    width: 3rem;
-    height: 3rem;
-    background: #282936;
-    border-radius: 1.625rem;
+.btnLandingC {
+	margin: 1rem;
+	font-size: 2rem;
+	padding: 0.5rem 2rem;
+	border-radius: 5px;
+	font-weight: 600;
+	background-color: rgba(183, 60, 60, 0.454);
+	color: white;
+	cursor: pointer;
 }
 
-button.learn-more .circle .icon {
-    transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    margin: auto;
-    background: #fff;
-}
-
-button.learn-more .circle .icon.arrow {
-    transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
-    left: 0.625rem;
-    width: 1.125rem;
-    height: 0.125rem;
-    background: none;
-}
-
-button.learn-more .circle .icon.arrow::before {
-    position: absolute;
-    content: "";
-    top: -0.29rem;
-    right: 0.0625rem;
-    width: 0.625rem;
-    height: 0.625rem;
-    border-top: 0.125rem solid #fff;
-    border-right: 0.125rem solid #fff;
-    transform: rotate(45deg);
-}
-
-button.learn-more .button-text {
-    transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    padding: 0.75rem 0;
-    margin: 0 0 0 1.85rem;
-    color: #282936;
-    font-weight: 700;
-    line-height: 1.6;
-    text-align: center;
-    text-transform: uppercase;
-}
-
-button:hover .circle {
-    width: 100%;
-}
-
-button:hover .circle .icon.arrow {
-    background: #fff;
-    transform: translate(1rem, 0);
-}
-
-button:hover .button-text {
-    color: #fff;
+.btnLandingC:hover {
+	transition: all 0.25s cubic-bezier(0.65, 0, 0.076, 1);
+	color: rgba(145, 48, 48, 0.454);
+	background-color: rgb(219, 208, 208);
 }

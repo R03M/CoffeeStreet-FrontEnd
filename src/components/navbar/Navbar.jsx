@@ -4,32 +4,28 @@ import "./navbar.css";
 
 const NavBar = () => {
 	return (
-		<div className="contenedor-nav">
+		<div className="navbarDivC">
 			<Link to="/">
-				{/* Link a pagina inicial en el logo */}
 				<div className="logo"></div>
 			</Link>
 
-			<div className="botones">
+			<div className="btnNavbarDiv">
 				<Link to="/home">
-					<button className="btonesHome">New</button>
+					<button className="btnNBCU">New</button>
 				</Link>
-				{/* Link a pagina de productos */}
 				<Link to="/menu">
-					<button className="btonesHome">Menu</button>
+					<button className="btnNBCU">Menu</button>
 				</Link>
 
-				{/* Link a pagina para registrarse */}
 				<Link to="/signUp">
-					<button className="btonesHome">Sign Up</button>
+					<button className="btnNBCU">Sign Up</button>
 				</Link>
 
-				{/* Link a pagina para ingresar */}
 				<Link to="/logIn">
-					<button className="btonesHome">Log In</button>
+					<button className="btnNBCU">Log In</button>
 				</Link>
 				<Link to="/admin">
-					<button className="btonesHome">Admin(temp)</button>
+					<button className="btnNBCU">Admin(temp)</button>
 				</Link>
 			</div>
 		</div>

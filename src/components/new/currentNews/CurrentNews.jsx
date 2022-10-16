@@ -66,14 +66,9 @@ const CurrentNews = () => {
 						allowfullscreen="allowfullscreen"
 					></iframe>
 				</div>
-				<div className="footer">
+				<div className="btnDivCurrentNewsC">
 					<Link to="/home">
-						<button class="learn-more">
-							<span className="circle" aria-hidden="true">
-								<span className="icon arrow"></span>
-							</span>
-							<span className="button-text">Go BACK</span>
-						</button>
+						<button className="buttonCurrentNewsC">Go back</button>
 					</Link>
 				</div>
 			</div>
