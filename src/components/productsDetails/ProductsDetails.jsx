@@ -2,37 +2,96 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { productDetails } from "../../redux/action";
+import { BsFillCartPlusFill } from "react-icons/bs";
 import NavBar from "../navbar/Navbar";
+import swal from "sweetalert";
 import "./ProductsDetails.css";
 
 const ProductsDetails = () => {
 	const { id } = useParams();
 	const dispatch = useDispatch();
 	const product = useSelector(state => state.productDetails);
+
 	useEffect(() => {
 		dispatch(productDetails(id));
 	}, [dispatch, id]);
-	// console.log(product.image);
+
+	const handlerTemp = () => {
+		swal({
+			title: "Proximamente...",
+			text: "Tal vez en el segundo Sprint",
+			icon: "info",
+			button: "Ok"
+		});
+	};
+
 	return (
-		<div>
+		<div className="productDetailsDiv">
 			<NavBar />
-			<div className="productDetails">
-				<div className="details">
-					<h1>{product.name}</h1>
-					<img src={product.image} alt="product" />
-					<h3>Description: {product.description}</h3>
-					<h4>
-						Ingredients:{" "}
-						{product.ingredients &&
-							product.ingredients.map(ingredient => ingredient + ", ")}
-					</h4>
-					<h4>Category: {product.category}</h4>
-					<h4>Origin: {product.originCountry}</h4>
-					<h4>Stock: {product.stock}</h4>
-					<h2>Price $ {product.price}</h2>
+			<div className="productDetailsBody">
+				<p className="productNameDC">{product.name}</p>
+
+				<div className="detailsBodyPD">
+					<img
+						className="imgDescriptionDB"
+						src={product.image}
+						alt={`Pic of ${product.name}`}
+					/>
+					<div className="ingredientsACDescripC">
+						<div>
+							<p>This product falls into the category of {product.category}</p>
+						</div>
+
+						<div>
+							Its main ingredients are:
+							{product.ingredients &&
+								product.ingredients.map(ingredient => {
+									return <p>{`✔ ${ingredient}`}</p>;
+								})}
+						</div>
+					</div>
+
+					<div className="typeDescripC">
+						<div>
+							<p>This product is:</p>
+							<p>{product.lactose === false ? "Lactose-free" : "With lactose"}</p>
+							<p>{product.gluten === false ? "Gluten-free" : "With gluten"}</p>
+							<p>{product.alcohol === false ? "Alcohol-free" : "With alcohol"}</p>
+						</div>
+						<div>
+							{product.isPrepared === true ? (
+								<div>
+									<p>{product.attribute.cream}</p>
+									<p>{product.attribute.texture}</p>
+									<p>{product.attribute.body}</p>
+									<p>{product.attribute.acidity}</p>
+									<p>{product.attribute.bitterness}</p>
+									<p>{product.attribute.roast}</p>
+									<p>{product.attribute.color}</p>
+								</div>
+							) : (
+								<p>This product comes from {product.originCountry}</p>
+							)}
+						</div>
+					</div>
 				</div>
-				<button className="productDetails__button">Add to cart</button>
-				<button className="productDetails__button">Buy now</button>
+
+				<p className="descriptPD">{product.description}</p>
+
+				<div className="tempPDbuyA">
+					<button className="tempPDbuyAGoBack" onClick={() => window.history.back()}>
+						Go Back
+					</button>
+					<p className="tempPDbuyAPrice">Price by unit $ {product.price}</p>
+					<p className="tempPDAQty">{`Qty`}</p>
+					<input className="tempPDAInput" type="number" value={1} />
+					<button className="tempPDbuyAAdd" onClick={() => handlerTemp()}>
+						Add to <BsFillCartPlusFill />
+					</button>
+					<button className="tempPDbuyABuy" onClick={() => handlerTemp()}>
+						Buy now
+					</button>
+				</div>
 			</div>
 		</div>
 	);

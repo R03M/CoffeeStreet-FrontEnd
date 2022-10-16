@@ -114,7 +114,7 @@ const NewProducts = () => {
 		<div className="formNewProductDiv">
 			<Formik
 				initialValues={initialValues}
-				// validationSchema={productSchema}
+				validationSchema={productSchema}
 				onSubmit={values => addProduct(values)}
 			>
 				{({ values, touched, errors, isSubmitting, handleChange, handleBlur }) => (
