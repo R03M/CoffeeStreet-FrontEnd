@@ -122,3 +122,22 @@
 	font-weight: 600;
 }
 
+.buttonCurrentNewsC {
+	margin: 1rem;
+	padding: 0.2rem 1rem;
+	font-size: 2rem;
+	border-radius: 5px;
+	background-color: black;
+	color: aliceblue;
+	cursor: pointer;
+	font-weight: bold;
+}
+
+.btnDivCurrentNewsC{
+	margin: 1rem;
+}
+
+.buttonCurrentNewsC:hover {
+	color: black;
+	background-color: aliceblue;
+}

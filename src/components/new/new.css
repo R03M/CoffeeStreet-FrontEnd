@@ -42,3 +42,17 @@
 	max-width: 90%;
 	border-radius: 5px;
 }
+
+.buttonNewC {
+	padding: 0.2rem 1rem;
+	font-size: 2rem;
+	border-radius: 5px;
+	background-color: black;
+	color: aliceblue;
+	cursor: pointer;
+}
+
+.buttonNewC:hover {
+	color: black;
+	background-color: aliceblue;
+}
