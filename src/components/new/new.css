@@ -10,7 +10,6 @@
 	align-items: center;
 	justify-items: center;
 	color: rgb(0, 0, 0);
-	/* background-color: rgba(255, 255, 255, 0.438); */
 	background-color:rgb(221, 197, 146);
 	backdrop-filter: blur(5px);
 	box-shadow: #541911 0px 0px 8px;
@@ -51,9 +50,11 @@
 	background-color: black;
 	color: aliceblue;
 	cursor: pointer;
+	transition: all 0.25s cubic-bezier(0.65, 0, 0.076, 1);
 }
 
 .buttonNewC:hover {
 	color: black;
 	background-color: aliceblue;
+	transition: all 0.25s cubic-bezier(0.65, 0, 0.076, 1);
 }

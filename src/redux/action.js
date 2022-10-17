@@ -31,6 +31,37 @@ export function clearError() {
 	};
 }
 
+export function getProductsForAdmin() {
+	return async function (dispatch) {
+		const response = await axios.get(`${url}/products`);
+		dispatch({
+			type: "GET_PRODUCTS_FOR_ADMIN",
+			payload: response.data
+		});
+	};
+}
+
+export function getProductsNameForAdmin(name) {
+	return async function (dispatch) {
+		try {
+			const response = await axios.get(`${url}/products?name=${name}`);
+			dispatch({
+				type: "GET_PRODUCTS_NAME_FOR_ADMIN",
+				payload: response.data
+			});
+		} catch (error) {
+			return error;
+		}
+	};
+}
+
+export function clearErrorAdmin() {
+	return {
+		type: "CLEAR_ERROR_SEARCHP_FOR_ADMIN"
+	};
+}
+
+
 export function filterByCategory(payload) {
 	return {
 		type: "FILTER_BY_CATEGORY",

@@ -5,10 +5,10 @@
 	justify-items: center;
 	margin: 20px;
 	width: 20rem;
-	height: 35rem;
-	max-height: 35rem;
-	min-height: 35rem;
-	background-color: rgba(247, 194, 81, 0.564);
+	height: 32rem;
+	max-height: 32rem;
+	min-height: 32rem;
+	background-color: rgba(247, 195, 81, 0.35);
 	border-radius: 15px;
 	backdrop-filter: blur(5px);
 	box-shadow: #541911 0px 0px 8px;
@@ -23,9 +23,9 @@
 	justify-items: center;
 	margin: 20px;
 	width: 20rem;
-	height: 35rem;
-	max-height: 35rem;
-	min-height: 35rem;
+	height: 32rem;
+	max-height: 32rem;
+	min-height: 32rem;
 	background-color: rgba(114, 91, 41, 0.457);
 	border-radius: 15px;
 	padding: 0rem 1rem;

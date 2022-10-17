@@ -5,8 +5,7 @@
 	align-items: center;
 	object-fit: cover;
 	overflow-y: scroll;
-	background: linear-gradient(to bottom, #2b2b2b41 0%, #0000005f 100%);
-	/* url("../../media/mk17.jpg"); */
+	background: linear-gradient(to bottom, #a4a4a441 100%, #5656565f 0%);
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: center;

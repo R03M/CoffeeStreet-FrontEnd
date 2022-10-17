@@ -6,7 +6,7 @@
 	margin: 20px;
 	width: 280px;
 	height: 320px;
-	background-color: rgba(223, 213, 213, 0.336);
+	background-color: rgba(247, 195, 81, 0.447);
 	border-radius: 15px;
 	backdrop-filter: blur(4px);
 	box-shadow: #541911 0px 0px 8px;
@@ -22,7 +22,7 @@
 	margin: 20px;
 	width: 280px;
 	height: 320px;
-	background-color: rgba(74, 72, 72, 0.546);
+	background-color: rgba(114, 91, 41, 0.457);
 	border-radius: 15px;
 	padding: 1rem;
 }
