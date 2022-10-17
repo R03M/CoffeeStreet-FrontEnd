@@ -4,8 +4,8 @@
 	flex-direction: column;
 	object-fit: cover;
 	overflow-y: scroll;
-	background: linear-gradient(to bottom, #2b2b2b41 0%, #0000005f 100%),
-		url("../../media/mk02.jpg");
+	background: linear-gradient(to bottom, #2b2b2b41 0%, #0000005f 100%);
+		/* url("../../media/mk02.jpg"); */
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: center;
@@ -21,7 +21,7 @@
 	justify-content: flex-start;
 	height: 6rem;
 	width: 6rem;
-	margin: 5px;
+	margin: 10px 15px;
 	background: url(../../media/mk01.jpg);
 	background-size: cover;
 }
@@ -194,8 +194,14 @@
 }
 
 .divProductsAdmin {
-	display: flex;
+	display: inline-flex;
 	flex-direction: column;
+}
+
+.newProductBtnPeDiv {
+	display: inline-block;
+	flex-direction: row-reverse;
+	margin-top: -95px;
 }
 
 .newProductBtnPe {
@@ -209,6 +215,7 @@
 	font-size: 1.1rem;
 	color: aliceblue;
 	background-color: rgb(58, 187, 58);
+	cursor: pointer;
 }
 
 .newProductBtnPe:hover {

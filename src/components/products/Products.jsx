@@ -42,12 +42,12 @@ const Products = () => {
 			if (allProducts.length) {
 				return (
 					<div>
-						<Pagination currentPage={currentPage} setPage={setCurrentPage} max={max} />
 
 						<div className="cardsProd">
 							{dataEnd.map(data => {
 								return <CardP key={data.id} product={data} />;
 							})}
+						<Pagination currentPage={currentPage} setPage={setCurrentPage} max={max} />
 						</div>
 					</div>
 				);
