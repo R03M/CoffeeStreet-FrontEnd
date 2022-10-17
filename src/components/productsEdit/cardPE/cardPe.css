@@ -5,8 +5,8 @@
 	justify-items: center;
 	margin: 20px;
 	width: 280px;
-	height: 280px;
-	background-color: rgba(223, 213, 213, 0.336);
+	height: 320px;
+	background-color: rgba(247, 195, 81, 0.447);
 	border-radius: 15px;
 	backdrop-filter: blur(4px);
 	box-shadow: #541911 0px 0px 8px;
@@ -21,20 +21,34 @@
 	justify-items: center;
 	margin: 20px;
 	width: 280px;
-	height: 280px;
-	background-color: rgba(77, 77, 77);
+	height: 320px;
+	background-color: rgba(114, 91, 41, 0.457);
 	border-radius: 15px;
 	padding: 1rem;
 }
 
+.nameCardPe {
+	height: 60px;
+	max-height: 60px;
+	font-size: 1.5rem;
+	font-weight: 600;
+}
+
+.priceCardPe {
+	font-size: 1.5rem;
+	font-weight: 600;
+	color: green;
+}
+
 .imgCardPe {
 	height: 150px;
-	max-height: 200px;
-	margin: 1rem;
+	max-height: 150px;
+	max-height: 150px;
 }
 
 .divTempCardPe {
 	display: flex;
+	justify-content: center;
 	margin: 1rem;
 }
 
@@ -51,7 +65,7 @@
 	cursor: pointer;
 }
 
-.btnBCardPeStock:hover{
+.btnBCardPeStock:hover {
 	color: rgb(137, 149, 149);
 	background-color: black;
 	font-weight: bold;
@@ -70,7 +84,7 @@
 	cursor: pointer;
 }
 
-.btnBCardPeEdit:hover{
+.btnBCardPeEdit:hover {
 	color: rgb(83, 186, 52);
 	background-color: black;
 	font-weight: bold;

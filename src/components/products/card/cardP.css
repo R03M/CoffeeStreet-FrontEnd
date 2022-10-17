@@ -4,11 +4,11 @@
 	align-items: center;
 	justify-items: center;
 	margin: 20px;
-	width: 380px;
-	height: 540px;
-	max-height: 540px;
-	min-height: 540px;
-	background-color: rgba(247, 197, 90, 0.477);
+	width: 20rem;
+	height: 32rem;
+	max-height: 32rem;
+	min-height: 32rem;
+	background-color: rgba(247, 195, 81, 0.35);
 	border-radius: 15px;
 	backdrop-filter: blur(5px);
 	box-shadow: #541911 0px 0px 8px;
@@ -22,10 +22,10 @@
 	align-items: center;
 	justify-items: center;
 	margin: 20px;
-	width: 380px;
-	height: 540px;
-	max-height: 540px;
-	min-height: 540px;
+	width: 20rem;
+	height: 32rem;
+	max-height: 32rem;
+	min-height: 32rem;
 	background-color: rgba(114, 91, 41, 0.457);
 	border-radius: 15px;
 	padding: 0rem 1rem;
@@ -51,14 +51,14 @@
 }
 
 .imgCard {
-	height: 40%;
-	max-height: 40%;
+	height: 35%;
+	max-height: 35%;
 	margin: 5px;
 }
 
 .imgCardNSCP {
-	height: 40%;
-	max-height: 40%;
+	height: 35%;
+	max-height: 35%;
 	margin: 5px;
 	-webkit-filter: grayscale(1); /* Webkit */
 	filter: gray; /* IE6-9 */
@@ -74,7 +74,7 @@
 }
 
 .trueBtn {
-	color: rgb(247, 196, 90);
+	color: rgb(245, 192, 77);
 	background-color: #541911;
 	padding: 0.7rem;
 	border-radius: 15px;
@@ -82,7 +82,6 @@
 }
 
 .falseBtn {
-	/* background-color: grey; */
 	color: #541911;
 	padding: 0.7rem;
 	border-radius: 15px;
@@ -105,10 +104,11 @@
 
 .divTempCart {
 	display: grid;
-	grid-template-columns: repeat(4, 80px);
+	grid-template-columns: repeat(4, 1fr);
 	justify-content: center;
 	align-items: center;
 	justify-items: center;
+	margin-right: 2rem;
 }
 
 .pCartTemp {

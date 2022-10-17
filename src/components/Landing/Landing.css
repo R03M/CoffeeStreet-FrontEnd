@@ -17,7 +17,7 @@
 	justify-content: space-around;
 	align-content: center;
 	object-fit: cover;
-	margin: 1rem;
+	margin-left: 23rem;
 	height: 90%;
 	width: 25%;
 	border-radius: 15px;
@@ -36,6 +36,7 @@
 	background-repeat: no-repeat;
 	background-size: contain;
 	background-position: center;
+	transition: all 0.55s cubic-bezier(0.65, 0, 0.076, 1);
 	background-color: rgba(11, 11, 11, 0.455);
 	border-radius: 50%;
 	backdrop-filter: blur(2px);
@@ -78,6 +79,7 @@
 	padding: 0.5rem 2rem;
 	border-radius: 5px;
 	font-weight: 600;
+	transition: all 0.25s cubic-bezier(0.65, 0, 0.076, 1);
 	background-color: rgba(183, 60, 60, 0.454);
 	color: white;
 	cursor: pointer;
