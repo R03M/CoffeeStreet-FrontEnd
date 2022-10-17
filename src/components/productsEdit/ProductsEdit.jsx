@@ -4,7 +4,7 @@ import { clearError, getProducts } from "../../redux/action";
 import CardPe from "./cardPE/CardPe";
 import Loading from "../loading/Loading";
 import NavbarProduc from "../products/navbarProducts/NavbarProduc";
-import ErrorSearch from "../products/errorSearch/ErrorSearch";
+import ErrorSearch from "../errorSearch/ErrorSearch";
 import "./productsEdit.css";
 
 const ProductsEdit = () => {

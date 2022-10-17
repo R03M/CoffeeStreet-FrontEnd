@@ -2,6 +2,9 @@ const initialState = {
 	allProducts: [],
 	products: [],
 	errorSProducts: [],
+	allProductsForAdmin: [],
+	productsForAdmin: [],
+	errorSProductsAdmin: [],
 	productDetails: {}
 };
 
@@ -31,6 +34,32 @@ export default function rootReducer(state = initialState, action) {
 			return {
 				...state,
 				errorSProducts: []
+			};
+
+			case "GET_PRODUCTS_FOR_ADMIN":
+			return {
+				...state,
+				allProductsForAdmin: action.payload,
+				productsForAdmin: action.payload
+			};
+
+		case "GET_PRODUCTS_NAME_FOR_ADMIN":
+			if (action.payload.errorMessage === "There is no product with that name") {
+				return {
+					...state,
+					errorSProductsAdmin: action.payload.errorMessage
+				};
+			} else {
+				return {
+					...state,
+					productsForAdmin: action.payload
+				};
+			}
+
+		case "CLEAR_ERROR_SEARCHP_FOR_ADMIN":
+			return {
+				...state,
+				errorSProductsAdmin: []
 			};
 
 		case "FILTER_BY_CATEGORY":
@@ -114,6 +143,7 @@ export default function rootReducer(state = initialState, action) {
 				...state,
 				products: orderPrice
 			};
+
 		case "PRODUCT_DETAILS":
 			return {
 				...state,

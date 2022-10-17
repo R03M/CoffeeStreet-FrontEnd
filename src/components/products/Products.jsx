@@ -6,7 +6,7 @@ import CardP from "./card/CardP";
 import NavbarProduc from "./navbarProducts/NavbarProduc";
 import Pagination from "../pagination/Pagination";
 import Loading from "../loading/Loading";
-import ErrorSearch from "./errorSearch/ErrorSearch";
+import ErrorSearch from "../errorSearch/ErrorSearch";
 import "./products.css";
 
 const Products = () => {

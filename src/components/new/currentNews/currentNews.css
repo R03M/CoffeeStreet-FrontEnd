@@ -6,7 +6,7 @@
 	object-fit: cover;
 	overflow-y: scroll;
 	background-image: linear-gradient(to bottom, #40404041 0%, #3231315f 100%);
-		/* url(../../../media/mk18.jpg) */
+	/* url(../../../media/mk18.jpg) */
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: center;
@@ -133,11 +133,13 @@
 	font-weight: bold;
 }
 
-.btnDivCurrentNewsC{
+.btnDivCurrentNewsC {
+	transition: all 0.25s cubic-bezier(0.65, 0, 0.076, 1);
 	margin: 1rem;
 }
 
 .buttonCurrentNewsC:hover {
 	color: black;
+	transition: all 0.25s cubic-bezier(0.65, 0, 0.076, 1);
 	background-color: aliceblue;
 }
