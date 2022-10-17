@@ -5,12 +5,14 @@
 	justify-items: center;
 	margin: 20px;
 	width: 380px;
-	height: 480px;
-	background-color: rgba(223, 213, 213, 0.336);
+	height: 540px;
+	max-height: 540px;
+	min-height: 540px;
+	background-color: rgba(247, 197, 90, 0.477);
 	border-radius: 15px;
 	backdrop-filter: blur(5px);
 	box-shadow: #541911 0px 0px 8px;
-	padding: 1rem;
+	padding: 0rem 1rem;
 }
 
 /*clase para cuando no exista stock(en proceso)*/
@@ -21,15 +23,14 @@
 	justify-items: center;
 	margin: 20px;
 	width: 380px;
-	height: 480px;
-	background-color: rgba(77, 77, 77);
+	height: 540px;
+	max-height: 540px;
+	min-height: 540px;
+	background-color: rgba(114, 91, 41, 0.457);
 	border-radius: 15px;
-	padding: 15px;
-	cursor: no-drop;
+	padding: 0rem 1rem;
 }
-.cardDivF:hover {
-	color: white;
-}
+
 .linkCardP {
 	color: black;
 	text-decoration: none;
@@ -39,7 +40,7 @@
 	height: 40px;
 	max-height: 40px;
 	font-size: 1.5rem;
-	margin: 5px;
+	margin: 0.5rem;
 	font-weight: bold;
 }
 
@@ -55,28 +56,37 @@
 	margin: 5px;
 }
 
+.imgCardNSCP {
+	height: 40%;
+	max-height: 40%;
+	margin: 5px;
+	-webkit-filter: grayscale(1); /* Webkit */
+	filter: gray; /* IE6-9 */
+	filter: grayscale(1); /* W3C */
+}
+
 .divTypeCardP {
 	display: grid;
-	grid-template-columns: repeat(4, 80px);
+	grid-template-columns: repeat(4, 70px);
 	justify-content: center;
 	align-items: center;
 	justify-items: center;
 }
 
 .trueBtn {
-	background-color: rgba(35, 137, 35);
-	/* backdrop-filter: blur(10px); */
+	color: rgb(247, 196, 90);
+	background-color: #541911;
 	padding: 0.7rem;
-	border-radius: 5px;
-	font-size: 2.1rem;
+	border-radius: 15px;
+	font-size: 2.5rem;
 }
 
 .falseBtn {
-	background-color: rgb(224, 68, 68);
-	/* backdrop-filter: blur(10px); */
+	/* background-color: grey; */
+	color: #541911;
 	padding: 0.7rem;
-	border-radius: 5px;
-	font-size: 2.1rem;
+	border-radius: 15px;
+	font-size: 2.5rem;
 }
 
 .btnInfoCardP {
@@ -118,6 +128,7 @@
 	padding: 0.3rem;
 	font-weight: bold;
 	font-size: 1.2rem;
+	text-align: center;
 }
 
 .btnBCartTemp {
@@ -128,8 +139,18 @@
 	border-radius: 5px;
 	margin: 4px;
 	padding: 10px 25px;
-
 	cursor: pointer;
+}
+
+.btnBCartTempNSCP {
+	background-color: rgb(200, 200, 200);
+	font-weight: bold;
+	font-size: 1.2rem;
+	color: rgb(95, 91, 91);
+	border-radius: 5px;
+	margin: 4px;
+	padding: 10px 25px;
+	cursor: no-drop;
 }
 
 .btnBCartTemp:hover {
@@ -147,7 +168,28 @@
 	cursor: pointer;
 }
 
+.btnACartTempNSCP {
+	backdrop-filter: blur(10px);
+	background-color: rgb(200, 200, 200);
+	color: rgb(95, 91, 91);
+	border-radius: 5px;
+	margin: 4px;
+	padding: 10px 20px;
+	font-size: 1.2rem;
+	cursor: no-drop;
+}
+
 .btnACartTemp:hover {
 	color: rgba(247, 197, 90);
 	background-color: black;
+}
+
+.priceCardPC {
+	margin: 1rem;
+	font-weight: bold;
+	font-size: 1.2rem;
+	border-radius: 5px;
+	padding: 10px 25px;
+	background-color: rgb(239, 234, 224);
+	box-shadow: #541911 0px 0px 5px;
 }

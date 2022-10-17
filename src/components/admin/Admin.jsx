@@ -148,7 +148,6 @@ const Admin = () => {
 			setDiscounts(false);
 			setProfits(false);
 			setSwitchNewProduct(false);
-
 		} else if (nav === true && myAcc === false) {
 			setMyAcc(true);
 			setProducts(false);
@@ -170,7 +169,6 @@ const Admin = () => {
 		setProfits(false);
 		setMyAcc(false);
 		setSwitchNewProduct(false);
-
 	}
 
 	function cardsAdmin() {
@@ -250,9 +248,9 @@ const Admin = () => {
 		}
 	}
 
-	function activeNewProduct(){
-			setSwitchNewProduct(true)
-			setProducts(false)
+	function activeNewProduct() {
+		setSwitchNewProduct(true);
+		setProducts(false);
 	}
 
 	return (
@@ -264,15 +262,18 @@ const Admin = () => {
 			{cardsAdmin()}
 
 			{products === true && nav === true ? (
-				<div className="divProductsAdmin">
-					<button className="newProductBtnPe" onClick={() => activeNewProduct()}>
-						Add New Product
-					</button>
-					<ProductsEdit />
-
+				<div>
+					<div className="newProductBtnPeDiv">
+						<button className="newProductBtnPe" onClick={() => activeNewProduct()}>
+							Add New Product
+						</button>
+					</div>
+					<div className="divProductsAdmin">
+						<ProductsEdit />
+					</div>
 				</div>
 			) : null}
-			{switchNewProduct === true && nav === true ? <NewProducts/> : null}
+			{switchNewProduct === true && nav === true ? <NewProducts /> : null}
 			{users === true && nav === true ? <UsersE /> : null}
 			{myAcc === true && nav === true ? <MyAccount /> : null}
 			{news === true && nav === true ? <News /> : null}

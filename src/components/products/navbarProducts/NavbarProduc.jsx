@@ -13,19 +13,15 @@ const NavbarProduc = () => {
 	const dispatch = useDispatch();
 
 	const filterCategory = e => {
-		e.preventDefault();
 		dispatch(filterByCategory(e.target.value));
 	};
 	const filterType = e => {
-		e.preventDefault();
 		dispatch(filterByType(e.target.value));
 	};
 	const filterPrepared = e => {
-		e.preventDefault();
 		dispatch(filterByPrepared(e.target.value));
 	};
 	const orderPrice = e => {
-		e.preventDefault();
 		dispatch(orderByPrice(e.target.value));
 	};
 
@@ -34,15 +30,20 @@ const NavbarProduc = () => {
 			<SearchP />
 
 			<div>
-				<select onChange={e => filterCategory(e)} className="selectNavProd">
+				<select
+					name="filterCategory"
+					onChange={e => filterCategory(e)}
+					className="selectNavProd"
+				>
 					<option hidden>Filter by Category</option>
-					<option disabled="disabled" default={true} value="">
+					<option disabled="disabled" default={true} value="init">
 						Filter by Category
 					</option>
 					<option value="all">All</option>
 					<option value="coffee">Coffee</option>
 					<option value="tea">Tea</option>
 					<option value="sweetBakery">Sweet Bakery</option>
+					<option value="saltyBakery">Salty Bakery</option>
 					<option value="other">Other</option>
 				</select>
 
@@ -68,7 +69,6 @@ const NavbarProduc = () => {
 					<option value="all">All</option>
 					<option value="prepared">To prepare</option>
 					<option value="consumption">Ready to eat</option>
-
 				</select>
 
 				<select onChange={e => orderPrice(e)} className="selectNavProd">
