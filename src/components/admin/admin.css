@@ -197,7 +197,6 @@
 	flex-direction: column;
 }
 
-
 .btnDivnewproductPe {
 	display: flex;
 	justify-content: center;
@@ -224,4 +223,11 @@
 .newProductBtnPe:hover {
 	color: rgb(58, 187, 58);
 	background-color: aliceblue;
+}
+
+.navBarACardsAdminC {
+	display: flex;
+	align-items: flex-start;
+	margin-top: 1rem;
+	margin-bottom: 1rem;
 }
