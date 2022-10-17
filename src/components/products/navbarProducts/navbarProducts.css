@@ -1,13 +1,92 @@
 .navProduc {
 	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin: 1rem;
+	width: 300px;
+	min-width: 300px;
+	max-width: 300px;
+}
+
+.titlesNavbarP {
+	color: rgb(255, 255, 255);
+	font-size: 1.2rem;
+	font-weight: 600;
+	margin: 2px;
+}
+
+.navProductCatagory {
+	border-radius: 15px;
+	margin: 10px;
+	padding: 10px;
+	background-color: #1a180d70;
+	box-shadow: rgb(0, 0, 0) 0px 0px 5px;
+}
+
+.btnProductCategory {
+	font-size: 1.1rem;
+	padding: 4px;
+	margin: 4px;
+	border-radius: 4px;
+	cursor: pointer;
+	background-color: rgb(247, 196, 90);
+	color: rgb(84, 25, 17);
+	font-weight: 600;
 }
 
 .selectNavProd {
-	font-size: 1rem;
-	margin: 2px;
-	padding: 8px;
-	border-radius: 10px;
-	border: none;
-	font-weight: 800;
+	background-color: rgba(0, 0, 0, 0.474);
+	border-radius: 15px;
+	margin: 10px;
+	padding: 10px;
+	width: 290px;
 	text-align: center;
+	color: rgb(255, 255, 255);
+	font-size: 1.2rem;
+	font-weight: 600;
+	box-shadow: rgb(0, 0, 0) 0px 0px 5px;
+}
+
+.selectNavProdOption {
+	background-color: rgb(247, 196, 90);
+	color: rgb(84, 25, 17);
+	font-weight: 600;
+}
+
+.navProductIsPrepared {
+	background-color: rgba(0, 0, 0, 0.474);
+	border-radius: 15px;
+	margin: 10px;
+	padding: 10px;
+	box-shadow: rgb(0, 0, 0) 0px 0px 5px;
+}
+
+.btnProductIsPrepared {
+	font-size: 1.1rem;
+	padding: 4px;
+	margin: 4px;
+	border-radius: 4px;
+	cursor: pointer;
+	background-color: rgb(247, 196, 90);
+	color: rgb(84, 25, 17);
+	font-weight: 600;
+}
+
+.navProductType {
+	background-color: rgba(0, 0, 0, 0.474);
+	border-radius: 15px;
+	margin: 10px;
+	padding: 10px;
+	box-shadow: rgb(0, 0, 0) 0px 0px 5px;
+}
+
+.typeNavProductTypes {
+	font-size: 1.1rem;
+	padding: 4px;
+	margin: 4px;
+	border-radius: 4px;
+	cursor: pointer;
+	background-color: rgb(247, 196, 90);
+	color: rgb(84, 25, 17);
+	font-weight: 600;
 }

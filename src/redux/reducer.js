@@ -2,9 +2,6 @@ const initialState = {
 	allProducts: [],
 	products: [],
 	errorSProducts: [],
-	allProductsForAdmin: [],
-	productsForAdmin: [],
-	errorSProductsAdmin: [],
 	productDetails: {}
 };
 
@@ -36,7 +33,7 @@ export default function rootReducer(state = initialState, action) {
 				errorSProducts: []
 			};
 
-			case "GET_PRODUCTS_FOR_ADMIN":
+		case "GET_PRODUCTS_FOR_ADMIN":
 			return {
 				...state,
 				allProductsForAdmin: action.payload,
@@ -149,7 +146,11 @@ export default function rootReducer(state = initialState, action) {
 				...state,
 				productDetails: action.payload
 			};
-
+		case "CLEAR_DETAILS":
+			return {
+				...state,
+				productDetails: {}
+			};
 		default:
 			return state;
 	}

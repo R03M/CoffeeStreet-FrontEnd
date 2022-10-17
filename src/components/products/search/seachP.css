@@ -5,8 +5,8 @@
 	border-radius: 10px;
 	font-weight: 800;
 	border: none;
+	width: 300px;
+	min-width: 300px;
+	max-width: 300px;
 }
 
-.searchProduct:focus {
-	border: none;
-}

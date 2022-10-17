@@ -23,7 +23,6 @@ const Pagination = ({ currentPage, setPage, max }) => {
 				e.target.value > max ||
 				isNaN(parseInt(e.target.value))
 			) {
-				console.log("error");
 				setPage(1);
 				setInput(1);
 			} else {
@@ -34,7 +33,6 @@ const Pagination = ({ currentPage, setPage, max }) => {
 
 	const onChange = e => {
 		setInput(e.target.value);
-		console.log("input", input);
 	};
 
 	return (
