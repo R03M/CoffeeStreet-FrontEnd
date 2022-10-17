@@ -1,10 +1,16 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { MdOutlineInventory } from "react-icons/md";
+import {
+	MdOutlineInventory,
+	MdOutlineBakeryDining,
+	MdEmojiFoodBeverage
+} from "react-icons/md";
 import { ImUsers } from "react-icons/im";
 import { GiNewspaper, GiProfit } from "react-icons/gi";
 import { TbDiscount2 } from "react-icons/tb";
 import { RiAccountPinCircleFill } from "react-icons/ri";
+import { BiFoodMenu } from "react-icons/bi";
+import { SiBuymeacoffee } from "react-icons/si";
 import ProductsEdit from "../productsEdit/ProductsEdit";
 import UsersE from "./usersE/UsersE";
 import MyAccount from "./myAccount/MyAccount";
@@ -262,10 +268,11 @@ const Admin = () => {
 			{cardsAdmin()}
 
 			{products === true && nav === true ? (
-				<div>
-					<div className="newProductBtnPeDiv">
+				<div className="productsAdminPC">
+					<div className="btnDivnewproductPe">
 						<button className="newProductBtnPe" onClick={() => activeNewProduct()}>
-							Add New Product
+							<SiBuymeacoffee /> <MdOutlineBakeryDining /> Add New Product{" "}
+							<MdEmojiFoodBeverage /> <BiFoodMenu />
 						</button>
 					</div>
 					<div className="divProductsAdmin">
