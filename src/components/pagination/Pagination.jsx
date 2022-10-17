@@ -53,7 +53,7 @@ const Pagination = ({ currentPage, setPage, max }) => {
 				value={input}
 				className="inputPag"
 			/>
-			<p className="btnNP"> Pages of {max} </p>
+			<p className="pPagesPagination"> Pages of {max} </p>
 
 			<button disabled={currentPage === max} onClick={netPage} className="btnNP">
 

@@ -1,5 +1,7 @@
 .navbarDivC {
-	height: 120px;
+	height: 130px;
+	min-height: 130px;
+	max-height: 130px;
 	border: 15px;
 	width: 100%;
 	display: flex;
@@ -10,6 +12,8 @@
 		url("../../media/mk03.jpg");
 	background-repeat: no-repeat;
 	background-size: cover;
+	box-shadow: rgb(253, 188, 37) 0px 0px 25px;
+
 }
 
 .logo {
@@ -19,7 +23,7 @@
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-position: center;
-	margin: 5px;
+	margin: 4px 15px;
 }
 
 .logo:hover {
@@ -44,7 +48,7 @@
 .btnNBCU {
 	margin-left: 25px;
 	margin-right: 25px;
-	color: rgb(255, 253, 253);
+	color: rgb(243, 214, 147);
 	font-size: 1.5rem;
 	font-weight: 700;
 	border: none;
@@ -53,5 +57,5 @@
 }
 
 .btnNBCU:hover {
-	color: black;
+	color: rgb(255, 253, 253);
 }

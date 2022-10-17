@@ -20,6 +20,25 @@
 	border-radius: 5px;
 	color: black;
 	font-weight: bold;
+	font-size: 1rem;
+	cursor: pointer;
+}
+
+.pPagesPagination {
+	margin: 0.5rem;
+	background-color: aliceblue;
+	padding: 0.5rem;
+	border-radius: 5px;
+	color: black;
+	font-weight: bold;
+	font-size: 1rem;
+	cursor: default;
+}
+
+.btnNP:hover {
+	color: aliceblue;
+	background-color: black;
+
 }
 
 .btnNP:disabled {

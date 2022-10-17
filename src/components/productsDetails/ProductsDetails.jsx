@@ -17,12 +17,14 @@ const ProductsDetails = () => {
 	}, [dispatch, id]);
 
 	const handlerTemp = () => {
-		swal({
-			title: "Proximamente...",
-			text: "Tal vez en el segundo Sprint",
-			icon: "info",
-			button: "Ok"
-		});
+		if (product.stock === true) {
+			swal({
+				title: "Proximamente...",
+				text: "Tal vez en el segundo Sprint",
+				icon: "info",
+				button: "Ok"
+			});
+		}
 	};
 
 	function moreDetails() {
@@ -99,10 +101,10 @@ const ProductsDetails = () => {
 					<p className="tempPDbuyAPrice">Price by unit $ {product.price}</p>
 					<p className="tempPDAQty">{`Qty`}</p>
 					<input className="tempPDAInput" type="number" value={1} />
-					<button className="tempPDbuyAAdd" onClick={() => handlerTemp()}>
+					<button className={product.stock === true ? "tempPDbuyAAdd" : "tempPDbuyAAddNSPD"} onClick={() => handlerTemp()}>
 						Add to <BsFillCartPlusFill />
 					</button>
-					<button className="tempPDbuyABuy" onClick={() => handlerTemp()}>
+					<button className={product.stock === true ? "tempPDbuyABuy" : "tempPDbuyABuyNSPD"} onClick={() => handlerTemp()}>
 						Buy now
 					</button>
 				</div>
