@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { clearError, getProducts } from "../../redux/action";
+import { clearError, getProducts, clearDetails } from "../../redux/action";
 import NavBar from "../navbar/Navbar";
 import CardP from "./card/CardP";
 import NavbarProduc from "./navbarProducts/NavbarProduc";
@@ -28,7 +28,9 @@ const Products = () => {
 		if (allProducts.length === 0) {
 			dispatch(getProducts());
 		}
-		dispatch(clearError())
+		setCurrentPage(1)
+		dispatch(clearError());
+		dispatch(clearDetails());
 	}, [dispatch, allProducts]);
 
 	function pagACards() {
@@ -42,12 +44,11 @@ const Products = () => {
 			if (allProducts.length) {
 				return (
 					<div>
-
 						<div className="cardsProd">
 							{dataEnd.map(data => {
 								return <CardP key={data.id} product={data} />;
 							})}
-						<Pagination currentPage={currentPage} setPage={setCurrentPage} max={max} />
+							<Pagination currentPage={currentPage} setPage={setCurrentPage} max={max} />
 						</div>
 					</div>
 				);

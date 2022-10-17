@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { clearError, getProducts } from "../../redux/action";
+import { clearError, getProducts, clearDetails } from "../../redux/action";
 import CardPe from "./cardPE/CardPe";
 import Loading from "../loading/Loading";
 import NavbarProduc from "../products/navbarProducts/NavbarProduc";
@@ -17,8 +17,8 @@ const ProductsEdit = () => {
 			dispatch(getProducts());
 		}
 		dispatch(clearError());
+		dispatch(clearDetails());
 	}, [dispatch, allProducts]);
-
 
 	function pagACards() {
 		if (errorMessage === "There is no product with that name") {
@@ -30,12 +30,11 @@ const ProductsEdit = () => {
 		} else {
 			if (allProducts.length) {
 				return (
-
-						<div className="cardsEditPe">
-							{allProducts.map(data => {
-								return <CardPe key={data.id} product={data} />;
-							})}
-						</div>
+					<div className="cardsEditPe">
+						{allProducts.map(data => {
+							return <CardPe key={data.id} product={data} />;
+						})}
+					</div>
 				);
 			} else {
 				<Loading />;
@@ -45,7 +44,7 @@ const ProductsEdit = () => {
 
 	return (
 		<div className="productsEditdiv">
-				<NavbarProduc />
+			<NavbarProduc />
 			{pagACards()}
 		</div>
 	);

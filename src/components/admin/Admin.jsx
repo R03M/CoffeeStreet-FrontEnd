@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { getProducts } from "../../redux/action";
+import { useDispatch } from "react-redux";
 import {
 	MdOutlineInventory,
 	MdOutlineBakeryDining,
@@ -17,10 +19,11 @@ import MyAccount from "./myAccount/MyAccount";
 import News from "./news/News";
 import Discounts from "../discounts/Discounts";
 import Profits from "./profits/Profits";
-import "./admin.css";
 import NewProducts from "../productsEdit/formNewProducts/NewProducts";
+import "./admin.css";
 
 const Admin = () => {
+	const dispatch = useDispatch();
 	let [cards, setCards] = useState(true);
 	let [nav, setNav] = useState(false);
 
@@ -259,9 +262,13 @@ const Admin = () => {
 		setProducts(false);
 	}
 
+	useEffect(() => {
+		dispatch(getProducts());
+	}, []);
+
 	return (
 		<div className="adminDiv">
-			<Link className="linkAdmin" to={"/menu"}>
+			<Link className="linkAdmin" to={"/menu"} onClick={() => dispatch(getProducts())}>
 				<div className="imgBackHome"></div>
 			</Link>
 
