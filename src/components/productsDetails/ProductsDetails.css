@@ -171,6 +171,18 @@
 	box-shadow: #541911 0px 0px 5px;
 }
 
+.tempPDbuyAAddNSPD {
+	margin: 1rem;
+	font-weight: bold;
+	font-size: 1.2rem;
+	color: black;
+	border-radius: 5px;
+	padding: 10px 25px;
+	cursor: no-drop;
+	background-color: rgb(200, 200, 200);
+	color: rgb(95, 91, 91);
+}
+
 .tempPDbuyAAdd:hover {
 	color: rgb(247, 196, 90);
 	background-color: black;
@@ -187,6 +199,19 @@
 	cursor: pointer;
 	box-shadow: #541911 0px 0px 5px;
 }
+
+.tempPDbuyABuyNSPD {
+	margin: 1rem;
+	background-color: rgb(200, 200, 200);
+	color: rgb(95, 91, 91);
+	backdrop-filter: blur(10px);
+	font-weight: bold;
+	border-radius: 5px;
+	padding: 10px 20px;
+	font-size: 1.2rem;
+	cursor: no-drop;
+}
+
 
 .tempPDbuyABuy:hover {
 	color: rgba(247, 197, 90, 0.79);
