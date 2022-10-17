@@ -12,11 +12,17 @@
 }
 
 .navbarProduc {
+	display: flex;
+	align-items: flex-start;
 	margin-top: 1rem;
 	margin-bottom: 1rem;
 }
 
 .cardsProd {
-	margin-left: 80px;
-	margin-right: 80px;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.productsDivErrorPC {
+	display: flex;
 }

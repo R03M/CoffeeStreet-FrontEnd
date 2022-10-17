@@ -28,7 +28,7 @@ const Products = () => {
 		if (allProducts.length === 0) {
 			dispatch(getProducts());
 		}
-		setCurrentPage(1)
+		setCurrentPage(1);
 		dispatch(clearError());
 		dispatch(clearDetails());
 	}, [dispatch, allProducts]);
@@ -36,7 +36,7 @@ const Products = () => {
 	function pagACards() {
 		if (errorMessage === "There is no product with that name") {
 			return (
-				<div>
+				<div className="productsDivErrorPC">
 					<ErrorSearch />
 				</div>
 			);
@@ -48,8 +48,8 @@ const Products = () => {
 							{dataEnd.map(data => {
 								return <CardP key={data.id} product={data} />;
 							})}
-							<Pagination currentPage={currentPage} setPage={setCurrentPage} max={max} />
 						</div>
+							<Pagination currentPage={currentPage} setPage={setCurrentPage} max={max} />
 					</div>
 				);
 			} else {
@@ -63,8 +63,8 @@ const Products = () => {
 			<NavBar />
 			<div className="navbarProduc">
 				<NavbarProduc />
+				{pagACards()}
 			</div>
-			{pagACards()}
 		</div>
 	);
 };

@@ -13,13 +13,13 @@ const NavbarProduc = () => {
 	const dispatch = useDispatch();
 
 	const filterCategory = e => {
-		dispatch(filterByCategory(e.target.value));
+		dispatch(filterByCategory(e));
 	};
 	const filterType = e => {
-		dispatch(filterByType(e.target.value));
+		dispatch(filterByType(e));
 	};
 	const filterPrepared = e => {
-		dispatch(filterByPrepared(e.target.value));
+		dispatch(filterByPrepared(e));
 	};
 	const orderPrice = e => {
 		dispatch(orderByPrice(e.target.value));
@@ -30,55 +30,41 @@ const NavbarProduc = () => {
 			<SearchP />
 
 			<div>
-				<select
-					name="filterCategory"
-					onChange={e => filterCategory(e)}
-					className="selectNavProd"
-				>
-					<option hidden>Filter by Category</option>
-					<option disabled="disabled" default={true} value="init">
-						Filter by Category
-					</option>
-					<option value="all">All</option>
-					<option value="coffee">Coffee</option>
-					<option value="tea">Tea</option>
-					<option value="sweetBakery">Sweet Bakery</option>
-					<option value="saltyBakery">Salty Bakery</option>
-					<option value="other">Other</option>
-				</select>
-
-				<select onChange={e => filterType(e)} className="selectNavProd">
-					<option hidden>Filter by Type</option>
-					<option disabled="disabled" default={true} value="">
-						Filter by Type
-					</option>
-					<option value="all">All</option>
-					<option value="lactose">Lactose</option>
-					<option value="lactoseFree">Lactose-free</option>
-					<option value="alcohol">Alcohol</option>
-					<option value="alcoholFree">Alcohol-free</option>
-					<option value="gluten">Gluten</option>
-					<option value="glutenFree">Gluten-free</option>
-				</select>
-
-				<select onChange={e => filterPrepared(e)} className="selectNavProd">
-					<option hidden>Filter by Status</option>
-					<option disabled="disabled" default={true} value="">
-						Filter by Status
-					</option>
-					<option value="all">All</option>
-					<option value="prepared">To prepare</option>
-					<option value="consumption">Ready to eat</option>
-				</select>
+				<div className="navProductCatagory">
+					<p className="titlesNavbarP">Categories</p>
+					<button className="btnProductCategory" onClick={() => filterCategory("all")}>All</button>
+					<button className="btnProductCategory" onClick={() => filterCategory("coffee")}>Coffee</button>
+					<button className="btnProductCategory" onClick={() => filterCategory("tea")}>Tea</button>
+					<button className="btnProductCategory" onClick={() => filterCategory("other")}>Other</button>
+					<button className="btnProductCategory" onClick={() => filterCategory("sweetBakery")}>Sweet Bakery</button>
+					<button className="btnProductCategory" onClick={() => filterCategory("saltyBakery")}>Salty Bakery</button>
+				</div>
 
 				<select onChange={e => orderPrice(e)} className="selectNavProd">
-					<option hidden>Order by price</option>
-					<option disabled="disabled" default={true} value="">
+					<option className="selectNavProdOption" hidden>Order by price</option>
+					<option className="selectNavProdOption" disabled="disabled" default={true} value="">
 						Order by price
 					</option>
-					<option value="asc"> Lower price </option>
-					<option value="desc"> Higher price </option>
+					<option className="selectNavProdOption" value="asc"> Lower price </option>
+					<option className="selectNavProdOption" value="desc"> Higher price </option>
 				</select>
+
+				<div className="navProductIsPrepared">
+					<p className="titlesNavbarP">Status</p>
+					<button className="btnProductIsPrepared" onClick={() => filterPrepared("prepared")}>To prepare</button>
+					<button className="btnProductIsPrepared" onClick={() => filterPrepared("consumption")}>Ready to eat</button>
+				</div>
+
+				<div className="navProductType">
+					<p className="titlesNavbarP">Types</p>
+
+					<button className="typeNavProductTypes" onClick={() => filterType("gluten")}>With Gluten</button>
+					<button className="typeNavProductTypes" onClick={() => filterType("glutenFree")}>Gluten-free</button>
+					<button className="typeNavProductTypes" onClick={() => filterType("alcohol")}>With Alcohol</button>
+					<button className="typeNavProductTypes" onClick={() => filterType("alcoholFree")}>Alcohol-free</button>
+					<button className="typeNavProductTypes" onClick={() => filterType("lactose")}>With Lactose</button>
+					<button className="typeNavProductTypes" onClick={() => filterType("lactoseFree")}>Lactose-free</button>
+				</div>
 			</div>
 		</div>
 	);
