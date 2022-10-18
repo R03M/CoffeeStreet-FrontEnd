@@ -124,6 +124,7 @@ const Client = () => {
 			{favourites === true && nav === true ? <MyFavourites /> : null}
 			{orders === true && nav === true ? <MyOrders /> : null}
 			{myAcc === true && nav === true ? <MyAccount /> : null}
+
 		</div>
 	);
 };
