@@ -2,17 +2,20 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { clearError, getProducts, clearDetails } from "../../redux/action";
 import NavBar from "../navbar/Navbar";
+import NavBarClient from "../client/navClient/NavClient";
 import CardP from "./card/CardP";
 import NavbarProduc from "./navbarProducts/NavbarProduc";
 import Pagination from "../pagination/Pagination";
 import Loading from "../loading/Loading";
 import ErrorSearch from "../errorSearch/ErrorSearch";
+import { useAuth0 } from "@auth0/auth0-react";
 import "./products.css";
 
 const Products = () => {
 	const dispatch = useDispatch();
 	const allProducts = useSelector(state => state.products);
 	const errorMessage = useSelector(state => state.errorSProducts);
+	const  { isAuthenticated } = useAuth0();
 
 	const [currentPage, setCurrentPage] = useState(1);
 	const [productsPerPage, setProductsPerPage] = useState(9);
@@ -60,7 +63,9 @@ const Products = () => {
 
 	return (
 		<div className="productsDiv">
-			<NavBar />
+		{ isAuthenticated ? (
+				<NavBarClient />
+		  ) : <NavBar />}
 			<div className="navbarProduc">
 				<NavbarProduc />
 				{pagACards()}

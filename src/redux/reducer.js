@@ -2,7 +2,8 @@ const initialState = {
 	allProducts: [],
 	products: [],
 	errorSProducts: [],
-	productDetails: {}
+	productDetails: {},
+	user: {},
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -26,6 +27,11 @@ export default function rootReducer(state = initialState, action) {
 					products: action.payload
 				};
 			}
+			case "LOGIN_USER":
+				return {
+					...state,
+					user: action.payload
+				};
 
 		case "CLEAR_ERROR_SEARCHP":
 			return {

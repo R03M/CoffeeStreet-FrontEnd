@@ -85,3 +85,20 @@ export function clearDetails() {
 		type: "CLEAR_DETAILS"
 	};
 }
+
+export function LoginUser(payload) {
+	return async function (dispatch) {
+		try {
+			const response = await axios.post(`${url}/login`, payload);
+			
+			dispatch({
+				type: "LOGIN_USER",
+				payload: response.data
+			});
+		} catch (error) {
+			
+			return error;
+		}
+	};
+}
+
