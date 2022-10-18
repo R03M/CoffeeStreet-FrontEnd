@@ -28,8 +28,8 @@ function App() {
 				<Route path="/admin" element={<Admin />} />
 				<Route path="/employee" element={<Employee />} />
 				<Route path="/client" element={<Client />} />
-				<Route path="*" element={<Error />} />
 				<Route path="/about" element={<About />} />
+				<Route path="*" element={<Error />} />
 			</Routes>
 		</div>
 	);
