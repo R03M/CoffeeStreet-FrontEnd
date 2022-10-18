@@ -13,6 +13,7 @@ import { TbDiscount2 } from "react-icons/tb";
 import { RiAccountPinCircleFill } from "react-icons/ri";
 import { BiFoodMenu } from "react-icons/bi";
 import { SiBuymeacoffee } from "react-icons/si";
+import { FaFileInvoice } from "react-icons/fa";
 import ProductsEdit from "../productsEdit/ProductsEdit";
 import UsersE from "./usersE/UsersE";
 import MyAccount from "./myAccount/MyAccount";
@@ -20,6 +21,7 @@ import News from "./news/News";
 import Discounts from "../discounts/Discounts";
 import Profits from "./profits/Profits";
 import NewProducts from "../productsEdit/formNewProducts/NewProducts";
+import Orders from "../orders/Orders";
 import "./admin.css";
 
 const Admin = () => {
@@ -31,10 +33,35 @@ const Admin = () => {
 
 	let [products, setProducts] = useState(false);
 	let [users, setUsers] = useState(false);
+	let [orders, setOrders] = useState(false);
 	let [news, setNews] = useState(false);
 	let [discounts, setDiscounts] = useState(false);
 	let [profits, setProfits] = useState(false);
 	let [myAcc, setMyAcc] = useState(false);
+
+	const handlerStock = () => {
+		if (orders === false) {
+			setOrders(true);
+			setNav(true);
+			setCards(false);
+			setProducts(false);
+			setUsers(false);
+			setNews(false);
+			setDiscounts(false);
+			setProfits(false);
+			setMyAcc(false);
+			setSwitchNewProduct(false);
+		} else if (nav === true && orders === false) {
+			setOrders(true);
+			setProducts(false);
+			setUsers(false);
+			setNews(false);
+			setDiscounts(false);
+			setProfits(false);
+			setMyAcc(false);
+			setSwitchNewProduct(false);
+		}
+	};
 
 	const handlerProducts = () => {
 		if (products === false) {
@@ -47,6 +74,7 @@ const Admin = () => {
 			setProfits(false);
 			setMyAcc(false);
 			setSwitchNewProduct(false);
+			setOrders(false);
 		} else if (nav === true && products === false) {
 			setProducts(true);
 			setUsers(false);
@@ -55,6 +83,7 @@ const Admin = () => {
 			setProfits(false);
 			setMyAcc(false);
 			setSwitchNewProduct(false);
+			setOrders(false);
 		}
 	};
 
@@ -69,6 +98,7 @@ const Admin = () => {
 			setProfits(false);
 			setMyAcc(false);
 			setSwitchNewProduct(false);
+			setOrders(false);
 		} else if (nav === true && users === false) {
 			setUsers(true);
 			setProducts(false);
@@ -77,6 +107,7 @@ const Admin = () => {
 			setProfits(false);
 			setMyAcc(false);
 			setSwitchNewProduct(false);
+			setOrders(false);
 		}
 	};
 
@@ -91,6 +122,7 @@ const Admin = () => {
 			setProfits(false);
 			setMyAcc(false);
 			setSwitchNewProduct(false);
+			setOrders(false);
 		} else if (nav === true && news === false) {
 			setNews(true);
 			setProducts(false);
@@ -99,6 +131,7 @@ const Admin = () => {
 			setProfits(false);
 			setMyAcc(false);
 			setSwitchNewProduct(false);
+			setOrders(false);
 		}
 	};
 
@@ -113,6 +146,7 @@ const Admin = () => {
 			setProfits(false);
 			setMyAcc(false);
 			setSwitchNewProduct(false);
+			setOrders(false);
 		} else if (nav === true && discounts === false) {
 			setDiscounts(true);
 			setProducts(false);
@@ -121,6 +155,7 @@ const Admin = () => {
 			setProfits(false);
 			setMyAcc(false);
 			setSwitchNewProduct(false);
+			setOrders(false);
 		}
 	};
 
@@ -135,6 +170,7 @@ const Admin = () => {
 			setDiscounts(false);
 			setMyAcc(false);
 			setSwitchNewProduct(false);
+			setOrders(false);
 		} else if (nav === true && profits === false) {
 			setProfits(true);
 			setProducts(false);
@@ -143,6 +179,7 @@ const Admin = () => {
 			setDiscounts(false);
 			setMyAcc(false);
 			setSwitchNewProduct(false);
+			setOrders(false);
 		}
 	};
 
@@ -156,6 +193,7 @@ const Admin = () => {
 			setNews(false);
 			setDiscounts(false);
 			setProfits(false);
+			setOrders(false);
 			setSwitchNewProduct(false);
 		} else if (nav === true && myAcc === false) {
 			setMyAcc(true);
@@ -165,6 +203,7 @@ const Admin = () => {
 			setDiscounts(false);
 			setProfits(false);
 			setSwitchNewProduct(false);
+			setOrders(false);
 		}
 	};
 
@@ -178,6 +217,7 @@ const Admin = () => {
 		setProfits(false);
 		setMyAcc(false);
 		setSwitchNewProduct(false);
+		setOrders(false);
 	}
 
 	function cardsAdmin() {
@@ -192,9 +232,13 @@ const Admin = () => {
 						<ImUsers className="iconAdminCards" />
 						<p className="lettersCardsA">Users</p>
 					</div>
+					<div className="cardsOrdersA" onClick={() => handlerStock()}>
+						<FaFileInvoice className="iconAdminCards" />
+						<p className="lettersCardsA">Orders</p>
+					</div>
 					<div className="cardsNewsA" onClick={() => handlerNews()}>
 						<GiNewspaper className="iconAdminCards" />
-						<p className="lettersCardsA">News</p>
+						<p className="lettersCardsA">Newsletter</p>
 					</div>
 					<div className="cardsDiscouA" onClick={() => handlerDiscounts()}>
 						<TbDiscount2 className="iconAdminCards" />
@@ -226,10 +270,16 @@ const Admin = () => {
 						Users
 					</p>
 					<p
+						className={orders === true ? "activeTabsA" : "nbAd"}
+						onClick={() => handlerStock()}
+					>
+						Orders
+					</p>
+					<p
 						className={news === true ? "activeTabsA" : "nbAd"}
 						onClick={() => handlerNews()}
 					>
-						News
+						Newsletter
 					</p>
 					<p
 						className={discounts === true ? "activeTabsA" : "nbAd"}
@@ -289,10 +339,11 @@ const Admin = () => {
 			) : null}
 			{switchNewProduct === true && nav === true ? <NewProducts /> : null}
 			{users === true && nav === true ? <UsersE /> : null}
-			{myAcc === true && nav === true ? <MyAccount /> : null}
+			{orders === true && nav === true ? <Orders /> : null}
 			{news === true && nav === true ? <News /> : null}
 			{discounts === true && nav === true ? <Discounts /> : null}
 			{profits === true && nav === true ? <Profits /> : null}
+			{myAcc === true && nav === true ? <MyAccount /> : null}
 		</div>
 	);
 };
