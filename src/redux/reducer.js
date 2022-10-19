@@ -2,7 +2,8 @@ const initialState = {
 	allProducts: [],
 	products: [],
 	errorSProducts: [],
-	productDetails: {}
+	productDetails: {},
+
 };
 
 export default function rootReducer(state = initialState, action) {
