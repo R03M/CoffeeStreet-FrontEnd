@@ -23,19 +23,19 @@ Api de proyecto final para Soy Henry - FT-29a
 | Componente            | Status  |
 | --------------------- | :-----: |
 | **START SPRINT 1**    | ******* |
-| Landing               | pending |
-| About                 | pending |
-| Navbar                | pending |
-| Home                  | pending |
-| Menu                  | pending |
-| Products              | pending |
-| Search product        | pending |
-| Card Product          | pending |
-| Details Product       | pending |
-| News                  | pending |
-| Discounts             | pending |
-| Admin dashboard       | pending |
-| Add Products(Admin)   | pending |
+| Landing               | active |
+| About                 | active |
+| Navbar                | active |
+| Home                  | active |
+| Menu                  | active |
+| Products              | active |
+| Search product        | active |
+| Card Product          | active |
+| Details Product       | active |
+| News                  | active |
+| Discounts             | active |
+| Admin dashboard       | active |
+| Add Products(Admin)   | active |
 | **END SPRINT 1**      | ******* |
 | **START SPRINT 2**    | ******* |
 | Form New Client       | pending |
@@ -43,9 +43,9 @@ Api de proyecto final para Soy Henry - FT-29a
 | Log In                | pending |
 | Profits(Admin)        | pending |
 | My account(Admin)     | pending |
-| Employee dashboard    | pending |
+| Employee dashboard    | active |
 | My account(Employee)  | pending |
-| Client dashboard      | pending |
+| Client dashboard      | active |
 | My account(Client)    | pending |
 | Favoritos(clients)    | pending |
 | My Orders(clients)    | pending |
@@ -55,7 +55,6 @@ Api de proyecto final para Soy Henry - FT-29a
 | All Orders(Admin)     | pending |
 | All Users(Admin)      | pending |
 | Edit discounts(Admin) | pending |
-| Add News(Admin)       | pending |
 | Shopping cart         | pending |
 | payment market        | pending |
 | **END SPRINT 3**      | ******* |
