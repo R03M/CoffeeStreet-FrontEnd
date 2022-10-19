@@ -15,18 +15,14 @@ const discounts = [
 
 const Home = () => {
 	const { isAuthenticated } = useAuth0();
-	const user = useSelector((state) => state.user);
+	const refreshToken = useSelector((state) => state.refreshToken);
 
 
-	
-
-console.log(user)
+  console.log(refreshToken)
 	return (
 		<div className="homeDiv">
-			{ isAuthenticated ? (
-				<NavBarClient />
-			)
-			: <NavBar /> }
+		  {/* { isAuthenticated ? <NavBarClient /> : <NavBar /> } */}
+			{ refreshToken ? <NavBarClient /> : <NavBar /> }
 			
 			<div className="banner"></div>
 			<div className="discountsAndNews">

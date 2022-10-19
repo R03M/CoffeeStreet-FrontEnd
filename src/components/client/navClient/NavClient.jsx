@@ -46,6 +46,7 @@ const NavBar = () => {
 					<button className="btnNBCU">Admin(temp)</button>
 				</Link> */}
 					<div className="menu-usuario">
+						
 						<img  onClick={handlerMenuUsuario} className="img-usuario" src={user.picture} alt={user.name}/>
 						{ menuUsuario ? (
 							<div className="menu-usuario-activo">

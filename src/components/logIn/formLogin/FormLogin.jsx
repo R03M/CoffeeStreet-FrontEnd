@@ -1,56 +1,70 @@
 import React from 'react';
 import './formLogin.css';
-import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { LoginUser } from '../../../redux/action.js';
+import { Formik, Form , Field, ErrorMessage } from 'formik';
+import * as Yup from 'yup';
 
 
 
 const FormLogin = () => {
+  const initialValues = {
+    email: String,
+    password: String,
+  } 
+
   const dispath = useDispatch();
 
-  const loginUser = {
-    email: '',
-    password: ''
-  }
-  const [user, setUser] = useState(loginUser);
-
-  const handleChange = (e) => {
-    setUser({
-      ...user,
-      [e.target.name]: e.target.value
-    })
-  }
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    dispath(LoginUser(user));
-    
+  const loginUser = (e) => {
+    dispath(LoginUser(e))
   }
 
 
-console.log(user)
+  const userSchema = Yup.object().shape({
+    email: Yup.string()
+      .email("Invalid email")
+      .required("Email is required"),
+    password: Yup.string()
+      .min(2, "Password too short")
+      .required("Password is required"),
+  })
+
+
   return (
-    <>
-      <form>
-        <div className='login-input-email'>
-          <label htmlFor="email">Email</label>
-          <input type="email" name="email" id="email" placeholder='ejemplo@gmail.com'
-                onChange={handleChange} />
-        </div>
-        <div  className = 'login-input-password' >
-          <label htmlFor="password">Password</label>
-          <input type="password"  name='password' id='password' placeholder='password'
-                onChange={handleChange}
-          />
-        </div>
-        <div className='login-button'>
-          <button type='submit'
-                  onClick={handleSubmit}  >Log In</button>
-        </div>
-      </form>
-      
-    </>
+      <div>
+        <Formik
+          initialValues={initialValues}
+          validationSchema={userSchema}
+          onSubmit={(values) => loginUser(values)}
+        >
+          {({values,
+            touched,
+            errors,
+            isSubmitting,
+            handleChange,
+            handleBlur,
+            handleSubmit,
+            handleReset,}
+          ) => ( 
+            <Form className="formLogin">
+             <label htmlFor="email"> Email </label>
+             <Field type="email" name="email" placeholder="Email" />
+              {errors.email && touched.email && (
+                <ErrorMessage name="email" component="div"/>
+              )}
+              <label htmlFor="password"> Password </label>
+              <Field type="password" name="password" placeholder="Password" />
+              {errors.password && touched.password && (
+                <ErrorMessage name="password" component="div"/>
+
+              )}
+              <button type="submit" disabled={isSubmitting}>Login</button>
+            </Form>
+          )}
+        </Formik>
+
+            
+      </div>
   );
 };
 

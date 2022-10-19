@@ -95,6 +95,7 @@ export function LoginUser(payload) {
 				type: "LOGIN_USER",
 				payload: response.data
 			});
+			console.log(response.data.refreshToken)
 		} catch (error) {
 			
 			return error;
