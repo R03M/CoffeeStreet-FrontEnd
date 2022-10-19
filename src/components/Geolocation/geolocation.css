@@ -1,0 +1,12 @@
+.geolocation{
+    width: 30%;
+    height: 50%;
+    background-color: rgba(206, 168, 97, 0.438);
+    border-radius: 1rem;
+}
+.geolocation__container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
