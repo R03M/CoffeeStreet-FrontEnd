@@ -3,7 +3,11 @@ const initialState = {
 	products: [],
 	errorSProducts: [],
 	productDetails: {},
+<<<<<<< HEAD
 	refreshToken: {},
+=======
+
+>>>>>>> 29f18dbc5bece0e7d83fa700f73bdcaff6a5e7f5
 };
 
 export default function rootReducer(state = initialState, action) {

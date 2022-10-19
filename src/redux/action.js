@@ -86,6 +86,7 @@ export function clearDetails() {
 	};
 }
 
+<<<<<<< HEAD
 export function LoginUser(payload) {
 	return async function (dispatch) {
 		try {
@@ -103,3 +104,15 @@ export function LoginUser(payload) {
 	};
 }
 
+=======
+export function postUserNew(payload) {
+	try{
+		return async function () {
+			const response = await axios.post(`${url}/register`, payload);
+			alert("Created user successfully");
+		};
+	} catch (error) {
+		return( error);
+	}
+}
+>>>>>>> 29f18dbc5bece0e7d83fa700f73bdcaff6a5e7f5
