@@ -85,3 +85,14 @@ export function clearDetails() {
 		type: "CLEAR_DETAILS"
 	};
 }
+
+export function postUserNew(payload) {
+	try{
+		return async function () {
+			const response = await axios.post(`${url}/register`, payload);
+			alert("Created user successfully");
+		};
+	} catch (error) {
+		return( error);
+	}
+}

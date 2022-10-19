@@ -3,21 +3,24 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { ROLES } from "../../../models/roles.enum";
 import { User } from "../../../models/user.class";
+import { postUserNew } from "../../../redux/action";
+import {useDispatch} from "react-redux";
 
-const FormS = ( /*{add}*/ ) => {
+const FormS = () => {
 	const initialValues = {
 		name: String,
 		surname: String,
-		role: ROLES.CLIENT
+		role: ROLES.CLIENT,
+		email: String,
+		password: String,
 	};
-
-	const addUser = (e) => {
-		let newUser = new User(e)
-		// add(newUser) --> al componente padre
-		// dispatch(postUserNew(e))
-		console.log(e);
-	}
-
+	const dispatch = useDispatch();
+	const addUser = (e)	=> {
+		let user = new User(e.name, e.surname, e.role, e.email, e.password, );
+		dispatch(postUserNew(user));
+		console.log(user)
+	};
+	
 	const userSchema = Yup.object().shape({
 		name: Yup.string()
 			.min(3, "Name too short")
@@ -27,24 +30,13 @@ const FormS = ( /*{add}*/ ) => {
 		.min(4, "Surname too short")
 		.max(12, "Surname too long")
 		.required("Surname is required"),
-
-
-		/*
-		ejemplo validacion de passW
-		 password: Yup.string()
-      .min(8, "Password too short")
-      .required("Password is required"),
-    // .matches(``),
-    confirm: Yup.string()
-      .when("password", {
-        is: (value) => (value && value.length > 0 ? true : false),
-        then: Yup.string().oneOf(
-          [Yup.ref("password")],
-          "Passwords must match!"
-        ),
-      })
-      .required("You must confirm the password"),
-		*/
+		email: Yup.string()
+			.email("Invalid email")
+			.required("Email is required"),
+		password: Yup.string()
+			.min(8, "Password too short")
+			.max(12, "Password too long")
+			.required("Password is required"),
 	})
 
 	return (
@@ -85,6 +77,29 @@ const FormS = ( /*{add}*/ ) => {
 					{errors.surname && touched.surname && (
 						<ErrorMessage name="surname" component="div"/>
 					)}
+					<label htmlFor="email">Email</label>
+					<Field
+						id="email"
+						type="email"
+						name="email"
+						placeholder="email"
+						style={{fontSize:"2rem", margin: "1rem"}}
+					/>
+					{errors.email && touched.email && (
+						<ErrorMessage name="email" component="div"/>
+					)}
+					<label htmlFor="password">Password</label>
+					<Field
+						id="password"
+						type="password"
+						name="password"
+						placeholder="password"
+						style={{fontSize:"2rem", margin: "1rem"}}
+					/>
+					{errors.password && touched.password && (
+						<ErrorMessage name="password" component="div"/>
+					)}
+					
 					<button type="submit" style={{fontSize:"2rem", padding: "1rem", backgroundColor:"green"}}>Save</button>
 					{isSubmitting ? <p>Register your credentials</p> : null}
 				</Form>
