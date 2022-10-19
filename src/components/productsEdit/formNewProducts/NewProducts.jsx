@@ -43,7 +43,10 @@ const NewProducts = () => {
 		let newProduct = {
 			name: values.name,
 			description: values.description,
-			image: values.image.length > 10 ? values.image : "https://www.publicdomainpictures.net/pictures/280000/nahled/not-found-image-15383864787lu.jpg",
+			image:
+				values.image.length > 10
+					? values.image
+					: "https://www.publicdomainpictures.net/pictures/280000/nahled/not-found-image-15383864787lu.jpg",
 			price: values.price,
 			category: values.category,
 			lactose: values.lactose ? true : false,
@@ -119,7 +122,12 @@ const NewProducts = () => {
 							</div>
 
 							<div className="categoryFieldNewProduct">
-								<Field as="select" id="category" name="category" className="selectcard1newProduct">
+								<Field
+									as="select"
+									id="category"
+									name="category"
+									className="selectcard1newProduct"
+								>
 									<option hidden>Category</option>
 									<option disabled="disabled" default={true} value="">
 										Category
@@ -144,7 +152,12 @@ const NewProducts = () => {
 							</div>
 
 							<div className="stockFieldNewProduct">
-								<Field as="select" id="stock" name="stock" className="selectcard1newProduct">
+								<Field
+									as="select"
+									id="stock"
+									name="stock"
+									className="selectcard1newProduct"
+								>
 									<option hidden>There is stock ?</option>
 									<option disabled="disabled" default={true}>
 										There is stock ?
@@ -158,7 +171,12 @@ const NewProducts = () => {
 							</div>
 
 							<div className="isPreparedFieldNewProduct">
-								<Field as="select" id="isPrepared" name="isPrepared" className="selectcard1newProduct">
+								<Field
+									as="select"
+									id="isPrepared"
+									name="isPrepared"
+									className="selectcard1newProduct"
+								>
 									<option hidden>Ready to eat ?</option>
 									<option disabled="disabled" default={true}>
 										Ready to eat ?
@@ -175,7 +193,12 @@ const NewProducts = () => {
 						{values.isPrepared === "true" ? (
 							<div className="ingredientsAndtypesNP">
 								<div className="lactoseFieldNewProduct">
-									<Field as="select" id="lactose" name="lactose" className="selectcard1newProduct">
+									<Field
+										as="select"
+										id="lactose"
+										name="lactose"
+										className="selectcard1newProduct"
+									>
 										<option hidden>Contains lactose?</option>
 										<option disabled="disabled" default={true}>
 											Contains lactose?
@@ -188,22 +211,34 @@ const NewProducts = () => {
 									)}
 								</div>
 
-								<div className="glutenFieldNewProduct">
-									<Field as="select" id="gluten" name="gluten" className="selectcard1newProduct">
-										<option hidden>Contains gluten ?</option>
-										<option disabled="disabled" default={true}>
-											Contains gluten ?
-										</option>
-										<option value={true}>Gluten</option>
-										<option value={""}>Gluten-free</option>
-									</Field>
-									{errors.gluten && touched.gluten && (
-										<ErrorMessage name="gluten" component="div" />
-									)}
-								</div>
+								{values.category !== "tea" ? (
+									<div className="glutenFieldNewProduct">
+										<Field
+											as="select"
+											id="gluten"
+											name="gluten"
+											className="selectcard1newProduct"
+										>
+											<option hidden>Contains gluten ?</option>
+											<option disabled="disabled" default={true}>
+												Contains gluten ?
+											</option>
+											<option value={true}>Gluten</option>
+											<option value={""}>Gluten-free</option>
+										</Field>
+										{errors.gluten && touched.gluten && (
+											<ErrorMessage name="gluten" component="div" />
+										)}
+									</div>
+								) : null}
 
 								<div className="alcoholFieldNewProduct">
-									<Field as="select" id="alcohol" name="alcohol" className="selectcard1newProduct">
+									<Field
+										as="select"
+										id="alcohol"
+										name="alcohol"
+										className="selectcard1newProduct"
+									>
 										<option hidden>Contains alcohol ?</option>
 										<option disabled="disabled" default={true}>
 											Contains alcohol ?
@@ -254,7 +289,7 @@ const NewProducts = () => {
 							</div>
 						) : null}
 
-						{values.isPrepared === "" && values.category === "coffee"? (
+						{values.isPrepared === "" && values.category === "coffee" ? (
 							<div className="originCountryFieldNewProduct">
 								<label htmlFor="originCountry">Origin Country</label>
 								<Field
@@ -376,7 +411,9 @@ const NewProducts = () => {
 						) : null}
 
 						<div className="btnDivNP">
-							<button type="submit" className="btnSubmitNp">To Create</button>
+							<button type="submit" className="btnSubmitNp">
+								To Create
+							</button>
 						</div>
 					</Form>
 				)}
