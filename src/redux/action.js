@@ -86,6 +86,7 @@ export function clearDetails() {
 	};
 }
 
+
 export function postUserNew(payload) {
 	try{
 		return async function () {
@@ -95,4 +96,69 @@ export function postUserNew(payload) {
 	} catch (error) {
 		return( error);
 	}
+}
+
+export function LoginUser(payload) {
+	return async function (dispatch) {
+		try {
+			const response = await axios.post(`${url}/login`, payload);
+			
+			dispatch({
+				type: "LOGIN_USER",
+				payload: response.data
+			});
+			console.log(response.data)
+		} catch (error) {
+			
+			return alert("Invalid email or password");
+		}
+	};
+}
+
+export function registerUserGoogle ( payload) {
+	return async function (dispatch) {
+		try {
+			const response = await axios.post(`${url}/register`, payload);
+	
+		} catch (error) {
+			return error;
+		}
+	};
+}
+
+export function checkEmailUser (payload) {
+	return async function (dispatch) {
+		try {
+			const response = await axios.post(`${url}/register/email?email=${payload}`);
+			dispatch({
+				type: "CHECK_EMAIL_USER",
+				payload: response.data
+			});
+			
+			
+			console.log(response)
+		} catch (error) {
+			return error;
+		}
+	};
+}
+export function logPostData(token) {
+ 
+  return async function (dispach) {
+    try {
+      const response = await axios.get(`${url}/users/`, {
+        headers: {
+          authorization: `Bearer ${token}`,
+          Accept: "aplication/json"
+        }
+      });
+      console.log(response.data[0].id);
+      dispach({
+        type: "LOG_POST_DATA",
+        payload: response.data
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
 }
