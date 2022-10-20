@@ -218,7 +218,7 @@ const NewProducts = () => {
 							</div>
 						</div>
 
-						{values.isPrepared === "true" ? (
+						{/* {values.isPrepared === "true" ? ( */}
 							<div className="ingredientsAndtypesNP">
 								<div className="lactoseFieldNewProduct">
 									<Field
@@ -243,7 +243,7 @@ const NewProducts = () => {
 									)}
 								</div>
 
-								{values.category !== "tea" ? (
+								{/* {values.category !== "tea" ? ( */}
 									<div className="glutenFieldNewProduct">
 										<Field
 											as="select"
@@ -266,7 +266,7 @@ const NewProducts = () => {
 											/>
 										)}
 									</div>
-								) : null}
+								{/* ) : null} */}
 
 								<div className="alcoholFieldNewProduct">
 									<Field
@@ -337,9 +337,9 @@ const NewProducts = () => {
 									)}
 								</div>
 							</div>
-						) : null}
+						{/* ) : null} */}
 
-						{values.isPrepared === "false" && values.category === "coffee" ? (
+						{/* {values.isPrepared === "false" && values.category === "coffee" ? ( */}
 							<div className="originCountryFieldNewProduct">
 								<label htmlFor="originCountry">Origin Country</label>
 								<Field
@@ -356,12 +356,12 @@ const NewProducts = () => {
 									/>
 								)}
 							</div>
-						) : null}
+						{/* ) : null} */}
 
 						{/*
 								// * Inicio de los Atributos
 						*/}
-						{values.category === "coffee" && values.isPrepared === "true" ? (
+						{/* {values.category === "coffee" && values.isPrepared === "true" ? ( */}
 							<div className="attibutesNPC">
 								<div className="creamFieldNewProduct">
 									<label>Attributes</label>
@@ -507,7 +507,7 @@ const NewProducts = () => {
 									)}
 								</div>
 							</div>
-						) : null}
+						{/* ) : null} */}
 
 						<div className="btnDivNP">
 							<button type="submit" className="btnSubmitNp">
