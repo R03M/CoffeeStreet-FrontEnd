@@ -45,7 +45,9 @@ const ProductsEdit = () => {
 	return (
 		<div className="productsEditdiv">
 			<div className="navBarACardsAdminC">
-				<NavbarProduc />
+				<div className="navBarProductsEdit">
+					<NavbarProduc />
+				</div>
 				{pagACards()}
 			</div>
 		</div>
