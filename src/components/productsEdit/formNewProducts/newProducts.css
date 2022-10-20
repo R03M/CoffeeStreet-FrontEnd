@@ -196,6 +196,7 @@
 
 .creamFieldNewProduct {
 	display: flex;
+	height: 80px;
 	font-size: 1.2rem;
 	font-weight: 700;
 	margin: 1rem;
@@ -205,6 +206,7 @@
 
 .textureFieldNewProduct {
 	display: flex;
+	height: 80px;
 	margin: 1rem;
 	flex-direction: column;
 	grid-area: textureArea;
@@ -212,6 +214,7 @@
 
 .bodyFieldNewProduct {
 	display: flex;
+	height: 80px;
 	margin: 1rem;
 	flex-direction: column;
 	grid-area: bodyArea;
@@ -219,6 +222,7 @@
 
 .acidityFieldNewProduct {
 	display: flex;
+	height: 80px;
 	margin: 1rem;
 	flex-direction: column;
 	grid-area: acidityArea;
@@ -226,6 +230,7 @@
 
 .bitternessFieldNewProduct {
 	display: flex;
+	height: 80px;
 	margin: 1rem;
 	flex-direction: column;
 	grid-area: bitternessArea;
@@ -233,6 +238,7 @@
 
 .roastFieldNewProduct {
 	display: flex;
+	height: 80px;
 	margin: 1rem;
 	flex-direction: column;
 	grid-area: roastArea;
@@ -240,6 +246,7 @@
 
 .colorFieldNewProduct {
 	display: flex;
+	height: 80px;
 	margin: 1rem;
 	flex-direction: column;
 	grid-area: colorArea;
@@ -266,4 +273,10 @@
 .btnSubmitNp:hover {
 	color: rgba(0, 128, 0, 0.649);
 	background-color: rgb(255, 255, 255);
+}
+
+.colorErrorMsg {
+	color: red;
+	font-weight: 600;
+	font-size: 1.2rem;
 }

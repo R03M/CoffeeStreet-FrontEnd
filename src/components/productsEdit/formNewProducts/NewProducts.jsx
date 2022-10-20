@@ -1,8 +1,8 @@
 import React from "react";
-import { useDispatch } from "react-redux";
-import { postNewProduct } from "../../../redux/action";
+import { useDispatch, useSelector } from "react-redux";
+import { clearResponseNewProduct, postNewProduct } from "../../../redux/action";
 import { Formik, Form, Field, ErrorMessage, isString } from "formik";
-import * as Yup from "yup";
+import swal from "sweetalert";
 import { CATEGORIES } from "../../../models/categories.enum";
 import { TEXTURES } from "../../../models/textures.enum";
 import { BODY } from "../../../models/body.enum";
@@ -15,31 +15,52 @@ import "./newProducts.css";
 
 const NewProducts = () => {
 	const dispatch = useDispatch();
+	const responseOfCreateNp = useSelector(state => state.responseCreateProduct);
 
-	const initialValues = {
-		name: String,
-		description: String,
-		image: String,
-		price: "",
-		category: String,
-		lactose: null,
-		alcohol: null,
-		gluten: null,
-		stock: null,
-		ingredients: Array,
-		originCountry: String,
-		isPrepared: undefined,
-		state: "active",
-		cream: null,
-		texture: String,
-		body: String,
-		acidity: String,
-		bitterness: String,
-		roast: String,
-		color: String
+	const notiSwal = () => {
+		if (responseOfCreateNp === "Created") {
+			swal({
+				title: "Created",
+				text: "",
+				icon: "success",
+				button: "Ok"
+			});
+			dispatch(clearResponseNewProduct());
+		} else if (responseOfCreateNp === "Not created") {
+			swal({
+				title: "Error",
+				text: "",
+				icon: "error",
+				button: "Ok"
+			});
+			dispatch(clearResponseNewProduct());
+		}
 	};
 
-	const addProduct = values => {
+	const initialValues = {
+		name: "",
+		description: "",
+		image: "",
+		price: "",
+		category: "null",
+		lactose: "null",
+		alcohol: "null",
+		gluten: "null",
+		stock: "null",
+		ingredients: [],
+		originCountry: "",
+		isPrepared: "null",
+		state: "active",
+		cream: "null",
+		texture: "",
+		body: "",
+		acidity: "",
+		bitterness: "",
+		roast: "",
+		color: ""
+	};
+
+	const addProduct = (values, resetForm) => {
 		let newProduct = {
 			name: values.name,
 			description: values.description,
@@ -49,15 +70,15 @@ const NewProducts = () => {
 					: "https://www.publicdomainpictures.net/pictures/280000/nahled/not-found-image-15383864787lu.jpg",
 			price: values.price,
 			category: values.category,
-			lactose: values.lactose ? true : false,
-			gluten: values.gluten ? true : false,
-			alcohol: values.alcohol ? true : false,
-			stock: values.stock ? true : false,
+			lactose: values.lactose === "true" ? true : false,
+			gluten: values.gluten === "true" ? true : false,
+			alcohol: values.alcohol === "true" ? true : false,
+			stock: values.stock === "true" ? true : false,
 			ingredients: values.ingredients,
 			originCountry: values.originCountry,
-			isPrepared: values.isPrepared ? true : false,
+			isPrepared: values.isPrepared === "true" ? true : false,
 			state: "active",
-			cream: values.cream ? true : false,
+			cream: values.cream === "true" ? true : false,
 			texture: values.texture,
 			body: values.body,
 			acidity: values.acidity,
@@ -65,31 +86,26 @@ const NewProducts = () => {
 			roast: values.roast,
 			color: values.color
 		};
-		console.log(newProduct);
-		console.log(typeof newProduct);
 		dispatch(postNewProduct(newProduct));
+		resetForm();
 	};
+	notiSwal();
 
 	return (
 		<div className="formNewProductDiv">
 			<Formik
 				initialValues={initialValues}
 				validationSchema={productSchema}
-				onSubmit={values => addProduct(values)}
+				onSubmit={(values, { resetForm }) => addProduct(values, resetForm)}
 			>
 				{({ values, touched, errors, isSubmitting, handleChange, handleBlur }) => (
 					<Form className="formNewProductBody1">
 						<div className="formBodyNP">
 							<div className="nameFieldNewProduct">
 								<label htmlFor="name">Name</label>
-								<Field
-									id="name"
-									type="text"
-									name="name"
-									placeholder="Coffee By Castle Ind."
-								/>
+								<Field id="name" type="text" name="name" placeholder="product name" />
 								{errors.name && touched.name && (
-									<ErrorMessage name="name" component="div" />
+									<ErrorMessage name="name" component="div" className="colorErrorMsg" />
 								)}
 							</div>
 
@@ -101,10 +117,14 @@ const NewProducts = () => {
 									id="description"
 									type="text"
 									name="description"
-									placeholder="It is the best coffee in the world, not for nothing is it created and processed by Castle Industries."
+									placeholder="product description"
 								/>
 								{errors.description && touched.description && (
-									<ErrorMessage name="description" component="div" />
+									<ErrorMessage
+										name="description"
+										component="div"
+										className="colorErrorMsg"
+									/>
 								)}
 							</div>
 
@@ -117,7 +137,7 @@ const NewProducts = () => {
 									placeholder="castleInd.com/coffee.jpg"
 								/>
 								{errors.image && touched.image && (
-									<ErrorMessage name="image" component="div" />
+									<ErrorMessage name="image" component="div" className="colorErrorMsg" />
 								)}
 							</div>
 
@@ -129,7 +149,7 @@ const NewProducts = () => {
 									className="selectcard1newProduct"
 								>
 									<option hidden>Category</option>
-									<option disabled="disabled" default={true} value="">
+									<option disabled="disabled" default={true} value="null">
 										Category
 									</option>
 									<option value={CATEGORIES.COFFEE}>Coffee</option>
@@ -139,7 +159,11 @@ const NewProducts = () => {
 									<option value={CATEGORIES.OTHER}>Other</option>
 								</Field>
 								{errors.category && touched.category && (
-									<ErrorMessage name="category" component="div" />
+									<ErrorMessage
+										name="category"
+										component="div"
+										className="colorErrorMsg"
+									/>
 								)}
 							</div>
 
@@ -147,7 +171,7 @@ const NewProducts = () => {
 								<label htmlFor="price">Price</label>
 								<Field id="price" type="number" name="price" placeholder="10" />
 								{errors.price && touched.price && (
-									<ErrorMessage name="price" component="div" />
+									<ErrorMessage name="price" component="div" className="colorErrorMsg" />
 								)}
 							</div>
 
@@ -159,14 +183,14 @@ const NewProducts = () => {
 									className="selectcard1newProduct"
 								>
 									<option hidden>There is stock ?</option>
-									<option disabled="disabled" default={true}>
+									<option disabled="disabled" default={true} value={"null"}>
 										There is stock ?
 									</option>
 									<option value={true}>There is stock</option>
-									<option value={""}>No stock</option>
+									<option value={false}>No stock</option>
 								</Field>
 								{errors.stock && touched.stock && (
-									<ErrorMessage name="stock" component="div" />
+									<ErrorMessage name="stock" component="div" className="colorErrorMsg" />
 								)}
 							</div>
 
@@ -178,14 +202,18 @@ const NewProducts = () => {
 									className="selectcard1newProduct"
 								>
 									<option hidden>Ready to eat ?</option>
-									<option disabled="disabled" default={true}>
+									<option disabled="disabled" default={true} value={"null"}>
 										Ready to eat ?
 									</option>
-									<option value={""}>To prepare</option>
+									<option value={false}>To prepare</option>
 									<option value={true}>Ready to eat</option>
 								</Field>
 								{errors.isPrepared && touched.isPrepared && (
-									<ErrorMessage name="isPrepared" component="div" />
+									<ErrorMessage
+										name="isPrepared"
+										component="div"
+										className="colorErrorMsg"
+									/>
 								)}
 							</div>
 						</div>
@@ -200,14 +228,18 @@ const NewProducts = () => {
 										className="selectcard1newProduct"
 									>
 										<option hidden>Contains lactose?</option>
-										<option disabled="disabled" default={true}>
+										<option disabled="disabled" default={true} value={"null"}>
 											Contains lactose?
 										</option>
 										<option value={true}>Lactose</option>
-										<option value={""}>Lactose-free</option>
+										<option value={false}>Lactose-free</option>
 									</Field>
 									{errors.lactose && touched.lactose && (
-										<ErrorMessage name="lactose" component="div" />
+										<ErrorMessage
+											name="lactose"
+											component="div"
+											className="colorErrorMsg"
+										/>
 									)}
 								</div>
 
@@ -220,14 +252,18 @@ const NewProducts = () => {
 											className="selectcard1newProduct"
 										>
 											<option hidden>Contains gluten ?</option>
-											<option disabled="disabled" default={true}>
+											<option disabled="disabled" default={true} value={"null"}>
 												Contains gluten ?
 											</option>
 											<option value={true}>Gluten</option>
-											<option value={""}>Gluten-free</option>
+											<option value={false}>Gluten-free</option>
 										</Field>
 										{errors.gluten && touched.gluten && (
-											<ErrorMessage name="gluten" component="div" />
+											<ErrorMessage
+												name="gluten"
+												component="div"
+												className="colorErrorMsg"
+											/>
 										)}
 									</div>
 								) : null}
@@ -240,12 +276,19 @@ const NewProducts = () => {
 										className="selectcard1newProduct"
 									>
 										<option hidden>Contains alcohol ?</option>
-										<option disabled="disabled" default={true}>
+										<option disabled="disabled" default={true} value={"null"}>
 											Contains alcohol ?
 										</option>
 										<option value={true}>Alcohol</option>
-										<option value={""}>Alcohol-free</option>
+										<option value={false}>Alcohol-free</option>
 									</Field>
+									{errors.alcohol && touched.alcohol && (
+										<ErrorMessage
+											name="alcohol"
+											component="div"
+											className="colorErrorMsg"
+										/>
+									)}
 								</div>
 
 								<div className="ingredientsFieldNewProduct">
@@ -285,11 +328,18 @@ const NewProducts = () => {
 										placeholder="Ingredient 5"
 										className="ingredientsInputNP"
 									/>
+									{errors.ingredients && touched.ingredients && (
+										<ErrorMessage
+											name="ingredients"
+											component="div"
+											className="colorErrorMsg"
+										/>
+									)}
 								</div>
 							</div>
 						) : null}
 
-						{values.isPrepared === "" && values.category === "coffee" ? (
+						{values.isPrepared === "false" && values.category === "coffee" ? (
 							<div className="originCountryFieldNewProduct">
 								<label htmlFor="originCountry">Origin Country</label>
 								<Field
@@ -299,7 +349,11 @@ const NewProducts = () => {
 									placeholder="Canada"
 								/>
 								{errors.originCountry && touched.originCountry && (
-									<ErrorMessage name="originCountry" component="div" />
+									<ErrorMessage
+										name="originCountry"
+										component="div"
+										className="colorErrorMsg"
+									/>
 								)}
 							</div>
 						) : null}
@@ -313,12 +367,19 @@ const NewProducts = () => {
 									<label>Attributes</label>
 									<Field as="select" name="cream" className="selectcard1newProduct">
 										<option hidden>Does it contain cream?</option>
-										<option disabled="disabled" default={true}>
+										<option disabled="disabled" default={true} value={"null"}>
 											Does it contain cream?
 										</option>
 										<option value={true}>With cream</option>
-										<option value={""}>No cream</option>
+										<option value={false}>No cream</option>
 									</Field>
+									{errors.cream && touched.cream && (
+										<ErrorMessage
+											name="cream"
+											component="div"
+											className="colorErrorMsg"
+										/>
+									)}
 								</div>
 
 								<div className="textureFieldNewProduct">
@@ -333,6 +394,13 @@ const NewProducts = () => {
 										<option value={TEXTURES.MEDIUM}>Medium</option>
 										<option value={TEXTURES.VERY_FINE}>Very Fine</option>
 									</Field>
+									{errors.texture && touched.texture && (
+										<ErrorMessage
+											name="texture"
+											component="div"
+											className="colorErrorMsg"
+										/>
+									)}
 								</div>
 
 								<div className="bodyFieldNewProduct">
@@ -347,6 +415,9 @@ const NewProducts = () => {
 										<option value={BODY.SIRUPY}>sirupy</option>
 										<option value={BODY.THICK}>thick</option>
 									</Field>
+									{errors.body && touched.body && (
+										<ErrorMessage name="body" component="div" className="colorErrorMsg" />
+									)}
 								</div>
 
 								<div className="acidityFieldNewProduct">
@@ -361,6 +432,13 @@ const NewProducts = () => {
 										<option value={ACIDITY.NOT_FOUND}>Not Found</option>
 										<option value={ACIDITY.PERCEIVABLE}>Perceivable</option>
 									</Field>
+									{errors.acidity && touched.acidity && (
+										<ErrorMessage
+											name="acidity"
+											component="div"
+											className="colorErrorMsg"
+										/>
+									)}
 								</div>
 
 								<div className="bitternessFieldNewProduct">
@@ -375,6 +453,13 @@ const NewProducts = () => {
 										<option value={BITTERNESS.PERCEIVABLE}>Perceivable</option>
 										<option value={BITTERNESS.VERY_HIGH}>Very High</option>
 									</Field>
+									{errors.bitterness && touched.bitterness && (
+										<ErrorMessage
+											name="bitterness"
+											component="div"
+											className="colorErrorMsg"
+										/>
+									)}
 								</div>
 
 								<div className="roastFieldNewProduct">
@@ -391,6 +476,13 @@ const NewProducts = () => {
 										<option value={ROAST.ITALIAN}>Italian</option>
 										<option value={ROAST.LIGHT}>Light</option>
 									</Field>
+									{errors.roast && touched.roast && (
+										<ErrorMessage
+											name="roast"
+											component="div"
+											className="colorErrorMsg"
+										/>
+									)}
 								</div>
 
 								<div className="colorFieldNewProduct">
@@ -406,6 +498,13 @@ const NewProducts = () => {
 										<option value={COLOR.LIGHT_BROWN}>Light Brown</option>
 										<option value={COLOR.YELLOW}>Yellow</option>
 									</Field>
+									{errors.color && touched.color && (
+										<ErrorMessage
+											name="color"
+											component="div"
+											className="colorErrorMsg"
+										/>
+									)}
 								</div>
 							</div>
 						) : null}

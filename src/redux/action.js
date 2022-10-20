@@ -69,14 +69,23 @@ export function productDetails(id) {
 	};
 }
 
-export function postNewProduct(payload) {
+export function postNewProduct(data) {
 	try {
-		return async function () {
-			const response = await axios.post(`${url}/products`, payload);
-			console.log(response)
+		return async function (dispatch) {
+			const response = await axios.post(`${url}/products`, data);
+			dispatch({
+				type: "POST_NEW_PRODUCT",
+				payload: response.data
+			})
 		};
 	} catch (error) {
 		return error;
+	}
+}
+
+export function clearResponseNewProduct() {
+	return {
+		type: "CLEAR_RESPONSE_NEW_PRODUCT"
 	}
 }
 
