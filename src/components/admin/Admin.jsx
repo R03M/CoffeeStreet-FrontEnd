@@ -2,17 +2,11 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { getProducts } from "../../redux/action";
 import { useDispatch } from "react-redux";
-import {
-	MdOutlineInventory,
-	MdOutlineBakeryDining,
-	MdEmojiFoodBeverage
-} from "react-icons/md";
+import { MdOutlineInventory, MdAddBusiness } from "react-icons/md";
 import { ImUsers } from "react-icons/im";
 import { GiNewspaper, GiProfit } from "react-icons/gi";
 import { TbDiscount2 } from "react-icons/tb";
 import { RiAccountPinCircleFill } from "react-icons/ri";
-import { BiFoodMenu } from "react-icons/bi";
-import { SiBuymeacoffee } from "react-icons/si";
 import { FaFileInvoice } from "react-icons/fa";
 import ProductsEdit from "../productsEdit/ProductsEdit";
 import UsersE from "./usersE/UsersE";
@@ -29,9 +23,9 @@ const Admin = () => {
 	let [cards, setCards] = useState(true);
 	let [nav, setNav] = useState(false);
 
-	const [switchNewProduct, setSwitchNewProduct] = useState(false);
 
 	let [products, setProducts] = useState(false);
+	const [switchNewProduct, setSwitchNewProduct] = useState(false);
 	let [users, setUsers] = useState(false);
 	let [orders, setOrders] = useState(false);
 	let [news, setNews] = useState(false);
@@ -83,6 +77,29 @@ const Admin = () => {
 			setProfits(false);
 			setMyAcc(false);
 			setSwitchNewProduct(false);
+			setOrders(false);
+		}
+	};
+	const handlerAddNewProduct = () => {
+		if (switchNewProduct === false) {
+			setSwitchNewProduct(true);
+			setNav(true);
+			setProducts(false);
+			setCards(false);
+			setUsers(false);
+			setNews(false);
+			setDiscounts(false);
+			setProfits(false);
+			setMyAcc(false);
+			setOrders(false);
+		} else if (nav === true && switchNewProduct === false) {
+			setSwitchNewProduct(true);
+			setProducts(false);
+			setUsers(false);
+			setNews(false);
+			setDiscounts(false);
+			setProfits(false);
+			setMyAcc(false);
 			setOrders(false);
 		}
 	};
@@ -228,6 +245,11 @@ const Admin = () => {
 						<MdOutlineInventory className="iconAdminCards" />
 						<p className="lettersCardsA">Products</p>
 					</div>
+
+					<div className="cardsAddNProducA" onClick={() => handlerAddNewProduct()}>
+						<MdAddBusiness className="iconAdminCards" />
+						<p className="lettersCardsA">Add New Product</p>
+					</div>
 					<div className="cardsUsersA" onClick={() => handlerUsers()}>
 						<ImUsers className="iconAdminCards" />
 						<p className="lettersCardsA">Users</p>
@@ -264,6 +286,12 @@ const Admin = () => {
 						Products
 					</p>
 					<p
+						className={switchNewProduct === true ? "activeTabsA" : "nbAd"}
+						onClick={() => handlerAddNewProduct()}
+					>
+						Add New Product
+					</p>
+					<p
 						className={users === true ? "activeTabsA" : "nbAd"}
 						onClick={() => handlerUsers()}
 					>
@@ -297,7 +325,7 @@ const Admin = () => {
 						className={myAcc === true ? "activeTabsA" : "nbAd"}
 						onClick={() => handlerMyAcc()}
 					>
-						My account
+						My Account
 					</p>
 					<p className="nbAdMoreC" onClick={() => handlerCards()}>
 						Mode Cards
@@ -305,11 +333,6 @@ const Admin = () => {
 				</div>
 			);
 		}
-	}
-
-	function activeNewProduct() {
-		setSwitchNewProduct(true);
-		setProducts(false);
 	}
 
 	useEffect(() => {
@@ -326,15 +349,15 @@ const Admin = () => {
 
 			{products === true && nav === true ? (
 				<div className="productsAdminPC">
-					<div className="btnDivnewproductPe">
+					{/* <div className="btnDivnewproductPe">
 						<button className="newProductBtnPe" onClick={() => activeNewProduct()}>
 							<SiBuymeacoffee /> <MdOutlineBakeryDining /> Add New Product{" "}
 							<MdEmojiFoodBeverage /> <BiFoodMenu />
 						</button>
-					</div>
-					<div className="divProductsAdmin">
-						<ProductsEdit />
-					</div>
+					</div> */}
+					{/* <div className="divProductsAdmin"> */}
+					<ProductsEdit />
+					{/* </div> */}
 				</div>
 			) : null}
 			{switchNewProduct === true && nav === true ? <NewProducts /> : null}
