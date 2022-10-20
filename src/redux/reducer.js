@@ -3,7 +3,7 @@ const initialState = {
 	products: [],
 	errorSProducts: [],
 	productDetails: {},
-	responseCreateProduct: []
+	responseCreateProduct: [],
 	refreshToken: {},
 	checkEmail: {},
 };
