@@ -4,6 +4,8 @@ const initialState = {
 	errorSProducts: [],
 	productDetails: {},
 	responseCreateProduct: []
+	refreshToken: {},
+	checkEmail: {},
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -27,6 +29,18 @@ export default function rootReducer(state = initialState, action) {
 					products: action.payload
 				};
 			}
+			case "LOGIN_USER":
+				return {
+					...state,
+					refreshToken: action.payload
+				};
+			
+			case "CHECK_EMAIL_USER":
+				return {
+					...state,
+					checkEmail: action.payload
+				};
+
 
 		case "CLEAR_ERROR_SEARCHP":
 			return {

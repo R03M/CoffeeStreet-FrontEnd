@@ -1,7 +1,10 @@
 import React from "react";
 import NavBar from "../navbar/Navbar.jsx";
+import NavBarClient from "../client/navClient/NavClient.jsx";
 import New from "../new/New.jsx";
 import "./home.css";
+import { useAuth0 } from "@auth0/auth0-react";
+import { useSelector } from "react-redux";
 
 const discounts = [
 	{ title: "10% off", descrip: "on Salty Bakery", id: 1 },
@@ -11,9 +14,16 @@ const discounts = [
 ];
 
 const Home = () => {
+	const { isAuthenticated } = useAuth0();
+	const refreshToken = useSelector((state) => state.refreshToken);
+
+
+  console.log(refreshToken)
 	return (
 		<div className="homeDiv">
-			<NavBar />
+		  { isAuthenticated ? <NavBarClient /> : <NavBar /> }
+			{/* { refreshToken ? <NavBarClient /> : <NavBar /> } */}
+			
 			<div className="banner"></div>
 			<div className="discountsAndNews">
 				<div className="discounts">
@@ -27,6 +37,7 @@ const Home = () => {
 				<New />
 			</div>
 		</div>
+		
 	);
 };
 
