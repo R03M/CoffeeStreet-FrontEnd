@@ -8,6 +8,7 @@ import Pagination from "../pagination/Pagination";
 import Loading from "../loading/Loading";
 import ErrorSearch from "../errorSearch/ErrorSearch";
 import "./products.css";
+import ShoppingCart from "../ShoppingCart/ShoppingCart";
 
 const Products = () => {
 	const dispatch = useDispatch();
@@ -44,6 +45,7 @@ const Products = () => {
 			if (allProducts.length) {
 				return (
 					<div>
+					<ShoppingCart />
 						<div className="cardsProd">
 							{dataEnd.map(data => {
 								return <CardP key={data.id} product={data} />;

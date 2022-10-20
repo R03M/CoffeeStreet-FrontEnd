@@ -96,3 +96,23 @@ export function postUserNew(payload) {
 		return( error);
 	}
 }
+
+export function addProductToCart(payload) {
+	return {
+		type: "ADD_PRODUCT_TO_CART",
+		payload
+	};
+}
+
+export function removeProductFromCart(payload) {
+	return {
+		type: "REMOVE_PRODUCT_FROM_CART",
+		payload
+	};
+}
+
+export function clearCart() {
+	return {
+		type: "CLEAR_CART"
+	};
+}

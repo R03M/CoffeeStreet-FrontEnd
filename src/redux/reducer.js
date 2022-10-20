@@ -3,7 +3,7 @@ const initialState = {
 	products: [],
 	errorSProducts: [],
 	productDetails: {},
-
+	cart: [],
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -152,6 +152,22 @@ export default function rootReducer(state = initialState, action) {
 				...state,
 				productDetails: {}
 			};
+		case "ADD_PRODUCT_TO_CART":
+			return {
+				...state,
+				cart: [...state.cart, action.payload] //action.payload es el producto
+			};
+		case "REMOVE_PRODUCT_FROM_CART":
+			return {
+				...state,
+				cart: state.cart.filter(p => p.id !== action.payload)
+			};
+		case "CLEAR_CART":
+			return {
+				...state,
+				cart: []
+			};
+			
 		default:
 			return state;
 	}

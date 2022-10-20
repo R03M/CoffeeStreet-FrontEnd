@@ -5,6 +5,8 @@ import { GiMilkCarton, GiWheat } from "react-icons/gi";
 import { BsInfo, BsFillCartPlusFill } from "react-icons/bs";
 import swal from "sweetalert";
 import "./cardP.css";
+import { addProductToCart } from "../../../redux/action";
+import { useDispatch } from "react-redux";
 
 const CardP = ({ product }) => {
 	const alcohol = () => {
@@ -63,7 +65,11 @@ const CardP = ({ product }) => {
 			});
 		}
 	};
-
+	const dispatch = useDispatch();
+	const handleAdd = (id) => {
+		dispatch(addProductToCart(id))
+	}
+	
 	return (
 		<div className={product.stock === true ? "cardDiv" : "cardDivF"} key={product.id}>
 			<div className="nameCard">{product.name}</div>
@@ -94,7 +100,7 @@ const CardP = ({ product }) => {
 				</button>
 				<button
 					className={product.stock === true ? "btnACartTemp" : "btnACartTempNSCP"}
-					onClick={e => handlerTemp(e)}
+					onClick={()	=> handleAdd(product)}
 				>
 					<BsFillCartPlusFill />
 				</button>
