@@ -29,9 +29,7 @@ const FormLogin = () => {
       .min(2, "Password too short")
       .required("Password is required"),
   })
-  const redired = () => {
-    window.location.href = "http://localhost:3000/menu";
-  }
+
 
 
 
@@ -64,7 +62,6 @@ const FormLogin = () => {
 
               )}
               <button 
-                  onClick={redired}
                   type="submit" 
                   disabled={isSubmitting} 
               >Login</button>
