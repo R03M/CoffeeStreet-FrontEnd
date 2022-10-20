@@ -21,8 +21,8 @@ const Home = () => {
   console.log(refreshToken)
 	return (
 		<div className="homeDiv">
-		  {/* { isAuthenticated ? <NavBarClient /> : <NavBar /> } */}
-			{ refreshToken ? <NavBarClient /> : <NavBar /> }
+		  { isAuthenticated ? <NavBarClient /> : <NavBar /> }
+			{/* { refreshToken ? <NavBarClient /> : <NavBar /> } */}
 			
 			<div className="banner"></div>
 			<div className="discountsAndNews">

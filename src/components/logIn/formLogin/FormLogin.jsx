@@ -11,6 +11,7 @@ const FormLogin = () => {
   const initialValues = {
     email: String,
     password: String,
+    isGoogle: false,
   } 
 
   const dispath = useDispatch();
@@ -28,6 +29,10 @@ const FormLogin = () => {
       .min(2, "Password too short")
       .required("Password is required"),
   })
+  const redired = () => {
+    window.location.href = "http://localhost:3000/menu";
+  }
+
 
 
   return (
@@ -58,7 +63,11 @@ const FormLogin = () => {
                 <ErrorMessage name="password" component="div"/>
 
               )}
-              <button type="submit" disabled={isSubmitting}>Login</button>
+              <button 
+                  onClick={redired}
+                  type="submit" 
+                  disabled={isSubmitting} 
+              >Login</button>
             </Form>
           )}
         </Formik>

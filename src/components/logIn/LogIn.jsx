@@ -16,7 +16,7 @@ const LogIn = () => {
 			<FormLogin/>
 			<LoginAuth0/>
 			<Link to="/signUp">
-					<button >Sign Up</button>
+					<button>Sign Up</button>
 			</Link>
 			</div>
 

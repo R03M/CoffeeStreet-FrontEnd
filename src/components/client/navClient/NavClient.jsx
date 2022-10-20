@@ -38,7 +38,7 @@ const NavBar = () => {
 					<button className="btnNBCU">Menu</button>
 				</Link>
 
-				<Link to="/signUp">
+				<Link to="/shoppingCart">
 					<button className="btnNBCU">Shopping cart</button>
 				</Link>
 
