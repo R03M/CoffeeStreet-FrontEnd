@@ -1,0 +1,14 @@
+.btn-logOut{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+.img-salida{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  
+}
