@@ -3,6 +3,7 @@ const initialState = {
 	products: [],
 	errorSProducts: [],
 	productDetails: {},
+	responseCreateProduct: []
 	refreshToken: {},
 	checkEmail: {},
 };
@@ -164,6 +165,24 @@ export default function rootReducer(state = initialState, action) {
 			return {
 				...state,
 				productDetails: {}
+			};
+
+		case "POST_NEW_PRODUCT":
+			if (action.payload.message === "Product successfully created")
+				return {
+					...state,
+					responseCreateProduct: "Created"
+				};
+			else {
+				return {
+					...state,
+					responseCreateProduct: "Not created"
+				};
+			}
+		case "CLEAR_RESPONSE_NEW_PRODUCT":
+			return {
+				...state,
+				responseCreateProduct: []
 			};
 		default:
 			return state;
