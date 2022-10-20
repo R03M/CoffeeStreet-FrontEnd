@@ -17,26 +17,6 @@ const NewProducts = () => {
 	const dispatch = useDispatch();
 	const responseOfCreateNp = useSelector(state => state.responseCreateProduct);
 
-	const notiSwal = () => {
-		if (responseOfCreateNp === "Created") {
-			swal({
-				title: "Created",
-				text: "",
-				icon: "success",
-				button: "Ok"
-			});
-			dispatch(clearResponseNewProduct());
-		} else if (responseOfCreateNp === "Not created") {
-			swal({
-				title: "Error",
-				text: "",
-				icon: "error",
-				button: "Ok"
-			});
-			dispatch(clearResponseNewProduct());
-		}
-	};
-
 	const initialValues = {
 		name: "",
 		description: "",
@@ -60,6 +40,42 @@ const NewProducts = () => {
 		color: ""
 	};
 
+	const notiSwal = () => {
+		if (responseOfCreateNp === "Created") {
+			swal({
+				title: "Created",
+				text: "",
+				icon: "success",
+				button: "Ok"
+			});
+			dispatch(clearResponseNewProduct());
+		} else if (responseOfCreateNp === "Not created") {
+			swal({
+				title: "Error",
+				text: "",
+				icon: "error",
+				button: "Ok"
+			});
+			dispatch(clearResponseNewProduct());
+		}
+	};
+
+	function categorieSet(value) {
+		if (
+			value === CATEGORIES.COFFEE_READY_TO_DRINK ||
+			value === CATEGORIES.COFFEE_TO_PREPARED
+		) {
+			return "coffee";
+		} else if (
+			value === CATEGORIES.TEA_READY_TO_DRINK ||
+			value === CATEGORIES.TEA_TO_PREPARED
+		) {
+			return "tea";
+		} else {
+			return value;
+		}
+	}
+
 	const addProduct = (values, resetForm) => {
 		let newProduct = {
 			name: values.name,
@@ -69,14 +85,18 @@ const NewProducts = () => {
 					? values.image
 					: "https://www.publicdomainpictures.net/pictures/280000/nahled/not-found-image-15383864787lu.jpg",
 			price: values.price,
-			category: values.category,
+			category: categorieSet(values.category),
 			lactose: values.lactose === "true" ? true : false,
 			gluten: values.gluten === "true" ? true : false,
 			alcohol: values.alcohol === "true" ? true : false,
 			stock: values.stock === "true" ? true : false,
 			ingredients: values.ingredients,
 			originCountry: values.originCountry,
-			isPrepared: values.isPrepared === "true" ? true : false,
+			isPrepared:
+				values.category === CATEGORIES.COFFEE_READY_TO_DRINK ||
+				values.category === CATEGORIES.TEA_READY_TO_DRINK
+					? true
+					: false,
 			state: "active",
 			cream: values.cream === "true" ? true : false,
 			texture: values.texture,
@@ -86,6 +106,7 @@ const NewProducts = () => {
 			roast: values.roast,
 			color: values.color
 		};
+		// console.log(newProduct);
 		dispatch(postNewProduct(newProduct));
 		resetForm();
 	};
@@ -152,10 +173,16 @@ const NewProducts = () => {
 									<option disabled="disabled" default={true} value="null">
 										Category
 									</option>
-									<option value={CATEGORIES.COFFEE}>Coffee</option>
-									<option value={CATEGORIES.TEA}>Tea</option>
+									<option value={CATEGORIES.COFFEE_TO_PREPARED}>Coffee to prepare</option>
+									<option value={CATEGORIES.COFFEE_READY_TO_DRINK}>
+										Coffee ready to drink
+									</option>
 									<option value={CATEGORIES.SWEET_BACKERY}>Sweet Backery</option>
 									<option value={CATEGORIES.SALTY_BACKERY}>Salty Backery</option>
+									<option value={CATEGORIES.TEA_TO_PREPARED}>Tea to prepare</option>
+									<option value={CATEGORIES.TEA_READY_TO_DRINK}>
+										Tea ready to drink
+									</option>
 									<option value={CATEGORIES.OTHER}>Other</option>
 								</Field>
 								{errors.category && touched.category && (
@@ -193,32 +220,11 @@ const NewProducts = () => {
 									<ErrorMessage name="stock" component="div" className="colorErrorMsg" />
 								)}
 							</div>
-
-							<div className="isPreparedFieldNewProduct">
-								<Field
-									as="select"
-									id="isPrepared"
-									name="isPrepared"
-									className="selectcard1newProduct"
-								>
-									<option hidden>Ready to eat ?</option>
-									<option disabled="disabled" default={true} value={"null"}>
-										Ready to eat ?
-									</option>
-									<option value={false}>To prepare</option>
-									<option value={true}>Ready to eat</option>
-								</Field>
-								{errors.isPrepared && touched.isPrepared && (
-									<ErrorMessage
-										name="isPrepared"
-										component="div"
-										className="colorErrorMsg"
-									/>
-								)}
-							</div>
 						</div>
 
-						{/* {values.isPrepared === "true" ? ( */}
+						{values.category === CATEGORIES.COFFEE_TO_PREPARED ||
+						values.category === CATEGORIES.TEA_TO_PREPARED ||
+						values.category === "null" ? null : (
 							<div className="ingredientsAndtypesNP">
 								<div className="lactoseFieldNewProduct">
 									<Field
@@ -243,7 +249,7 @@ const NewProducts = () => {
 									)}
 								</div>
 
-								{/* {values.category !== "tea" ? ( */}
+								{values.category !== CATEGORIES.TEA_READY_TO_DRINK ? (
 									<div className="glutenFieldNewProduct">
 										<Field
 											as="select"
@@ -266,7 +272,7 @@ const NewProducts = () => {
 											/>
 										)}
 									</div>
-								{/* ) : null} */}
+								) : null}
 
 								<div className="alcoholFieldNewProduct">
 									<Field
@@ -337,9 +343,9 @@ const NewProducts = () => {
 									)}
 								</div>
 							</div>
-						{/* ) : null} */}
+						)}
 
-						{/* {values.isPrepared === "false" && values.category === "coffee" ? ( */}
+						{values.category === CATEGORIES.COFFEE_TO_PREPARED ? (
 							<div className="originCountryFieldNewProduct">
 								<label htmlFor="originCountry">Origin Country</label>
 								<Field
@@ -356,12 +362,12 @@ const NewProducts = () => {
 									/>
 								)}
 							</div>
-						{/* ) : null} */}
+						) : null}
 
 						{/*
 								// * Inicio de los Atributos
 						*/}
-						{/* {values.category === "coffee" && values.isPrepared === "true" ? ( */}
+						{values.category === CATEGORIES.COFFEE_READY_TO_DRINK ? (
 							<div className="attibutesNPC">
 								<div className="creamFieldNewProduct">
 									<label>Attributes</label>
@@ -507,7 +513,7 @@ const NewProducts = () => {
 									)}
 								</div>
 							</div>
-						{/* ) : null} */}
+						) : null}
 
 						<div className="btnDivNP">
 							<button type="submit" className="btnSubmitNp">
