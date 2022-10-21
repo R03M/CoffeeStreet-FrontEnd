@@ -76,7 +76,7 @@ export function postNewProduct(data) {
 			dispatch({
 				type: "POST_NEW_PRODUCT",
 				payload: response.data
-			})
+			});
 		};
 	} catch (error) {
 		return error;
@@ -86,7 +86,7 @@ export function postNewProduct(data) {
 export function clearResponseNewProduct() {
 	return {
 		type: "CLEAR_RESPONSE_NEW_PRODUCT"
-	}
+	};
 }
 
 export function clearDetails() {
@@ -95,15 +95,14 @@ export function clearDetails() {
 	};
 }
 
-
 export function postUserNew(payload) {
-	try{
+	try {
 		return async function () {
 			const response = await axios.post(`${url}/register`, payload);
 			alert("Created user successfully");
 		};
 	} catch (error) {
-		return( error);
+		return error;
 	}
 }
 
@@ -111,31 +110,29 @@ export function LoginUser(payload) {
 	return async function (dispatch) {
 		try {
 			const response = await axios.post(`${url}/login`, payload);
-			
+
 			dispatch({
 				type: "LOGIN_USER",
 				payload: response.data
 			});
-			console.log(response.data)
+			console.log(response.data);
 		} catch (error) {
-			
 			return alert("Invalid email or password");
 		}
 	};
 }
 
-export function registerUserGoogle ( payload) {
+export function registerUserGoogle(payload) {
 	return async function (dispatch) {
 		try {
 			const response = await axios.post(`${url}/register`, payload);
-	
 		} catch (error) {
 			return error;
 		}
 	};
 }
 
-export function checkEmailUser (payload) {
+export function checkEmailUser(payload) {
 	return async function (dispatch) {
 		try {
 			const response = await axios.post(`${url}/register/email?email=${payload}`);
@@ -143,31 +140,49 @@ export function checkEmailUser (payload) {
 				type: "CHECK_EMAIL_USER",
 				payload: response.data
 			});
-			
-			
-			console.log(response)
+
+			console.log(response);
 		} catch (error) {
 			return error;
 		}
 	};
 }
 export function logPostData(token) {
- 
-  return async function (dispach) {
-    try {
-      const response = await axios.get(`${url}/users/`, {
-        headers: {
-          authorization: `Bearer ${token}`,
-          Accept: "aplication/json"
-        }
-      });
-      console.log(response.data[0].id);
-      dispach({
-        type: "LOG_POST_DATA",
-        payload: response.data
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  };
+	return async function (dispach) {
+		try {
+			const response = await axios.get(`${url}/users/`, {
+				headers: {
+					authorization: `Bearer ${token}`,
+					Accept: "aplication/json"
+				}
+			});
+			console.log(response.data[0].id);
+			dispach({
+				type: "LOG_POST_DATA",
+				payload: response.data
+			});
+		} catch (error) {
+			console.log(error);
+		}
+	};
+}
+
+export function getProductsId(id) {
+	return async function (dispatch) {
+		try {
+			const response = await axios.get(`${url}/products/${id}`);
+			dispatch({
+				type: "GET_PRODUCTS_ID",
+				payload: response.data
+			});
+		} catch (error) {
+			return error;
+		}
+	};
+}
+
+export function clearDetailsProductId(){
+	return {
+		type: "CLEAR_DETAILS_PRODUCT_IS"
+	}
 }
