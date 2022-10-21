@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { clearResponseNewProduct, postNewProduct } from "../../../redux/action";
 import { Formik, Form, Field, ErrorMessage, isString } from "formik";
@@ -16,6 +16,8 @@ import "./newProducts.css";
 const NewProducts = () => {
 	const dispatch = useDispatch();
 	const responseOfCreateNp = useSelector(state => state.responseCreateProduct);
+
+	const [test1, setTes1] = useState(false);
 
 	const initialValues = {
 		name: "",
@@ -41,26 +43,31 @@ const NewProducts = () => {
 	};
 
 	const notiSwal = () => {
-		if (responseOfCreateNp === "Created") {
+		if (responseOfCreateNp === "Product successfully created") {
+			console.log(test1);
 			swal({
 				title: "Created",
 				text: "",
 				icon: "success",
 				button: "Ok"
 			});
+			setTes1(false);
+
 			dispatch(clearResponseNewProduct());
-		} else if (responseOfCreateNp === "Not created") {
+		} else if (test1 === true) {
 			swal({
 				title: "Error",
 				text: "",
 				icon: "error",
 				button: "Ok"
 			});
-			dispatch(clearResponseNewProduct());
+			setTes1(false);
+			// dispatch(clearResponseNewProduct());
 		}
 	};
 
 	const addProduct = (values, resetForm) => {
+		setTes1(true);
 		let newProduct = {
 			name: values.name,
 			description: values.description,
@@ -80,10 +87,7 @@ const NewProducts = () => {
 			stock: values.stock === "true" ? true : false,
 			ingredients: values.ingredients,
 			originCountry: values.originCountry,
-			isPrepared:
-				values.category === CATEGORIES.COFFEE_TO_PREPARED
-					? false
-					: true,
+			isPrepared: values.category === CATEGORIES.COFFEE_TO_PREPARED ? false : true,
 			state: "active",
 			cream: values.cream === "true" ? true : false,
 			texture: values.texture,
@@ -93,11 +97,22 @@ const NewProducts = () => {
 			roast: values.roast,
 			color: values.color
 		};
-		// console.log(newProduct);
 		dispatch(postNewProduct(newProduct));
-		resetForm();
+		// resetForm();
 	};
+
+
 	notiSwal();
+	// setTimeout(() => {
+	// }, 100);
+
+	// useEffect(() => {
+	// 	if (test1 === true) {
+	// 		setTimeout(() => {
+	// 			notiSwal();
+	// 		}, 300);
+	// 	}
+	// }, [test1]);
 
 	return (
 		<div className="formNewProductDiv">

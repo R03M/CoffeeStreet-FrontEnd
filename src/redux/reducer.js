@@ -168,17 +168,11 @@ export default function rootReducer(state = initialState, action) {
 			};
 
 		case "POST_NEW_PRODUCT":
-			if (action.payload.message === "Product successfully created")
-				return {
-					...state,
-					responseCreateProduct: "Created"
-				};
-			else {
-				return {
-					...state,
-					responseCreateProduct: "Not created"
-				};
-			}
+			return {
+				...state,
+				responseCreateProduct: action.payload
+			};
+
 		case "CLEAR_RESPONSE_NEW_PRODUCT":
 			return {
 				...state,
@@ -193,6 +187,10 @@ export default function rootReducer(state = initialState, action) {
 			return {
 				...state,
 				productsDataId: []
+			};
+		case "DELETE_PRODUCT":
+			return {
+				...state
 			};
 		default:
 			return state;

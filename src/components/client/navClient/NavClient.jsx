@@ -10,9 +10,9 @@ import "./navClient.css";
 const NavBar = () => {
   const {user} = useAuth0();
 	const [menuUsuario, setMenuUsuario] = useState(false);
- 
 
-  
+
+
 	const handlerMenuUsuario = () => {
 		if (menuUsuario === false) {
 			setMenuUsuario(true);
@@ -21,9 +21,9 @@ const NavBar = () => {
 
 		}
 	}
-	
-		console.log(menuUsuario);
-		console.log(user)
+
+		// console.log(menuUsuario);
+		// console.log(user)
 
 	return (
 		<div className="navbarDivC">
@@ -46,7 +46,7 @@ const NavBar = () => {
 					<button className="btnNBCU">Admin(temp)</button>
 				</Link> */}
 					<div className="menu-usuario">
-						
+
 						<img  onClick={handlerMenuUsuario} className="img-usuario" src={user.picture} alt={user.name}/>
 						{ menuUsuario ? (
 							<div className="menu-usuario-activo">

@@ -18,12 +18,12 @@ const Home = () => {
 	const refreshToken = useSelector((state) => state.refreshToken);
 
 
-  console.log(refreshToken)
+  // console.log(refreshToken)
 	return (
 		<div className="homeDiv">
 		  { isAuthenticated ? <NavBarClient /> : <NavBar /> }
 			{/* { refreshToken ? <NavBarClient /> : <NavBar /> } */}
-			
+
 			<div className="banner"></div>
 			<div className="discountsAndNews">
 				<div className="discounts">
@@ -37,7 +37,7 @@ const Home = () => {
 				<New />
 			</div>
 		</div>
-		
+
 	);
 };
 
