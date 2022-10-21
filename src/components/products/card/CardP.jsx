@@ -1,4 +1,4 @@
-import React from "react";
+import React , {useState}from "react";
 import { Link } from "react-router-dom";
 import { BiDrink } from "react-icons/bi";
 import { GiMilkCarton, GiWheat } from "react-icons/gi";
@@ -6,7 +6,7 @@ import { BsInfo, BsFillCartPlusFill } from "react-icons/bs";
 import swal from "sweetalert";
 import "./cardP.css";
 import { addProductToCart } from "../../../redux/action";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const CardP = ({ product }) => {
 	const alcohol = () => {
@@ -69,7 +69,18 @@ const CardP = ({ product }) => {
 	const handleAdd = (id) => {
 		dispatch(addProductToCart(id))
 	}
-	
+	const quantity = useSelector(state => state.quantity)
+	const handleQuantity = (id) => {
+		let count = 0
+		quantity.map((q) => {
+			if (q.id === id) {
+				count = q.quantity
+			}
+		})
+		return count
+	}
+
+
 	return (
 		<div className={product.stock === true ? "cardDiv" : "cardDivF"} key={product.id}>
 			<div className="nameCard">{product.name}</div>
@@ -91,7 +102,7 @@ const CardP = ({ product }) => {
 
 			<div className="divTempCart">
 				<p className="pCartTemp">{`Qty`}</p>
-				<input type="number" className="inputCartTemp" value={1} />
+				<input type="number" className="inputCartTemp" value={handleQuantity} />
 				<button
 					className={product.stock === true ? "btnBCartTemp" : "btnBCartTempNSCP"}
 					onClick={e => handlerTemp(e)}

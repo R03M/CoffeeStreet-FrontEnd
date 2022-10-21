@@ -10,7 +10,7 @@ import Loading from "../loading/Loading";
 import ErrorSearch from "../errorSearch/ErrorSearch";
 import { useAuth0 } from "@auth0/auth0-react";
 import "./products.css";
-import ShoppingCart from "../ShoppingCart/ShoppingCart";
+import ShoppingCart from "../ShoppingCart/ShoppingCart.jsx";
 
 const Products = () => {
 	const dispatch = useDispatch();
@@ -96,8 +96,11 @@ const Products = () => {
 	return (
 		<div className="productsDiv">
 		{ isAuthenticated ? (
-				<NavBarClient />
+			<div><NavBarClient /> 
+				 <ShoppingCart /></div> 
+				
 		  ) : <NavBar />}
+		  
 			<div className="navbarProduc">
 				<NavbarProduc />
 				{pagACards()}
