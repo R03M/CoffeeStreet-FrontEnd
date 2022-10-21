@@ -1,9 +1,13 @@
+const localRefreshToken = JSON.parse(localStorage.getItem("refreshToken"));
+const localAccessToken = JSON.parse(localStorage.getItem("accessToken"));
+
 const initialState = {
 	allProducts: [],
 	products: [],
 	errorSProducts: [],
 	productDetails: {},
-	refreshToken: {},
+	accessToken: localAccessToken || "",
+	refreshToken: localRefreshToken || "",
 	checkEmail: {},
 };
 
@@ -31,9 +35,21 @@ export default function rootReducer(state = initialState, action) {
 			case "LOGIN_USER":
 				return {
 					...state,
-					refreshToken: action.payload
+					accessToken: action.payload.accessToken,
+					refreshToken: action.payload.refreshToken
 				};
 			
+			case "REFRESH_LOG":
+				return {
+					...state,
+					accessToken: action.payload.accessToken,
+				};
+			case "LOGOUT_USER":
+				return {
+					...state,
+					accessToken: "",
+					refreshToken: ""
+				};
 			case "CHECK_EMAIL_USER":
 				return {
 					...state,

@@ -100,6 +100,7 @@ export function postUserNew(payload) {
 
 export function LoginUser(payload) {
 	return async function (dispatch) {
+		console.log("payload", payload);
 		try {
 			const response = await axios.post(`${url}/login`, payload);
 			
@@ -107,12 +108,35 @@ export function LoginUser(payload) {
 				type: "LOGIN_USER",
 				payload: response.data
 			});
-			console.log(response.data)
+			console.log("Login user respuesta" , response.data)
 		} catch (error) {
 			
-			return alert("Invalid email or password");
+			return error;
 		}
 	};
+}
+
+export function logOutUser(accessToken) {
+  return async function (dispatch) {
+    console.log(accessToken);
+    try {
+      const response = await axios.post(`${url}/login/remove`, {
+        headers: {
+					authorization: `Bearer ${accessToken}`,
+					Accept: "aplication/json"
+				},
+      });
+      if (response) {
+        localStorage.removeItem("refreshToken");
+        localStorage.removeItem("accessToken");
+        dispatch({
+          type: "LOGOUT_USER",
+        });
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 }
 
 export function registerUserGoogle ( payload) {
@@ -128,6 +152,7 @@ export function registerUserGoogle ( payload) {
 
 export function checkEmailUser (payload) {
 	return async function (dispatch) {
+		console.log("check email payload", payload)
 		try {
 			const response = await axios.post(`${url}/register/email?email=${payload}`);
 			dispatch({
@@ -136,7 +161,7 @@ export function checkEmailUser (payload) {
 			});
 			
 			
-			console.log(response)
+			console.log("check email", response)
 		} catch (error) {
 			return error;
 		}
@@ -146,13 +171,13 @@ export function logPostData(token) {
  
   return async function (dispach) {
     try {
-      const response = await axios.get(`${url}/users/`, {
+      const response = await axios.get(`${url}/users`, {
         headers: {
           authorization: `Bearer ${token}`,
           Accept: "aplication/json"
         }
       });
-      console.log(response.data[0].id);
+      console.log("Log post Data ", response.data);
       dispach({
         type: "LOG_POST_DATA",
         payload: response.data
@@ -161,4 +186,30 @@ export function logPostData(token) {
       console.log(error);
     }
   };
+}
+
+export function refreshLog(  accessToken, refreshToken){
+	console.log("refresh token", refreshToken)
+	console.log("access token", accessToken)
+	return async function (dispatch) {
+		try {
+			const response = await axios.post(`${url}/login/refresh`, refreshToken, { 
+				headers: {
+					authorization: `Bearer ${accessToken}`,
+					
+				}
+			});
+			console.log("refresh este no funciona",response.data)
+			dispatch({
+				type: "REFRESH_LOG",
+				payload: response.data
+			});
+		} catch (error) {
+			return error;
+		}
+
+	}
+
+
+
 }

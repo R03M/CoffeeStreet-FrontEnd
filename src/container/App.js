@@ -1,4 +1,5 @@
 import { Route, Routes } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import Home from "../components/home/Home.jsx";
 import SignUp from "../components/signUp/SignUp.jsx";
 import LogIn from "../components/logIn/LogIn.jsx";
@@ -11,10 +12,35 @@ import Products from "../components/products/Products.jsx";
 import CurrentNews from "../components/new/currentNews/CurrentNews.jsx";
 import About from "../components/About/About.jsx";
 import ProductsDetails from "../components/productsDetails/ProductsDetails.jsx";
+import { refreshLog } from "../redux/action";
+
 
 import "./App.css";
+import { useEffect } from "react";
 
 function App() {
+	const dispatch = useDispatch();
+	const refrest = useSelector(state => state.refreshToken)
+	const refreshToken = {
+		refreshToken: refrest
+	}
+ 
+  const accessToken = useSelector(state => state.accessToken);
+	
+	
+	// useEffect(() => {
+  //   localStorage.setItem("refreshToken", JSON.stringify(refreshToken));
+  //   localStorage.setItem("accessToken", JSON.stringify(accessToken));
+  // }, [accessToken, refreshToken]);
+
+	useEffect(() => {
+		if(refreshToken){
+			dispatch(refreshLog(accessToken, refreshToken));
+		}
+	}, [dispatch, accessToken]);
+
+
+	console.log("app tokenRef", refreshToken);
 	return (
 		<div className="App">
 			<Routes>

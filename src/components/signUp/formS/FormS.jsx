@@ -5,6 +5,8 @@ import { ROLES } from "../../../models/roles.enum";
 import { User } from "../../../models/user.class";
 import { postUserNew } from "../../../redux/action";
 import {useDispatch} from "react-redux";
+// import { redirect } from "react-router-dom";
+
 
 const FormS = () => {
 	const initialValues = {
@@ -100,7 +102,8 @@ const FormS = () => {
 						<ErrorMessage name="password" component="div"/>
 					)}
 					
-					<button type="submit" style={{fontSize:"2rem", padding: "1rem", backgroundColor:"green"}}>Save</button>
+					<button 
+					type="submit" style={{fontSize:"2rem", padding: "1rem", backgroundColor:"green"}}>Save</button>
 					{isSubmitting ? <p>Register your credentials</p> : null}
 				</Form>
 			)
