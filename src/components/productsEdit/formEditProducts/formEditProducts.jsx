@@ -45,9 +45,8 @@ const EditProducts = ({ exitF }) => {
 		stock: dataProduct.stock,
 		ingredients: dataProduct.ingredients,
 		originCountry: dataProduct.originCountry,
-		// isPrepared: dataProduct.isPrepared,
 		state: dataProduct.state,
-		cream: dataProduct.attribute.cream === null ? "null" : dataProduct.attribute.cream,
+		cream: dataProduct.attribute.cream,
 		texture: dataProduct.attribute.texture,
 		body: dataProduct.attribute.body,
 		acidity: dataProduct.attribute.acidity,
@@ -77,7 +76,6 @@ const EditProducts = ({ exitF }) => {
 	};
 
 	const addProduct = (values, resetForm) => {
-		console.log(values);
 		let newProduct = {
 			name: values.name,
 			description: values.description,
@@ -107,7 +105,6 @@ const EditProducts = ({ exitF }) => {
 			roast: values.roast,
 			color: values.color
 		};
-
 
 		console.log(newProduct);
 		// dispatch(putNewProduct(newProduct));
@@ -516,17 +513,17 @@ const EditProducts = ({ exitF }) => {
 							</div>
 						) : null}
 
-						<div className="btnDivNP">
-							<button type="submit" className="btnSubmitNp">
+						<div className="btnDivEP">
+							<button type="button" className="btnCanceltEp" onClick={() => handleExit()}>
+								Cancel
+							</button>
+							<button type="submit" className="btnSubmitEp">
 								To Create
 							</button>
 						</div>
 					</Form>
 				)}
 			</Formik>
-							<button type="button" onClick={() => handleExit()}>
-								Cancel
-							</button>
 		</div>
 	);
 };

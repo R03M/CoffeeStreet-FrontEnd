@@ -255,7 +255,7 @@ const Admin = () => {
 		setFormEdit(false);
 	}
 
-	function test12() {
+	function handleFormEditProduct() {
 		if (formEdit === false) {
 			setFormEdit(true);
 			setNav(false);
@@ -387,7 +387,7 @@ const Admin = () => {
 
 			{products === true && nav === true ? (
 				<div className="productsAdminPC">
-					<ProductsEdit editCPe={test12} />
+					<ProductsEdit editCPe={handleFormEditProduct} />
 				</div>
 			) : null}
 
@@ -398,7 +398,7 @@ const Admin = () => {
 			{discounts === true && nav === true ? <Discounts /> : null}
 			{profits === true && nav === true ? <Profits /> : null}
 			{myAcc === true && nav === true ? <MyAccount /> : null}
-			{formEdit === true ? <FormEditProducts exitF={test12} /> : null}
+			{formEdit === true ? <FormEditProducts exitF={handleFormEditProduct} /> : null}
 		</div>
 	);
 };

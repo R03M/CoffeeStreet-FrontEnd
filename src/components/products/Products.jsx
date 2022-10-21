@@ -33,7 +33,7 @@ const Products = () => {
 
 	useEffect(() => {
 		dispatch(logPostData(refreshToken))
-		
+
 	}, [dispatch]);
 
 
@@ -46,7 +46,7 @@ const Products = () => {
 
 	useEffect(() => {
 		if (checkEmail.email === false) {
-			
+
 			dispatch(registerUserGoogle({
 				email: user.email,
 				name: user.name,
@@ -54,8 +54,8 @@ const Products = () => {
 			}));
 		}
 	}, [dispatch, checkEmail, user, refreshToken]);
-	console.log("refreshToken", refreshToken)
-		
+	// console.log("refreshToken", refreshToken)
+
 	useEffect(() => {
 		if (allProducts.length === 0) {
 			dispatch(getProducts());
@@ -64,7 +64,7 @@ const Products = () => {
 		dispatch(clearError());
 		dispatch(clearDetails());
 	}, [dispatch, allProducts]);
-	console.log("user", user)
+	// console.log("user", user)
 
 	function pagACards() {
 		if (errorMessage === "There is no product with that name") {
