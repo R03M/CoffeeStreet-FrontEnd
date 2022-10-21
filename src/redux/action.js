@@ -181,7 +181,9 @@ export function getProductsId(id) {
 	};
 }
 
+
 export function clearDetailsProductId() {
+
 	return {
 		type: "CLEAR_DETAILS_PRODUCT_IS"
 	};
@@ -198,4 +200,86 @@ export function deleteProduct(id) {
 			return error;
 		}
 	};
+}
+
+export function addProductToCart(payload) {
+	return {
+		type: "ADD_PRODUCT_TO_CART",
+		payload
+	};
+}
+
+export function removeProductFromCart(payload) {
+	return {
+		type: "REMOVE_PRODUCT_FROM_CART",
+		payload
+	};
+}
+export function removeOneProductFromCart(payload) {
+	return {
+		type: "REMOVE_ONE_PRODUCT_FROM_CART",
+		payload
+	};
+}
+
+export function clearCart() {
+	return {
+		type: "CLEAR_CART"
+	};
+}
+      export function postShoppingCart(cart){
+	return async function (dispatch) {
+		try {
+			const response = await axios.post(`${url}/cart`, cart);
+			dispatch({
+				type: "POST_SHOPPING_CART",
+				payload: response.data
+			});
+		} catch (error) {
+			return error;
+		}
+	};
+}
+
+export function getShoppingCart(){
+	return async function (dispatch) {
+		try {
+			const response = await axios.get(`${url}/cart`);
+			dispatch({
+				type: "GET_SHOPPING_CART",
+				payload: response.data
+			});
+		} catch (error) {
+			return error;
+		}
+	};
+}
+
+export function deleteShoppingCart(){
+	return async function (dispatch) {
+		try {
+			const response = await axios.delete(`${url}/cart`);
+			dispatch({
+				type: "DELETE_SHOPPING_CART",
+				payload: response.data
+			});
+		}
+		catch (error) {
+			return error;
+    }
+  };
+}
+export function putShoppingCart(){
+	return async function (dispatch) {
+		try {
+			const response = await axios.put(`${url}/cart`);
+			dispatch({
+				type: "PUT_SHOPPING_CART",
+				payload: response.data
+			});
+		}
+		catch (error) {
+      return error;
+    }
+  };
 }
