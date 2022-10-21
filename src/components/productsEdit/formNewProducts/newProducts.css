@@ -23,21 +23,22 @@
 		"stockArea isPreparedArea categoryArea";
 	padding: 1rem;
 	border-radius: 15px;
-	background-color: rgba(235, 152, 57, 0.549);
-	box-shadow: #541911 0px 0px 8px;
+	background-color: rgb(238, 217, 173);
+	box-shadow: #000000 0px 0px 4px;
 }
 
 .ingredientsAndtypesNP {
 	margin-top: 1rem;
 	display: grid;
+	color: white;
 	grid-template-columns: repeat(3, 1fr);
 	grid-template-areas:
-		"alcoholArea lactoseArea glutenArea"
+		"alcoholArea glutenArea lactoseArea"
 		"ingredientsArea ingredientsArea ingredientsArea";
 	padding: 1rem;
 	border-radius: 15px;
-	background-color: rgba(142, 216, 39, 0.51);
-	box-shadow: #541911 0px 0px 8px;
+	background-color: rgb(180, 165, 134);
+	box-shadow: #000000 0px 0px 4px;
 }
 
 .attibutesNPC {
@@ -48,10 +49,10 @@
 		"creamArea creamArea creamArea"
 		"textureArea bodyArea acidityArea"
 		"bitternessArea roastArea colorArea";
-	padding: 1rem;
-	border-radius: 15px;
-	background-color: rgba(121, 107, 67, 0.684);
-	box-shadow: #541911 0px 0px 8px;
+		padding: 1rem;
+		border-radius: 15px;
+	background-color: #541911bd;
+	box-shadow: #000000 0px 0px 4px;
 }
 
 .originCountryFieldNewProduct {
@@ -62,8 +63,9 @@
 	font-size: 1.2rem;
 	font-weight: 700;
 	border-radius: 15px;
-	background-color: rgba(139, 192, 58, 0.69);
-	box-shadow: #541911 0px 0px 8px;
+	color: aliceblue;
+	background-color: #541911bd;
+	box-shadow: #000000 0px 0px 4px;
 }
 /*?fin de 3 card*/
 
@@ -194,6 +196,7 @@
 
 .creamFieldNewProduct {
 	display: flex;
+	height: 80px;
 	font-size: 1.2rem;
 	font-weight: 700;
 	margin: 1rem;
@@ -203,6 +206,7 @@
 
 .textureFieldNewProduct {
 	display: flex;
+	height: 80px;
 	margin: 1rem;
 	flex-direction: column;
 	grid-area: textureArea;
@@ -210,6 +214,7 @@
 
 .bodyFieldNewProduct {
 	display: flex;
+	height: 80px;
 	margin: 1rem;
 	flex-direction: column;
 	grid-area: bodyArea;
@@ -217,6 +222,7 @@
 
 .acidityFieldNewProduct {
 	display: flex;
+	height: 80px;
 	margin: 1rem;
 	flex-direction: column;
 	grid-area: acidityArea;
@@ -224,6 +230,7 @@
 
 .bitternessFieldNewProduct {
 	display: flex;
+	height: 80px;
 	margin: 1rem;
 	flex-direction: column;
 	grid-area: bitternessArea;
@@ -231,6 +238,7 @@
 
 .roastFieldNewProduct {
 	display: flex;
+	height: 80px;
 	margin: 1rem;
 	flex-direction: column;
 	grid-area: roastArea;
@@ -238,6 +246,7 @@
 
 .colorFieldNewProduct {
 	display: flex;
+	height: 80px;
 	margin: 1rem;
 	flex-direction: column;
 	grid-area: colorArea;
@@ -252,7 +261,7 @@
 }
 
 .btnSubmitNp {
-	background-color: green;
+	background-color: rgba(0, 128, 0, 0.649);
 	color: aliceblue;
 	font-size: 2rem;
 	font-weight: bold;
@@ -262,6 +271,12 @@
 }
 
 .btnSubmitNp:hover {
-	color: green;
+	color: rgba(0, 128, 0, 0.649);
 	background-color: rgb(255, 255, 255);
+}
+
+.colorErrorMsg {
+	color: red;
+	font-weight: 600;
+	font-size: 1.2rem;
 }

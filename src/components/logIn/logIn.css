@@ -12,6 +12,14 @@
 }
 
 .logInBody {
-	height: 100%;
-	margin: 1rem;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	width: 50%;
+	height: 60%;
+	margin: 8%;
+	background-color: rgba(185, 0, 0, 0.37);
+	border-radius: 10px;
+
 }
