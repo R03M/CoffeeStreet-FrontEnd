@@ -9,6 +9,7 @@ import { TbDiscount2 } from "react-icons/tb";
 import { RiAccountPinCircleFill } from "react-icons/ri";
 import { FaFileInvoice } from "react-icons/fa";
 import ProductsEdit from "../productsEdit/ProductsEdit";
+import FormEditProducts from "../productsEdit/formEditProducts/formEditProducts";
 import UsersE from "./usersE/UsersE";
 import MyAccount from "./myAccount/MyAccount";
 import News from "./news/News";
@@ -23,15 +24,15 @@ const Admin = () => {
 	let [cards, setCards] = useState(true);
 	let [nav, setNav] = useState(false);
 
-
 	let [products, setProducts] = useState(false);
-	const [switchNewProduct, setSwitchNewProduct] = useState(false);
+	let [switchNewProduct, setSwitchNewProduct] = useState(false);
 	let [users, setUsers] = useState(false);
 	let [orders, setOrders] = useState(false);
 	let [news, setNews] = useState(false);
 	let [discounts, setDiscounts] = useState(false);
 	let [profits, setProfits] = useState(false);
 	let [myAcc, setMyAcc] = useState(false);
+	let [formEdit, setFormEdit] = useState(false);
 
 	const handlerStock = () => {
 		if (orders === false) {
@@ -45,6 +46,7 @@ const Admin = () => {
 			setProfits(false);
 			setMyAcc(false);
 			setSwitchNewProduct(false);
+			setFormEdit(false);
 		} else if (nav === true && orders === false) {
 			setOrders(true);
 			setProducts(false);
@@ -54,6 +56,7 @@ const Admin = () => {
 			setProfits(false);
 			setMyAcc(false);
 			setSwitchNewProduct(false);
+			setFormEdit(false);
 		}
 	};
 
@@ -69,6 +72,7 @@ const Admin = () => {
 			setMyAcc(false);
 			setSwitchNewProduct(false);
 			setOrders(false);
+			setFormEdit(false);
 		} else if (nav === true && products === false) {
 			setProducts(true);
 			setUsers(false);
@@ -78,6 +82,7 @@ const Admin = () => {
 			setMyAcc(false);
 			setSwitchNewProduct(false);
 			setOrders(false);
+			setFormEdit(false);
 		}
 	};
 	const handlerAddNewProduct = () => {
@@ -92,6 +97,7 @@ const Admin = () => {
 			setProfits(false);
 			setMyAcc(false);
 			setOrders(false);
+			setFormEdit(false);
 		} else if (nav === true && switchNewProduct === false) {
 			setSwitchNewProduct(true);
 			setProducts(false);
@@ -101,6 +107,7 @@ const Admin = () => {
 			setProfits(false);
 			setMyAcc(false);
 			setOrders(false);
+			setFormEdit(false);
 		}
 	};
 
@@ -116,6 +123,7 @@ const Admin = () => {
 			setMyAcc(false);
 			setSwitchNewProduct(false);
 			setOrders(false);
+			setFormEdit(false);
 		} else if (nav === true && users === false) {
 			setUsers(true);
 			setProducts(false);
@@ -125,6 +133,7 @@ const Admin = () => {
 			setMyAcc(false);
 			setSwitchNewProduct(false);
 			setOrders(false);
+			setFormEdit(false);
 		}
 	};
 
@@ -140,6 +149,7 @@ const Admin = () => {
 			setMyAcc(false);
 			setSwitchNewProduct(false);
 			setOrders(false);
+			setFormEdit(false);
 		} else if (nav === true && news === false) {
 			setNews(true);
 			setProducts(false);
@@ -149,6 +159,7 @@ const Admin = () => {
 			setMyAcc(false);
 			setSwitchNewProduct(false);
 			setOrders(false);
+			setFormEdit(false);
 		}
 	};
 
@@ -163,6 +174,7 @@ const Admin = () => {
 			setProfits(false);
 			setMyAcc(false);
 			setSwitchNewProduct(false);
+			setFormEdit(false);
 			setOrders(false);
 		} else if (nav === true && discounts === false) {
 			setDiscounts(true);
@@ -172,6 +184,7 @@ const Admin = () => {
 			setProfits(false);
 			setMyAcc(false);
 			setSwitchNewProduct(false);
+			setFormEdit(false);
 			setOrders(false);
 		}
 	};
@@ -188,6 +201,7 @@ const Admin = () => {
 			setMyAcc(false);
 			setSwitchNewProduct(false);
 			setOrders(false);
+			setFormEdit(false);
 		} else if (nav === true && profits === false) {
 			setProfits(true);
 			setProducts(false);
@@ -197,6 +211,7 @@ const Admin = () => {
 			setMyAcc(false);
 			setSwitchNewProduct(false);
 			setOrders(false);
+			setFormEdit(false);
 		}
 	};
 
@@ -212,6 +227,7 @@ const Admin = () => {
 			setProfits(false);
 			setOrders(false);
 			setSwitchNewProduct(false);
+			setFormEdit(false);
 		} else if (nav === true && myAcc === false) {
 			setMyAcc(true);
 			setProducts(false);
@@ -221,6 +237,7 @@ const Admin = () => {
 			setProfits(false);
 			setSwitchNewProduct(false);
 			setOrders(false);
+			setFormEdit(false);
 		}
 	};
 
@@ -235,8 +252,29 @@ const Admin = () => {
 		setMyAcc(false);
 		setSwitchNewProduct(false);
 		setOrders(false);
+		setFormEdit(false);
 	}
 
+	function test12() {
+		if (formEdit === false) {
+			setFormEdit(true);
+			setNav(false);
+			setCards(false);
+			setProducts(false);
+			setUsers(false);
+			setNews(false);
+			setDiscounts(false);
+			setProfits(false);
+			setMyAcc(false);
+			setSwitchNewProduct(false);
+			setOrders(false);
+		} else if (formEdit === true) {
+			setFormEdit(false);
+			setNav(true);
+			setProducts(true);
+
+		}
+	}
 	function cardsAdmin() {
 		if (cards === true) {
 			return (
@@ -349,17 +387,10 @@ const Admin = () => {
 
 			{products === true && nav === true ? (
 				<div className="productsAdminPC">
-					{/* <div className="btnDivnewproductPe">
-						<button className="newProductBtnPe" onClick={() => activeNewProduct()}>
-							<SiBuymeacoffee /> <MdOutlineBakeryDining /> Add New Product{" "}
-							<MdEmojiFoodBeverage /> <BiFoodMenu />
-						</button>
-					</div> */}
-					{/* <div className="divProductsAdmin"> */}
-					<ProductsEdit />
-					{/* </div> */}
+					<ProductsEdit editCPe={test12} />
 				</div>
 			) : null}
+
 			{switchNewProduct === true && nav === true ? <NewProducts /> : null}
 			{users === true && nav === true ? <UsersE /> : null}
 			{orders === true && nav === true ? <Orders /> : null}
@@ -367,6 +398,7 @@ const Admin = () => {
 			{discounts === true && nav === true ? <Discounts /> : null}
 			{profits === true && nav === true ? <Profits /> : null}
 			{myAcc === true && nav === true ? <MyAccount /> : null}
+			{formEdit === true ? <FormEditProducts exitF={test12} /> : null}
 		</div>
 	);
 };

@@ -1,8 +1,12 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { getProductsId } from "../../../redux/action";
 import swal from "sweetalert";
 import "./cardPe.css";
 
-const CardPe = ({ product }) => {
+const CardPe = ({ product, editC }) => {
+	const dispatch = useDispatch();
+
 	const handlerTemp = () => {
 		swal({
 			title: "Proximamente...",
@@ -10,6 +14,13 @@ const CardPe = ({ product }) => {
 			icon: "info",
 			button: "Ok"
 		});
+	};
+
+	const handlerEdit = () => {
+		dispatch(getProductsId(product.id));
+		setTimeout(() => {
+			editC();
+		}, 200);
 	};
 
 	return (
@@ -25,7 +36,7 @@ const CardPe = ({ product }) => {
 				<button className="btnBCardPeStock" onClick={() => handlerTemp()}>
 					Stock
 				</button>
-				<button className="btnBCardPeEdit" onClick={() => handlerTemp()}>
+				<button className="btnBCardPeEdit" onClick={() => handlerEdit()}>
 					Edit
 				</button>
 				<button className="btnBCardPeDelete" onClick={() => handlerTemp()}>
