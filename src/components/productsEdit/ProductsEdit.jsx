@@ -20,10 +20,6 @@ const ProductsEdit = ({editCPe}) => {
 		dispatch(clearDetails());
 	}, [dispatch, allProducts]);
 
-	function test121() {
-		editCPe()
-	}
-
 
 	function pagACards() {
 		if (errorMessage === "There is no product with that name") {
@@ -37,7 +33,7 @@ const ProductsEdit = ({editCPe}) => {
 				return (
 					<div className="cardsEditPe">
 						{allProducts.map(data => {
-							return <CardPe key={data.id} product={data} editC={test121}/>;
+							return <CardPe key={data.id} product={data} editC={editCPe}/>;
 						})}
 					</div>
 				);

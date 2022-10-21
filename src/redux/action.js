@@ -75,7 +75,7 @@ export function postNewProduct(data) {
 			const response = await axios.post(`${url}/products`, data);
 			dispatch({
 				type: "POST_NEW_PRODUCT",
-				payload: response.data
+				payload: response.data.message
 			});
 		};
 	} catch (error) {
@@ -115,7 +115,7 @@ export function LoginUser(payload) {
 				type: "LOGIN_USER",
 				payload: response.data
 			});
-			console.log(response.data);
+			// console.log(response.data);
 		} catch (error) {
 			return alert("Invalid email or password");
 		}
@@ -141,7 +141,7 @@ export function checkEmailUser(payload) {
 				payload: response.data
 			});
 
-			console.log(response);
+			// console.log(response);
 		} catch (error) {
 			return error;
 		}
@@ -156,13 +156,13 @@ export function logPostData(token) {
 					Accept: "aplication/json"
 				}
 			});
-			console.log(response.data[0].id);
+			// console.log(response.data[0].id);
 			dispach({
 				type: "LOG_POST_DATA",
 				payload: response.data
 			});
 		} catch (error) {
-			console.log(error);
+			// console.log(error);
 		}
 	};
 }
@@ -182,10 +182,24 @@ export function getProductsId(id) {
 }
 
 
-export function clearDetailsProductId(){
+export function clearDetailsProductId() {
+
 	return {
 		type: "CLEAR_DETAILS_PRODUCT_IS"
-	}
+	};
+}
+
+export function deleteProduct(id) {
+	return async function (dispatch) {
+		try {
+			await axios.delete(`${url}/products/${id}`);
+			dispatch({
+				type: "DELETE_PRODUCT"
+			});
+		} catch (error) {
+			return error;
+		}
+	};
 }
 
 export function addProductToCart(payload) {
