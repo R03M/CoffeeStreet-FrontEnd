@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { clearResponseNewProduct, postNewProduct } from "../../../redux/action";
+import { clearDetailsProductId, clearResponseNewProduct } from "../../../redux/action";
 import { Formik, Form, Field, ErrorMessage, isString } from "formik";
 import swal from "sweetalert";
 import { CATEGORIES } from "../../../models/categories.enum";
@@ -10,34 +10,50 @@ import { ACIDITY } from "../../../models/acidity.enum";
 import { BITTERNESS } from "../../../models/bitterness.enum";
 import { ROAST } from "../../../models/roast.enum";
 import { COLOR } from "../../../models/color.enum";
-import { productSchema } from "./schema/productSchema";
-import "./newProducts.css";
+import { productSchema } from "./schemaEp/formEditProductSchema.js";
+import "./formEditProducts.css";
 
-const NewProducts = () => {
+const EditProducts = ({ exitF }) => {
 	const dispatch = useDispatch();
 	const responseOfCreateNp = useSelector(state => state.responseCreateProduct);
+	const dataProduct = useSelector(state => state.productsDataId);
 
-	const initialValues = {
-		name: "",
-		description: "",
-		image: "",
-		price: "",
-		category: "null",
-		lactose: "null",
-		alcohol: "null",
-		gluten: "null",
-		stock: "null",
-		ingredients: [],
-		originCountry: "",
-		isPrepared: "null",
-		state: "active",
-		cream: "null",
-		texture: "",
-		body: "",
-		acidity: "",
-		bitterness: "",
-		roast: "",
-		color: ""
+	const handleExit = () => {
+		dispatch(clearDetailsProductId());
+		exitF();
+	};
+
+	function categorySwith(category, isPrepared) {
+		if (category === "coffee" && isPrepared === true) {
+			return CATEGORIES.COFFEE_READY_TO_DRINK;
+		} else if (category === "coffee" && isPrepared === false) {
+			return CATEGORIES.COFFEE_TO_PREPARED;
+		} else {
+			return category;
+		}
+	}
+
+	let initialValues = {
+		name: dataProduct.name,
+		description: dataProduct.description,
+		image: dataProduct.image,
+		price: dataProduct.price,
+		category: categorySwith(dataProduct.category, dataProduct.isPrepared),
+		lactose: dataProduct.lactose,
+		alcohol: dataProduct.alcohol,
+		gluten: dataProduct.gluten,
+		stock: dataProduct.stock,
+		ingredients: dataProduct.ingredients,
+		originCountry: dataProduct.originCountry,
+		// isPrepared: dataProduct.isPrepared,
+		state: dataProduct.state,
+		cream: dataProduct.attribute.cream === null ? "null" : dataProduct.attribute.cream,
+		texture: dataProduct.attribute.texture,
+		body: dataProduct.attribute.body,
+		acidity: dataProduct.attribute.acidity,
+		bitterness: dataProduct.attribute.bitterness,
+		roast: dataProduct.attribute.roast,
+		color: dataProduct.attribute.color
 	};
 
 	const notiSwal = () => {
@@ -61,6 +77,7 @@ const NewProducts = () => {
 	};
 
 	const addProduct = (values, resetForm) => {
+		console.log(values);
 		let newProduct = {
 			name: values.name,
 			description: values.description,
@@ -80,10 +97,7 @@ const NewProducts = () => {
 			stock: values.stock === "true" ? true : false,
 			ingredients: values.ingredients,
 			originCountry: values.originCountry,
-			isPrepared:
-				values.category === CATEGORIES.COFFEE_TO_PREPARED
-					? false
-					: true,
+			isPrepared: values.category === CATEGORIES.COFFEE_TO_PREPARED ? false : true,
 			state: "active",
 			cream: values.cream === "true" ? true : false,
 			texture: values.texture,
@@ -93,17 +107,20 @@ const NewProducts = () => {
 			roast: values.roast,
 			color: values.color
 		};
-		// console.log(newProduct);
-		dispatch(postNewProduct(newProduct));
-		resetForm();
+
+
+		console.log(newProduct);
+		// dispatch(putNewProduct(newProduct));
+		// resetForm();
 	};
 	notiSwal();
 
 	return (
-		<div className="formNewProductDiv">
+		<div className="formEditProductDiv">
+			<h1>Edit Product</h1>
 			<Formik
 				initialValues={initialValues}
-				validationSchema={productSchema}
+				// validationSchema={productSchema}
 				onSubmit={(values, { resetForm }) => addProduct(values, resetForm)}
 			>
 				{({ values, touched, errors, isSubmitting, handleChange, handleBlur }) => (
@@ -167,6 +184,7 @@ const NewProducts = () => {
 									<option value={CATEGORIES.SWEET_BACKERY}>Sweet Backery</option>
 									<option value={CATEGORIES.SALTY_BACKERY}>Salty Backery</option>
 									<option value={CATEGORIES.TEA}>Tea</option>
+
 									<option value={CATEGORIES.OTHER}>Other</option>
 								</Field>
 								{errors.category && touched.category && (
@@ -506,8 +524,11 @@ const NewProducts = () => {
 					</Form>
 				)}
 			</Formik>
+							<button type="button" onClick={() => handleExit()}>
+								Cancel
+							</button>
 		</div>
 	);
 };
 
-export default NewProducts;
+export default EditProducts;
