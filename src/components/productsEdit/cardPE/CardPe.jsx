@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { getProductsId } from "../../../redux/action";
+import { getProducts, getProductsId, deleteProduct } from "../../../redux/action";
 import swal from "sweetalert";
 import "./cardPe.css";
 
@@ -20,8 +20,36 @@ const CardPe = ({ product, editC }) => {
 		dispatch(getProductsId(product.id));
 		setTimeout(() => {
 			editC();
-		}, 200);
+		}, 100);
 	};
+
+	function handlerDelete(e) {
+		e.preventDefault();
+		swal({
+			text: `Are you sure to delete the product ${product.name}`,
+			buttons: ["cancel", "confirm"],
+			dangerMode: true,
+			closeOnClickOutside: false,
+			icon: "warning"
+
+		}).then((value) => {
+			if (value) {
+				dispatch(deleteProduct(product.id))
+				dispatch(getProducts())
+				swal("Removed", {
+					button: false,
+					timer: 1500,
+					icon: "success"
+				});
+			} else {
+				swal("Operation cancelled", {
+					button: false,
+					timer: 1500,
+					icon: "error"
+				});
+			}
+		});
+	}
 
 	return (
 		<div
@@ -39,7 +67,7 @@ const CardPe = ({ product, editC }) => {
 				<button className="btnBCardPeEdit" onClick={() => handlerEdit()}>
 					Edit
 				</button>
-				<button className="btnBCardPeDelete" onClick={() => handlerTemp()}>
+				<button className="btnBCardPeDelete" onClick={e => handlerDelete(e)}>
 					Delete
 				</button>
 			</div>
