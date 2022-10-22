@@ -1,112 +1,91 @@
-
-import React  from 'react';
+import React, { useState ,useEffect } from "react";
 import './formLogin.css';
 import { useDispatch , useSelector } from 'react-redux';
-import { LoginUser, logOutUser , checkEmailUser} from '../../../redux/action.js';
-import { Formik, Form , Field, ErrorMessage } from 'formik';
-import * as Yup from 'yup';
-import { useEffect, useState,  } from "react";
+import { LoginUser,  checkEmailUser} from '../../../redux/action.js';
+
+
 
 
 
 const FormLogin = () => {
   const accessToken = useSelector(state => state.accessToken);
-  const refreshToken = useSelector(state => state.refreshToken);
+
   const checkEmail = useSelector(state => state.checkEmail);
   const dispatch = useDispatch();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  
 
 
-console.log(checkEmail)
-  const initialValues = {
-    email: String,
-    password: String,
-  } 
+var validEmail =  /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
+
+
 
 
   const loginUser =  (e) => {
-    dispatch(LoginUser(e))
+    dispatch(LoginUser({
+      email: email,
+      password: password
+
+    }));
+    
   }
 
+  const handleEmail = (e) => {
+ console.log(e.target.value)
+ if(e.target.value === "") {
+  
+ }
 
 
+    if(validEmail.test(e.target.value)){
+      dispatch(checkEmailUser(e.target.value))
+      console.log('valid')
 
+      if(checkEmail.isGoogle === false){
+        
+        setEmail(e.target.value)
 
+      }
+    }
+    else{
+      dispatch(checkEmailUser(e.target.value))
+      
+    }
 
-  const logOut = () => {
-    dispatch(logOutUser(accessToken))
   }
 
+  const handlePassword = (e) => {
+    if(e.target.value.length > 2 )  {
+    setPassword(e.target.value)
+  }
+}
 
-  // const redirectMenu = () => {
-  //   window.location.href = "/menu"
-  // }
-
-  const userSchema = Yup.object().shape({
-    email: Yup.string()
-      .email("Invalid email")
-      .required("Email is required"),
-    password: Yup.string()
-      .min(2, "Password too short")
-      .required("Password is required"),
-  })
-
-
-
+  
+  useEffect(() => {
+    if(accessToken) {
+      window.location.href = "/menu"
+    }
+  } , [accessToken])
 
   return (
-      <div>
-        <Formik
-          initialValues={initialValues}
-          validationSchema={userSchema}
-          handleChange = { console.log("dsalñdskañlkdspakkwa,alsk09")}
-          onSubmit={(values) => loginUser(values)}
+    <div  className='contenedor-principal-login'> 
+        <div className='label-imput-email'>
+          <label className='label-email'>Email</label>
+          <input className='input-email' type='email' name='email' placeholder='Email' onChange={handleEmail } />
+          { checkEmail.isGoogle === true ? <p>This email is registered with Google</p> : null}
+        </div>
+        <div className='label-imput-password'>
+          <label className='label-password'>Password</label>
+          <input className='input-password' type='password' name='password' placeholder='Password' onChange={handlePassword} />
+          {password.length === 0 || password.length > 2 ? null : <p>password too short</p>}
+          <button disabled={checkEmail.isGoogle === true} className='button-login' onClick={loginUser}>Login</button>
+        </div>
+          
+    </div>
+  )
 
 
-        >
-          {({values,
-            touched,
-            errors,
-            isSubmitting,
-            handleChange,
-            handleBlur,
-            handleSubmit,
-            handleReset,}
-          ) => ( 
-            <Form className="formLogin">
-             <label htmlFor="email"> Email </label>
-              <Field
-                type="email"
-                name="email"
-                placeholder="Email"
-                onChange={ handleChange }
-                value={values.email}
-              />
-              {errors.email && touched.email && (
-                <ErrorMessage name="email" component="div"/>
-              )}
-              <label htmlFor="password"> Password </label>
-              <Field type="password" name="password" placeholder="Password" />
-              {errors.password && touched.password && (
-                <ErrorMessage name="password" component="div"/>
-
-              )}
-              <button 
-                  type="submit" 
-                  disabled={isSubmitting} 
-                  // onClick={() => redirectMenu()}
-              >Login</button>
-
-              <button 
-                  type="button"
-                  onClick={logOut}
-              >LogOut</button>
-            </Form>
-          )}
-        </Formik>
-
-            
-      </div>
-  );
 };
 
 export default FormLogin;

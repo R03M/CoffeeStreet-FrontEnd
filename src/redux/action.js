@@ -1,5 +1,6 @@
 import axios from "axios";
 
+
 const url = process.env.REACT_APP_BACK_URL;
 
 export function getProducts() {
@@ -92,15 +93,17 @@ export function postUserNew(payload) {
 		return async function () {
 			const response = await axios.post(`${url}/register`, payload);
 			alert("Created user successfully");
+			window.location.href = "/login";
 		};
 	} catch (error) {
 		return( error);
 	}
 }
 
+
 export function LoginUser(payload) {
 	return async function (dispatch) {
-		console.log("payload", payload);
+
 		try {
 			const response = await axios.post(`${url}/login`, payload);
 			
@@ -108,7 +111,7 @@ export function LoginUser(payload) {
 				type: "LOGIN_USER",
 				payload: response.data
 			});
-			console.log("Login user respuesta" , response.data)
+
 		} catch (error) {
 			
 			return error;
@@ -117,24 +120,26 @@ export function LoginUser(payload) {
 }
 
 export function logOutUser(accessToken) {
+	
   return async function (dispatch) {
-    console.log(accessToken);
+		
     try {
-      const response = await axios.post(`${url}/login/remove`, {
+      const response = await axios.post(`${url}/login/remove`,{} , {
         headers: {
 					authorization: `Bearer ${accessToken}`,
 					Accept: "aplication/json"
 				},
       });
+
+			// window.location.href = "/home";
       if (response) {
-        localStorage.removeItem("refreshToken");
-        localStorage.removeItem("accessToken");
         dispatch({
           type: "LOGOUT_USER",
         });
+
       }
     } catch (error) {
-      console.log(error);
+
     }
   };
 }
@@ -143,6 +148,10 @@ export function registerUserGoogle ( payload) {
 	return async function (dispatch) {
 		try {
 			const response = await axios.post(`${url}/register`, payload);
+			dispatch({
+				type: "REGISTER_USER_GOOGLE",
+			});
+
 	
 		} catch (error) {
 			return error;
@@ -152,7 +161,7 @@ export function registerUserGoogle ( payload) {
 
 export function checkEmailUser (payload) {
 	return async function (dispatch) {
-		console.log("check email payload", payload)
+
 		try {
 			const response = await axios.post(`${url}/register/email?email=${payload}`);
 			dispatch({
@@ -161,7 +170,7 @@ export function checkEmailUser (payload) {
 			});
 			
 			
-			console.log("check email", response)
+
 		} catch (error) {
 			return error;
 		}
@@ -177,13 +186,14 @@ export function logPostData(token) {
           Accept: "aplication/json"
         }
       });
-      console.log("Log post Data ", response.data);
       dispach({
         type: "LOG_POST_DATA",
         payload: response.data
       });
     } catch (error) {
-      console.log(error);
+      dispach({
+				type: "LOGOUT_USER",
+			});
     }
   };
 }
@@ -193,7 +203,7 @@ export function refreshLog(  accessToken, refreshToken){
 	console.log("access token", accessToken)
 	return async function (dispatch) {
 		try {
-			const response = await axios.post(`${url}/login/refresh`, refreshToken, { 
+			const response = await axios.post(`${url}/login/refresh`, {refreshToken} , { 
 				headers: {
 					authorization: `Bearer ${accessToken}`,
 					

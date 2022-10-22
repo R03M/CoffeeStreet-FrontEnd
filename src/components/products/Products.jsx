@@ -17,12 +17,16 @@ const Products = () => {
 	const errorMessage = useSelector(state => state.errorSProducts);
 	const checkEmail = useSelector(state => state.checkEmail);
 	const accessToken = useSelector(state => state.accessToken);
+	const newlyCreated = useSelector(state => state.newlyCreated);
+	const usuario = useSelector(state => state.user);
 	const  { isAuthenticated, user } = useAuth0();
 
 	const [currentPage, setCurrentPage] = useState(1);
 	const [productsPerPage, setProductsPerPage] = useState(9);
 	const max = Math.ceil(allProducts.length / productsPerPage);
+	const { logout } = useAuth0();
 	const dataEnd = allProducts.length
+	
 		? allProducts.slice(
 				(currentPage - 1) * productsPerPage,
 				(currentPage - 1) * productsPerPage + productsPerPage
@@ -31,52 +35,68 @@ const Products = () => {
 
 
 
+
 		
 		
 
 		useEffect(() => {
+			
 			if (isAuthenticated) {
 				dispatch(checkEmailUser(user.email));
 			}
 	}, [dispatch, isAuthenticated]);
 
+
+
+
+
+
 	useEffect(() => {
-		if (checkEmail.email === false) {
-			
+		if(checkEmail.email === false){
 			dispatch(registerUserGoogle({
 				email: user.email,
 				name: user.given_name,
 				surname: user.family_name,
 				image: user.picture,
 				isGoogle: true, 
-			}));
+			}))
+			
+		}
+	}, [dispatch, checkEmail, user]);
+
+	useEffect(() => {
+		if(isAuthenticated && !accessToken){
+			dispatch(LoginUser({
+				email: user.email,
+				isGoogle: true,
+				password:"12465"
+			}))
+			logout()
+			
+		}
+	}, [dispatch, isAuthenticated, accessToken, user]);
+
+	useEffect(() => {
+
+		if(newlyCreated){
 			dispatch(LoginUser({
 				email: user.email,
 				isGoogle: true,
 				password:"12465"
 			}))
 		}
+	}, [dispatch, newlyCreated, user]);
 
-		if(isAuthenticated){
-			dispatch(LoginUser({
-				email: user.email,
-				isGoogle:true
-			}
-			))
 
-			if(accessToken){
-				dispatch(logPostData(accessToken))
-			}
-		}
-		
-	}, [dispatch, checkEmail, user, accessToken]);
-	
+
+
 	useEffect(() => {
-		if(accessToken ) {
+		if(accessToken){
 			dispatch(logPostData(accessToken))
-		}
-		
-	}, [dispatch]);
+		} 
+	}, [dispatch, accessToken]);
+	
+
 	// useEffect(() => {
 		// 	if(isAuthenticated){
 			// 		dispatch(logPostData(accessToken))
@@ -92,7 +112,7 @@ const Products = () => {
 		dispatch(clearError());
 		dispatch(clearDetails());
 	}, [dispatch, allProducts]);
-	// console.log("user", user)
+
 
 	function pagACards() {
 		if (errorMessage === "There is no product with that name") {
@@ -121,7 +141,7 @@ const Products = () => {
 
 	return (
 		<div className="productsDiv">
-		{ isAuthenticated ? (
+		{ usuario.hasOwnProperty("user") ? (
 				<NavBarClient />
 		  ) : <NavBar />}
 			<div className="navbarProduc">

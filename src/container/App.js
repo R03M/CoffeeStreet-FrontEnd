@@ -21,26 +21,30 @@ import { useEffect } from "react";
 function App() {
 	const dispatch = useDispatch();
 	const refrest = useSelector(state => state.refreshToken)
-	const refreshToken = {
+	const user = useSelector(state => state.user)
+	const refreshToken1 = {
 		refreshToken: refrest
 	}
- 
+ console.log("refrest", refrest === "")
   const accessToken = useSelector(state => state.accessToken);
 	
+
+
 	
-	// useEffect(() => {
-  //   localStorage.setItem("refreshToken", JSON.stringify(refreshToken));
-  //   localStorage.setItem("accessToken", JSON.stringify(accessToken));
-  // }, [accessToken, refreshToken]);
+	useEffect(() => {
+    localStorage.setItem("refreshToken", JSON.stringify(refrest));
+    localStorage.setItem("accessToken", JSON.stringify(accessToken));
+  }, [accessToken, refrest]);
 
 	useEffect(() => {
-		if(refreshToken){
-			dispatch(refreshLog(accessToken, refreshToken));
+		if(refrest.length > 0){
+			dispatch(refreshLog(accessToken, refreshToken1));
+			console.log("holaaaaaaaaaaaaaaaaaaaaaaaaa")
 		}
-	}, [dispatch, accessToken]);
+	}, [dispatch, accessToken, refreshToken1, refrest]);
 
 
-	console.log("app tokenRef", refreshToken);
+	// console.log("app tokenRef", refreshToken);
 	return (
 		<div className="App">
 			<Routes>
