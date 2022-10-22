@@ -1,6 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { clearError, getProducts, clearDetails ,checkEmailUser , registerUserGoogle , logPostData } from "../../redux/action";
+import {
+	clearError,
+	getProducts,
+	clearDetails,
+	checkEmailUser,
+	registerUserGoogle,
+	logPostData
+} from "../../redux/action";
 import NavBar from "../navbar/Navbar";
 import NavBarClient from "../client/navClient/NavClient";
 import CardP from "./card/CardP";
@@ -18,7 +25,7 @@ const Products = () => {
 	const errorMessage = useSelector(state => state.errorSProducts);
 	const checkEmail = useSelector(state => state.checkEmail);
 	const refreshToken = useSelector(state => state.refreshToken);
-	const  { isAuthenticated, user } = useAuth0();
+	const { isAuthenticated, user } = useAuth0();
 
 	const [currentPage, setCurrentPage] = useState(1);
 	const [productsPerPage, setProductsPerPage] = useState(9);
@@ -30,14 +37,9 @@ const Products = () => {
 		  )
 		: null;
 
-
-
 	useEffect(() => {
-		dispatch(logPostData(refreshToken))
-
+		dispatch(logPostData(refreshToken));
 	}, [dispatch]);
-
-
 
 	useEffect(() => {
 		if (isAuthenticated) {
@@ -47,12 +49,13 @@ const Products = () => {
 
 	useEffect(() => {
 		if (checkEmail.email === false) {
-
-			dispatch(registerUserGoogle({
-				email: user.email,
-				name: user.name,
-				isGoogle: true,
-			}));
+			dispatch(
+				registerUserGoogle({
+					email: user.email,
+					name: user.name,
+					isGoogle: true
+				})
+			);
 		}
 	}, [dispatch, checkEmail, user, refreshToken]);
 	// console.log("refreshToken", refreshToken)
@@ -78,13 +81,12 @@ const Products = () => {
 			if (allProducts.length) {
 				return (
 					<div>
-					<ShoppingCart />
 						<div className="cardsProd">
 							{dataEnd.map(data => {
 								return <CardP key={data.id} product={data} />;
 							})}
 						</div>
-							<Pagination currentPage={currentPage} setPage={setCurrentPage} max={max} />
+						<Pagination currentPage={currentPage} setPage={setCurrentPage} max={max} />
 					</div>
 				);
 			} else {
@@ -95,12 +97,15 @@ const Products = () => {
 
 	return (
 		<div className="productsDiv">
-		{ isAuthenticated ? (
-			<div><NavBarClient /> 
-				 <ShoppingCart /></div> 
-				
-		  ) : <NavBar />}
-		  
+			{isAuthenticated ? (
+				<div>
+					<NavBarClient />
+					<ShoppingCart />
+				</div>
+			) : (
+				<NavBar />
+			)}
+
 			<div className="navbarProduc">
 				<NavbarProduc />
 				{pagACards()}

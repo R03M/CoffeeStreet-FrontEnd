@@ -11,7 +11,7 @@ import Products from "../components/products/Products.jsx";
 import CurrentNews from "../components/new/currentNews/CurrentNews.jsx";
 import About from "../components/About/About.jsx";
 import ProductsDetails from "../components/productsDetails/ProductsDetails.jsx";
-
+import ShoppingCart from "../components/ShoppingCart/ShoppingCart.jsx";
 import "./App.css";
 
 function App() {
@@ -29,6 +29,7 @@ function App() {
 				<Route path="/employee" element={<Employee />} />
 				<Route path="/client" element={<Client />} />
 				<Route path="/about" element={<About />} />
+				<Route path="/cart" element={<ShoppingCart />} />
 				<Route path="*" element={<Error />} />
 			</Routes>
 		</div>
