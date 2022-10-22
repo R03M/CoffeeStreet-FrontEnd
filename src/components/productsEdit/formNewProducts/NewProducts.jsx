@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { clearResponseNewProduct, postNewProduct } from "../../../redux/action";
 import { Formik, Form, Field, ErrorMessage, isString } from "formik";
@@ -17,7 +17,7 @@ const NewProducts = () => {
 	const dispatch = useDispatch();
 	const responseOfCreateNp = useSelector(state => state.responseCreateProduct);
 
-	const [test1, setTes1] = useState(false);
+	const [errorNoti, setErrorNoti] = useState(false);
 
 	const initialValues = {
 		name: "",
@@ -44,30 +44,27 @@ const NewProducts = () => {
 
 	const notiSwal = () => {
 		if (responseOfCreateNp === "Product successfully created") {
-			console.log(test1);
 			swal({
 				title: "Created",
 				text: "",
 				icon: "success",
 				button: "Ok"
 			});
-			setTes1(false);
-
+			setErrorNoti(false);
 			dispatch(clearResponseNewProduct());
-		} else if (test1 === true) {
+		} else if (errorNoti === true) {
 			swal({
 				title: "Error",
 				text: "",
 				icon: "error",
 				button: "Ok"
 			});
-			setTes1(false);
-			// dispatch(clearResponseNewProduct());
+			setErrorNoti(false);
 		}
 	};
 
 	const addProduct = (values, resetForm) => {
-		setTes1(true);
+		setErrorNoti(true);
 		let newProduct = {
 			name: values.name,
 			description: values.description,
@@ -98,21 +95,9 @@ const NewProducts = () => {
 			color: values.color
 		};
 		dispatch(postNewProduct(newProduct));
-		// resetForm();
+		resetForm();
 	};
-
-
 	notiSwal();
-	// setTimeout(() => {
-	// }, 100);
-
-	// useEffect(() => {
-	// 	if (test1 === true) {
-	// 		setTimeout(() => {
-	// 			notiSwal();
-	// 		}, 300);
-	// 	}
-	// }, [test1]);
 
 	return (
 		<div className="formNewProductDiv">
