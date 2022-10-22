@@ -35,19 +35,26 @@ const NavbarProduc = () => {
 			<div>
 				<div className="nameTagsNavBar">
 					<div className="titleTagsNavBar">
-							<p>Without</p>
-							<p>With</p>
+						<p>Without</p>
+						<p>With</p>
 					</div>
-						<p className="tagsCNBC">
-							<BiDrink className="falseBtnNB" /> Alcohol <BiDrink className="trueBtnNB" />
-						</p>
-						<p className="tagsCNBC">
-							<GiMilkCarton className="falseBtnNB" /> Lactose
-							<GiMilkCarton className="trueBtnNB" />
-						</p>
-						<p className="tagsCNBC">
-							<GiWheat className="falseBtnNB" /> Gluten <GiWheat className="trueBtnNB" />
-						</p>
+					<p className="tagsCNBC">
+						<BiDrink className="falseBtnNB" onClick={() => filterType("alcoholFree")} />{" "}
+						Alcohol{" "}
+						<BiDrink className="trueBtnNB" onClick={() => filterType("alcohol")} />
+					</p>
+					<p className="tagsCNBC">
+						<GiMilkCarton
+							className="falseBtnNB"
+							onClick={() => filterType("lactoseFree")}
+						/>{" "}
+						Lactose
+						<GiMilkCarton className="trueBtnNB" onClick={() => filterType("lactose")} />
+					</p>
+					<p className="tagsCNBC">
+						<GiWheat className="falseBtnNB" onClick={() => filterType("glutenFree")} />{" "}
+						Gluten <GiWheat className="trueBtnNB" onClick={() => filterType("gluten")} />
+					</p>
 				</div>
 
 				<div className="navProductCatagory">
@@ -113,38 +120,6 @@ const NavbarProduc = () => {
 						onClick={() => filterPrepared("consumption")}
 					>
 						Ready to eat
-					</button>
-				</div>
-
-				<div className="navProductType">
-					<p className="titlesNavbarP">Types</p>
-
-					<button className="typeNavProductTypes" onClick={() => filterType("gluten")}>
-						With Gluten
-					</button>
-					<button
-						className="typeNavProductTypes"
-						onClick={() => filterType("glutenFree")}
-					>
-						Gluten-free
-					</button>
-					<button className="typeNavProductTypes" onClick={() => filterType("alcohol")}>
-						With Alcohol
-					</button>
-					<button
-						className="typeNavProductTypes"
-						onClick={() => filterType("alcoholFree")}
-					>
-						Alcohol-free
-					</button>
-					<button className="typeNavProductTypes" onClick={() => filterType("lactose")}>
-						With Lactose
-					</button>
-					<button
-						className="typeNavProductTypes"
-						onClick={() => filterType("lactoseFree")}
-					>
-						Lactose-free
 					</button>
 				</div>
 			</div>
