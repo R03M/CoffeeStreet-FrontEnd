@@ -1,47 +1,117 @@
-.shoppingCart{
-    
+.shoppingCart {
+	height: 100vh;
+	overflow-y: scroll;
+	background: linear-gradient(to bottom, #a4a4a441 100%, #5656565f 0%);
 }
 
-.shoppingCart__container__title{
-    
-}
-.shoppingCart__conainer__products__title{
-
-}
-
-.shoppingCart__container__products__list{
-
+.headerCartSC {
+	margin: 1rem;
+	display: grid;
+	grid-template-columns: 95% 5%;
+	align-items: center;
+	justify-items: center;
 }
 
-.shoppingCart__container__products__list__item{
-    
-
+.deleteBtnAllCartSC {
+	height: 50px;
+	width: 90px;
+	font-size: 1rem;
+	font-weight: 600;
+	background-color: brown;
+	color: aliceblue;
+	cursor: pointer;
+	border-radius: 5px;
 }
-.shoppingCart__container__products__list__item__img img{
-    
 
+.deleteBtnAllCartSC:hover {
+	color: rgb(255, 0, 0);
+	background-color: rgb(0, 0, 0);
 }
-.shoppingCart__container__products__list__item__name{
 
+.titleCartSC {
+	font-size: 2rem;
+	font-weight: 700;
 }
-.shoppingCart__container__products__list__item__price{
 
+.bodyCartSC {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
 }
-.shoppingCart__container__products__list__item__quantity{
 
+.cardCartSC {
+	display: inline-block;
+	height: 310px;
+	width: 300px;
+	background-color: rgba(247, 195, 81, 0.35);
+	backdrop-filter: blur(5px);
+	box-shadow: #541911 0px 0px 8px;
+	border-radius: 5px;
+	margin: 1rem;
 }
-.shoppingCart__container__products__list__item__remove{
 
+.titleCardSC {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	justify-items: center;
 }
-.shoppingCart__container__total{
 
+.removeBtnCardSC {
+	height: 30px;
+	width: 40px;
+	border-radius: 5px;
+	font-size: 1.1rem;
+	background-color: brown;
+	color: aliceblue;
+	margin: 1rem 0rem 0rem 2.5rem;
+	cursor: pointer;
 }
-.shoppingCart__container__total__title{
 
+.removeBtnCardSC:hover {
+	color: rgb(255, 0, 0);
+	background-color: rgb(0, 0, 0);
 }
-.shoppingCart__container__total__price{
 
+.imgCardSC {
+	height: 35%;
 }
-.shoppingCart__container__total__button{
-    
+
+.quantityCardSC {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	justify-items: center;
+	align-items: center;
+}
+
+.removeOneBtnCardSC {
+	width: 40px;
+	border-radius: 5px;
+	font-size: 1.5rem;
+	background-color: rgb(123, 59, 59);
+	color: aliceblue;
+	cursor: pointer;
+}
+
+.removeOneBtnCardSC:hover {
+	background-color: aliceblue;
+	color: rgb(0, 0, 0);
+}
+
+.addBtnCardSC {
+	width: 40px;
+	border-radius: 5px;
+	font-size: 1.5rem;
+	background-color: rgb(89, 165, 42);
+	color: aliceblue;
+	cursor: pointer;
+}
+
+.addBtnCardSC:hover {
+	background-color: aliceblue;
+	color: rgb(89, 165, 42);
+}
+
+.totalCardSC {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
 }
