@@ -19,14 +19,14 @@ const Home = () => {
 	const usuario = useSelector(state => state.user);
 
 
-  console.log(refreshToken)
+  // console.log(refreshToken)
 	return (
 		<div className="homeDiv">
 		  { usuario.hasOwnProperty("user") ? (
 				<NavBarClient />
 		  ) : <NavBar />}
 			{/* { refreshToken ? <NavBarClient /> : <NavBar /> } */}
-			
+
 			<div className="banner"></div>
 			<div className="discountsAndNews">
 				<div className="discounts">
@@ -40,7 +40,7 @@ const Home = () => {
 				<New />
 			</div>
 		</div>
-		
+
 	);
 };
 

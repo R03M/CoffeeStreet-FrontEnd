@@ -11,10 +11,11 @@ import { useSelector } from "react-redux";
 
 const NavBar = () => {
 	const [menuUsuario, setMenuUsuario] = useState(false);
+
   const usuario = useSelector(state => state.user);
 
  
-  
+
 	const handlerMenuUsuario = () => {
 		if (menuUsuario === false) {
 			setMenuUsuario(true);
@@ -23,6 +24,7 @@ const NavBar = () => {
 
 		}
 	}
+
 
 	return (
 		<div className="navbarDivC">
@@ -45,6 +47,7 @@ const NavBar = () => {
 					<button className="btnNBCU">Admin(temp)</button>
 				</Link> */}
 					<div className="menu-usuario">
+
 						<img  onClick={handlerMenuUsuario} className="img-usuario" src={usuario.user.image} alt={usuario.user.name}/> 
 						
 						{ menuUsuario ? (

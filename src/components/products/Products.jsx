@@ -1,6 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { clearError, getProducts, clearDetails ,checkEmailUser , registerUserGoogle , logPostData , LoginUser } from "../../redux/action";
+
+import {
+	clearError,
+	getProducts,
+	clearDetails,
+	checkEmailUser,
+	registerUserGoogle,
+	logPostData,
+	LoginUser
+} from "../../redux/action";
+
 import NavBar from "../navbar/Navbar";
 import NavBarClient from "../client/navClient/NavClient";
 import CardP from "./card/CardP";
@@ -10,16 +20,19 @@ import Loading from "../loading/Loading";
 import ErrorSearch from "../errorSearch/ErrorSearch";
 import { useAuth0 } from "@auth0/auth0-react";
 import "./products.css";
+import ShoppingCart from "../ShoppingCart/ShoppingCart.jsx";
 
 const Products = () => {
 	const dispatch = useDispatch();
 	const allProducts = useSelector(state => state.products);
 	const errorMessage = useSelector(state => state.errorSProducts);
 	const checkEmail = useSelector(state => state.checkEmail);
+
 	const accessToken = useSelector(state => state.accessToken);
 	const newlyCreated = useSelector(state => state.newlyCreated);
 	const usuario = useSelector(state => state.user);
 	const  { isAuthenticated, user } = useAuth0();
+
 
 	const [currentPage, setCurrentPage] = useState(1);
 	const [productsPerPage, setProductsPerPage] = useState(9);
@@ -36,6 +49,7 @@ const Products = () => {
 
 
 
+
 		
 		
 
@@ -44,6 +58,7 @@ const Products = () => {
 			if (isAuthenticated) {
 				dispatch(checkEmailUser(user.email));
 			}
+
 	}, [dispatch, isAuthenticated]);
 
 
@@ -52,6 +67,7 @@ const Products = () => {
 
 
 	useEffect(() => {
+
 		if(checkEmail.email === false){
 			dispatch(registerUserGoogle({
 				email: user.email,
@@ -63,6 +79,7 @@ const Products = () => {
 			
 		}
 	}, [dispatch, checkEmail, user]);
+
 
 	useEffect(() => {
 		if(isAuthenticated && !accessToken){
@@ -125,12 +142,13 @@ const Products = () => {
 			if (allProducts.length) {
 				return (
 					<div>
+
 						<div className="cardsProd">
 							{dataEnd.map(data => {
 								return <CardP key={data.id} product={data} />;
 							})}
 						</div>
-							<Pagination currentPage={currentPage} setPage={setCurrentPage} max={max} />
+						<Pagination currentPage={currentPage} setPage={setCurrentPage} max={max} />
 					</div>
 				);
 			} else {
@@ -142,8 +160,13 @@ const Products = () => {
 	return (
 		<div className="productsDiv">
 		{ usuario.hasOwnProperty("user") ? (
+			<div>
 				<NavBarClient />
-		  ) : <NavBar />}
+				<ShoppingCart />
+			</div>
+		  ) : (
+				<NavBar />
+				)}
 			<div className="navbarProduc">
 				<NavbarProduc />
 				{pagACards()}

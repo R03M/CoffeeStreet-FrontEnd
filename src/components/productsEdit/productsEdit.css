@@ -7,9 +7,12 @@
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: center;
-	margin-top: -70px;
 }
 
 .cardsEditPe {
 	margin-top: 2rem;
+}
+
+.navBarProductsEdit {
+	margin-left: 2rem;
 }

@@ -70,15 +70,24 @@ export function productDetails(id) {
 	};
 }
 
-export function postNewProduct(payload) {
+export function postNewProduct(data) {
 	try {
-		return async function () {
-			const response = await axios.post(`${url}/products`, payload);
-			console.log(response)
+		return async function (dispatch) {
+			const response = await axios.post(`${url}/products`, data);
+			dispatch({
+				type: "POST_NEW_PRODUCT",
+				payload: response.data.message
+			});
 		};
 	} catch (error) {
 		return error;
 	}
+}
+
+export function clearResponseNewProduct() {
+	return {
+		type: "CLEAR_RESPONSE_NEW_PRODUCT"
+	};
 }
 
 export function clearDetails() {
@@ -87,16 +96,15 @@ export function clearDetails() {
 	};
 }
 
-
 export function postUserNew(payload) {
-	try{
+	try {
 		return async function () {
 			const response = await axios.post(`${url}/register`, payload);
 			alert("Created user successfully");
 			window.location.href = "/login";
 		};
 	} catch (error) {
-		return( error);
+		return error;
 	}
 }
 
@@ -106,18 +114,19 @@ export function LoginUser(payload) {
 
 		try {
 			const response = await axios.post(`${url}/login`, payload);
-			
+
 			dispatch({
 				type: "LOGIN_USER",
 				payload: response.data
 			});
 
+			// console.log(response.data);
 		} catch (error) {
-			
-			return error;
+			return alert("Invalid email or password");
 		}
 	};
 }
+
 
 export function logOutUser(accessToken) {
 	
@@ -151,15 +160,13 @@ export function registerUserGoogle ( payload) {
 			dispatch({
 				type: "REGISTER_USER_GOOGLE",
 			});
-
-	
 		} catch (error) {
 			return error;
 		}
 	};
 }
 
-export function checkEmailUser (payload) {
+export function checkEmailUser(payload) {
 	return async function (dispatch) {
 
 		try {
@@ -168,15 +175,13 @@ export function checkEmailUser (payload) {
 				type: "CHECK_EMAIL_USER",
 				payload: response.data
 			});
-			
-			
-
 		} catch (error) {
 			return error;
 		}
 	};
 }
 export function logPostData(token) {
+
  
   return async function (dispach) {
     try {
@@ -194,6 +199,123 @@ export function logPostData(token) {
       dispach({
 				type: "LOGOUT_USER",
 			});
+		}
+	};
+}
+
+export function getProductsId(id) {
+	return async function (dispatch) {
+		try {
+			const response = await axios.get(`${url}/products/${id}`);
+			dispatch({
+				type: "GET_PRODUCTS_ID",
+				payload: response.data
+			});
+		} catch (error) {
+			return error;
+		}
+	};
+}
+
+
+export function clearDetailsProductId() {
+
+	return {
+		type: "CLEAR_DETAILS_PRODUCT_IS"
+	};
+}
+
+export function deleteProduct(id) {
+	return async function (dispatch) {
+		try {
+			await axios.delete(`${url}/products/${id}`);
+			dispatch({
+				type: "DELETE_PRODUCT"
+			});
+		} catch (error) {
+			return error;
+		}
+	};
+}
+
+export function addProductToCart(payload) {
+	return {
+		type: "ADD_PRODUCT_TO_CART",
+		payload
+	};
+}
+
+export function removeProductFromCart(payload) {
+	return {
+		type: "REMOVE_PRODUCT_FROM_CART",
+		payload
+	};
+}
+export function removeOneProductFromCart(payload) {
+	return {
+		type: "REMOVE_ONE_PRODUCT_FROM_CART",
+		payload
+	};
+}
+
+export function clearCart() {
+	return {
+		type: "CLEAR_CART"
+	};
+}
+      export function postShoppingCart(cart){
+	return async function (dispatch) {
+		try {
+			const response = await axios.post(`${url}/cart`, cart);
+			dispatch({
+				type: "POST_SHOPPING_CART",
+				payload: response.data
+			});
+		} catch (error) {
+			return error;
+		}
+	};
+}
+
+export function getShoppingCart(){
+	return async function (dispatch) {
+		try {
+			const response = await axios.get(`${url}/cart`);
+			dispatch({
+				type: "GET_SHOPPING_CART",
+				payload: response.data
+			});
+		} catch (error) {
+			return error;
+		}
+	};
+}
+
+export function deleteShoppingCart(){
+	return async function (dispatch) {
+		try {
+			const response = await axios.delete(`${url}/cart`);
+			dispatch({
+				type: "DELETE_SHOPPING_CART",
+				payload: response.data
+			});
+		}
+		catch (error) {
+			return error;
+    }
+  };
+}
+export function putShoppingCart(){
+	return async function (dispatch) {
+		try {
+			const response = await axios.put(`${url}/cart`);
+			dispatch({
+				type: "PUT_SHOPPING_CART",
+				payload: response.data
+			});
+		}
+		catch (error) {
+      return error;
     }
   };
 }

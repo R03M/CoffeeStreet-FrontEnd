@@ -13,7 +13,7 @@ import CurrentNews from "../components/new/currentNews/CurrentNews.jsx";
 import About from "../components/About/About.jsx";
 import ProductsDetails from "../components/productsDetails/ProductsDetails.jsx";
 import { refreshLog } from "../redux/action";
-
+import ShoppingCart from "../components/ShoppingCart/ShoppingCart.jsx";
 
 import "./App.css";
 import { useEffect } from "react";
@@ -59,6 +59,7 @@ function App() {
 				<Route path="/employee" element={<Employee />} />
 				<Route path="/client" element={<Client />} />
 				<Route path="/about" element={<About />} />
+				<Route path="/cart" element={<ShoppingCart />} />
 				<Route path="*" element={<Error />} />
 			</Routes>
 		</div>

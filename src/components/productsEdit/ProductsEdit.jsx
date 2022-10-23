@@ -7,7 +7,7 @@ import NavbarProduc from "../products/navbarProducts/NavbarProduc";
 import ErrorSearch from "../errorSearch/ErrorSearch";
 import "./productsEdit.css";
 
-const ProductsEdit = () => {
+const ProductsEdit = ({editCPe}) => {
 	const dispatch = useDispatch();
 	const allProducts = useSelector(state => state.products);
 	const errorMessage = useSelector(state => state.errorSProducts);
@@ -19,6 +19,7 @@ const ProductsEdit = () => {
 		dispatch(clearError());
 		dispatch(clearDetails());
 	}, [dispatch, allProducts]);
+
 
 	function pagACards() {
 		if (errorMessage === "There is no product with that name") {
@@ -32,7 +33,7 @@ const ProductsEdit = () => {
 				return (
 					<div className="cardsEditPe">
 						{allProducts.map(data => {
-							return <CardPe key={data.id} product={data} />;
+							return <CardPe key={data.id} product={data} editC={editCPe}/>;
 						})}
 					</div>
 				);
@@ -45,7 +46,9 @@ const ProductsEdit = () => {
 	return (
 		<div className="productsEditdiv">
 			<div className="navBarACardsAdminC">
-				<NavbarProduc />
+				<div className="navBarProductsEdit">
+					<NavbarProduc />
+				</div>
 				{pagACards()}
 			</div>
 		</div>

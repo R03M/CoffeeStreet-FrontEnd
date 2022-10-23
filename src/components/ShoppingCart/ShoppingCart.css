@@ -1,0 +1,156 @@
+.shoppingCart {
+	height: 100vh;
+	overflow-y: scroll;
+	background: linear-gradient(to bottom, #a4a4a441 100%, #5656565f 0%);
+}
+
+.bodyShoppingCart{
+	display: flex;
+	justify-content: center
+}
+
+.headerCartSC {
+	margin: 1rem;
+	display: grid;
+	grid-template-columns: 95% 5%;
+	align-items: center;
+	justify-items: stretch;
+}
+
+.deleteBtnAllCartSC {
+	height: 50px;
+	width: 90px;
+	font-size: 1rem;
+	font-weight: 600;
+	background-color: brown;
+	color: aliceblue;
+	cursor: pointer;
+	border-radius: 5px;
+}
+
+.deleteBtnAllCartSC:hover {
+	color: rgb(255, 0, 0);
+	background-color: rgb(0, 0, 0);
+}
+
+.titleCartSC {
+	font-size: 2rem;
+	font-weight: 700;
+}
+
+.bodyCartSC {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+
+.cardCartSC {
+	display: inline-block;
+	height: 310px;
+	width: 300px;
+	background-color: rgba(247, 195, 81, 0.35);
+	backdrop-filter: blur(5px);
+	box-shadow: #541911 0px 0px 8px;
+	border-radius: 5px;
+	margin: 1rem;
+}
+
+.titleCardSC {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	justify-items: center;
+}
+
+.removeBtnCardSC {
+	height: 30px;
+	width: 40px;
+	border-radius: 5px;
+	font-size: 1.1rem;
+	background-color: brown;
+	color: aliceblue;
+	margin: 1rem 0rem 0rem 2.5rem;
+	cursor: pointer;
+}
+
+.removeBtnCardSC:hover {
+	color: rgb(255, 0, 0);
+	background-color: rgb(0, 0, 0);
+}
+
+.imgCardSC {
+	height: 35%;
+}
+
+.quantityCardSC {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	justify-items: center;
+	align-items: center;
+}
+
+.removeOneBtnCardSC {
+	width: 40px;
+	border-radius: 5px;
+	font-size: 1.5rem;
+	background-color: rgb(123, 59, 59);
+	color: aliceblue;
+	cursor: pointer;
+}
+
+.removeOneBtnCardSC:hover {
+	background-color: aliceblue;
+	color: rgb(0, 0, 0);
+}
+
+.addBtnCardSC {
+	width: 40px;
+	border-radius: 5px;
+	font-size: 1.5rem;
+	background-color: rgb(89, 165, 42);
+	color: aliceblue;
+	cursor: pointer;
+}
+
+.addBtnCardSC:hover {
+	background-color: aliceblue;
+	color: rgb(89, 165, 42);
+}
+
+.totalCardSC {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+}
+
+.cartDivEmprySC {
+	margin: 5rem;
+	background-color: rgb(237, 219, 179);
+	border-radius: 15px;
+	box-shadow: #541911 0px 0px 4px;
+}
+
+.iconCartESC {
+	font-size: 10rem;
+	margin: 1rem;
+}
+
+.cartTitleESC {
+	font-size: 2rem;
+	font-weight: 700;
+	margin: 1rem;
+}
+
+.cartBtnESC {
+	margin: 1rem;
+	font-size: 1.5rem;
+	font-weight: 800;
+	border-radius: 5px;
+	padding: 1rem;
+	cursor: pointer;
+	background-color: rgb(245, 192, 77);
+	color: #541911;
+}
+
+.cartBtnESC:hover {
+	color: rgb(245, 192, 77);
+	background-color: #541911;
+}

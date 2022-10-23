@@ -63,6 +63,26 @@
 	color: white;
 }
 
+.cardsAddNProducA {
+	display: inline-block;
+	position: relative;
+	align-items: center;
+	justify-items: center;
+	font-weight: bold;
+	margin: 1rem;
+	width: 210px;
+	height: 200px;
+	background-color: rgba(144, 231, 31, 0.65);
+	border-radius: 15px;
+	backdrop-filter: blur(10px);
+	padding: 15px;
+	cursor: pointer;	box-shadow: #000000 0px 0px 4px;
+}
+
+.cardsAddNProducA:hover {
+	color: white;
+}
+
 .cardsUsersA {
 	display: inline-block;
 	position: relative;
@@ -243,7 +263,10 @@
 
 .btnDivnewproductPe {
 	display: flex;
-	justify-content: center;
+	justify-content: flex-start;
+	margin-left: 1rem;
+	margin-bottom: -5rem;
+
 }
 
 .divProductsAdmin {
@@ -253,12 +276,12 @@
 }
 
 .newProductBtnPe {
-	width: 500px;
-	margin: 1.5rem 0rem;
-	padding: 0.9rem;
+	width: 300px;
+	/* margin: 1.5rem 0rem; */
+	padding: 0.5rem;
 	border-radius: 5px;
 	font-weight: bold;
-	font-size: 2rem;
+	font-size: 1.2rem;
 	color: aliceblue;
 	background-color: rgb(58, 187, 58);
 	cursor: pointer;
@@ -272,6 +295,7 @@
 .navBarACardsAdminC {
 	display: flex;
 	align-items: flex-start;
-	margin-top: 1rem;
 	margin-bottom: 1rem;
+	margin-top: 2rem;
+
 }

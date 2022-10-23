@@ -1,11 +1,12 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { productDetails } from "../../redux/action";
+import { addProductToCart, productDetails } from "../../redux/action";
 import { BsFillCartPlusFill } from "react-icons/bs";
 import NavBar from "../navbar/Navbar";
 import swal from "sweetalert";
 import "./ProductsDetails.css";
+import ShoppingCart from "../ShoppingCart/ShoppingCart";
 
 const ProductsDetails = () => {
 	const { id } = useParams();
@@ -26,6 +27,10 @@ const ProductsDetails = () => {
 			});
 		}
 	};
+
+	const handleAdd = (id) => {
+        dispatch(addProductToCart(id))
+    }
 
 	function moreDetails() {
 		if (product.isPrepared === true && product.category === "coffee") {
@@ -55,6 +60,7 @@ const ProductsDetails = () => {
 	return (
 		<div className="productDetailsDiv">
 			<NavBar />
+			<ShoppingCart />
 			<div className="productDetailsBody">
 				<p className="productNameDC">{product.name}</p>
 
@@ -101,7 +107,7 @@ const ProductsDetails = () => {
 					<p className="tempPDbuyAPrice">Price by unit $ {product.price}</p>
 					<p className="tempPDAQty">{`Qty`}</p>
 					<input className="tempPDAInput" type="number" value={1} />
-					<button className={product.stock === true ? "tempPDbuyAAdd" : "tempPDbuyAAddNSPD"} onClick={() => handlerTemp()}>
+					<button className={product.stock === true ? "tempPDbuyAAdd" : "tempPDbuyAAddNSPD"} onClick={() => handleAdd(product)}>
 						Add to <BsFillCartPlusFill />
 					</button>
 					<button className={product.stock === true ? "tempPDbuyABuy" : "tempPDbuyABuyNSPD"} onClick={() => handlerTemp()}>

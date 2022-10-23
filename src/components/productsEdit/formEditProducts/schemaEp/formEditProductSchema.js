@@ -8,14 +8,14 @@ import { COLOR } from "../../../../models/color.enum";
 import { ROAST } from "../../../../models/roast.enum";
 import { TEXTURES } from "../../../../models/textures.enum";
 
-export const productSchema = Yup.object().shape({
+export const productEditSchema = Yup.object().shape({
 	name: Yup.string()
-		.min(5, "Name too short")
+		.min(10, "Name too short")
 		.max(55, "Name too long")
 		.required("Name is required"),
 	//? //////////////////////////////////////////////////////////////////////////////////
 	description: Yup.string()
-		.min(15, "Description too short")
+		.min(30, "Description too short")
 		.max(500, "Description too long")
 		.required("Description is required"),
 	//? //////////////////////////////////////////////////////////////////////////////////
@@ -35,7 +35,6 @@ export const productSchema = Yup.object().shape({
 				CATEGORIES.COFFEE_READY_TO_DRINK,
 				CATEGORIES.COFFEE_TO_PREPARED,
 				CATEGORIES.TEA,
-				CATEGORIES.TEA_TO_PREPARED,
 				CATEGORIES.SWEET_BACKERY,
 				CATEGORIES.SALTY_BACKERY,
 				CATEGORIES.OTHER
