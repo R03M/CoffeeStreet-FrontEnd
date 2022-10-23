@@ -1,5 +1,6 @@
 import axios from "axios";
 
+
 const url = process.env.REACT_APP_BACK_URL;
 
 export function getProducts() {
@@ -100,14 +101,17 @@ export function postUserNew(payload) {
 		return async function () {
 			const response = await axios.post(`${url}/register`, payload);
 			alert("Created user successfully");
+			window.location.href = "/login";
 		};
 	} catch (error) {
 		return error;
 	}
 }
 
+
 export function LoginUser(payload) {
 	return async function (dispatch) {
+
 		try {
 			const response = await axios.post(`${url}/login`, payload);
 
@@ -115,6 +119,7 @@ export function LoginUser(payload) {
 				type: "LOGIN_USER",
 				payload: response.data
 			});
+
 			// console.log(response.data);
 		} catch (error) {
 			return alert("Invalid email or password");
@@ -122,10 +127,68 @@ export function LoginUser(payload) {
 	};
 }
 
-export function registerUserGoogle(payload) {
+
+export function logOutUser(accessToken) {
+	
+  return async function (dispatch) {
+		
+    try {
+      const response = await axios.post(`${url}/login/remove`,{} , {
+        headers: {
+					authorization: `Bearer ${accessToken}`,
+					Accept: "aplication/json"
+				},
+      });
+
+			window.location.href = "/";
+      if (response) {
+        dispatch({
+          type: "LOGOUT_USER",
+        });
+
+      }
+    } catch (error) {
+
+    }
+  };
+}
+	export function getMyFavorites (payload) {
+		return async function (dispatch) {
+			try {
+				const response = await axios.get(`${url}/users/${payload}/favourites`);
+				dispatch({
+					type: "GET_MY_FAVORITES",
+					payload: response.data
+				});
+			} catch (error) {
+				return error;
+			}
+		};
+
+	}
+
+	export function addProductFavourite (payload, id) {
+		return async function (dispatch) {
+			try {
+				const response = await axios.post(`${url}/users/${id}/favourites`, payload);
+				dispatch({
+					type: "ADD_PRODUCT_FAVOURITE",
+					payload: response.data
+				});
+			} catch (error) {
+				return error;
+			}
+		};
+	}
+
+
+export function registerUserGoogle ( payload) {
 	return async function (dispatch) {
 		try {
 			const response = await axios.post(`${url}/register`, payload);
+			dispatch({
+				type: "REGISTER_USER_GOOGLE",
+			});
 		} catch (error) {
 			return error;
 		}
@@ -134,35 +197,37 @@ export function registerUserGoogle(payload) {
 
 export function checkEmailUser(payload) {
 	return async function (dispatch) {
+
 		try {
 			const response = await axios.post(`${url}/register/email?email=${payload}`);
 			dispatch({
 				type: "CHECK_EMAIL_USER",
 				payload: response.data
 			});
-
-			// console.log(response);
 		} catch (error) {
 			return error;
 		}
 	};
 }
 export function logPostData(token) {
-	return async function (dispach) {
-		try {
-			const response = await axios.get(`${url}/users/`, {
-				headers: {
-					authorization: `Bearer ${token}`,
-					Accept: "aplication/json"
-				}
+
+ 
+  return async function (dispach) {
+    try {
+      const response = await axios.get(`${url}/users`, {
+        headers: {
+          authorization: `Bearer ${token}`,
+          Accept: "aplication/json"
+        }
+      });
+      dispach({
+        type: "LOG_POST_DATA",
+        payload: response.data
+      });
+    } catch (error) {
+      dispach({
+				type: "LOGOUT_USER",
 			});
-			// console.log(response.data[0].id);
-			dispach({
-				type: "LOG_POST_DATA",
-				payload: response.data
-			});
-		} catch (error) {
-			// console.log(error);
 		}
 	};
 }
@@ -282,4 +347,26 @@ export function putShoppingCart(){
       return error;
     }
   };
+}
+
+export function refreshLog(  accessToken, refreshToken){
+	console.log("refresh token", refreshToken)
+	console.log("access token", accessToken)
+	return async function (dispatch) {
+		try {
+			const response = await axios.post(`${url}/login/refresh`, {refreshToken} , { 
+				headers: {
+					authorization: `Bearer ${accessToken}`,
+					
+				}
+			});
+			localStorage.setItem("accessToken", JSON.stringify(response.data.accessToken));
+		} catch (error) {
+			return error;
+		}
+
+	}
+
+
+
 }
