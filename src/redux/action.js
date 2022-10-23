@@ -227,59 +227,45 @@ export function clearCart() {
 		type: "CLEAR_CART"
 	};
 }
-      export function postShoppingCart(cart){
-	return async function (dispatch) {
-		try {
-			const response = await axios.post(`${url}/cart`, cart);
+export function postShoppingCart(id){
+	console.log("id cart",id)
+	return async function(dispatch){
+		try{
+			const response = await axios.post(`${url}/cart`,id);
 			dispatch({
 				type: "POST_SHOPPING_CART",
 				payload: response.data
 			});
-		} catch (error) {
+			console.log(response.data)
+		}catch(error){
 			return error;
 		}
 	};
 }
 
-export function getShoppingCart(){
-	return async function (dispatch) {
-		try {
-			const response = await axios.get(`${url}/cart`);
-			dispatch({
-				type: "GET_SHOPPING_CART",
-				payload: response.data
-			});
-		} catch (error) {
-			return error;
-		}
-	};
-}
-
-export function deleteShoppingCart(){
-	return async function (dispatch) {
-		try {
-			const response = await axios.delete(`${url}/cart`);
+export function deleteShoppingCart(cart){
+	return async function (dispatch){
+		try{
+			const response = await axios.delete(`${url}/cart`,cart);
 			dispatch({
 				type: "DELETE_SHOPPING_CART",
 				payload: response.data
 			});
-		}
-		catch (error) {
+		}catch(error){
 			return error;
-    }
-  };
+		}
+	}
 }
-export function putShoppingCart(){
-	return async function (dispatch) {
-		try {
-			const response = await axios.put(`${url}/cart`);
+export function putShoppingCart(cart){
+	return async function (dispatch){
+		try{
+			const response = await axios.put(`${url}/cart`,cart);
 			dispatch({
 				type: "PUT_SHOPPING_CART",
 				payload: response.data
 			});
+		}catch(error){
+			return error;
 		}
-		catch (error) {
-      return error;
-    }
-  };
+	}
 }

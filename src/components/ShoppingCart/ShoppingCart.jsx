@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import {
-	addProductToCart,
-	removeProductFromCart,
+	postShoppingCart,
+	deleteShoppingCart,
 	clearCart,
 	removeOneProductFromCart
 } from "../../redux/action";
@@ -17,19 +17,25 @@ const ShoppingCart = () => {
 	const quantity = useSelector(state => state.quantity);
 	const [order, setOrder] = useState([]);
 
+	// const handleAdd = id => {
+	// 	dispatch(addProductToCart(id));
+	// 	quantity.map(q => {
+	// 		if (q.id === id) {
+	// 			setCount(q.quantity);
+	// 		}
+	// 	});
+	// };
 	const handleAdd = id => {
-		dispatch(addProductToCart(id));
-		quantity.map(q => {
-			if (q.id === id) {
-				setCount(q.quantity);
-			}
-		});
+		dispatch(postShoppingCart(id));
 	};
-	const handleRemove = id => {
-		dispatch(removeProductFromCart(id));
-		setCount(count - 1);
+	// const handleRemove = id => {
+	// 	dispatch(removeProductFromCart(id));
+	// 	setCount(count - 1);
 
-		setOrder(order.filter(e => e !== id));
+	// 	setOrder(order.filter(e => e !== id));
+	// };
+	const handleRemove = id => {
+		dispatch(deleteShoppingCart(id));
 	};
 	const handleRemoveOne = id => {
 		dispatch(removeOneProductFromCart(id));

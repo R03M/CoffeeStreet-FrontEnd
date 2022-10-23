@@ -7,7 +7,7 @@ const initialState = {
 	refreshToken: {},
 	checkEmail: {},
 	productsDataId: {},
-  cart: [],
+  	cart: [],
 	quantity: 0,
 	order : [],
 };
@@ -194,39 +194,45 @@ export default function rootReducer(state = initialState, action) {
 			};
 
       	case "POST_SHOPPING_CART":
-			return {
-				...state,
-				cart: action.payload
-			};
-		case "GET_SHOPPING_CART":
-			return {
-				...state,
-				cart: action.payload
-			};
-		case "DELETE_PRODUCT_CART":
+			let newCart = [...state.cart];
+			let userCart = newCart.find(e => e.userId === action.payload.userId);
+				if (userCart) {
+					userCart.products = action.payload.products;
+				} else {
+					newCart.push(action.payload);
+				} return {
+					...state,
+					cart: newCart
+				};
+		case "DELETE_SHOPPING_CART":
 			return {
 				...state,
 				cart: action.payload
 			};
 		case "PUT_SHOPPING_CART":
-			return {
-				...state,
-				cart: action.payload
-			};
-
-			case "ADD_PRODUCT_TO_CART":
-			 let product = state.products.find(p => p.id === action.payload.id);
-			 let productInCart = state.cart.find(p => p.id === action.payload.id);
-			 if (productInCart) {
-				return {
+			let newCart2 = [...state.cart];
+			let userCart2 = newCart2.find(e => e.userId === action.payload.userId);
+				if (userCart2) {
+					userCart2.products = action.payload.products;
+				} else {
+					newCart2.push(action.payload);
+				} return {
 					...state,
-					cart: state.cart.map(p =>
+					cart: newCart2
+				};
+		case "ADD_PRODUCT_TO_CART":
+			let product = state.products.find(p => p.id === action.payload.id);
+			let productInCart = state.cart.find(p => p.id === action.payload.id);
+				if (productInCart) {
+					return {
+						...state,
+						cart: state.cart.map(p =>
 						p.id === productInCart.id
 							? { ...productInCart, quantity: productInCart.quantity + 1 }
 							: p
 					)
 				};
-			} else {
+			}	 else {
 				return {
 					...state,
 					cart: [...state.cart, { ...product, quantity: 1 }]
