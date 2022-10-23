@@ -7,9 +7,10 @@ const initialState = {
 	refreshToken: {},
 	checkEmail: {},
 	productsDataId: {},
-  	cart: [],
+	cart: [],
 	quantity: 0,
-	order : [],
+	order: [],
+	user: {},
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -78,62 +79,91 @@ export default function rootReducer(state = initialState, action) {
 			};
 
 		case "FILTER_BY_CATEGORY":
-			const filterCategory =
-				action.payload === "all"
-					? state.allProducts
-					: state.allProducts.filter(
-							c => c.category && c.category.includes(action.payload)
-					  );
-			return {
-				...state,
-				products: filterCategory
-			};
-
-		case "FILTER_BY_TYPE":
-			if (action.payload === "all") {
+			if (state.products.length) {
 				return {
 					...state,
-					products: state.allProducts
+					products: state.products.filter(
+						c => c.category && c.category.includes(action.payload)
+					)
 				};
-			} else if (action.payload === "lactose") {
+			} else {
 				return {
 					...state,
-					products: state.allProducts.filter(p => p.lactose === true)
-				};
-			} else if (action.payload === "lactoseFree") {
-				return {
-					...state,
-					products: state.allProducts.filter(p => p.lactose === false)
-				};
-			} else if (action.payload === "alcohol") {
-				return {
-					...state,
-					products: state.allProducts.filter(p => p.alcohol === true)
-				};
-			} else if (action.payload === "alcoholFree") {
-				return {
-					...state,
-					products: state.allProducts.filter(p => p.alcohol === false)
-				};
-			} else if (action.payload === "gluten") {
-				return {
-					...state,
-					products: state.allProducts.filter(p => p.gluten === true)
-				};
-			} else if (action.payload === "glutenFree") {
-				return {
-					...state,
-					products: state.allProducts.filter(p => p.gluten === false)
+					products: state.allProducts.filter(
+						c => c.category && c.category.includes(action.payload)
+					)
 				};
 			}
 
+		case "FILTER_BY_TYPE":
+			if (state.products.length) {
+				if (action.payload === "lactose") {
+					return {
+						...state,
+						products: state.products.filter(p => p.lactose === true)
+					};
+				} else if (action.payload === "lactoseFree") {
+					return {
+						...state,
+						products: state.products.filter(p => p.lactose === false)
+					};
+				} else if (action.payload === "alcohol") {
+					return {
+						...state,
+						products: state.products.filter(p => p.alcohol === true)
+					};
+				} else if (action.payload === "alcoholFree") {
+					return {
+						...state,
+						products: state.products.filter(p => p.alcohol === false)
+					};
+				} else if (action.payload === "gluten") {
+					return {
+						...state,
+						products: state.products.filter(p => p.gluten === true)
+					};
+				} else if (action.payload === "glutenFree") {
+					return {
+						...state,
+						products: state.products.filter(p => p.gluten === false)
+					};
+				}
+			} else {
+				if (action.payload === "lactose") {
+					return {
+						...state,
+						products: state.allProducts.filter(p => p.lactose === true)
+					};
+				} else if (action.payload === "lactoseFree") {
+					return {
+						...state,
+						products: state.allProducts.filter(p => p.lactose === false)
+					};
+				} else if (action.payload === "alcohol") {
+					return {
+						...state,
+						products: state.allProducts.filter(p => p.alcohol === true)
+					};
+				} else if (action.payload === "alcoholFree") {
+					return {
+						...state,
+						products: state.allProducts.filter(p => p.alcohol === false)
+					};
+				} else if (action.payload === "gluten") {
+					return {
+						...state,
+						products: state.allProducts.filter(p => p.gluten === true)
+					};
+				} else if (action.payload === "glutenFree") {
+					return {
+						...state,
+						products: state.allProducts.filter(p => p.gluten === false)
+					};
+				}
+			}
+
 		case "FILTER_BY_PREPARED":
-			if (action.payload === "all") {
-				return {
-					...state,
-					products: state.allProducts
-				};
-			} else if (action.payload === "prepared") {
+			if (action.payload === "prepared") {
 				return {
 					...state,
 					products: state.allProducts.filter(e => e.isPrepared === false)
@@ -193,33 +223,22 @@ export default function rootReducer(state = initialState, action) {
 				productsDataId: []
 			};
 
-      	case "POST_SHOPPING_CART":
-			let newCart = [...state.cart];
-			let userCart = newCart.find(e => e.userId === action.payload.userId);
-				if (userCart) {
-					userCart.products = action.payload.products;
-				} else {
-					newCart.push(action.payload);
-				} return {
-					...state,
-					cart: newCart
-				};
-		case "DELETE_SHOPPING_CART":
+      	case "GET_CREATE_SHOPPING_CART":
+			return {
+				...state,
+				cart : action.payload
+			};
+		case "DELETE_ITEM_SHOPPING_CART":
 			return {
 				...state,
 				cart: action.payload
 			};
-		case "PUT_SHOPPING_CART":
-			let newCart2 = [...state.cart];
-			let userCart2 = newCart2.find(e => e.userId === action.payload.userId);
-				if (userCart2) {
-					userCart2.products = action.payload.products;
-				} else {
-					newCart2.push(action.payload);
-				} return {
-					...state,
-					cart: newCart2
-				};
+		case "ADD_ITEM_SHOPPING_CART":
+			return {
+				...state,
+				cart: action.payload
+			};
+			
 		case "ADD_PRODUCT_TO_CART":
 			let product = state.products.find(p => p.id === action.payload.id);
 			let productInCart = state.cart.find(p => p.id === action.payload.id);
@@ -243,7 +262,7 @@ export default function rootReducer(state = initialState, action) {
 				...state,
 				cart: state.cart.filter(p => p.id !== action.payload)
 			};
-		case "REMOVE_ONE_PRODUCT_FROM_CART"	:
+		case "REMOVE_ONE_PRODUCT_FROM_CART":
 			let productCart = state.cart.find(p => p.id === action.payload.id);
 			if (productCart.quantity > 1) {
 				return {
@@ -264,8 +283,12 @@ export default function rootReducer(state = initialState, action) {
 			return {
 				...state,
 				cart: []
-      }
-
+			};
+			case "EMPTY_CART":
+			return {
+				...state,
+				cart: []
+			};
 		case "DELETE_PRODUCT":
 			return {
 				...state

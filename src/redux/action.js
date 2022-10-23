@@ -227,28 +227,28 @@ export function clearCart() {
 		type: "CLEAR_CART"
 	};
 }
-export function postShoppingCart(id){
+export function getOrCreateShoppingCart(id){
 	console.log("id cart",id)
 	return async function(dispatch){
 		try{
 			const response = await axios.post(`${url}/cart`,id);
 			dispatch({
-				type: "POST_SHOPPING_CART",
+				type: "GET_CREATE_SHOPPING_CART",
 				payload: response.data
 			});
-			console.log(response.data)
+			console.log("response",response.data)
 		}catch(error){
 			return error;
 		}
 	};
 }
 
-export function deleteShoppingCart(cart){
+export function deleteItemShoppingCart(cart){
 	return async function (dispatch){
 		try{
 			const response = await axios.delete(`${url}/cart`,cart);
 			dispatch({
-				type: "DELETE_SHOPPING_CART",
+				type: "DELETE_ITEM_SHOPPING_CART",
 				payload: response.data
 			});
 		}catch(error){
@@ -256,12 +256,26 @@ export function deleteShoppingCart(cart){
 		}
 	}
 }
-export function putShoppingCart(cart){
+export function addItemShoppingCart(cart){
 	return async function (dispatch){
 		try{
 			const response = await axios.put(`${url}/cart`,cart);
 			dispatch({
-				type: "PUT_SHOPPING_CART",
+				type: "ADD_ITEM_SHOPPING_CART",
+				payload: response.data
+			});
+		}catch(error){
+			return error;
+		}
+	}
+}
+
+export function emptyCart(cart){
+	return async function (dispatch){
+		try{
+			const response = await axios.delete(`${url}/cart`,cart);
+			dispatch({
+				type: "EMPTY_CART",
 				payload: response.data
 			});
 		}catch(error){

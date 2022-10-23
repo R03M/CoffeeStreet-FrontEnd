@@ -1,9 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
-	postShoppingCart,
-	deleteShoppingCart,
+	addProductToCart,
+	removeProductFromCart,
 	clearCart,
-	removeOneProductFromCart
+	removeOneProductFromCart,
+	getOrCreateShoppingCart,
+	deleteItemShoppingCart,
+	addItemShoppingCart,
+	emptyCart
 } from "../../redux/action";
 import { useDispatch, useSelector } from "react-redux";
 import NavBar from "../navbar/Navbar";
@@ -16,34 +20,47 @@ const ShoppingCart = () => {
 	const [count, setCount] = useState(1);
 	const quantity = useSelector(state => state.quantity);
 	const [order, setOrder] = useState([]);
+	const user = useSelector(state => state.user);
 
-	// const handleAdd = id => {
-	// 	dispatch(addProductToCart(id));
-	// 	quantity.map(q => {
-	// 		if (q.id === id) {
-	// 			setCount(q.quantity);
-	// 		}
-	// 	});
-	// };
+	useEffect(() => {
+			dispatch(getOrCreateShoppingCart(cart));
+
+	}, [dispatch, cart, user.id]);
+
+
 	const handleAdd = id => {
-		dispatch(postShoppingCart(id));
+		if(user.id){
+			dispatch(addItemShoppingCart(id))
+		}else{
+			dispatch(addProductToCart(id));
+			quantity.map(q => {
+				if (q.id === id) {
+					setCount(q.quantity);
+				}
+			});
+		}
 	};
-	// const handleRemove = id => {
-	// 	dispatch(removeProductFromCart(id));
-	// 	setCount(count - 1);
 
-	// 	setOrder(order.filter(e => e !== id));
-	// };
 	const handleRemove = id => {
-		dispatch(deleteShoppingCart(id));
+		if(user.id){
+			dispatch(emptyCart(id))
+		} else{
+		dispatch(removeProductFromCart(id));
+		setCount(count - 1);
+		setOrder(order.filter(e => e !== id));
+		}
 	};
 	const handleRemoveOne = id => {
+		if(user.id){
+			dispatch(deleteItemShoppingCart(id))
+		}else{
 		dispatch(removeOneProductFromCart(id));
-		quantity.map(q => {
+			quantity.map(q => {
 			if (q.id === id) {
 				setCount(q.quantity);
 			}
-		});
+			});
+		}
 	};
 	const handleClear = () => {
 		swal({

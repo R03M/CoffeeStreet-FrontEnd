@@ -8,7 +8,7 @@ import { COLOR } from "../../../../models/color.enum";
 import { ROAST } from "../../../../models/roast.enum";
 import { TEXTURES } from "../../../../models/textures.enum";
 
-export const productSchema = Yup.object().shape({
+export const productEditSchema = Yup.object().shape({
 	name: Yup.string()
 		.min(10, "Name too short")
 		.max(55, "Name too long")

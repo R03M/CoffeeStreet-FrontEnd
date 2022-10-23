@@ -23,13 +23,12 @@ const NavBar = () => {
 				<Link to="/logIn">
 					<button className="btnNBCU">Log In</button>
 				</Link>
-				{statusCart.length ? (
-					<Link to={"/cart"}>
-						<button className="btnNBCU">
-							<BsFillCartFill /> {statusCart.length}
-						</button>
-					</Link>
-				) : null}
+
+				<Link to={"/cart"}>
+					<button className="btnNBCU">
+						<BsFillCartFill /> {statusCart.length}
+					</button>
+				</Link>
 			</div>
 		</div>
 	);

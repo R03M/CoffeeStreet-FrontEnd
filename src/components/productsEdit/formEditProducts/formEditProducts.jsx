@@ -10,7 +10,7 @@ import { ACIDITY } from "../../../models/acidity.enum";
 import { BITTERNESS } from "../../../models/bitterness.enum";
 import { ROAST } from "../../../models/roast.enum";
 import { COLOR } from "../../../models/color.enum";
-import { productSchema } from "./schemaEp/formEditProductSchema.js";
+import { productEditSchema } from "./schemaEp/formEditProductSchema.js";
 import "./formEditProducts.css";
 
 const EditProducts = ({ exitF }) => {
