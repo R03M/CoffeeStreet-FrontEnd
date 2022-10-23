@@ -145,7 +145,9 @@ const Products = () => {
 
 						<div className="cardsProd">
 							{dataEnd.map(data => {
-								return <CardP key={data.id} product={data} />;
+								return <CardP key={data.id} product={data} 
+								 				userId={usuario.user.id }
+								/>;
 							})}
 						</div>
 						<Pagination currentPage={currentPage} setPage={setCurrentPage} max={max} />
@@ -160,10 +162,10 @@ const Products = () => {
 	return (
 		<div className="productsDiv">
 		{ usuario.hasOwnProperty("user") ? (
-			<div>
+		
 				<NavBarClient />
-				<ShoppingCart />
-			</div>
+			
+			
 		  ) : (
 				<NavBar />
 				)}

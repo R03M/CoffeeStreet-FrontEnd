@@ -11,12 +11,6 @@ import { useNavigate } from 'react-router-dom';
 const LogOutAuth0 = () => {
   const dispatch = useDispatch();
   const accessToken = useSelector(state => state.accessToken);
- 
-  const { isAuthenticated } = useAuth0();
-
-  const navigate = useNavigate();
-  const { logout } = useAuth0();
-
 
   
     const deslogeo = (e) => {
@@ -24,11 +18,6 @@ const LogOutAuth0 = () => {
    
       borrado();
       dispatch(logOutUser(accessToken));
-      if(!isAuthenticated){
-        navigate('/home')
-      } else {
-       
-      }
     }
 
     const borrado = () => {

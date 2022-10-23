@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import "../../navbar/navbar.css";
 import LogOutAuth0 from "../../logIn/logOutButtonAuth0/LogOutAuth0";
+import { BsFillCartFill } from "react-icons/bs";
 
 import "./navClient.css";
 import { useSelector } from "react-redux";
@@ -11,6 +12,7 @@ import { useSelector } from "react-redux";
 
 const NavBar = () => {
 	const [menuUsuario, setMenuUsuario] = useState(false);
+	const statusCart = useSelector(state => state.cart);
 
   const usuario = useSelector(state => state.user);
 
@@ -39,9 +41,12 @@ const NavBar = () => {
 					<button className="btnNBCU">Menu</button>
 				</Link>
 
-				<Link to="/shoppingCart">
-					<button className="btnNBCU">Shopping cart</button>
+				<Link to={"/cart"}>
+					<button className="btnNBCU">
+						<BsFillCartFill /> {statusCart.length}
+					</button>
 				</Link>
+
 
 				{/* <Link to="/admin">
 					<button className="btnNBCU">Admin(temp)</button>
@@ -59,6 +64,7 @@ const NavBar = () => {
 								<Link to="/client">
 									<button className="btn-perfil"> Profile </button>
 								</Link>
+							
 							  <LogOutAuth0/> 
 								
 							</div>

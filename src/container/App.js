@@ -22,9 +22,6 @@ function App() {
 	const dispatch = useDispatch();
 	const refrest = useSelector(state => state.refreshToken)
 	const user = useSelector(state => state.user)
-	const refreshToken1 = {
-		refreshToken: refrest
-	}
  console.log("refrest", refrest === "")
   const accessToken = useSelector(state => state.accessToken);
 	
@@ -38,10 +35,10 @@ function App() {
 
 	useEffect(() => {
 		if(refrest.length > 0){
-			dispatch(refreshLog(accessToken, refreshToken1));
+			dispatch(refreshLog(accessToken, refrest));
 			console.log("holaaaaaaaaaaaaaaaaaaaaaaaaa")
 		}
-	}, [dispatch, accessToken, refreshToken1, refrest]);
+	}, [dispatch, accessToken, refrest]);
 
 
 	// console.log("app tokenRef", refreshToken);

@@ -1,3 +1,5 @@
+import MyFavourites from "../components/client/myFavourites/MyFavourites";
+
 const localRefreshToken = JSON.parse(localStorage.getItem("refreshToken"));
 const localAccessToken = JSON.parse(localStorage.getItem("accessToken"));
 
@@ -15,7 +17,8 @@ const initialState = {
 	productsDataId: {},
 	cart: [],
 	quantity: 0,
-	order: []
+	order: [],
+	myFavourites: []
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -58,13 +61,13 @@ export default function rootReducer(state = initialState, action) {
 					...state,
 					user: action.payload
 				};
-		
-			
-			case "REFRESH_LOG":
+
+			case "GET_MY_FAVORITES":
 				return {
 					...state,
-					accessToken: action.payload.accessToken,
+					myFavourites: action.payload
 				};
+		
 			case "LOGOUT_USER":
 				return {
 					...state,

@@ -140,7 +140,7 @@ export function logOutUser(accessToken) {
 				},
       });
 
-			// window.location.href = "/home";
+			window.location.href = "/";
       if (response) {
         dispatch({
           type: "LOGOUT_USER",
@@ -152,6 +152,35 @@ export function logOutUser(accessToken) {
     }
   };
 }
+	export function getMyFavorites (payload) {
+		return async function (dispatch) {
+			try {
+				const response = await axios.get(`${url}/users/${payload}/favourites`);
+				dispatch({
+					type: "GET_MY_FAVORITES",
+					payload: response.data
+				});
+			} catch (error) {
+				return error;
+			}
+		};
+
+	}
+
+	export function addProductFavourite (payload, id) {
+		return async function (dispatch) {
+			try {
+				const response = await axios.post(`${url}/users/${id}/favourites`, payload);
+				dispatch({
+					type: "ADD_PRODUCT_FAVOURITE",
+					payload: response.data
+				});
+			} catch (error) {
+				return error;
+			}
+		};
+	}
+
 
 export function registerUserGoogle ( payload) {
 	return async function (dispatch) {
@@ -331,11 +360,7 @@ export function refreshLog(  accessToken, refreshToken){
 					
 				}
 			});
-			console.log("refresh este no funciona",response.data)
-			dispatch({
-				type: "REFRESH_LOG",
-				payload: response.data
-			});
+			localStorage.setItem("accessToken", JSON.stringify(response.data.accessToken));
 		} catch (error) {
 			return error;
 		}
