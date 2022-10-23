@@ -6,11 +6,14 @@ import {
 	removeOneProductFromCart
 } from "../../redux/action";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { TbShoppingCartX } from "react-icons/tb";
 import NavBar from "../navbar/Navbar";
 import swal from "sweetalert";
 import "./ShoppingCart.css";
 
 const ShoppingCart = () => {
+	const navigate = useNavigate();
 	const dispatch = useDispatch();
 	const cart = useSelector(state => state.cart);
 	const [count, setCount] = useState(1);
@@ -75,40 +78,60 @@ const ShoppingCart = () => {
 	return (
 		<div className="shoppingCart">
 			<NavBar />
-			<div className="headerCartSC">
-				<p className="titleCartSC">Added products</p>
-				<button className="deleteBtnAllCartSC" onClick={() => handleClear()}>
-					Delete All
-				</button>
-			</div>
+			<div className="bodyShoppingCart">
+				{cart.length ? (
+					<div>
+						<div className="headerCartSC">
+							<p className="titleCartSC">Added products</p>
+							<button className="deleteBtnAllCartSC" onClick={() => handleClear()}>
+								Delete All
+							</button>
+						</div>
 
-			<div className="bodyCartSC">
-				{cart.map(e => (
-					<div className="cardCartSC">
-						<div className="titleCardSC">
-							<h3>ud ${e.price}</h3>
-							<h2>{e.name}</h2>
-							<button className="removeBtnCardSC" onClick={() => handleRemove(e.id)}>
-								X
-							</button>
-						</div>
-						<img className="imgCardSC" src={e.image} alt={`Pic of ${e.name}`} />
-						<div className="quantityCardSC">
-							<h3>Qty</h3>
-							<button className="removeOneBtnCardSC" onClick={() => handleRemoveOne(e)}>
-								-
-							</button>
-							<h3>{e.quantity}</h3>
-							<button className="addBtnCardSC" onClick={() => handleAdd(e)}>
-								+
-							</button>
-						</div>
-						<div className="totalCardSC">
-							<h2>Total</h2>
-							<h2>${handleTotal()}</h2>
+						<div className="bodyCartSC">
+							{cart.map(e => (
+								<div className="cardCartSC">
+									<div className="titleCardSC">
+										<h3>ud ${e.price}</h3>
+										<h2>{e.name}</h2>
+										<button
+											className="removeBtnCardSC"
+											onClick={() => handleRemove(e.id)}
+										>
+											X
+										</button>
+									</div>
+									<img className="imgCardSC" src={e.image} alt={`Pic of ${e.name}`} />
+									<div className="quantityCardSC">
+										<h3>Qty</h3>
+										<button
+											className="removeOneBtnCardSC"
+											onClick={() => handleRemoveOne(e)}
+										>
+											-
+										</button>
+										<h3>{e.quantity}</h3>
+										<button className="addBtnCardSC" onClick={() => handleAdd(e)}>
+											+
+										</button>
+									</div>
+									<div className="totalCardSC">
+										<h2>Total</h2>
+										<h2>${handleTotal()}</h2>
+									</div>
+								</div>
+							))}
 						</div>
 					</div>
-				))}
+				) : (
+					<div className="cartDivEmprySC">
+						<TbShoppingCartX className="iconCartESC" />
+						<div className="cartTitleESC">Your Coffee Street Cart is empty</div>
+						<button className="cartBtnESC" onClick={() => navigate("/menu")}>
+							Start shopping
+						</button>
+					</div>
+				)}
 			</div>
 		</div>
 	);

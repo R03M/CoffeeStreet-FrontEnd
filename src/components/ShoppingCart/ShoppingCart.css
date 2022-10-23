@@ -4,12 +4,17 @@
 	background: linear-gradient(to bottom, #a4a4a441 100%, #5656565f 0%);
 }
 
+.bodyShoppingCart{
+	display: flex;
+	justify-content: center
+}
+
 .headerCartSC {
 	margin: 1rem;
 	display: grid;
 	grid-template-columns: 95% 5%;
 	align-items: center;
-	justify-items: center;
+	justify-items: stretch;
 }
 
 .deleteBtnAllCartSC {
@@ -114,4 +119,38 @@
 .totalCardSC {
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
+}
+
+.cartDivEmprySC {
+	margin: 5rem;
+	background-color: rgb(237, 219, 179);
+	border-radius: 15px;
+	box-shadow: #541911 0px 0px 4px;
+}
+
+.iconCartESC {
+	font-size: 10rem;
+	margin: 1rem;
+}
+
+.cartTitleESC {
+	font-size: 2rem;
+	font-weight: 700;
+	margin: 1rem;
+}
+
+.cartBtnESC {
+	margin: 1rem;
+	font-size: 1.5rem;
+	font-weight: 800;
+	border-radius: 5px;
+	padding: 1rem;
+	cursor: pointer;
+	background-color: rgb(245, 192, 77);
+	color: #541911;
+}
+
+.cartBtnESC:hover {
+	color: rgb(245, 192, 77);
+	background-color: #541911;
 }
