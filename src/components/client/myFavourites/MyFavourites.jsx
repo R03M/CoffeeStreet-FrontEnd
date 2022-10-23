@@ -6,7 +6,7 @@ import CardP from "../../products/card/CardP.jsx";
 
 
 const MyFavourites = () => {
-	const accessToken = useSelector((state) => state.accessToken);
+	// const accessToken = useSelector((state) => state.accessToken);
 	const usuario = useSelector(state => state.user);
 	const myProductsFavourites = useSelector(state => state.myFavourites);
 	const [withOutFavourites, setWithOutFavourites] = useState(false);
@@ -18,11 +18,11 @@ const MyFavourites = () => {
 
 	console.log(usuario)
 
-	useEffect(() => {
-		if(accessToken){
-			dispach(logPostData(accessToken))
-		}
-	}, [dispach, accessToken])
+	// useEffect(() => {
+	// 	if(accessToken){
+	// 		dispach(logPostData(accessToken))
+	// 	}
+	// }, [dispach, accessToken])
 
 	useEffect(() => {
 		if(usuario.hasOwnProperty("user")){
@@ -47,8 +47,8 @@ const MyFavourites = () => {
 					}
 					)}
 
-				 
-				
+
+
 		</div>
 	);
 }

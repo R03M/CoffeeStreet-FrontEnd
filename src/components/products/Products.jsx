@@ -39,7 +39,7 @@ const Products = () => {
 	const max = Math.ceil(allProducts.length / productsPerPage);
 	const { logout } = useAuth0();
 	const dataEnd = allProducts.length
-	
+
 		? allProducts.slice(
 				(currentPage - 1) * productsPerPage,
 				(currentPage - 1) * productsPerPage + productsPerPage
@@ -50,11 +50,11 @@ const Products = () => {
 
 
 
-		
-		
+
+
 
 		useEffect(() => {
-			
+
 			if (isAuthenticated) {
 				dispatch(checkEmailUser(user.email));
 			}
@@ -74,9 +74,9 @@ const Products = () => {
 				name: user.given_name,
 				surname: user.family_name,
 				image: user.picture,
-				isGoogle: true, 
+				isGoogle: true,
 			}))
-			
+
 		}
 	}, [dispatch, checkEmail, user]);
 
@@ -89,7 +89,7 @@ const Products = () => {
 				password:"12465"
 			}))
 			logout()
-			
+
 		}
 	}, [dispatch, isAuthenticated, accessToken, user]);
 
@@ -107,20 +107,20 @@ const Products = () => {
 
 
 
-	useEffect(() => {
-		if(accessToken){
-			dispatch(logPostData(accessToken))
-		} 
-	}, [dispatch, accessToken]);
-	
+	// useEffect(() => {
+	// 	if(accessToken){
+	// 		dispatch(logPostData(accessToken))
+	// 	}
+	// }, [dispatch, accessToken]);
+
 
 	// useEffect(() => {
 		// 	if(isAuthenticated){
 			// 		dispatch(logPostData(accessToken))
 			// 	}
 			// }, [dispatch, isAuthenticated, accessToken]);
-			
-			
+
+
 			useEffect(() => {
 				if (allProducts.length === 0) {
 			dispatch(getProducts());
@@ -145,7 +145,7 @@ const Products = () => {
 
 						<div className="cardsProd">
 							{dataEnd.map(data => {
-								return <CardP key={data.id} product={data} 
+								return <CardP key={data.id} product={data}
 								 				userId={ usuario.hasOwnProperty("user") ? usuario.user.id : null}
 								/>;
 							})}
@@ -162,10 +162,10 @@ const Products = () => {
 	return (
 		<div className="productsDiv">
 		{ usuario.hasOwnProperty("user") ? (
-		
+
 				<NavBarClient />
-			
-			
+
+
 		  ) : (
 				<NavBar />
 				)}

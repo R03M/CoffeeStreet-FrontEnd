@@ -1,7 +1,7 @@
 import React, { useState ,useEffect } from "react";
 import './formLogin.css';
 import { useDispatch , useSelector } from 'react-redux';
-import { LoginUser,  checkEmailUser} from '../../../redux/action.js';
+import { LoginUser,  checkEmailUser, logPostData} from '../../../redux/action.js';
 
 
 
@@ -14,7 +14,9 @@ const FormLogin = () => {
   const dispatch = useDispatch();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  
+	const tokenAcc = useSelector(state => state.accessToken);
+
+
 
 
 var validEmail =  /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
@@ -28,13 +30,19 @@ var validEmail =  /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
       password: password
 
     }));
-    
+
   }
+
+	  useEffect(()=>{
+    if(tokenAcc) {
+      dispatch(logPostData(tokenAcc));
+    }
+  }, [dispatch, tokenAcc])
 
   const handleEmail = (e) => {
  console.log(e.target.value)
  if(e.target.value === "") {
-  
+
  }
 
 
@@ -43,14 +51,14 @@ var validEmail =  /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
       console.log('valid')
 
       if(checkEmail.isGoogle === false){
-        
+
         setEmail(e.target.value)
 
       }
     }
     else{
       dispatch(checkEmailUser(e.target.value))
-      
+
     }
 
   }
@@ -61,7 +69,7 @@ var validEmail =  /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
   }
 }
 
-  
+
   useEffect(() => {
     if(accessToken) {
       window.location.href = "/menu"
@@ -69,7 +77,7 @@ var validEmail =  /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
   } , [accessToken])
 
   return (
-    <div  className='contenedor-principal-login'> 
+    <div  className='contenedor-principal-login'>
         <div className='label-imput-email'>
           <label className='label-email'>Email</label>
           <input className='input-email' type='email' name='email' placeholder='Email' onChange={handleEmail } />
@@ -81,7 +89,7 @@ var validEmail =  /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
           {password.length === 0 || password.length > 2 ? null : <p>password too short</p>}
           <button disabled={checkEmail.isGoogle === true} className='button-login' onClick={loginUser}>Login</button>
         </div>
-          
+
     </div>
   )
 
