@@ -80,11 +80,11 @@ const CardP = ({ product, userId }) => {
 		})
 		return count
 	}
-	
+
 	const addFavourites = () => {
 			dispatch(addProductFavourite( {idProduct: product.id} , userId))
 		}
-console.log(product.id)
+// console.log(product.id)
 
 	return (
 		<div className={product.stock === true ? "cardDiv" : "cardDivF"} key={product.id}>

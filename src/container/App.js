@@ -1,3 +1,4 @@
+import axios from "axios";
 import { Route, Routes } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Home from "../components/home/Home.jsx";
@@ -17,29 +18,48 @@ import ShoppingCart from "../components/ShoppingCart/ShoppingCart.jsx";
 
 import "./App.css";
 import { useEffect } from "react";
+const url = "http://localhost:3001";
 
 function App() {
 	const dispatch = useDispatch();
-	const refrest = useSelector(state => state.refreshToken)
-	const user = useSelector(state => state.user)
- console.log("refrest", refrest === "")
-  const accessToken = useSelector(state => state.accessToken);
-	
-
-
-	
-	useEffect(() => {
-    localStorage.setItem("refreshToken", JSON.stringify(refrest));
-    localStorage.setItem("accessToken", JSON.stringify(accessToken));
-  }, [accessToken, refrest]);
+	const refresh = useSelector(state => state.refreshToken);
+	// const user = useSelector(state => state.user);
+	const accessToken = useSelector(state => state.accessToken);
 
 	useEffect(() => {
-		if(refrest.length > 0){
-			dispatch(refreshLog(accessToken, refrest));
-			console.log("holaaaaaaaaaaaaaaaaaaaaaaaaa")
-		}
-	}, [dispatch, accessToken, refrest]);
+		localStorage.setItem("refreshToken", JSON.stringify(refresh));
+		localStorage.setItem("accessToken", JSON.stringify(accessToken));
+	}, [accessToken, refresh]);
 
+	useEffect(() => {
+		const refreshToken = async function () {
+			console.log("entre a refresh page en App");
+
+			try {
+				const response = await axios.post(
+					`${url}/login/refresh`,
+					{ refreshToken: refresh },
+					{
+						headers: {
+							authorization: `Bearer ${accessToken}`
+						}
+					}
+				);
+				if (response.data.accessToken) {
+					localStorage.setItem("accessToken", JSON.stringify(response.data.accessToken));
+				} else {
+					dispatch({
+						type: "LOGOUT_USER"
+					});
+				}
+
+				// dispatch(logPostData(tokenAcc, idAuth));
+			} catch (error) {
+				console.log(error);
+			}
+		};
+		refreshToken();
+	}, []);
 
 	// console.log("app tokenRef", refreshToken);
 	return (

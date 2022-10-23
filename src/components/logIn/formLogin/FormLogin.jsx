@@ -9,65 +9,50 @@ import { LoginUser,  checkEmailUser, logPostData} from '../../../redux/action.js
 
 const FormLogin = () => {
   const accessToken = useSelector(state => state.accessToken);
-
   const checkEmail = useSelector(state => state.checkEmail);
   const dispatch = useDispatch();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 	const tokenAcc = useSelector(state => state.accessToken);
+	console.log(tokenAcc);
 
-
-
-
-var validEmail =  /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
-
-
-
+	var validEmail =  /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
 
   const loginUser =  (e) => {
     dispatch(LoginUser({
       email: email,
       password: password
-
     }));
-
   }
 
-	  useEffect(()=>{
-    if(tokenAcc) {
-      dispatch(logPostData(tokenAcc));
-    }
-  }, [dispatch, tokenAcc])
+	 useEffect(()=>{
+		console.log('quepaso')
+			if(tokenAcc) {
+				dispatch(logPostData(tokenAcc));
+			}
+  	}, [dispatch, tokenAcc])
 
-  const handleEmail = (e) => {
- console.log(e.target.value)
- if(e.target.value === "") {
+	const handleEmail = (e) => {
+				if(validEmail.test(e.target.value)){
+				dispatch(checkEmailUser(e.target.value))
+				// console.log('valid')
 
- }
+				if(checkEmail.isGoogle === false){
+					setEmail(e.target.value)
+				}
+    	}
+    	else{
+      	dispatch(checkEmailUser(e.target.value))
+    	}
+  	}
 
-
-    if(validEmail.test(e.target.value)){
-      dispatch(checkEmailUser(e.target.value))
-      console.log('valid')
-
-      if(checkEmail.isGoogle === false){
-
-        setEmail(e.target.value)
-
-      }
-    }
-    else{
-      dispatch(checkEmailUser(e.target.value))
-
-    }
-
-  }
-
-  const handlePassword = (e) => {
+	const handlePassword = (e) => {
     if(e.target.value.length > 2 )  {
     setPassword(e.target.value)
-  }
-}
+  		}
+	}
+
+
 
 
   useEffect(() => {

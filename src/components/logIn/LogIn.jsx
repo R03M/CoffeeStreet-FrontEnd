@@ -7,8 +7,6 @@ import { Link } from "react-router-dom";
 
 
 const LogIn = () => {
-	
-
 	return (
 		<div className="logInDiv">
 			<NavBar />
@@ -19,7 +17,6 @@ const LogIn = () => {
 					<button>Sign Up</button>
 			</Link>
 			</div>
-
 		</div>
 	);
 };

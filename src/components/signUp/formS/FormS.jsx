@@ -20,9 +20,9 @@ const FormS = () => {
 	const addUser = (e)	=> {
 		let user = new User(e.name, e.surname, e.role, e.email, e.password, );
 		dispatch(postUserNew(user));
-		console.log(user)
+		// console.log(user)
 	};
-	
+
 	const userSchema = Yup.object().shape({
 		name: Yup.string()
 			.min(3, "Name too short")
@@ -101,8 +101,8 @@ const FormS = () => {
 					{errors.password && touched.password && (
 						<ErrorMessage name="password" component="div"/>
 					)}
-					
-					<button 
+
+					<button
 					type="submit" style={{fontSize:"2rem", padding: "1rem", backgroundColor:"green"}}>Save</button>
 					{isSubmitting ? <p>Register your credentials</p> : null}
 				</Form>

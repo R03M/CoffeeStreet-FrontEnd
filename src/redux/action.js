@@ -1,6 +1,5 @@
 import axios from "axios";
 
-
 const url = process.env.REACT_APP_BACK_URL;
 
 export function getProducts() {
@@ -108,10 +107,8 @@ export function postUserNew(payload) {
 	}
 }
 
-
 export function LoginUser(payload) {
 	return async function (dispatch) {
-
 		try {
 			const response = await axios.post(`${url}/login`, payload);
 
@@ -127,67 +124,63 @@ export function LoginUser(payload) {
 	};
 }
 
-
 export function logOutUser(accessToken) {
-	
-  return async function (dispatch) {
-		
-    try {
-      const response = await axios.post(`${url}/login/remove`,{} , {
-        headers: {
-					authorization: `Bearer ${accessToken}`,
-					Accept: "aplication/json"
-				},
-      });
+	return async function (dispatch) {
+		try {
+			const response = await axios.post(
+				`${url}/login/remove`,
+				{},
+				{
+					headers: {
+						authorization: `Bearer ${accessToken}`,
+						Accept: "aplication/json"
+					}
+				}
+			);
 
 			window.location.href = "/";
-      if (response) {
-        dispatch({
-          type: "LOGOUT_USER",
-        });
-
-      }
-    } catch (error) {
-
-    }
-  };
+			if (response) {
+				dispatch({
+					type: "LOGOUT_USER"
+				});
+			}
+		} catch (error) {}
+	};
 }
-	export function getMyFavorites (payload) {
-		return async function (dispatch) {
-			try {
-				const response = await axios.get(`${url}/users/${payload}/favourites`);
-				dispatch({
-					type: "GET_MY_FAVORITES",
-					payload: response.data
-				});
-			} catch (error) {
-				return error;
-			}
-		};
+export function getMyFavorites(payload) {
+	return async function (dispatch) {
+		try {
+			const response = await axios.get(`${url}/users/${payload}/favourites`);
+			dispatch({
+				type: "GET_MY_FAVORITES",
+				payload: response.data
+			});
+		} catch (error) {
+			return error;
+		}
+	};
+}
 
-	}
+export function addProductFavourite(payload, id) {
+	return async function (dispatch) {
+		try {
+			const response = await axios.post(`${url}/users/${id}/favourites`, payload);
+			dispatch({
+				type: "ADD_PRODUCT_FAVOURITE",
+				payload: response.data
+			});
+		} catch (error) {
+			return error;
+		}
+	};
+}
 
-	export function addProductFavourite (payload, id) {
-		return async function (dispatch) {
-			try {
-				const response = await axios.post(`${url}/users/${id}/favourites`, payload);
-				dispatch({
-					type: "ADD_PRODUCT_FAVOURITE",
-					payload: response.data
-				});
-			} catch (error) {
-				return error;
-			}
-		};
-	}
-
-
-export function registerUserGoogle ( payload) {
+export function registerUserGoogle(payload) {
 	return async function (dispatch) {
 		try {
 			const response = await axios.post(`${url}/register`, payload);
 			dispatch({
-				type: "REGISTER_USER_GOOGLE",
+				type: "REGISTER_USER_GOOGLE"
 			});
 		} catch (error) {
 			return error;
@@ -197,7 +190,6 @@ export function registerUserGoogle ( payload) {
 
 export function checkEmailUser(payload) {
 	return async function (dispatch) {
-
 		try {
 			const response = await axios.post(`${url}/register/email?email=${payload}`);
 			dispatch({
@@ -210,23 +202,21 @@ export function checkEmailUser(payload) {
 	};
 }
 export function logPostData(token) {
-
- 
-  return async function (dispach) {
-    try {
-      const response = await axios.get(`${url}/users`, {
-        headers: {
-          authorization: `Bearer ${token}`,
-          Accept: "aplication/json"
-        }
-      });
-      dispach({
-        type: "LOG_POST_DATA",
-        payload: response.data
-      });
-    } catch (error) {
-      dispach({
-				type: "LOGOUT_USER",
+	return async function (dispatch) {
+		try {
+			const response = await axios.get(`${url}/users`, {
+				headers: {
+					authorization: `Bearer ${token}`,
+					Accept: "aplication/json"
+				}
+			});
+			dispatch({
+				type: "LOG_POST_DATA",
+				payload: response.data
+			});
+		} catch (error) {
+			dispatch({
+				type: "LOGOUT_USER"
 			});
 		}
 	};
@@ -246,9 +236,7 @@ export function getProductsId(id) {
 	};
 }
 
-
 export function clearDetailsProductId() {
-
 	return {
 		type: "CLEAR_DETAILS_PRODUCT_IS"
 	};
@@ -292,7 +280,7 @@ export function clearCart() {
 		type: "CLEAR_CART"
 	};
 }
-      export function postShoppingCart(cart){
+export function postShoppingCart(cart) {
 	return async function (dispatch) {
 		try {
 			const response = await axios.post(`${url}/cart`, cart);
@@ -306,7 +294,7 @@ export function clearCart() {
 	};
 }
 
-export function getShoppingCart(){
+export function getShoppingCart() {
 	return async function (dispatch) {
 		try {
 			const response = await axios.get(`${url}/cart`);
@@ -320,7 +308,7 @@ export function getShoppingCart(){
 	};
 }
 
-export function deleteShoppingCart(){
+export function deleteShoppingCart() {
 	return async function (dispatch) {
 		try {
 			const response = await axios.delete(`${url}/cart`);
@@ -328,13 +316,12 @@ export function deleteShoppingCart(){
 				type: "DELETE_SHOPPING_CART",
 				payload: response.data
 			});
-		}
-		catch (error) {
+		} catch (error) {
 			return error;
-    }
-  };
+		}
+	};
 }
-export function putShoppingCart(){
+export function putShoppingCart() {
 	return async function (dispatch) {
 		try {
 			const response = await axios.put(`${url}/cart`);
@@ -342,31 +329,29 @@ export function putShoppingCart(){
 				type: "PUT_SHOPPING_CART",
 				payload: response.data
 			});
-		}
-		catch (error) {
-      return error;
-    }
-  };
-}
-
-export function refreshLog(  accessToken, refreshToken){
-	console.log("refresh token", refreshToken)
-	console.log("access token", accessToken)
-	return async function (dispatch) {
-		try {
-			const response = await axios.post(`${url}/login/refresh`, {refreshToken} , { 
-				headers: {
-					authorization: `Bearer ${accessToken}`,
-					
-				}
-			});
-			localStorage.setItem("accessToken", JSON.stringify(response.data.accessToken));
 		} catch (error) {
 			return error;
 		}
-
-	}
-
-
-
+	};
 }
+
+// export function refreshLog(accessToken, refreshToken) {
+// 	console.log("refresh token", refreshToken);
+// 	console.log("access token", accessToken);
+// 	return async function (dispatch) {
+// 		try {
+// 			const response = await axios.post(
+// 				`${url}/login/refresh`,
+// 				{ refreshToken },
+// 				{
+// 					headers: {
+// 						authorization: `Bearer ${accessToken}`
+// 					}
+// 				}
+// 			);
+// 			localStorage.setItem("accessToken", JSON.stringify(response.data.accessToken));
+// 		} catch (error) {
+// 			return error;
+// 		}
+// 	};
+// }

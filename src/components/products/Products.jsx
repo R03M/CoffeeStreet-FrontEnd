@@ -66,43 +66,43 @@ const Products = () => {
 
 
 
-	useEffect(() => {
+	// useEffect(() => {
 
-		if(checkEmail.email === false){
-			dispatch(registerUserGoogle({
-				email: user.email,
-				name: user.given_name,
-				surname: user.family_name,
-				image: user.picture,
-				isGoogle: true,
-			}))
+	// 	if(checkEmail.email === false){
+	// 		dispatch(registerUserGoogle({
+	// 			email: user.email,
+	// 			name: user.given_name,
+	// 			surname: user.family_name,
+	// 			image: user.picture,
+	// 			isGoogle: true,
+	// 		}))
 
-		}
-	}, [dispatch, checkEmail, user]);
+	// 	}
+	// }, [dispatch, checkEmail, user]);
 
 
-	useEffect(() => {
-		if(isAuthenticated && !accessToken){
-			dispatch(LoginUser({
-				email: user.email,
-				isGoogle: true,
-				password:"12465"
-			}))
-			logout()
+	// useEffect(() => {
+	// 	if(isAuthenticated && !accessToken){
+	// 		dispatch(LoginUser({
+	// 			email: user.email,
+	// 			isGoogle: true,
+	// 			password:"12465"
+	// 		}))
+	// 		logout()
 
-		}
-	}, [dispatch, isAuthenticated, accessToken, user]);
+	// 	}
+	// }, [dispatch, isAuthenticated, accessToken, user]);
 
-	useEffect(() => {
+	// useEffect(() => {
 
-		if(newlyCreated){
-			dispatch(LoginUser({
-				email: user.email,
-				isGoogle: true,
-				password:"12465"
-			}))
-		}
-	}, [dispatch, newlyCreated, user]);
+	// 	if(newlyCreated){
+	// 		dispatch(LoginUser({
+	// 			email: user.email,
+	// 			isGoogle: true,
+	// 			password:"12465"
+	// 		}))
+	// 	}
+	// }, [dispatch, newlyCreated, user]);
 
 
 

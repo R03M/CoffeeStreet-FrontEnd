@@ -6,6 +6,10 @@ import "./navbar.css";
 
 const NavBar = () => {
 	const statusCart = useSelector(state => state.cart);
+	const user = useSelector(state => state.user);
+	console.log('user')
+	console.log(user)
+
 	return (
 		<div className="navbarDivC">
 			<Link to="/">
@@ -20,9 +24,11 @@ const NavBar = () => {
 					<button className="btnNBCU">Menu</button>
 				</Link>
 
-				<Link to="/logIn">
-					<button className="btnNBCU">Log In</button>
-				</Link>
+				{ (!user?.name) &&
+					<Link to="/logIn">
+						<button className="btnNBCU">Log In</button>
+					</Link>
+				}
 
 				<Link to={"/cart"}>
 					<button className="btnNBCU">

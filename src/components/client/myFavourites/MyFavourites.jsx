@@ -6,17 +6,17 @@ import CardP from "../../products/card/CardP.jsx";
 
 
 const MyFavourites = () => {
-	// const accessToken = useSelector((state) => state.accessToken);
+	const accessToken = useSelector((state) => state.accessToken);
 	const usuario = useSelector(state => state.user);
 	const myProductsFavourites = useSelector(state => state.myFavourites);
 	const [withOutFavourites, setWithOutFavourites] = useState(false);
 	const dispach = useDispatch();
 
-	console.log("myProductsFavourites", myProductsFavourites);
-	console.log(myProductsFavourites.hasOwnProperty("errorMessage"))
+	// console.log("myProductsFavourites", myProductsFavourites);
+	// console.log(myProductsFavourites.hasOwnProperty("errorMessage"))
 
 
-	console.log(usuario)
+	// console.log(usuario)
 
 	// useEffect(() => {
 	// 	if(accessToken){
