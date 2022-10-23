@@ -1,14 +1,15 @@
 import React , {useState}from "react";
+import { FcLike } from "react-icons/fc";
 import { Link } from "react-router-dom";
 import { BiDrink } from "react-icons/bi";
 import { GiMilkCarton, GiWheat } from "react-icons/gi";
 import { BsInfo, BsFillCartPlusFill } from "react-icons/bs";
 import swal from "sweetalert";
 import "./cardP.css";
-import { addProductToCart } from "../../../redux/action";
+import { addProductToCart , addProductFavourite } from "../../../redux/action";
 import { useDispatch, useSelector } from "react-redux";
 
-const CardP = ({ product }) => {
+const CardP = ({ product, userId }) => {
 	const alcohol = () => {
 		if (product.alcohol === true) {
 			return (
@@ -79,10 +80,15 @@ const CardP = ({ product }) => {
 		})
 		return count
 	}
-
+	
+	const addFavourites = () => {
+			dispatch(addProductFavourite( {idProduct: product.id} , userId))
+		}
+console.log(product.id)
 
 	return (
 		<div className={product.stock === true ? "cardDiv" : "cardDivF"} key={product.id}>
+			<button onClick={addFavourites} className="like" ><FcLike /></button>
 			<div className="nameCard">{product.name}</div>
 			<img
 				className={product.stock === true ? "imgCard" : "imgCardNSCP"}

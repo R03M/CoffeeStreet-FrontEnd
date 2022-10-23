@@ -1,15 +1,24 @@
+import MyFavourites from "../components/client/myFavourites/MyFavourites";
+
+const localRefreshToken = JSON.parse(localStorage.getItem("refreshToken"));
+const localAccessToken = JSON.parse(localStorage.getItem("accessToken"));
+
 const initialState = {
 	allProducts: [],
 	products: [],
 	errorSProducts: [],
 	productDetails: {},
-	responseCreateProduct: [],
-	refreshToken: {},
+	accessToken: localAccessToken || "" ,
+	refreshToken: localRefreshToken || "" ,
 	checkEmail: {},
+	newlyCreated: false,
+	user:{},
+	responseCreateProduct: [],
 	productsDataId: {},
 	cart: [],
 	quantity: 0,
-	order: []
+	order: [],
+	myFavourites: []
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -33,17 +42,46 @@ export default function rootReducer(state = initialState, action) {
 					products: action.payload
 				};
 			}
-		case "LOGIN_USER":
-			return {
-				...state,
-				refreshToken: action.payload
-			};
 
-		case "CHECK_EMAIL_USER":
-			return {
-				...state,
-				checkEmail: action.payload
-			};
+			case "LOGIN_USER":
+				return {
+					...state,
+					accessToken: action.payload.accessToken,
+					refreshToken: action.payload.refreshToken,
+				};
+			case "REGISTER_USER_GOOGLE":
+				return {
+					...state,
+					newlyCreated : true
+				};
+
+
+			case "LOG_POST_DATA":
+				return {
+					...state,
+					user: action.payload
+				};
+
+			case "GET_MY_FAVORITES":
+				return {
+					...state,
+					myFavourites: action.payload
+				};
+		
+			case "LOGOUT_USER":
+				return {
+					...state,
+					accessToken: "",
+					refreshToken: "",
+					user: {}
+					
+
+				};
+			case "CHECK_EMAIL_USER":
+				return {
+					...state,
+					checkEmail: action.payload
+				};
 
 		case "CLEAR_ERROR_SEARCHP":
 			return {
