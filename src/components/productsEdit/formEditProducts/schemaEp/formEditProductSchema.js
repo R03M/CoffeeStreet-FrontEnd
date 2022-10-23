@@ -10,12 +10,12 @@ import { TEXTURES } from "../../../../models/textures.enum";
 
 export const productEditSchema = Yup.object().shape({
 	name: Yup.string()
-		.min(10, "Name too short")
+		.min(3, "Name too short")
 		.max(55, "Name too long")
 		.required("Name is required"),
 	//? //////////////////////////////////////////////////////////////////////////////////
 	description: Yup.string()
-		.min(30, "Description too short")
+		.min(3, "Description too short")
 		.max(500, "Description too long")
 		.required("Description is required"),
 	//? //////////////////////////////////////////////////////////////////////////////////
@@ -151,7 +151,42 @@ export const productEditSchema = Yup.object().shape({
 			otherwise: Yup.string().notRequired()
 		}),
 	// //? //////////////////////////////////////////////////////////////////////////////////
-	// // ingredients: Yup.array().min(1, "At least one ingredient is required").nullable(),
+	ingredients: Yup.array()
+		.when("category", {
+			is: CATEGORIES.COFFEE_READY_TO_DRINK,
+			then: Yup.array()
+				.min(1, "At least one ingredient is required")
+				.required("Ingredients is required"),
+			otherwise: Yup.array().notRequired()
+		})
+		.when("category", {
+			is: CATEGORIES.TEA,
+			then: Yup.array()
+				.min(1, "At least one ingredient is required")
+				.required("Ingredients is required"),
+			otherwise: Yup.array().notRequired()
+		})
+		.when("category", {
+			is: CATEGORIES.SALTY_BACKERY,
+			then: Yup.array()
+				.min(1, "At least one ingredient is required")
+				.required("Ingredients is required"),
+			otherwise: Yup.array().notRequired()
+		})
+		.when("category", {
+			is: CATEGORIES.SWEET_BACKERY,
+			then: Yup.array()
+				.min(1, "At least one ingredient is required")
+				.required("Ingredients is required"),
+			otherwise: Yup.array().notRequired()
+		})
+		.when("category", {
+			is: CATEGORIES.OTHER,
+			then: Yup.array()
+				.min(1, "At least one ingredient is required")
+				.required("Ingredients is required"),
+			otherwise: Yup.array().notRequired()
+		}),
 	// //? //////////////////////////////////////////////////////////////////////////////////
 	originCountry: Yup.string().when("category", {
 		is: CATEGORIES.COFFEE_TO_PREPARED,

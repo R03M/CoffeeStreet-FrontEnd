@@ -44,9 +44,8 @@ const EditProducts = ({ exitF }) => {
 		gluten: dataProduct.gluten,
 		stock: dataProduct.stock,
 		ingredients: dataProduct.ingredients,
-		originCountry: dataProduct.originCountry,
-		state: dataProduct.state,
-		cream: dataProduct.attribute.cream,
+		originCountry: dataProduct.originCountry ? dataProduct.originCountry : "",
+		cream: dataProduct.attribute.cream ? dataProduct.attribute.cream  : "null" ,
 		texture: dataProduct.attribute.texture,
 		body: dataProduct.attribute.body,
 		acidity: dataProduct.attribute.acidity,
@@ -75,40 +74,64 @@ const EditProducts = ({ exitF }) => {
 		}
 	};
 
-	const addProduct = (values, resetForm) => {
+	const addProduct = values => {
 		let newProduct = {
 			name: values.name,
 			description: values.description,
 			image:
-				values.image.length > 10
+				values.image.length > 0
 					? values.image
-					: "https://www.publicdomainpictures.net/pictures/280000/nahled/not-found-image-15383864787lu.jpg",
-			price: values.price,
+					: "https://res.cloudinary.com/db6aq84ze/image/upload/v1666550286/coffeeStreet_vhewoj.png",
+					price: values.price,
 			category:
 				values.category === CATEGORIES.COFFEE_READY_TO_DRINK ||
 				values.category === CATEGORIES.COFFEE_TO_PREPARED
 					? "coffee"
 					: values.category,
-			lactose: values.lactose === "true" ? true : false,
-			gluten: values.gluten === "true" ? true : false,
-			alcohol: values.alcohol === "true" ? true : false,
+			lactose:
+				values.category === CATEGORIES.COFFEE_TO_PREPARED
+					? null
+					: values.lactose === "true"
+					? true
+					: false,
+			gluten:
+				values.category === CATEGORIES.COFFEE_TO_PREPARED ||
+				values.category === CATEGORIES.TEA
+					? null
+					: values.gluten === "true"
+					? true
+					: false,
+			alcohol:
+				values.category === CATEGORIES.COFFEE_TO_PREPARED
+					? null
+					: values.alcohol === "true"
+					? true
+					: false,
 			stock: values.stock === "true" ? true : false,
-			ingredients: values.ingredients,
-			originCountry: values.originCountry,
+			ingredients:
+				values.category === CATEGORIES.COFFEE_TO_PREPARED ? null : values.ingredients,
+			originCountry:
+				values.category === CATEGORIES.COFFEE_TO_PREPARED ? values.originCountry : null,
 			isPrepared: values.category === CATEGORIES.COFFEE_TO_PREPARED ? false : true,
-			state: "active",
-			cream: values.cream === "true" ? true : false,
-			texture: values.texture,
-			body: values.body,
-			acidity: values.acidity,
-			bitterness: values.bitterness,
-			roast: values.roast,
-			color: values.color
+			cream:
+				values.category === CATEGORIES.COFFEE_READY_TO_DRINK
+					? values.cream === "true"
+						? true
+						: false
+					: null,
+			texture:
+				values.category === CATEGORIES.COFFEE_READY_TO_DRINK ? values.texture : null,
+			body: values.category === CATEGORIES.COFFEE_READY_TO_DRINK ? values.body : null,
+			acidity:
+				values.category === CATEGORIES.COFFEE_READY_TO_DRINK ? values.acidity : null,
+			bitterness:
+				values.category === CATEGORIES.COFFEE_READY_TO_DRINK ? values.bitterness : null,
+			roast: values.category === CATEGORIES.COFFEE_READY_TO_DRINK ? values.roast : null,
+			color: values.category === CATEGORIES.COFFEE_READY_TO_DRINK ? values.color : null
 		};
 
 		console.log(newProduct);
 		// dispatch(putNewProduct(newProduct));
-		// resetForm();
 	};
 	notiSwal();
 
@@ -117,8 +140,8 @@ const EditProducts = ({ exitF }) => {
 			<h1>Edit Product</h1>
 			<Formik
 				initialValues={initialValues}
-				// validationSchema={productSchema}
-				onSubmit={(values, { resetForm }) => addProduct(values, resetForm)}
+				validationSchema={productEditSchema}
+				onSubmit={values => addProduct(values)}
 			>
 				{({ values, touched, errors, isSubmitting, handleChange, handleBlur }) => (
 					<Form className="formNewProductBody1">
