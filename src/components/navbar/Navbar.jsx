@@ -61,8 +61,8 @@ const NavBar = () => {
 						) : null}
 					</div>
 				) : (
-					<Link to="/logIn">
-						<button className="btnNBCU">Log In</button>
+					<Link to="/signIn">
+						<button className="btnNBCU">Sign in</button>
 					</Link>
 				)}
 			</div>
