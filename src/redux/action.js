@@ -181,7 +181,7 @@ export function addProductFavourite(payload, id) {
 export function deleteProductFavourite(payload, id) {
 	return async function (dispatch) {
 		try {
-			await axios.delete(`${url}/users/${id}/favourites`, {data:payload} );
+			await axios.delete(`${url}/users/${id}/favourites`, { data: payload });
 			dispatch({
 				type: "ADD_PRODUCT_FAVOURITE"
 			});
@@ -397,5 +397,15 @@ export function refreshLog(accessToken, refreshToken) {
 			return error;
 		}
 
+	};
+}
+
+export function changeStatus(productStock, productId) {
+	return async function () {
+		try {
+			await axios.put(`${url}/products/${productId}/stock`, { data: productStock });
+		} catch (error) {
+			return error;
+		}
 	};
 }
