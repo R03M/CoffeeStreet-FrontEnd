@@ -13,7 +13,7 @@ import Products from "../components/products/Products.jsx";
 import CurrentNews from "../components/new/currentNews/CurrentNews.jsx";
 import About from "../components/About/About.jsx";
 import ProductsDetails from "../components/productsDetails/ProductsDetails.jsx";
-import { getMyFavorites, logPostData } from "../redux/action";
+import { logPostData } from "../redux/action";
 import ShoppingCart from "../components/ShoppingCart/ShoppingCart.jsx";
 
 import "./App.css";
