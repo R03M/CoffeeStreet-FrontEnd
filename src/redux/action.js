@@ -148,7 +148,7 @@ export function checkEmailUser(payload) {
 	};
 }
 export function logPostData(token) {
-	return async function (dispach) {
+	return async function (dispatch) {
 		try {
 			const response = await axios.get(`${url}/users/`, {
 				headers: {
@@ -157,7 +157,7 @@ export function logPostData(token) {
 				}
 			});
 			// console.log(response.data[0].id);
-			dispach({
+			dispatch({
 				type: "LOG_POST_DATA",
 				payload: response.data
 			});
@@ -181,9 +181,7 @@ export function getProductsId(id) {
 	};
 }
 
-
 export function clearDetailsProductId() {
-
 	return {
 		type: "CLEAR_DETAILS_PRODUCT_IS"
 	};
@@ -227,7 +225,7 @@ export function clearCart() {
 		type: "CLEAR_CART"
 	};
 }
-      export function postShoppingCart(cart){
+export function postShoppingCart(cart) {
 	return async function (dispatch) {
 		try {
 			const response = await axios.post(`${url}/cart`, cart);
@@ -241,7 +239,7 @@ export function clearCart() {
 	};
 }
 
-export function getShoppingCart(){
+export function getShoppingCart() {
 	return async function (dispatch) {
 		try {
 			const response = await axios.get(`${url}/cart`);
@@ -255,7 +253,7 @@ export function getShoppingCart(){
 	};
 }
 
-export function deleteShoppingCart(){
+export function deleteShoppingCart() {
 	return async function (dispatch) {
 		try {
 			const response = await axios.delete(`${url}/cart`);
@@ -263,13 +261,12 @@ export function deleteShoppingCart(){
 				type: "DELETE_SHOPPING_CART",
 				payload: response.data
 			});
-		}
-		catch (error) {
+		} catch (error) {
 			return error;
-    }
-  };
+		}
+	};
 }
-export function putShoppingCart(){
+export function putShoppingCart() {
 	return async function (dispatch) {
 		try {
 			const response = await axios.put(`${url}/cart`);
@@ -277,9 +274,28 @@ export function putShoppingCart(){
 				type: "PUT_SHOPPING_CART",
 				payload: response.data
 			});
+		} catch (error) {
+			return error;
 		}
-		catch (error) {
-      return error;
-    }
-  };
+	};
+}
+
+export function putProducts(id, payload) {
+	return async function (dispatch) {
+		try {
+			const response = await axios.put(`${url}/products/${id}`, payload);
+			dispatch({
+				type: "PUT_PRODUCTS",
+				payload: response.data.message
+			});
+		} catch (error) {
+			return error;
+		}
+	};
+}
+
+export function clearResPutProducts() {
+	return {
+		type: "CLEAR_RES_PUT_PRODUCTS"
+	}
 }

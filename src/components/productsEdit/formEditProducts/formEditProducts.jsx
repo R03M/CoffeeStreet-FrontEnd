@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { clearDetailsProductId, clearResponseNewProduct } from "../../../redux/action";
 import { Formik, Form, Field, ErrorMessage, isString } from "formik";
-import swal from "sweetalert";
+import { putProducts, clearResPutProducts } from "../../../redux/action";
 import { CATEGORIES } from "../../../models/categories.enum";
 import { TEXTURES } from "../../../models/textures.enum";
 import { BODY } from "../../../models/body.enum";
@@ -11,12 +11,15 @@ import { BITTERNESS } from "../../../models/bitterness.enum";
 import { ROAST } from "../../../models/roast.enum";
 import { COLOR } from "../../../models/color.enum";
 import { productEditSchema } from "./schemaEp/formEditProductSchema.js";
+import swal from "sweetalert";
 import "./formEditProducts.css";
 
 const EditProducts = ({ exitF }) => {
 	const dispatch = useDispatch();
-	const responseOfCreateNp = useSelector(state => state.responseCreateProduct);
+	const responseOFUpdatedP = useSelector(state => state.resUpdatedProduct);
 	const dataProduct = useSelector(state => state.productsDataId);
+
+	const [errorNoti, setErrorNoti] = useState(false);
 
 	const handleExit = () => {
 		dispatch(clearDetailsProductId());
@@ -45,36 +48,59 @@ const EditProducts = ({ exitF }) => {
 		stock: dataProduct.stock,
 		ingredients: dataProduct.ingredients,
 		originCountry: dataProduct.originCountry ? dataProduct.originCountry : "",
-		cream: dataProduct.attribute.cream ? dataProduct.attribute.cream  : "null" ,
-		texture: dataProduct.attribute.texture,
-		body: dataProduct.attribute.body,
-		acidity: dataProduct.attribute.acidity,
-		bitterness: dataProduct.attribute.bitterness,
-		roast: dataProduct.attribute.roast,
-		color: dataProduct.attribute.color
+		cream:
+			dataProduct.category === "coffee" && dataProduct.isPrepared === true
+				? dataProduct.attribute.cream
+				: null,
+		texture:
+			dataProduct.category === "coffee" && dataProduct.isPrepared === true
+				? dataProduct.attribute.texture
+				: null,
+		body:
+			dataProduct.category === "coffee" && dataProduct.isPrepared === true
+				? dataProduct.attribute.body
+				: null,
+		acidity:
+			dataProduct.category === "coffee" && dataProduct.isPrepared === true
+				? dataProduct.attribute.acidity
+				: null,
+		bitterness:
+			dataProduct.category === "coffee" && dataProduct.isPrepared === true
+				? dataProduct.attribute.bitterness
+				: null,
+		roast:
+			dataProduct.category === "coffee" && dataProduct.isPrepared === true
+				? dataProduct.attribute.roast
+				: null,
+		color:
+			dataProduct.category === "coffee" && dataProduct.isPrepared === true
+				? dataProduct.attribute.color
+				: null
 	};
 
 	const notiSwal = () => {
-		if (responseOfCreateNp === "Created") {
+		if (responseOFUpdatedP === "Success Update") {
 			swal({
-				title: "Created",
+				title: "Update",
 				text: "",
 				icon: "success",
 				button: "Ok"
 			});
-			dispatch(clearResponseNewProduct());
-		} else if (responseOfCreateNp === "Not created") {
+			setErrorNoti(false)
+			dispatch(clearResPutProducts());
+		} else if (errorNoti === true) {
 			swal({
 				title: "Error",
 				text: "",
 				icon: "error",
 				button: "Ok"
 			});
-			dispatch(clearResponseNewProduct());
+			setErrorNoti(false)
 		}
 	};
 
 	const addProduct = values => {
+		setErrorNoti(true);
 		let newProduct = {
 			name: values.name,
 			description: values.description,
@@ -82,7 +108,7 @@ const EditProducts = ({ exitF }) => {
 				values.image.length > 0
 					? values.image
 					: "https://res.cloudinary.com/db6aq84ze/image/upload/v1666550286/coffeeStreet_vhewoj.png",
-					price: values.price,
+			price: values.price,
 			category:
 				values.category === CATEGORIES.COFFEE_READY_TO_DRINK ||
 				values.category === CATEGORIES.COFFEE_TO_PREPARED
@@ -131,7 +157,7 @@ const EditProducts = ({ exitF }) => {
 		};
 
 		console.log(newProduct);
-		// dispatch(putNewProduct(newProduct));
+		dispatch(putProducts(dataProduct.id, newProduct));
 	};
 	notiSwal();
 
@@ -353,6 +379,41 @@ const EditProducts = ({ exitF }) => {
 										id="ingredients"
 										name="ingredients[4]"
 										placeholder="Ingredient 5"
+										className="ingredientsInputNP"
+									/>
+									<Field
+										type="text"
+										id="ingredients"
+										name="ingredients[5]"
+										placeholder="Ingredient 6"
+										className="ingredientsInputNP"
+									/>
+									<Field
+										type="text"
+										id="ingredients"
+										name="ingredients[6]"
+										placeholder="Ingredient 7"
+										className="ingredientsInputNP"
+									/>
+									<Field
+										type="text"
+										id="ingredients"
+										name="ingredients[7]"
+										placeholder="Ingredient 8"
+										className="ingredientsInputNP"
+									/>
+									<Field
+										type="text"
+										id="ingredients"
+										name="ingredients[8]"
+										placeholder="Ingredient 9"
+										className="ingredientsInputNP"
+									/>
+									<Field
+										type="text"
+										id="ingredients"
+										name="ingredients[9]"
+										placeholder="Ingredient 10"
 										className="ingredientsInputNP"
 									/>
 									{errors.ingredients && touched.ingredients && (

@@ -343,6 +343,43 @@ const NewProducts = () => {
 										placeholder="Ingredient 5"
 										className="ingredientsInputNP"
 									/>
+
+									<Field
+										type="text"
+										id="ingredients"
+										name="ingredients[5]"
+										placeholder="Ingredient 6"
+										className="ingredientsInputNP"
+									/>
+									<Field
+										type="text"
+										id="ingredients"
+										name="ingredients[6]"
+										placeholder="Ingredient 7"
+										className="ingredientsInputNP"
+									/>
+									<Field
+										type="text"
+										id="ingredients"
+										name="ingredients[7]"
+										placeholder="Ingredient 8"
+										className="ingredientsInputNP"
+									/>
+									<Field
+										type="text"
+										id="ingredients"
+										name="ingredients[8]"
+										placeholder="Ingredient 9"
+										className="ingredientsInputNP"
+									/>
+									<Field
+										type="text"
+										id="ingredients"
+										name="ingredients[9]"
+										placeholder="Ingredient 10"
+										className="ingredientsInputNP"
+									/>
+
 									{errors.ingredients && touched.ingredients && (
 										<ErrorMessage
 											name="ingredients"
