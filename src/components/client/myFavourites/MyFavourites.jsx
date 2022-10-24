@@ -12,21 +12,10 @@ const MyFavourites = () => {
 	const [withOutFavourites, setWithOutFavourites] = useState(false);
 	const dispach = useDispatch();
 
-	// console.log("myProductsFavourites", myProductsFavourites);
-	// console.log(myProductsFavourites.hasOwnProperty("errorMessage"))
-
-
-	// console.log(usuario)
-
-	// useEffect(() => {
-	// 	if(accessToken){
-	// 		dispach(logPostData(accessToken))
-	// 	}
-	// }, [dispach, accessToken])
 
 	useEffect(() => {
-		if(usuario.hasOwnProperty("user")){
-			dispach(getMyFavorites(usuario.user.id))
+		if(usuario?.name){
+			dispach(getMyFavorites(usuario.id))
 		}
 
 

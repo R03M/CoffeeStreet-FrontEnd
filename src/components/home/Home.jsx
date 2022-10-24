@@ -21,6 +21,8 @@ const Home = () => {
 	// const refreshToken = useSelector((state) => state.refreshToken);
 	// const accessToken = useSelector((state) => state.accessToken);
 	const usuario = useSelector(state => state.user);
+	console.log('estoy en nav client')
+	console.log(usuario.name)
 	// const dispach = useDispatch();
 // console.log(usuario)
 	// useEffect(() => {
@@ -33,7 +35,7 @@ const Home = () => {
   // console.log(refreshToken)
 	return (
 		<div className="homeDiv">
-		  { usuario.hasOwnProperty("user") ? (
+		  { usuario?.name ? (
 				<NavBarClient />
 		  ) : <NavBar />}
 			{/* { refreshToken ? <NavBarClient /> : <NavBar /> } */}

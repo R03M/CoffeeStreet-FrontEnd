@@ -146,7 +146,7 @@ const Products = () => {
 						<div className="cardsProd">
 							{dataEnd.map(data => {
 								return <CardP key={data.id} product={data}
-								 				userId={ usuario.hasOwnProperty("user") ? usuario.user.id : null}
+								 				userId={ usuario?.name ? usuario.id : null}
 								/>;
 							})}
 						</div>
@@ -161,7 +161,7 @@ const Products = () => {
 
 	return (
 		<div className="productsDiv">
-		{ usuario.hasOwnProperty("user") ? (
+		{ usuario?.name ? (
 
 				<NavBarClient />
 
@@ -169,6 +169,7 @@ const Products = () => {
 		  ) : (
 				<NavBar />
 				)}
+
 			<div className="navbarProduc">
 				<NavbarProduc />
 				{pagACards()}

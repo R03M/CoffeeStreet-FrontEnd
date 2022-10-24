@@ -11,12 +11,13 @@ import { useSelector } from "react-redux";
 
 
 const NavBar = () => {
+	console.log('hello im the nav client')
 	const [menuUsuario, setMenuUsuario] = useState(false);
 	const statusCart = useSelector(state => state.cart);
 
   const usuario = useSelector(state => state.user);
 
- 
+
 
 	const handlerMenuUsuario = () => {
 		if (menuUsuario === false) {
@@ -53,20 +54,20 @@ const NavBar = () => {
 				</Link> */}
 					<div className="menu-usuario">
 
-						<img  onClick={handlerMenuUsuario} className="img-usuario" src={usuario.user.image} alt={usuario.user.name}/> 
-						
+						<img  onClick={handlerMenuUsuario} className="img-usuario" src={usuario.image} alt={usuario.name}/>
+
 						{ menuUsuario ? (
 							<div className="menu-usuario-activo">
 
-								<h4 className="menu-usuario-activo-p">{usuario.user.name} {usuario.user.surname}</h4>
-								<p className="menu-usuario-activo-p">{usuario.user.role}</p>
+								<h4 className="menu-usuario-activo-p">{usuario.name} {usuario.surname}</h4>
+								<p className="menu-usuario-activo-p">{usuario.role}</p>
 								<hr/>
 								<Link to="/client">
 									<button className="btn-perfil"> Profile </button>
 								</Link>
-							
-							  <LogOutAuth0/> 
-								
+
+							  <LogOutAuth0/>
+
 							</div>
 
 						) : null }
