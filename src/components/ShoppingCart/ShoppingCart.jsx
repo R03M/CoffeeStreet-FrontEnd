@@ -4,7 +4,6 @@ import {
 	removeProductFromCart,
 	clearCart,
 	removeOneProductFromCart,
-	getOrCreateShoppingCart,
 	deleteItemShoppingCart,
 	addItemShoppingCart,
 	emptyCart
@@ -21,49 +20,25 @@ const ShoppingCart = () => {
 	const quantity = useSelector(state => state.quantity);
 	const [order, setOrder] = useState([]);
 	const user = useSelector(state => state.user);
-	const product = useSelector(state => state.products);
-	// const usuario = user.user.auth.id
-
+	const product = useSelector(state => state.cart.items.id);
 	console.log("cart " , cart)
-	// useEffect(() => {
-	// 	if (user.hasOwnProperty("user")) {
-	// 		dispatch(getOrCreateShoppingCart(usuario));
-	// 	} 
-	// }, []);
+	console.log("product " , product)
 
 	const handleAdd = () => {
-		if(user.hasOwnProperty("user")){
+		if(user.hasOwnProperty("user") ){
 			console.log("entre")
-			dispatch(addItemShoppingCart({  idCart: cart.cartId, idProduct: product.id}));
-		}else{
-			dispatch(addProductToCart(product.id));
-			quantity.map(q => {
-				if (q.idProduct === product.id) {
-					setCount(q.quantity);
-				}
-			});
+			dispatch(addItemShoppingCart({  idCart: cart.cartId, idProduct : product.id}));
 		}
 	};
 
-	const handleRemove = id => {
-		if(user.id){
-			dispatch(emptyCart(id))
-		} else{
-		dispatch(removeProductFromCart(id));
-		setCount(count - 1);
-		setOrder(order.filter(e => e !== id));
+	const handleRemove = () => {
+		if(user.hasOwnProperty("user")){
+			dispatch(emptyCart({  idCart: cart.cartId}));
 		}
 	};
-	const handleRemoveOne = id => {
-		if(user.id){
-			dispatch(deleteItemShoppingCart(id))
-		}else{
-		dispatch(removeOneProductFromCart(id));
-			quantity.map(q => {
-			if (q.id === id) {
-				setCount(q.quantity);
-			}
-			});
+	const handleRemoveOne = () => {
+		if(user.hasOwnProperty("user")){
+			dispatch(deleteItemShoppingCart({  idCart: cart.cartId, idProduct : product.id}));
 		}
 	};
 	const handleClear = () => {
@@ -112,7 +87,7 @@ const ShoppingCart = () => {
 			</div>
 
 			<div className="bodyCartSC">
-				{cart?.map(e => (
+				{cart.items.map(e => (
 					<div className="cardCartSC">
 						<div className="titleCardSC">
 							<h3>ud ${e.price}</h3>

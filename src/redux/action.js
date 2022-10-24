@@ -1,6 +1,5 @@
 import axios from "axios";
 
-
 const url = process.env.REACT_APP_BACK_URL;
 
 export function getProducts() {
@@ -100,18 +99,16 @@ export function postUserNew(payload) {
 	try {
 		return async function () {
 			const response = await axios.post(`${url}/register`, payload);
-			alert("Created user successfully");
+			// alert("Created user successfully");
 			window.location.href = "/login";
 		};
 	} catch (error) {
-		return error;
+		console.log(error);
 	}
 }
 
-
 export function LoginUser(payload) {
 	return async function (dispatch) {
-
 		try {
 			const response = await axios.post(`${url}/login`, payload);
 
@@ -119,75 +116,88 @@ export function LoginUser(payload) {
 				type: "LOGIN_USER",
 				payload: response.data
 			});
-
-			// console.log(response.data);
+			if (response) {
+				localStorage.setItem("refreshToken", JSON.stringify(response.data.refreshToken));
+				localStorage.setItem("accessToken", JSON.stringify(response.data.accessToken));
+			}
 		} catch (error) {
 			return alert("Invalid email or password");
 		}
 	};
 }
 
-
 export function logOutUser(accessToken) {
-	
-  return async function (dispatch) {
-		
-    try {
-      const response = await axios.post(`${url}/login/remove`,{} , {
-        headers: {
-					authorization: `Bearer ${accessToken}`,
-					Accept: "aplication/json"
-				},
-      });
-
-			window.location.href = "/";
-      if (response) {
-        dispatch({
-          type: "LOGOUT_USER",
-        });
-
-      }
-    } catch (error) {
-
-    }
-  };
+	return async function (dispatch) {
+		try {
+			const response = await axios.post(
+				`${url}/login/remove`,
+				{},
+				{
+					headers: {
+						authorization: `Bearer ${accessToken}`,
+						Accept: "aplication/json"
+					}
+				}
+			);
+			if (response) {
+				localStorage.removeItem("refreshToken");
+				localStorage.removeItem("accessToken");
+				dispatch({
+					type: "LOGOUT_USER"
+				});
+			}
+		} catch (error) {}
+	};
 }
-	export function getMyFavorites (payload) {
-		return async function (dispatch) {
-			try {
-				const response = await axios.get(`${url}/users/${payload}/favourites`);
-				dispatch({
-					type: "GET_MY_FAVORITES",
-					payload: response.data
-				});
-			} catch (error) {
-				return error;
-			}
-		};
 
-	}
+export function getMyFavorites(payload) {
+	return async function (dispatch) {
+		try {
+			const response = await axios.get(`${url}/users/${payload}/favourites`);
+			dispatch({
+				type: "GET_MY_FAVORITES",
+				payload: response.data
+			});
+		} catch (error) {
+			return error;
+		}
+	};
+}
 
-	export function addProductFavourite (payload, id) {
-		return async function (dispatch) {
-			try {
-				const response = await axios.post(`${url}/users/${id}/favourites`, payload);
-				dispatch({
-					type: "ADD_PRODUCT_FAVOURITE",
-					payload: response.data
-				});
-			} catch (error) {
-				return error;
-			}
-		};
-	}
+export function addProductFavourite(payload, id) {
+	return async function (dispatch) {
+		try {
+			const response = await axios.post(`${url}/users/${id}/favourites`, payload);
+			dispatch({
+				type: "ADD_PRODUCT_FAVOURITE",
+				payload: response.data
+			});
+		} catch (error) {
+			return error;
+		}
+	};
+}
 
+export function deleteProductFavourite(payload, id) {
+	return async function (dispatch) {
+		try {
+			await axios.delete(`${url}/users/${id}/favourites`, {data:payload} );
+			dispatch({
+				type: "ADD_PRODUCT_FAVOURITE"
+			});
+		} catch (error) {
+			return error;
+		}
+	};
+}
 
-export function registerUserGoogle ( payload) {
+export function registerUserGoogle(payload) {
 	return async function (dispatch) {
 		try {
 			const response = await axios.post(`${url}/register`, payload);
 			dispatch({
 				type: "REGISTER_USER_GOOGLE",
+				payload: true
 			});
 		} catch (error) {
 			return error;
@@ -197,7 +207,6 @@ export function registerUserGoogle ( payload) {
 
 export function checkEmailUser(payload) {
 	return async function (dispatch) {
-
 		try {
 			const response = await axios.post(`${url}/register/email?email=${payload}`);
 			dispatch({
@@ -210,23 +219,21 @@ export function checkEmailUser(payload) {
 	};
 }
 export function logPostData(token) {
-
- 
-  return async function (dispach) {
-    try {
-      const response = await axios.get(`${url}/users`, {
-        headers: {
-          authorization: `Bearer ${token}`,
-          Accept: "aplication/json"
-        }
-      });
-      dispach({
-        type: "LOG_POST_DATA",
-        payload: response.data
-      });
-    } catch (error) {
-      dispach({
-				type: "LOGOUT_USER",
+	return async function (dispach) {
+		try {
+			const response = await axios.get(`${url}/users`, {
+				headers: {
+					authorization: `Bearer ${token}`,
+					Accept: "aplication/json"
+				}
+			});
+			dispach({
+				type: "LOG_POST_DATA",
+				payload: response.data
+			});
+		} catch (error) {
+			dispach({
+				type: "LOGOUT_USER"
 			});
 		}
 	};
@@ -246,9 +253,7 @@ export function getProductsId(id) {
 	};
 }
 
-
 export function clearDetailsProductId() {
-
 	return {
 		type: "CLEAR_DETAILS_PRODUCT_IS"
 	};
@@ -292,6 +297,7 @@ export function clearCart() {
 		type: "CLEAR_CART"
 	};
 }
+
 export function getOrCreateShoppingCart(id){
 	return async function(dispatch){
 		try{
@@ -308,13 +314,14 @@ export function getOrCreateShoppingCart(id){
 }
 
 export function deleteItemShoppingCart(cart){
+	console.log("delete",cart)
 	return async function (dispatch){
 		try{
-			const response = await axios.delete(`${url}/cart`,cart);
-			dispatch({
-				type: "DELETE_ITEM_SHOPPING_CART",
-				payload: response.data
-			});
+			const response = await axios.delete(`${url}/cart`, cart);
+			// dispatch({
+			// 	type: "DELETE_ITEM_SHOPPING_CART",
+			// 	payload: response.data
+			// });
 		}catch(error){
 			return error;
 		}
@@ -325,10 +332,10 @@ export function addItemShoppingCart(cart){
 	return async function (dispatch){
 		try{
 			const response = await axios.put(`${url}/cart`, cart );
-			dispatch({
-				type: "ADD_ITEM_SHOPPING_CART",
-				payload: response.data
-			});
+			// dispatch({
+			// 	type: "ADD_ITEM_SHOPPING_CART",
+			// 	payload: response.data
+			// });
 		}catch(error){
 			return error;
 		}
@@ -349,24 +356,46 @@ export function emptyCart(cart){
 	}
 }
 
-export function refreshLog(  accessToken, refreshToken){
-	console.log("refresh token", refreshToken)
-	console.log("access token", accessToken)
+
+
+export function putProducts(id, payload) {
 	return async function (dispatch) {
 		try {
-			const response = await axios.post(`${url}/login/refresh`, {refreshToken} , { 
-				headers: {
-					authorization: `Bearer ${accessToken}`,
-					
-				}
+			const response = await axios.put(`${url}/products/${id}`, payload);
+			dispatch({
+				type: "PUT_PRODUCTS",
+				payload: response.data.message
 			});
+		} catch (error) {
+			return error;
+		}
+	};
+}
+
+export function clearResPutProducts() {
+	return {
+		type: "CLEAR_RES_PUT_PRODUCTS"
+	};
+}
+
+export function refreshLog(accessToken, refreshToken) {
+	// console.log("refresh token", refreshToken)
+	// console.log("access token", accessToken)
+	return async function (dispatch) {
+		try {
+			const response = await axios.post(
+				`${url}/login/refresh`,
+				{ refreshToken },
+				{
+					headers: {
+						authorization: `Bearer ${accessToken}`
+					}
+				}
+			);
 			localStorage.setItem("accessToken", JSON.stringify(response.data.accessToken));
 		} catch (error) {
 			return error;
 		}
 
-	}
+	};
 }
-
-
-

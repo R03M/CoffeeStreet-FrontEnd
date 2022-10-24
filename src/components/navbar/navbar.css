@@ -13,7 +13,6 @@
 	background-repeat: no-repeat;
 	background-size: cover;
 	box-shadow: rgb(253, 188, 37) 0px 0px 25px;
-
 }
 
 .logo {
@@ -42,7 +41,7 @@
 .btnNavbarDiv {
 	display: flex;
 	justify-content: space-around;
-	align-items: flex-end;
+	align-items: center;
 }
 
 .btnNBCU {
@@ -58,4 +57,55 @@
 
 .btnNBCU:hover {
 	color: rgb(255, 253, 253);
+}
+
+.menuUserNC {
+	flex-direction: row;
+	justify-content: flex-end;
+	position: relative;
+	top: 0;
+	right: 0;
+	z-index: 999;
+	cursor: pointer;
+	border-radius: 5px;
+}
+
+.imgUserNC {
+	width: 50%;
+	height: 50%;
+	border-radius: 50%;
+	margin-right: 10px;
+	position: static;
+	border: solid 1px rgb(17, 0, 0);
+}
+.menuUserOn {
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+	top: 100%;
+	right: 5px;
+	background: #541911;
+	border-radius: 10px;
+	padding: 10px;
+	margin-bottom: 10px;
+	position: absolute;
+	font-size: 15px;
+	border: solid 3px black;
+	color: #fff;
+	font-weight: 600;
+}
+
+.btnUserNC {
+	width: 100%;
+	height: 40px;
+	background-color: #f5f5f5;
+	border: none;
+	border-radius: 5px;
+	margin-bottom: 10px;
+	cursor: pointer;
+	font-size: 15px;
+	font-weight: 600;
+	color: #000;
+	transition: all 0.3s ease;
 }

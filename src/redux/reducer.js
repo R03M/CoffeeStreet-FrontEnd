@@ -6,12 +6,13 @@ const initialState = {
 	products: [],
 	errorSProducts: [],
 	productDetails: {},
-	accessToken: localAccessToken || "" ,
-	refreshToken: localRefreshToken || "" ,
+	responseCreateProduct: [],
+	resUpdatedProduct: [],
+	accessToken: localAccessToken || "",
+	refreshToken: localRefreshToken || "",
 	checkEmail: {},
 	newlyCreated: false,
-	user:{},
-	responseCreateProduct: [],
+	user: {},
 	productsDataId: {},
 	cart: [],
 	quantity: 0,
@@ -42,45 +43,42 @@ export default function rootReducer(state = initialState, action) {
 				};
 			}
 
-			case "LOGIN_USER":
-				return {
-					...state,
-					accessToken: action.payload.accessToken,
-					refreshToken: action.payload.refreshToken,
-				};
-			case "REGISTER_USER_GOOGLE":
-				return {
-					...state,
-					newlyCreated : true
-				};
+		case "LOGIN_USER":
+			return {
+				...state,
+				accessToken: action.payload.accessToken,
+				refreshToken: action.payload.refreshToken
+			};
+		case "REGISTER_USER_GOOGLE":
+			return {
+				...state,
+				newlyCreated: action.payload
+			};
 
+		case "LOG_POST_DATA":
+			return {
+				...state,
+				user: action.payload
+			};
 
-			case "LOG_POST_DATA":
-				return {
-					...state,
-					user: action.payload
-				};
+		case "GET_MY_FAVORITES":
+			return {
+				...state,
+				myFavourites: action.payload
+			};
 
-			case "GET_MY_FAVORITES":
-				return {
-					...state,
-					myFavourites: action.payload
-				};
-		
-			case "LOGOUT_USER":
-				return {
-					...state,
-					accessToken: "",
-					refreshToken: "",
-					user: {}
-					
-
-				};
-			case "CHECK_EMAIL_USER":
-				return {
-					...state,
-					checkEmail: action.payload
-				};
+		case "LOGOUT_USER":
+			return {
+				...state,
+				accessToken: "",
+				refreshToken: "",
+				user: {}
+			};
+		case "CHECK_EMAIL_USER":
+			return {
+				...state,
+				checkEmail: action.payload
+			};
 
 		case "CLEAR_ERROR_SEARCHP":
 			return {
@@ -328,6 +326,16 @@ export default function rootReducer(state = initialState, action) {
 		case "DELETE_PRODUCT":
 			return {
 				...state
+			};
+		case "PUT_PRODUCTS":
+			return {
+				...state,
+				resUpdatedProduct: action.payload
+			};
+		case "CLEAR_RES_PUT_PRODUCTS":
+			return {
+				...state,
+				resUpdatedProduct: []
 			};
 
 		default:

@@ -69,30 +69,56 @@ const NewProducts = () => {
 			name: values.name,
 			description: values.description,
 			image:
-				values.image.length > 10
+				values.image.length > 0
 					? values.image
-					: "https://www.publicdomainpictures.net/pictures/280000/nahled/not-found-image-15383864787lu.jpg",
+					: "https://res.cloudinary.com/db6aq84ze/image/upload/v1666550286/coffeeStreet_vhewoj.png",
 			price: values.price,
 			category:
 				values.category === CATEGORIES.COFFEE_READY_TO_DRINK ||
 				values.category === CATEGORIES.COFFEE_TO_PREPARED
 					? "coffee"
 					: values.category,
-			lactose: values.lactose === "true" ? true : false,
-			gluten: values.gluten === "true" ? true : false,
-			alcohol: values.alcohol === "true" ? true : false,
+			lactose:
+				values.category === CATEGORIES.COFFEE_TO_PREPARED
+					? null
+					: values.lactose === "true"
+					? true
+					: false,
+			gluten:
+				values.category === CATEGORIES.COFFEE_TO_PREPARED ||
+				values.category === CATEGORIES.TEA
+					? null
+					: values.gluten === "true"
+					? true
+					: false,
+			alcohol:
+				values.category === CATEGORIES.COFFEE_TO_PREPARED
+					? null
+					: values.alcohol === "true"
+					? true
+					: false,
 			stock: values.stock === "true" ? true : false,
-			ingredients: values.ingredients,
-			originCountry: values.originCountry,
+			ingredients:
+				values.category === CATEGORIES.COFFEE_TO_PREPARED ? null : values.ingredients,
+			originCountry:
+				values.category === CATEGORIES.COFFEE_TO_PREPARED ? values.originCountry : null,
 			isPrepared: values.category === CATEGORIES.COFFEE_TO_PREPARED ? false : true,
 			state: "active",
-			cream: values.cream === "true" ? true : false,
-			texture: values.texture,
-			body: values.body,
-			acidity: values.acidity,
-			bitterness: values.bitterness,
-			roast: values.roast,
-			color: values.color
+			cream:
+				values.category === CATEGORIES.COFFEE_READY_TO_DRINK
+					? values.cream === "true"
+						? true
+						: false
+					: null,
+			texture:
+				values.category === CATEGORIES.COFFEE_READY_TO_DRINK ? values.texture : null,
+			body: values.category === CATEGORIES.COFFEE_READY_TO_DRINK ? values.body : null,
+			acidity:
+				values.category === CATEGORIES.COFFEE_READY_TO_DRINK ? values.acidity : null,
+			bitterness:
+				values.category === CATEGORIES.COFFEE_READY_TO_DRINK ? values.bitterness : null,
+			roast: values.category === CATEGORIES.COFFEE_READY_TO_DRINK ? values.roast : null,
+			color: values.category === CATEGORIES.COFFEE_READY_TO_DRINK ? values.color : null
 		};
 		dispatch(postNewProduct(newProduct));
 		resetForm();
@@ -317,6 +343,43 @@ const NewProducts = () => {
 										placeholder="Ingredient 5"
 										className="ingredientsInputNP"
 									/>
+
+									<Field
+										type="text"
+										id="ingredients"
+										name="ingredients[5]"
+										placeholder="Ingredient 6"
+										className="ingredientsInputNP"
+									/>
+									<Field
+										type="text"
+										id="ingredients"
+										name="ingredients[6]"
+										placeholder="Ingredient 7"
+										className="ingredientsInputNP"
+									/>
+									<Field
+										type="text"
+										id="ingredients"
+										name="ingredients[7]"
+										placeholder="Ingredient 8"
+										className="ingredientsInputNP"
+									/>
+									<Field
+										type="text"
+										id="ingredients"
+										name="ingredients[8]"
+										placeholder="Ingredient 9"
+										className="ingredientsInputNP"
+									/>
+									<Field
+										type="text"
+										id="ingredients"
+										name="ingredients[9]"
+										placeholder="Ingredient 10"
+										className="ingredientsInputNP"
+									/>
+
 									{errors.ingredients && touched.ingredients && (
 										<ErrorMessage
 											name="ingredients"
