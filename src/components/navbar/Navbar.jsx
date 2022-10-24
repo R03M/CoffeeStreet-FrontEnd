@@ -42,7 +42,7 @@ const NavBar = () => {
 						<img
 							onClick={handlerUser}
 							className="imgUserNC"
-							src={user.image}
+							srcSet={user.image}
 							alt={user.name}
 						/>
 						{viewUser ? (
