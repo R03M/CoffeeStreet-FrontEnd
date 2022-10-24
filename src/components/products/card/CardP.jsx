@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { FcLike, FcLikePlaceholder } from "react-icons/fc";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { BiDrink } from "react-icons/bi";
 import { GiMilkCarton, GiWheat } from "react-icons/gi";
 import { BsInfo, BsFillCartPlusFill } from "react-icons/bs";
@@ -15,6 +15,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 const CardP = ({ product }) => {
 	const dispatch = useDispatch();
+  let navigate = useNavigate();
 	const listaFavoritos = useSelector(state => state.myFavourites);
 	const quantity = useSelector(state => state.quantity);
 	const user = useSelector(state => state.user.user);
@@ -69,7 +70,7 @@ const CardP = ({ product }) => {
 		if (product.stock === true) {
 			swal({
 				title: "Proximamente...",
-				text: "Tal vez en el segundo Sprint",
+				text: "Tal vez en el tercer Sprint",
 				icon: "info",
 				button: "Ok"
 			});
@@ -89,10 +90,36 @@ const CardP = ({ product }) => {
 	};
 
 	const handlerFavorite = () => {
-		if (listaFavoritos.map(e => e.id === product.id).includes(true)) {
-			dispatch(deleteProductFavourite({ idProduct: product.id }, user.id));
+		if (!user) {
+			swal({
+				title: "To add to favorites you must first register or log in",
+				icon: "info",
+				buttons: ["Maybe later", "Sign in"],
+				dangerMode: true,
+				closeOnClickOutside: false,
+				icon: "warning"
+			}).then(value => {
+				if (value) {
+					swal("Redirecting to Sign in", {
+						button: false,
+						timer: 1500,
+						icon: "success"
+					});
+					navigate("/signIn")
+				} else {
+					swal("Staying on menu", {
+						button: false,
+						timer: 1200,
+						icon: "success"
+					});
+				}
+			});
 		} else {
-			dispatch(addProductFavourite({ idProduct: product.id }, user.id));
+			if (listaFavoritos.map(e => e.id === product.id).includes(true)) {
+				dispatch(deleteProductFavourite({ idProduct: product.id }, user.id));
+			} else {
+				dispatch(addProductFavourite({ idProduct: product.id }, user.id));
+			}
 		}
 	};
 

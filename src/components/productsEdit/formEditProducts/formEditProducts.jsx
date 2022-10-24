@@ -11,11 +11,13 @@ import { BITTERNESS } from "../../../models/bitterness.enum";
 import { ROAST } from "../../../models/roast.enum";
 import { COLOR } from "../../../models/color.enum";
 import { productEditSchema } from "./schemaEp/formEditProductSchema.js";
+import { useLocation } from "react-router-dom";
 import swal from "sweetalert";
 import "./formEditProducts.css";
 
 const EditProducts = ({ exitF }) => {
 	const dispatch = useDispatch();
+	const location = useLocation();
 	const responseOFUpdatedP = useSelector(state => state.resUpdatedProduct);
 	const dataProduct = useSelector(state => state.productsDataId);
 
@@ -86,8 +88,11 @@ const EditProducts = ({ exitF }) => {
 				icon: "success",
 				button: "Ok"
 			});
-			setErrorNoti(false)
+			setTimeout(() => {
+				exitF();
+			}, 1000);
 			dispatch(clearResPutProducts());
+			setErrorNoti(false);
 		} else if (errorNoti === true) {
 			swal({
 				title: "Error",
@@ -95,7 +100,7 @@ const EditProducts = ({ exitF }) => {
 				icon: "error",
 				button: "Ok"
 			});
-			setErrorNoti(false)
+			setErrorNoti(false);
 		}
 	};
 
