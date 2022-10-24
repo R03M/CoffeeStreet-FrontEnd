@@ -59,7 +59,7 @@ function App() {
 					<Route path="/home/currentNews" element={<CurrentNews />} />
 					<Route path="/menu" element={<Products />} />
 					<Route path="/products/:id" element={<ProductsDetails />} />
-					{/* <Route path="/signUp" element={<SignUp />} /> */}
+					<Route path="/signUp" element={<SignUp />} />
 					<Route path="/signIn" element={<LogIn />} />
 					<Route path="/admin" element={<Admin />} />
 					<Route path="/employee" element={<Employee />} />
