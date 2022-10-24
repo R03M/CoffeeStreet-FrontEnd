@@ -80,7 +80,7 @@ const CardP = ({ product }) => {
 	};
 	const handleQuantity = id => {
 		let count = 0;
-		quantity.map(q => {
+		quantity.map(q =>  {
 			if (q.id === id) {
 				count = q.quantity;
 			}

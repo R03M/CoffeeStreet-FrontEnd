@@ -156,7 +156,6 @@ const EditProducts = ({ exitF }) => {
 			color: values.category === CATEGORIES.COFFEE_READY_TO_DRINK ? values.color : null
 		};
 
-		console.log(newProduct);
 		dispatch(putProducts(dataProduct.id, newProduct));
 	};
 	notiSwal();

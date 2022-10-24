@@ -21,7 +21,7 @@ import Loading from "../loading/Loading";
 import ErrorSearch from "../errorSearch/ErrorSearch";
 import { useAuth0 } from "@auth0/auth0-react";
 import "./products.css";
-import ShoppingCart from "../ShoppingCart/ShoppingCart.jsx";
+// import ShoppingCart from "../ShoppingCart/ShoppingCart.jsx";
 
 const Products = () => {
 	const dispatch = useDispatch();
@@ -35,53 +35,45 @@ const Products = () => {
 	const  { isAuthenticated, user } = useAuth0();
 
 
+
+
 	const [currentPage, setCurrentPage] = useState(1);
 	const [productsPerPage, setProductsPerPage] = useState(9);
 	const max = Math.ceil(allProducts.length / productsPerPage);
-	const { logout } = useAuth0();
-	const dataEnd = allProducts.length
-	
-		? allProducts.slice(
+	const dataEnd = allProducts.length	? allProducts.slice(
 				(currentPage - 1) * productsPerPage,
 				(currentPage - 1) * productsPerPage + productsPerPage
 		  )
 		: null;
 
-		useEffect(() => {
-			
+
+	useEffect(() => {
 			if (isAuthenticated) {
 				dispatch(checkEmailUser(user.email));
 			}
-
 	}, [dispatch, isAuthenticated]);
 
 
 	useEffect(() => {
-
-		if(checkEmail.email === false){
+		if(checkEmail.isGoogle === false && checkEmail.email === false){
 			dispatch(registerUserGoogle({
 				email: user.email,
 				name: user.given_name,
 				surname: user.family_name,
 				image: user.picture,
-				isGoogle: true, 
+				isGoogle: true,
 			}))
-			
 		}
-	}, [dispatch, checkEmail, user]);
-
-
-	useEffect(() => {
-		if(isAuthenticated && !accessToken){
+		if(checkEmail.isGoogle === true && checkEmail.email === true){
 			dispatch(LoginUser({
 				email: user.email,
 				isGoogle: true,
-				password:"12465"
+				// password:"12465"
 			}))
-			// logout()
-			
+
 		}
-	}, [dispatch, isAuthenticated, accessToken, user]);
+	}, [dispatch, checkEmail]);
+
 
 	useEffect(() => {
 
@@ -89,38 +81,25 @@ const Products = () => {
 			dispatch(LoginUser({
 				email: user.email,
 				isGoogle: true,
-				password:"12465"
+				// password:"12465"
 			}))
+			dispatch({
+				type: "REGISTER_USER_GOOGLE",
+				payload: false
+			});
 		}
 	}, [dispatch, newlyCreated, user]);
 
+	useEffect(()=>{
+			if(accessToken) {
+				dispatch(logPostData(accessToken));
+			}
+  	}, [dispatch, accessToken])
+
 
 
 	useEffect(() => {
-		if(accessToken){
-			dispatch(logPostData(accessToken))
-		} 
-	}, [dispatch, accessToken]);
-
-	
-	useEffect(() => {
-		if(usuario.hasOwnProperty("user")){
-			dispatch(getMyFavorites(usuario.user.id))
-		}
-		
-
-	}, [dispatch, usuario]);
-
-
-	// useEffect(() => {
-		// 	if(isAuthenticated){
-			// 		dispatch(logPostData(accessToken))
-			// 	}
-			// }, [dispatch, isAuthenticated, accessToken]);
-			
-			
-			useEffect(() => {
-				if (allProducts.length === 0) {
+			if (allProducts.length === 0) {
 			dispatch(getProducts());
 		}
 		setCurrentPage(1);
@@ -143,7 +122,7 @@ const Products = () => {
 
 						<div className="cardsProd">
 							{dataEnd.map(data => {
-								return <CardP key={data.id} product={data} 
+								return <CardP key={data.id} product={data}
 								 				userId={ usuario.hasOwnProperty("user") ? usuario.user.id : null}
 								/>;
 							})}
@@ -160,10 +139,7 @@ const Products = () => {
 	return (
 		<div className="productsDiv">
 		{ usuario.hasOwnProperty("user") ? (
-		
 				<NavBarClient />
-			
-			
 		  ) : (
 				<NavBar />
 				)}

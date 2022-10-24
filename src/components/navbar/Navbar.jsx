@@ -6,6 +6,7 @@ import "./navbar.css";
 
 const NavBar = () => {
 	const statusCart = useSelector(state => state.cart);
+
 	return (
 		<div className="navbarDivC">
 			<Link to="/">

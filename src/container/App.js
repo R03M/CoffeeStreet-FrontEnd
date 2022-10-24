@@ -1,3 +1,4 @@
+import axios from "axios";
 import { Route, Routes } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Home from "../components/home/Home.jsx";
@@ -12,56 +13,64 @@ import Products from "../components/products/Products.jsx";
 import CurrentNews from "../components/new/currentNews/CurrentNews.jsx";
 import About from "../components/About/About.jsx";
 import ProductsDetails from "../components/productsDetails/ProductsDetails.jsx";
-import { refreshLog, getMyFavorites, logPostData } from "../redux/action";
+import { getMyFavorites, logPostData } from "../redux/action";
 import ShoppingCart from "../components/ShoppingCart/ShoppingCart.jsx";
 
 import "./App.css";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+const url = "http://localhost:3001";
 
 function App() {
+	const [loaded, setLoaded] = useState(false);
 	const dispatch = useDispatch();
-	const refrest = useSelector(state => state.refreshToken);
-	const user = useSelector(state => state.user);
-	//  console.log("refrest", refrest === "")
+	const refresh = useSelector(state => state.refreshToken);
 	const accessToken = useSelector(state => state.accessToken);
 
 	useEffect(() => {
-		if (accessToken) {
-			dispatch(logPostData(accessToken));
-			dispatch(getMyFavorites(user.id));
-		}
-	}, [dispatch, accessToken]);
+		const refreshToken = async function () {
+			try {
+				const response = await axios.post(
+					`${url}/login/refresh`,
+					{ refreshToken: refresh },
+					{
+						headers: {
+							authorization: `Bearer ${accessToken}`
+						}
+					}
+				);
+				if (response.data.accessToken) {
+					localStorage.setItem("accessToken", JSON.stringify(response.data.accessToken));
+					dispatch(logPostData(accessToken));
+				}
+			} catch (error) {
+				console.log(error);
+			}
+			setLoaded(true);
+		};
+		refreshToken();
+	}, []);
 
-	useEffect(() => {
-		localStorage.setItem("refreshToken", JSON.stringify(refrest));
-		localStorage.setItem("accessToken", JSON.stringify(accessToken));
-	}, [accessToken, refrest]);
-
-	useEffect(() => {
-		if (refrest.length > 0) {
-			dispatch(refreshLog(accessToken, refrest));
-			// console.log("holaaaaaaaaaaaaaaaaaaaaaaaaa")
-		}
-	}, [dispatch, accessToken, refrest]);
-
-	// console.log("app tokenRef", refreshToken);
 	return (
 		<div className="App">
-			<Routes>
-				<Route path="/" element={<Landing />} />
-				<Route path="/home" element={<Home />} />
-				<Route path="/home/currentNews" element={<CurrentNews />} />
-				<Route path="/menu" element={<Products />} />
-				<Route path="/products/:id" element={<ProductsDetails />} />
-				<Route path="/signUp" element={<SignUp />} />
-				<Route path="/logIn" element={<LogIn />} />
-				<Route path="/admin" element={<Admin />} />
-				<Route path="/employee" element={<Employee />} />
-				<Route path="/client" element={<Client />} />
-				<Route path="/about" element={<About />} />
-				<Route path="/cart" element={<ShoppingCart />} />
-				<Route path="*" element={<Error />} />
-			</Routes>
+			{loaded ? (
+				<Routes>
+					<Route path="/" element={<Landing />} />
+					<Route path="/home" element={<Home />} />
+					<Route path="/home/currentNews" element={<CurrentNews />} />
+					<Route path="/menu" element={<Products />} />
+					<Route path="/products/:id" element={<ProductsDetails />} />
+					<Route path="/signUp" element={<SignUp />} />
+					<Route path="/logIn" element={<LogIn />} />
+					<Route path="/admin" element={<Admin />} />
+					<Route path="/employee" element={<Employee />} />
+					<Route path="/client" element={<Client />} />
+					<Route path="/about" element={<About />} />
+					<Route path="/cart" element={<ShoppingCart />} />
+					<Route path="*" element={<Error />} />
+				</Routes>
+			) : (
+				<h4>Loading...</h4>
+			)}
 		</div>
 	);
 }
