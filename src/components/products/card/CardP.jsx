@@ -1,15 +1,24 @@
-import React , {useState , useEffect }from "react";
-import { FcLike , FcLikePlaceholder } from "react-icons/fc";
+import React, { useState, useEffect } from "react";
+import { FcLike, FcLikePlaceholder } from "react-icons/fc";
 import { Link } from "react-router-dom";
 import { BiDrink } from "react-icons/bi";
 import { GiMilkCarton, GiWheat } from "react-icons/gi";
 import { BsInfo, BsFillCartPlusFill } from "react-icons/bs";
 import swal from "sweetalert";
 import "./cardP.css";
-import { addProductToCart , addProductFavourite, deleteProductFavourite } from "../../../redux/action";
+import {
+	addProductToCart,
+	addProductFavourite,
+	deleteProductFavourite
+} from "../../../redux/action";
 import { useDispatch, useSelector } from "react-redux";
 
-const CardP = ({ product, userId }) => {
+const CardP = ({ product }) => {
+	const dispatch = useDispatch();
+	const listaFavoritos = useSelector(state => state.myFavourites);
+	const quantity = useSelector(state => state.quantity);
+	const user = useSelector(state => state.user);
+
 	const alcohol = () => {
 		if (product.alcohol === true) {
 			return (
@@ -66,51 +75,37 @@ const CardP = ({ product, userId }) => {
 			});
 		}
 	};
-	const dispatch = useDispatch();
-	const handleAdd = (id) => {
-		dispatch(addProductToCart(id))
-	}
-	const quantity = useSelector(state => state.quantity)
-	const handleQuantity = (id) => {
-		let count = 0
-		quantity.map((q) => {
+	const handleAdd = id => {
+		dispatch(addProductToCart(id));
+	};
+	const handleQuantity = id => {
+		let count = 0;
+		quantity.map(q => {
 			if (q.id === id) {
-				count = q.quantity
+				count = q.quantity;
 			}
-		})
-		return count
-	}
-	const listaFavoritos = useSelector(state => state.myFavourites)
-	const [ fav , setFav ] = useState(false)
+		});
+		return count;
+	};
 
-	useEffect(() => {
-		if(listaFavoritos.length > 0){
-			 listaFavoritos.map((f) => {
-				if (f.id === product.id) {
-					setFav(true)
-				}
-			}
-		)}
-	}, [listaFavoritos])
-
-	const deleteFavourites = () => {
-		dispatch(deleteProductFavourite( {idProduct: product.id} , userId))
-		setFav(false)
-
-	}
-
-	const addFavourites = () => {
-
-			dispatch(addProductFavourite( {idProduct: product.id} , userId))
-			setFav(true)
-
-
+	const handlerFavorite = () => {
+		if (listaFavoritos.map(e => e.id === product.id).includes(true)) {
+			dispatch(deleteProductFavourite({ idProduct: product.id }, user.id));
+		} else {
+			dispatch(addProductFavourite({ idProduct: product.id }, user.id));
 		}
+	};
 
 	return (
 		<div className={product.stock === true ? "cardDiv" : "cardDivF"} key={product.id}>
-				{ fav ? <button onClick={deleteFavourites} className="like" ><FcLike /></button> : <button onClick={addFavourites} className="like" ><FcLikePlaceholder /></button> }
-			
+			<button onClick={handlerFavorite} className="like">
+				{listaFavoritos.map(e => e.id === product.id).includes(true) ? (
+					<FcLike />
+				) : (
+					<FcLikePlaceholder />
+				)}
+			</button>
+
 			<div className="nameCard">{product.name}</div>
 			<img
 				className={product.stock === true ? "imgCard" : "imgCardNSCP"}
@@ -139,7 +134,7 @@ const CardP = ({ product, userId }) => {
 				</button>
 				<button
 					className={product.stock === true ? "btnACartTemp" : "btnACartTempNSCP"}
-					onClick={()	=> handleAdd(product)}
+					onClick={() => handleAdd(product)}
 				>
 					<BsFillCartPlusFill />
 				</button>

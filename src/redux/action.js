@@ -129,9 +129,9 @@ export function LoginUser(payload) {
 
 
 export function logOutUser(accessToken) {
-	
+
   return async function (dispatch) {
-		
+
     try {
       const response = await axios.post(`${url}/login/remove`,{} , {
         headers: {
@@ -184,13 +184,11 @@ export function logOutUser(accessToken) {
 
 	export function deleteProductFavourite (payload, id) {
 		return async function (dispatch) {
-			console.log("payload" , payload);
-			console.log("id" , id);
 			try {
 				await axios.delete(`${url}/users/${id}/favourites`, {data: payload});
 				dispatch({
 					type: "ADD_PRODUCT_FAVOURITE",
-					
+
 				});
 			} catch (error) {
 				return error;
@@ -237,7 +235,7 @@ export function logPostData(token) {
       });
       dispach({
         type: "LOG_POST_DATA",
-        payload: response.data
+        payload: response.data.user
       });
     } catch (error) {
       dispach({
@@ -382,14 +380,14 @@ export function clearResPutProducts() {
 }
 
 export function refreshLog(  accessToken, refreshToken){
-	console.log("refresh token", refreshToken)
-	console.log("access token", accessToken)
+	// console.log("refresh token", refreshToken)
+	// console.log("access token", accessToken)
 	return async function (dispatch) {
 		try {
-			const response = await axios.post(`${url}/login/refresh`, {refreshToken} , { 
+			const response = await axios.post(`${url}/login/refresh`, {refreshToken} , {
 				headers: {
 					authorization: `Bearer ${accessToken}`,
-					
+
 				}
 			});
 			localStorage.setItem("accessToken", JSON.stringify(response.data.accessToken));
