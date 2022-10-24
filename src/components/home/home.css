@@ -4,6 +4,8 @@
 	flex-direction: column;
 	align-items: center;
 	object-fit: cover;
+	overflow-y: scroll;
+
 	background: linear-gradient(to bottom, #a4a4a441 100%, #5656565f 0%);
 	background-repeat: no-repeat;
 	background-size: cover;
@@ -80,3 +82,4 @@
 	font-size: 1.5rem;
 	font-weight: 700;
 }
+

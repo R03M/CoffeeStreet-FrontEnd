@@ -1,0 +1,75 @@
+.contenedor-principal-signUp {
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	align-items: center;
+	width: 100%;
+	height: 30%;
+	margin: 3.5rem;
+}
+
+.titleFormSignUpLC {
+	font-size: 2rem;
+	font-weight: 700;
+}
+
+.inputsFormSC {
+	font-size: 1.5rem;
+	margin: 1rem;
+	border-radius: 5px;
+}
+
+.labelsFormSC {
+	font-size: 1.4rem;
+	font-weight: 600;
+}
+
+.errorsMsgFSC {
+	color: #ab2311;
+	font-weight: 600;
+	font-size: 1.3rem;
+}
+
+.nameFormSC {
+	grid-area: name;
+	height: 90px;
+}
+
+.surnameFormSC {
+	grid-area: surname;
+	height: 90px;
+}
+.emailFormSC {
+	grid-area: email;
+	height: 90px;
+}
+.passWFormSC {
+	grid-area: passW;
+	height: 90px;
+}
+
+.bodyFormSignUPC {
+	display: grid;
+	grid-template-areas:
+		"name surname"
+		"email passW"
+		"btnSave btnSave";
+		margin: 2rem;
+}
+
+.btnSingUpFormSC {
+	color: rgb(245, 192, 77);
+	background-color: #541911;
+	padding: 0.7rem;
+	border-radius: 15px;
+	font-size: 1.5rem;
+	cursor: pointer;
+	font-weight: bold;
+	margin: 2rem;
+	grid-area: btnSave;
+}
+
+.btnSingUpFormSC:hover {
+	background-color: rgb(245, 192, 77);
+	color: #541911;
+}

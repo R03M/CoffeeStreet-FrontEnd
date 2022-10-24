@@ -8,10 +8,8 @@ const SignUp = () => {
 	return (
 		<div className="signUpDiv">
 			<NavBar />
-			<FormS />
 			<div className="signUpBody">
-			<h1 style={{ fontSize: "2rem" }}>Sign Up</h1>
-				<TempNd/>
+				<FormS />
 			</div>
 		</div>
 	);

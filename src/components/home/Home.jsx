@@ -29,7 +29,7 @@ const Home = () => {
 				<New />
 			</div>
 
-			<Geolocation />
+				<Geolocation />
 		</div>
 	);
 };

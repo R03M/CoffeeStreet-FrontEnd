@@ -1,12 +1,23 @@
-.geolocation{
-    width: 30%;
-    height: 50%;
-    background-color: rgba(206, 168, 97, 0.438);
-    border-radius: 1rem;
+.geolocation {
+	display: flex;
+	width: 95%;
+	height: 100%;
+	background-color: rgba(206, 168, 97, 0.438);
+	border-radius: 1rem;
+	justify-content: center;
+	flex-direction: column;
+	align-items: center;
+	margin: 1rem;
+	padding: 1rem;
 }
-.geolocation__container{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+.geolocation__container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.mapGeoC {
+	height: 100%;
+	width: 95%;
 }
