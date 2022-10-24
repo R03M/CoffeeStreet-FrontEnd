@@ -8,7 +8,8 @@ import {
 	checkEmailUser,
 	registerUserGoogle,
 	logPostData,
-	LoginUser
+	LoginUser,
+	getMyFavorites
 } from "../../redux/action";
 
 import NavBar from "../navbar/Navbar";
@@ -46,13 +47,6 @@ const Products = () => {
 		  )
 		: null;
 
-
-
-
-
-		
-		
-
 		useEffect(() => {
 			
 			if (isAuthenticated) {
@@ -60,10 +54,6 @@ const Products = () => {
 			}
 
 	}, [dispatch, isAuthenticated]);
-
-
-
-
 
 
 	useEffect(() => {
@@ -88,7 +78,7 @@ const Products = () => {
 				isGoogle: true,
 				password:"12465"
 			}))
-			logout()
+			// logout()
 			
 		}
 	}, [dispatch, isAuthenticated, accessToken, user]);
@@ -106,13 +96,21 @@ const Products = () => {
 
 
 
-
 	useEffect(() => {
 		if(accessToken){
 			dispatch(logPostData(accessToken))
 		} 
 	}, [dispatch, accessToken]);
+
 	
+	useEffect(() => {
+		if(usuario.hasOwnProperty("user")){
+			dispatch(getMyFavorites(usuario.user.id))
+		}
+		
+
+	}, [dispatch, usuario]);
+
 
 	// useEffect(() => {
 		// 	if(isAuthenticated){

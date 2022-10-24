@@ -1,12 +1,12 @@
-import React , {useState}from "react";
-import { FcLike } from "react-icons/fc";
+import React , {useState , useEffect }from "react";
+import { FcLike , FcLikePlaceholder } from "react-icons/fc";
 import { Link } from "react-router-dom";
 import { BiDrink } from "react-icons/bi";
 import { GiMilkCarton, GiWheat } from "react-icons/gi";
 import { BsInfo, BsFillCartPlusFill } from "react-icons/bs";
 import swal from "sweetalert";
 import "./cardP.css";
-import { addProductToCart , addProductFavourite } from "../../../redux/action";
+import { addProductToCart , addProductFavourite, deleteProductFavourite } from "../../../redux/action";
 import { useDispatch, useSelector } from "react-redux";
 
 const CardP = ({ product, userId }) => {
@@ -80,15 +80,37 @@ const CardP = ({ product, userId }) => {
 		})
 		return count
 	}
-	
+	const listaFavoritos = useSelector(state => state.myFavourites)
+	const [ fav , setFav ] = useState(false)
+
+	useEffect(() => {
+		if(listaFavoritos.length > 0){
+			 listaFavoritos.map((f) => {
+				if (f.id === product.id) {
+					setFav(true)
+				}
+			}
+		)}
+	}, [listaFavoritos])
+
+	const deleteFavourites = () => {
+		dispatch(deleteProductFavourite( {idProduct: product.id} , userId))
+		setFav(false)
+
+	}
+
 	const addFavourites = () => {
+
 			dispatch(addProductFavourite( {idProduct: product.id} , userId))
+			setFav(true)
+
+
 		}
-console.log(product.id)
 
 	return (
 		<div className={product.stock === true ? "cardDiv" : "cardDivF"} key={product.id}>
-			<button onClick={addFavourites} className="like" ><FcLike /></button>
+				{ fav ? <button onClick={deleteFavourites} className="like" ><FcLike /></button> : <button onClick={addFavourites} className="like" ><FcLikePlaceholder /></button> }
+			
 			<div className="nameCard">{product.name}</div>
 			<img
 				className={product.stock === true ? "imgCard" : "imgCardNSCP"}

@@ -1,5 +1,3 @@
-import MyFavourites from "../components/client/myFavourites/MyFavourites";
-
 const localRefreshToken = JSON.parse(localStorage.getItem("refreshToken"));
 const localAccessToken = JSON.parse(localStorage.getItem("accessToken"));
 
