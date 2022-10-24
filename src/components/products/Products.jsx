@@ -33,9 +33,7 @@ const Products = () => {
 	const newlyCreated = useSelector(state => state.newlyCreated);
 	const usuario = useSelector(state => state.user);
 	const  { isAuthenticated, user } = useAuth0();
-	console.log('waht')
 
-	console.log(usuario)
 
 
 

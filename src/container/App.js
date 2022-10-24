@@ -28,8 +28,6 @@ function App() {
 
 	useEffect(() => {
 		const refreshToken = async function () {
-			console.log("entre a refresh page en App");
-
 			try {
 				const response = await axios.post(
 					`${url}/login/refresh`,
@@ -52,7 +50,6 @@ function App() {
 		refreshToken();
 	}, []);
 
-	// console.log("app tokenRef", refreshToken);
 	return (
 		<div className="App">
 			{loaded ? (
