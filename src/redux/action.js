@@ -144,6 +144,7 @@ export function logOutUser(accessToken) {
       if (response) {
         dispatch({
           type: "LOGOUT_USER",
+					session : response.data.session
         });
 
       }
@@ -174,6 +175,22 @@ export function logOutUser(accessToken) {
 				dispatch({
 					type: "ADD_PRODUCT_FAVOURITE",
 					payload: response.data
+				});
+			} catch (error) {
+				return error;
+			}
+		};
+	}
+
+	export function deleteProductFavourite (payload, id) {
+		return async function (dispatch) {
+			console.log("payload" , payload);
+			console.log("id" , id);
+			try {
+				await axios.delete(`${url}/users/${id}/favourites`, {data: payload});
+				dispatch({
+					type: "ADD_PRODUCT_FAVOURITE",
+					
 				});
 			} catch (error) {
 				return error;

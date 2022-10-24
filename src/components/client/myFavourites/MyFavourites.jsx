@@ -5,6 +5,7 @@ import CardP from "../../products/card/CardP.jsx";
 
 
 
+
 const MyFavourites = () => {
 	const accessToken = useSelector((state) => state.accessToken);
 	const usuario = useSelector(state => state.user);
@@ -14,23 +15,24 @@ const MyFavourites = () => {
 
 	console.log("myProductsFavourites", myProductsFavourites);
 	console.log(myProductsFavourites.hasOwnProperty("errorMessage"))
-
-
+	
+	
 	console.log(usuario)
-
+	
 	useEffect(() => {
 		if(accessToken){
 			dispach(logPostData(accessToken))
 		}
 	}, [dispach, accessToken])
-
+	
 	useEffect(() => {
 		if(usuario.hasOwnProperty("user")){
+			
 			dispach(getMyFavorites(usuario.user.id))
 		}
+		
 
-
-	},[ dispach, usuario])
+	},[ dispach, usuario,])
 
 	useEffect(() => {
 		if(myProductsFavourites.hasOwnProperty("errorMessage")){
@@ -42,12 +44,10 @@ const MyFavourites = () => {
 
 	return (
 		<div>
-					{withOutFavourites ? <h1>no hay favoritos</h1> : myProductsFavourites.map((product) =>{
+					{  myProductsFavourites.length > 0 ? myProductsFavourites.map((product) => {
 						return <CardP key={product.id} product={product} />
+					}) : <div> no tenes productos en favorios</div>
 					}
-					)}
-
-				 
 				
 		</div>
 	);
