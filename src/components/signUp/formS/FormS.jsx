@@ -20,7 +20,6 @@ const FormS = () => {
 	const addUser = (e)	=> {
 		let user = new User(e.name, e.surname, e.role, e.email, e.password, );
 		dispatch(postUserNew(user));
-		// console.log(user)
 	};
 
 	const userSchema = Yup.object().shape({

@@ -14,44 +14,15 @@ const FormLogin = () => {
   const [password, setPassword] = useState('');
 	const tokenAcc = useSelector(state => state.accessToken);
 	const navigate = useNavigate();
-	// const  { isAuthenticated, user } = useAuth0();
 
-	// useEffect(() => {
-
-	// 		if (isAuthenticated) {
-	// 			dispatch(checkEmailUser(usuario.email));
-	// 		}
-
-	// }, [dispatch, isAuthenticated]);
-
-	// useEffect(() => {
-	// 	console.log(checkEmail);
-
-	// 	if(checkEmail.email === false){
-	// 		dispatch(registerUserGoogle({
-	// 			email: user.email,
-	// 			name: user.given_name,
-	// 			surname: user.family_name,
-	// 			image: user.picture,
-	// 			isGoogle: true,
-	// 		}))
-
-	// 	}
-	// }, [dispatch, checkEmail, user]);
-
-
-
-
-
-
-
-
-	console.log('token access on reducer')
-	console.log(tokenAcc);
 
 	var validEmail =  /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
 
   const loginUser =  (e) => {
+		console.log({
+      email: email,
+      password: password
+    })
     dispatch(LoginUser({
       email: email,
       password: password
@@ -61,6 +32,9 @@ const FormLogin = () => {
 	 useEffect(()=>{
 			if(tokenAcc) {
 				dispatch(logPostData(tokenAcc));
+				setTimeout(() => {
+           navigate("/menu", { replace: true });
+         }, 100);
 			}
   	}, [dispatch, tokenAcc])
 
@@ -83,8 +57,6 @@ const FormLogin = () => {
   		}
 	}
 
-
-
 	//ME ESTABA CAUSANDO QUE USER SE VACIARA EN EL REDUCER
   // useEffect(() => {
   //   if(accessToken) {
@@ -92,18 +64,20 @@ const FormLogin = () => {
   //   }
   // } , [accessToken])
 
-	 useEffect(() => {
-		console.log("bu")
-    if (tokenAcc && usuario?.name) {
-			console.log("éstoy");
-        setTimeout(() => {
-          navigate("/menu", { replace: true });
-        }, 3600);
-      }
-  }, [navigate, usuario, tokenAcc]);
+	//  useEffect(() => {
+	// 	console.log("bu")
+  //   if (tokenAcc && usuario?.name) {
+	// 		console.log("éstoy");
+  //       setTimeout(() => {
+  //         navigate("/menu", { replace: true });
+  //       }, 3600);
+  //     }
+  // }, [navigate, usuario, tokenAcc]);
 
   return (
-    <div  className='contenedor-principal-login'>
+
+
+		<div  className='contenedor-principal-login'>
         <div className='label-imput-email'>
           <label className='label-email'>Email</label>
           <input className='input-email' type='email' name='email' placeholder='Email' onChange={handleEmail } />

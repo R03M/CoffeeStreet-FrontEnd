@@ -103,7 +103,7 @@ export function postUserNew(payload) {
 			// window.location.href = "/login";
 		};
 	} catch (error) {
-		return error;
+		console.log(error);
 	}
 }
 
@@ -116,8 +116,12 @@ export function LoginUser(payload) {
 				type: "LOGIN_USER",
 				payload: response.data
 			});
+			if (response) {
+				localStorage.setItem("refreshToken", JSON.stringify(response.data.refreshToken));
+				localStorage.setItem("accessToken", JSON.stringify(response.data.accessToken));
+			}
 		} catch (error) {
-			return alert("Invalid email or password");
+			console.log(error);
 		}
 	};
 }
@@ -174,8 +178,6 @@ export function addProductFavourite(payload, id) {
 }
 
 export function registerUserGoogle(payload) {
-	console.log("estoy en la action de google");
-	console.log(payload);
 	return async function (dispatch) {
 		try {
 			const response = await axios.post(`${url}/register`, payload);
@@ -211,8 +213,7 @@ export function logPostData(token) {
 					Accept: "aplication/json"
 				}
 			});
-			console.log("estoy en action logPostData");
-			console.log(response);
+
 			dispatch({
 				type: "LOG_POST_DATA",
 				payload: response.data.user
@@ -337,24 +338,3 @@ export function putShoppingCart() {
 		}
 	};
 }
-
-// export function refreshLog(accessToken, refreshToken) {
-// 	console.log("refresh token", refreshToken);
-// 	console.log("access token", accessToken);
-// 	return async function (dispatch) {
-// 		try {
-// 			const response = await axios.post(
-// 				`${url}/login/refresh`,
-// 				{ refreshToken },
-// 				{
-// 					headers: {
-// 						authorization: `Bearer ${accessToken}`
-// 					}
-// 				}
-// 			);
-// 			localStorage.setItem("accessToken", JSON.stringify(response.data.accessToken));
-// 		} catch (error) {
-// 			return error;
-// 		}
-// 	};
-// }

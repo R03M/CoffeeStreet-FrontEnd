@@ -106,9 +106,7 @@ const EditProducts = ({ exitF }) => {
 			color: values.color
 		};
 
-		// console.log(newProduct);
-		// dispatch(putNewProduct(newProduct));
-		// resetForm();
+
 	};
 	notiSwal();
 

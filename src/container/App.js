@@ -13,22 +13,19 @@ import Products from "../components/products/Products.jsx";
 import CurrentNews from "../components/new/currentNews/CurrentNews.jsx";
 import About from "../components/About/About.jsx";
 import ProductsDetails from "../components/productsDetails/ProductsDetails.jsx";
-import { logPostData, refreshLog } from "../redux/action";
+import { logPostData } from "../redux/action";
 import ShoppingCart from "../components/ShoppingCart/ShoppingCart.jsx";
 
 import "./App.css";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 const url = "http://localhost:3001";
 
 function App() {
+	const [loaded, setLoaded] = useState(false);
+
 	const dispatch = useDispatch();
 	const refresh = useSelector(state => state.refreshToken);
 	const accessToken = useSelector(state => state.accessToken);
-
-	useEffect(() => {
-		localStorage.setItem("refreshToken", JSON.stringify(refresh));
-		localStorage.setItem("accessToken", JSON.stringify(accessToken));
-	}, [accessToken, refresh]);
 
 	useEffect(() => {
 		const refreshToken = async function () {
@@ -47,37 +44,36 @@ function App() {
 				if (response.data.accessToken) {
 					localStorage.setItem("accessToken", JSON.stringify(response.data.accessToken));
 					dispatch(logPostData(accessToken));
-				} else {
-					dispatch({
-						type: "LOGOUT_USER"
-					});
 				}
-
-				// dispatch(logPostData(tokenAcc, idAuth));
 			} catch (error) {
 				console.log(error);
 			}
+			setLoaded(true);
 		};
 		refreshToken();
 	}, []);
 
 	return (
 		<div className="App">
-			<Routes>
-				<Route path="/" element={<Landing />} />
-				<Route path="/home" element={<Home />} />
-				<Route path="/home/currentNews" element={<CurrentNews />} />
-				<Route path="/menu" element={<Products />} />
-				<Route path="/products/:id" element={<ProductsDetails />} />
-				<Route path="/signUp" element={<SignUp />} />
-				<Route path="/logIn" element={<LogIn />} />
-				<Route path="/admin" element={<Admin />} />
-				<Route path="/employee" element={<Employee />} />
-				<Route path="/client" element={<Client />} />
-				<Route path="/about" element={<About />} />
-				<Route path="/cart" element={<ShoppingCart />} />
-				<Route path="*" element={<Error />} />
-			</Routes>
+			{loaded ? (
+				<Routes>
+					<Route path="/" element={<Landing />} />
+					<Route path="/home" element={<Home />} />
+					<Route path="/home/currentNews" element={<CurrentNews />} />
+					<Route path="/menu" element={<Products />} />
+					<Route path="/products/:id" element={<ProductsDetails />} />
+					<Route path="/signUp" element={<SignUp />} />
+					<Route path="/logIn" element={<LogIn />} />
+					<Route path="/admin" element={<Admin />} />
+					<Route path="/employee" element={<Employee />} />
+					<Route path="/client" element={<Client />} />
+					<Route path="/about" element={<About />} />
+					<Route path="/cart" element={<ShoppingCart />} />
+					<Route path="*" element={<Error />} />
+				</Routes>
+			) : (
+				<h4>Loading...</h4>
+			)}
 		</div>
 	);
 }

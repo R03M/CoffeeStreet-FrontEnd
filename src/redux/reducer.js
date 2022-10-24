@@ -69,9 +69,10 @@ export default function rootReducer(state = initialState, action) {
 
 		case "LOGOUT_USER":
 			return {
-				...initialState,
+				...state,
 				accessToken: "",
-				refreshToken: ""
+				refreshToken: "",
+				user: {}
 			};
 		case "CHECK_EMAIL_USER":
 			return {

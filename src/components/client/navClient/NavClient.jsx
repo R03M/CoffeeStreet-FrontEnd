@@ -11,7 +11,6 @@ import { useSelector } from "react-redux";
 
 
 const NavBar = () => {
-	console.log('hello im the nav client')
 	const [menuUsuario, setMenuUsuario] = useState(false);
 	const statusCart = useSelector(state => state.cart);
 
