@@ -121,7 +121,7 @@ export function LoginUser(payload) {
 				localStorage.setItem("accessToken", JSON.stringify(response.data.accessToken));
 			}
 		} catch (error) {
-			console.log(error);
+			return alert("Invalid email or password");
 		}
 	};
 }
