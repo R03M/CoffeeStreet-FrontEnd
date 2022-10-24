@@ -41,7 +41,7 @@
 .btnNavbarDiv {
 	display: flex;
 	justify-content: space-around;
-	align-items: flex-end;
+	align-items: center;
 }
 
 .btnNBCU {
@@ -65,16 +65,14 @@
 	position: relative;
 	top: 0;
 	right: 0;
-	width: 100%;
-	height: 100%;
 	z-index: 999;
 	cursor: pointer;
 	border-radius: 5px;
 }
 
 .imgUserNC {
-	width: 80px;
-	height: 80px;
+	width: 50%;
+	height: 50%;
 	border-radius: 50%;
 	margin-right: 10px;
 	position: static;

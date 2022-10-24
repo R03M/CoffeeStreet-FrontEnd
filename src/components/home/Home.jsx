@@ -1,6 +1,7 @@
 import React from "react";
 import NavBar from "../navbar/Navbar.jsx";
 import New from "../new/New.jsx";
+import Geolocation from "../Geolocation/geolocation";
 import "./home.css";
 
 const discounts = [
@@ -27,6 +28,8 @@ const Home = () => {
 				</div>
 				<New />
 			</div>
+
+			<Geolocation />
 		</div>
 	);
 };
