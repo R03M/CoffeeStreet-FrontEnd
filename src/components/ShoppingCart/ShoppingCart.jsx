@@ -74,7 +74,6 @@ const ShoppingCart = () => {
 		});
 		return Math.round(total);
 	};
-	// console.log(count)
 	return (
 		<div className="shoppingCart">
 			<NavBar />

@@ -13,7 +13,7 @@ import Products from "../components/products/Products.jsx";
 import CurrentNews from "../components/new/currentNews/CurrentNews.jsx";
 import About from "../components/About/About.jsx";
 import ProductsDetails from "../components/productsDetails/ProductsDetails.jsx";
-import { refreshLog } from "../redux/action";
+import { logPostData, refreshLog } from "../redux/action";
 import ShoppingCart from "../components/ShoppingCart/ShoppingCart.jsx";
 
 import "./App.css";
@@ -23,7 +23,6 @@ const url = "http://localhost:3001";
 function App() {
 	const dispatch = useDispatch();
 	const refresh = useSelector(state => state.refreshToken);
-	// const user = useSelector(state => state.user);
 	const accessToken = useSelector(state => state.accessToken);
 
 	useEffect(() => {
@@ -47,6 +46,7 @@ function App() {
 				);
 				if (response.data.accessToken) {
 					localStorage.setItem("accessToken", JSON.stringify(response.data.accessToken));
+					dispatch(logPostData(accessToken));
 				} else {
 					dispatch({
 						type: "LOGOUT_USER"
@@ -61,7 +61,6 @@ function App() {
 		refreshToken();
 	}, []);
 
-	// console.log("app tokenRef", refreshToken);
 	return (
 		<div className="App">
 			<Routes>

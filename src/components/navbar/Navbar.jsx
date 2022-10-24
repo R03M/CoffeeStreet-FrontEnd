@@ -7,7 +7,7 @@ import "./navbar.css";
 const NavBar = () => {
 	const statusCart = useSelector(state => state.cart);
 	const user = useSelector(state => state.user);
-	console.log('user')
+	console.log('user en NavBar')
 	console.log(user)
 
 	return (

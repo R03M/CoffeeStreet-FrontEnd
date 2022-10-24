@@ -84,7 +84,6 @@ const CardP = ({ product, userId }) => {
 	const addFavourites = () => {
 			dispatch(addProductFavourite( {idProduct: product.id} , userId))
 		}
-// console.log(product.id)
 
 	return (
 		<div className={product.stock === true ? "cardDiv" : "cardDivF"} key={product.id}>

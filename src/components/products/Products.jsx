@@ -8,7 +8,8 @@ import {
 	checkEmailUser,
 	registerUserGoogle,
 	logPostData,
-	LoginUser
+	LoginUser,
+	logOutUser
 } from "../../redux/action";
 
 import NavBar from "../navbar/Navbar";
@@ -34,10 +35,10 @@ const Products = () => {
 	const  { isAuthenticated, user } = useAuth0();
 
 
+
 	const [currentPage, setCurrentPage] = useState(1);
 	const [productsPerPage, setProductsPerPage] = useState(9);
 	const max = Math.ceil(allProducts.length / productsPerPage);
-	const { logout } = useAuth0();
 	const dataEnd = allProducts.length
 
 		? allProducts.slice(
@@ -47,78 +48,60 @@ const Products = () => {
 		: null;
 
 
-
-
-
-
-
-
-		useEffect(() => {
+	useEffect(() => {
 
 			if (isAuthenticated) {
+
 				dispatch(checkEmailUser(user.email));
 			}
 
 	}, [dispatch, isAuthenticated]);
 
+	useEffect(() => {
 
 
+		if(checkEmail.isGoogle === false && checkEmail.email === false){
+			dispatch(registerUserGoogle({
+				email: user.email,
+				name: user.given_name,
+				surname: user.family_name,
+				image: user.picture,
+				isGoogle: true,
+			}))
+
+		}
+		if(checkEmail.isGoogle === true && checkEmail.email === true){
+			dispatch(LoginUser({
+				email: user.email,
+				isGoogle: true,
+				// password:"12465"
+			}))
+
+		}
+	}, [dispatch, checkEmail]);
 
 
+	useEffect(() => {
 
-	// useEffect(() => {
+		if(newlyCreated){
+			dispatch(LoginUser({
+				email: user.email,
+				isGoogle: true,
+				// password:"12465"
+			}))
+			dispatch({
+				type: "REGISTER_USER_GOOGLE",
+				payload: false
+			});
+		}
+	}, [dispatch, newlyCreated, user]);
 
-	// 	if(checkEmail.email === false){
-	// 		dispatch(registerUserGoogle({
-	// 			email: user.email,
-	// 			name: user.given_name,
-	// 			surname: user.family_name,
-	// 			image: user.picture,
-	// 			isGoogle: true,
-	// 		}))
+	useEffect(()=>{
+			if(accessToken) {
+				dispatch(logPostData(accessToken));
+			}
+  	}, [dispatch, accessToken])
 
-	// 	}
-	// }, [dispatch, checkEmail, user]);
-
-
-	// useEffect(() => {
-	// 	if(isAuthenticated && !accessToken){
-	// 		dispatch(LoginUser({
-	// 			email: user.email,
-	// 			isGoogle: true,
-	// 			password:"12465"
-	// 		}))
-	// 		logout()
-
-	// 	}
-	// }, [dispatch, isAuthenticated, accessToken, user]);
-
-	// useEffect(() => {
-
-	// 	if(newlyCreated){
-	// 		dispatch(LoginUser({
-	// 			email: user.email,
-	// 			isGoogle: true,
-	// 			password:"12465"
-	// 		}))
-	// 	}
-	// }, [dispatch, newlyCreated, user]);
-
-
-
-
-	// useEffect(() => {
-	// 	if(accessToken){
-	// 		dispatch(logPostData(accessToken))
-	// 	}
-	// }, [dispatch, accessToken]);
-
-
-	// useEffect(() => {
-		// 	if(isAuthenticated){
-			// 		dispatch(logPostData(accessToken))
-			// 	}
-			// }, [dispatch, isAuthenticated, accessToken]);
 
 
 			useEffect(() => {

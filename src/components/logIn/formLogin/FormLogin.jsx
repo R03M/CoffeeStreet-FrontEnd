@@ -1,22 +1,50 @@
 import React, { useState ,useEffect } from "react";
 import './formLogin.css';
 import { useDispatch , useSelector } from 'react-redux';
-import { LoginUser,  checkEmailUser, logPostData} from '../../../redux/action.js';
+import { LoginUser,  checkEmailUser, logPostData, registerUserGoogle} from '../../../redux/action.js';
 import { useNavigate } from "react-router-dom";
-
-
-
-
+import { useAuth0 } from "@auth0/auth0-react";
 
 
 const FormLogin = () => {
-	const user = useSelector(state => state.user);
+	const usuario = useSelector(state => state.user);
   const checkEmail = useSelector(state => state.checkEmail);
   const dispatch = useDispatch();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 	const tokenAcc = useSelector(state => state.accessToken);
 	const navigate = useNavigate();
+	// const  { isAuthenticated, user } = useAuth0();
+
+	// useEffect(() => {
+
+	// 		if (isAuthenticated) {
+	// 			dispatch(checkEmailUser(usuario.email));
+	// 		}
+
+	// }, [dispatch, isAuthenticated]);
+
+	// useEffect(() => {
+	// 	console.log(checkEmail);
+
+	// 	if(checkEmail.email === false){
+	// 		dispatch(registerUserGoogle({
+	// 			email: user.email,
+	// 			name: user.given_name,
+	// 			surname: user.family_name,
+	// 			image: user.picture,
+	// 			isGoogle: true,
+	// 		}))
+
+	// 	}
+	// }, [dispatch, checkEmail, user]);
+
+
+
+
+
+
+
 
 	console.log('token access on reducer')
 	console.log(tokenAcc);
@@ -31,7 +59,6 @@ const FormLogin = () => {
   }
 
 	 useEffect(()=>{
-		console.log('quepaso')
 			if(tokenAcc) {
 				dispatch(logPostData(tokenAcc));
 			}
@@ -40,7 +67,6 @@ const FormLogin = () => {
 	const handleEmail = (e) => {
 				if(validEmail.test(e.target.value)){
 				dispatch(checkEmailUser(e.target.value))
-				// console.log('valid')
 
 				if(checkEmail.isGoogle === false){
 					setEmail(e.target.value)
@@ -68,17 +94,13 @@ const FormLogin = () => {
 
 	 useEffect(() => {
 		console.log("bu")
-		console.log(tokenAcc);
-		console.log(user)
-		console.log(user.name);
-		console.log(user.id)
-    if (tokenAcc && user?.name) {
+    if (tokenAcc && usuario?.name) {
 			console.log("éstoy");
         setTimeout(() => {
           navigate("/menu", { replace: true });
         }, 3600);
       }
-  }, [navigate, user, tokenAcc]);
+  }, [navigate, usuario, tokenAcc]);
 
   return (
     <div  className='contenedor-principal-login'>

@@ -1,4 +1,4 @@
-import MyFavourites from "../components/client/myFavourites/MyFavourites";
+// import MyFavourites from "../components/client/myFavourites/MyFavourites";
 
 const localRefreshToken = JSON.parse(localStorage.getItem("refreshToken"));
 const localAccessToken = JSON.parse(localStorage.getItem("accessToken"));
@@ -8,11 +8,11 @@ const initialState = {
 	products: [],
 	errorSProducts: [],
 	productDetails: {},
-	accessToken: localAccessToken || "" ,
-	refreshToken: localRefreshToken || "" ,
+	accessToken: localAccessToken || "",
+	refreshToken: localRefreshToken || "",
 	checkEmail: {},
 	newlyCreated: false,
-	user:{},
+	user: {},
 	responseCreateProduct: [],
 	productsDataId: {},
 	cart: [],
@@ -43,45 +43,41 @@ export default function rootReducer(state = initialState, action) {
 				};
 			}
 
-			case "LOGIN_USER":
-				return {
-					...state,
-					accessToken: action.payload.accessToken,
-					refreshToken: action.payload.refreshToken,
-				};
-			case "REGISTER_USER_GOOGLE":
-				return {
-					...state,
-					newlyCreated : true
-				};
+		case "LOGIN_USER":
+			return {
+				...state,
+				accessToken: action.payload.accessToken,
+				refreshToken: action.payload.refreshToken
+			};
+		case "REGISTER_USER_GOOGLE":
+			return {
+				...state,
+				newlyCreated: action.payload
+			};
 
+		case "LOG_POST_DATA":
+			return {
+				...state,
+				user: action.payload
+			};
 
-			case "LOG_POST_DATA":
-				return {
-					...state,
-					user: action.payload
-				};
+		case "GET_MY_FAVORITES":
+			return {
+				...state,
+				myFavourites: action.payload
+			};
 
-			case "GET_MY_FAVORITES":
-				return {
-					...state,
-					myFavourites: action.payload
-				};
-		
-			case "LOGOUT_USER":
-				return {
-					...state,
-					accessToken: "",
-					refreshToken: "",
-					user: {}
-					
-
-				};
-			case "CHECK_EMAIL_USER":
-				return {
-					...state,
-					checkEmail: action.payload
-				};
+		case "LOGOUT_USER":
+			return {
+				...initialState,
+				accessToken: "",
+				refreshToken: ""
+			};
+		case "CHECK_EMAIL_USER":
+			return {
+				...state,
+				checkEmail: action.payload
+			};
 
 		case "CLEAR_ERROR_SEARCHP":
 			return {

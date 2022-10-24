@@ -1,6 +1,6 @@
 import React ,{ useEffect, useState} from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { logPostData , getMyFavorites } from "../../../redux/action.js";
+import { getMyFavorites } from "../../../redux/action.js";
 import CardP from "../../products/card/CardP.jsx";
 
 

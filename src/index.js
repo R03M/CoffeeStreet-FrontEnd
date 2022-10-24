@@ -19,7 +19,7 @@ root.render(
 				<Auth0Provider
 					domain={domain}
 					clientId={clientId}
-					redirectUri={window.location.origin} // se cambió a la ventana origen
+					redirectUri="http://localhost:3000/menu"
 				>
 					<App />
 				</Auth0Provider>

@@ -116,8 +116,6 @@ export function LoginUser(payload) {
 				type: "LOGIN_USER",
 				payload: response.data
 			});
-
-			// console.log(response.data);
 		} catch (error) {
 			return alert("Invalid email or password");
 		}
@@ -137,9 +135,9 @@ export function logOutUser(accessToken) {
 					}
 				}
 			);
-
-			// window.location.href = "/";
 			if (response) {
+				localStorage.removeItem("refreshToken");
+				localStorage.removeItem("accessToken");
 				dispatch({
 					type: "LOGOUT_USER"
 				});
@@ -176,11 +174,14 @@ export function addProductFavourite(payload, id) {
 }
 
 export function registerUserGoogle(payload) {
+	console.log("estoy en la action de google");
+	console.log(payload);
 	return async function (dispatch) {
 		try {
 			const response = await axios.post(`${url}/register`, payload);
 			dispatch({
-				type: "REGISTER_USER_GOOGLE"
+				type: "REGISTER_USER_GOOGLE",
+				payload: true
 			});
 		} catch (error) {
 			return error;
@@ -210,7 +211,7 @@ export function logPostData(token) {
 					Accept: "aplication/json"
 				}
 			});
-			console.log("estoy en action");
+			console.log("estoy en action logPostData");
 			console.log(response);
 			dispatch({
 				type: "LOG_POST_DATA",

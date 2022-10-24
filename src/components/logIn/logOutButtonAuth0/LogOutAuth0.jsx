@@ -11,29 +11,26 @@ import { useNavigate } from 'react-router-dom';
 const LogOutAuth0 = () => {
   const dispatch = useDispatch();
   const accessToken = useSelector(state => state.accessToken);
+	const { logout } = useAuth0();
 
-  
-    const deslogeo = (e) => {
+
+
+  const deslogeo = (e) => {
       e.preventDefault();
-   
-      borrado();
       dispatch(logOutUser(accessToken));
-    }
+			logout()
+  }
 
-    const borrado = () => {
-      window.localStorage.removeItem("refreshToken")
-      window.localStorage.removeItem("accessToken")
-    }
-    
-    
+
+
   return (
     <div className='btn-logOut'>
       <button onClick={ (e) => deslogeo(e)}>
-        <img src={salida} alt="logOut" 
+        <img src={salida} alt="logOut"
         />
       </button>
 
-      
+
     </div>
   );
 };
