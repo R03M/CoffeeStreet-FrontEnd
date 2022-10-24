@@ -181,7 +181,7 @@ export function addProductFavourite(payload, id) {
 export function deleteProductFavourite(payload, id) {
 	return async function (dispatch) {
 		try {
-			await axios.delete(`${url}/users/${id}/favourites`, { data: payload });
+			await axios.delete(`${url}/users/${id}/favourites`, {data:payload} );
 			dispatch({
 				type: "ADD_PRODUCT_FAVOURITE"
 			});

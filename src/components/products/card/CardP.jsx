@@ -17,7 +17,7 @@ const CardP = ({ product }) => {
 	const dispatch = useDispatch();
 	const listaFavoritos = useSelector(state => state.myFavourites);
 	const quantity = useSelector(state => state.quantity);
-	const user = useSelector(state => state.user);
+	const user = useSelector(state => state.user.user);
 
 	const alcohol = () => {
 		if (product.alcohol === true) {
@@ -80,7 +80,7 @@ const CardP = ({ product }) => {
 	};
 	const handleQuantity = id => {
 		let count = 0;
-		quantity.map(q =>  {
+		quantity.map(q => {
 			if (q.id === id) {
 				count = q.quantity;
 			}
@@ -99,7 +99,8 @@ const CardP = ({ product }) => {
 	return (
 		<div className={product.stock === true ? "cardDiv" : "cardDivF"} key={product.id}>
 			<button onClick={handlerFavorite} className="like">
-				{listaFavoritos.map(e => e.id === product.id).includes(true) ? (
+				{listaFavoritos.length &&
+				listaFavoritos.map(e => e.id === product.id).includes(true) ? (
 					<FcLike />
 				) : (
 					<FcLikePlaceholder />
