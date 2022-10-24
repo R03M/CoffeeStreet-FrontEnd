@@ -12,7 +12,7 @@ import Products from "../components/products/Products.jsx";
 import CurrentNews from "../components/new/currentNews/CurrentNews.jsx";
 import About from "../components/About/About.jsx";
 import ProductsDetails from "../components/productsDetails/ProductsDetails.jsx";
-import { refreshLog } from "../redux/action";
+import { refreshLog, getMyFavorites, logPostData } from "../redux/action";
 import ShoppingCart from "../components/ShoppingCart/ShoppingCart.jsx";
 
 import "./App.css";
@@ -20,26 +20,29 @@ import { useEffect } from "react";
 
 function App() {
 	const dispatch = useDispatch();
-	const refrest = useSelector(state => state.refreshToken)
-	const user = useSelector(state => state.user)
- console.log("refrest", refrest === "")
-  const accessToken = useSelector(state => state.accessToken);
-	
-
-
-	
-	useEffect(() => {
-    localStorage.setItem("refreshToken", JSON.stringify(refrest));
-    localStorage.setItem("accessToken", JSON.stringify(accessToken));
-  }, [accessToken, refrest]);
+	const refrest = useSelector(state => state.refreshToken);
+	const user = useSelector(state => state.user);
+	//  console.log("refrest", refrest === "")
+	const accessToken = useSelector(state => state.accessToken);
 
 	useEffect(() => {
-		if(refrest.length > 0){
+		if (accessToken) {
+			dispatch(logPostData(accessToken));
+			dispatch(getMyFavorites(user.id));
+		}
+	}, [dispatch, accessToken]);
+
+	useEffect(() => {
+		localStorage.setItem("refreshToken", JSON.stringify(refrest));
+		localStorage.setItem("accessToken", JSON.stringify(accessToken));
+	}, [accessToken, refrest]);
+
+	useEffect(() => {
+		if (refrest.length > 0) {
 			dispatch(refreshLog(accessToken, refrest));
-			console.log("holaaaaaaaaaaaaaaaaaaaaaaaaa")
+			// console.log("holaaaaaaaaaaaaaaaaaaaaaaaaa")
 		}
 	}, [dispatch, accessToken, refrest]);
-
 
 	// console.log("app tokenRef", refreshToken);
 	return (
