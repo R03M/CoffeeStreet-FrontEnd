@@ -17,20 +17,9 @@ const discounts = [
 
 
 const Home = () => {
-	// const { isAuthenticated } = useAuth0();
-	// const refreshToken = useSelector((state) => state.refreshToken);
-	const accessToken = useSelector((state) => state.accessToken);
+
 	const usuario = useSelector(state => state.user);
-	const dispach = useDispatch();
-console.log(usuario)
-	useEffect(() => {
-		if(accessToken){
-			dispach(logPostData(accessToken))
-		}
-	}, [dispach, accessToken])
 
-
-  // console.log(refreshToken)
 	return (
 		<div className="homeDiv">
 		  { usuario.hasOwnProperty("user") ? (

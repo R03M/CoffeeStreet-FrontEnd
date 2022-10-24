@@ -51,7 +51,7 @@ export default function rootReducer(state = initialState, action) {
 		case "REGISTER_USER_GOOGLE":
 			return {
 				...state,
-				newlyCreated: true
+				newlyCreated: action.payload
 			};
 
 		case "LOG_POST_DATA":
