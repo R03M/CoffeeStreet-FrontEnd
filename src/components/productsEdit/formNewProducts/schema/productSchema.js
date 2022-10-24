@@ -152,7 +152,42 @@ export const productSchema = Yup.object().shape({
 			otherwise: Yup.string().notRequired()
 		}),
 	// //? //////////////////////////////////////////////////////////////////////////////////
-	// // ingredients: Yup.array().min(1, "At least one ingredient is required").nullable(),
+	ingredients: Yup.array()
+		.when("category", {
+			is: CATEGORIES.COFFEE_READY_TO_DRINK,
+			then: Yup.array()
+				.min(1, "At least one ingredient is required")
+				.required("Ingredients is required"),
+			otherwise: Yup.array().notRequired()
+		})
+		.when("category", {
+			is: CATEGORIES.TEA,
+			then: Yup.array()
+				.min(1, "At least one ingredient is required")
+				.required("Ingredients is required"),
+			otherwise: Yup.array().notRequired()
+		})
+		.when("category", {
+			is: CATEGORIES.SALTY_BACKERY,
+			then: Yup.array()
+				.min(1, "At least one ingredient is required")
+				.required("Ingredients is required"),
+			otherwise: Yup.array().notRequired()
+		})
+		.when("category", {
+			is: CATEGORIES.SWEET_BACKERY,
+			then: Yup.array()
+				.min(1, "At least one ingredient is required")
+				.required("Ingredients is required"),
+			otherwise: Yup.array().notRequired()
+		})
+		.when("category", {
+			is: CATEGORIES.OTHER,
+			then: Yup.array()
+				.min(1, "At least one ingredient is required")
+				.required("Ingredients is required"),
+			otherwise: Yup.array().notRequired()
+		}),
 	// //? //////////////////////////////////////////////////////////////////////////////////
 	originCountry: Yup.string().when("category", {
 		is: CATEGORIES.COFFEE_TO_PREPARED,
