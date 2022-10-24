@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { clearDetailsProductId, clearResponseNewProduct } from "../../../redux/action";
 import { Formik, Form, Field, ErrorMessage, isString } from "formik";
-import swal from "sweetalert";
+import { putProducts, clearResPutProducts } from "../../../redux/action";
 import { CATEGORIES } from "../../../models/categories.enum";
 import { TEXTURES } from "../../../models/textures.enum";
 import { BODY } from "../../../models/body.enum";
@@ -11,12 +11,15 @@ import { BITTERNESS } from "../../../models/bitterness.enum";
 import { ROAST } from "../../../models/roast.enum";
 import { COLOR } from "../../../models/color.enum";
 import { productEditSchema } from "./schemaEp/formEditProductSchema.js";
+import swal from "sweetalert";
 import "./formEditProducts.css";
 
 const EditProducts = ({ exitF }) => {
 	const dispatch = useDispatch();
-	const responseOfCreateNp = useSelector(state => state.responseCreateProduct);
+	const responseOFUpdatedP = useSelector(state => state.resUpdatedProduct);
 	const dataProduct = useSelector(state => state.productsDataId);
+
+	const [errorNoti, setErrorNoti] = useState(false);
 
 	const handleExit = () => {
 		dispatch(clearDetailsProductId());
@@ -44,71 +47,117 @@ const EditProducts = ({ exitF }) => {
 		gluten: dataProduct.gluten,
 		stock: dataProduct.stock,
 		ingredients: dataProduct.ingredients,
-		originCountry: dataProduct.originCountry,
-		state: dataProduct.state,
-		cream: dataProduct.attribute.cream,
-		texture: dataProduct.attribute.texture,
-		body: dataProduct.attribute.body,
-		acidity: dataProduct.attribute.acidity,
-		bitterness: dataProduct.attribute.bitterness,
-		roast: dataProduct.attribute.roast,
-		color: dataProduct.attribute.color
+		originCountry: dataProduct.originCountry ? dataProduct.originCountry : "",
+		cream:
+			dataProduct.category === "coffee" && dataProduct.isPrepared === true
+				? dataProduct.attribute.cream
+				: null,
+		texture:
+			dataProduct.category === "coffee" && dataProduct.isPrepared === true
+				? dataProduct.attribute.texture
+				: null,
+		body:
+			dataProduct.category === "coffee" && dataProduct.isPrepared === true
+				? dataProduct.attribute.body
+				: null,
+		acidity:
+			dataProduct.category === "coffee" && dataProduct.isPrepared === true
+				? dataProduct.attribute.acidity
+				: null,
+		bitterness:
+			dataProduct.category === "coffee" && dataProduct.isPrepared === true
+				? dataProduct.attribute.bitterness
+				: null,
+		roast:
+			dataProduct.category === "coffee" && dataProduct.isPrepared === true
+				? dataProduct.attribute.roast
+				: null,
+		color:
+			dataProduct.category === "coffee" && dataProduct.isPrepared === true
+				? dataProduct.attribute.color
+				: null
 	};
 
 	const notiSwal = () => {
-		if (responseOfCreateNp === "Created") {
+		if (responseOFUpdatedP === "Success Update") {
 			swal({
-				title: "Created",
+				title: "Update",
 				text: "",
 				icon: "success",
 				button: "Ok"
 			});
-			dispatch(clearResponseNewProduct());
-		} else if (responseOfCreateNp === "Not created") {
+			setErrorNoti(false)
+			dispatch(clearResPutProducts());
+		} else if (errorNoti === true) {
 			swal({
 				title: "Error",
 				text: "",
 				icon: "error",
 				button: "Ok"
 			});
-			dispatch(clearResponseNewProduct());
+			setErrorNoti(false)
 		}
 	};
 
-	const addProduct = (values, resetForm) => {
+	const addProduct = values => {
+		setErrorNoti(true);
 		let newProduct = {
 			name: values.name,
 			description: values.description,
 			image:
-				values.image.length > 10
+				values.image.length > 0
 					? values.image
-					: "https://www.publicdomainpictures.net/pictures/280000/nahled/not-found-image-15383864787lu.jpg",
+					: "https://res.cloudinary.com/db6aq84ze/image/upload/v1666550286/coffeeStreet_vhewoj.png",
 			price: values.price,
 			category:
 				values.category === CATEGORIES.COFFEE_READY_TO_DRINK ||
 				values.category === CATEGORIES.COFFEE_TO_PREPARED
 					? "coffee"
 					: values.category,
-			lactose: values.lactose === "true" ? true : false,
-			gluten: values.gluten === "true" ? true : false,
-			alcohol: values.alcohol === "true" ? true : false,
+			lactose:
+				values.category === CATEGORIES.COFFEE_TO_PREPARED
+					? null
+					: values.lactose === "true"
+					? true
+					: false,
+			gluten:
+				values.category === CATEGORIES.COFFEE_TO_PREPARED ||
+				values.category === CATEGORIES.TEA
+					? null
+					: values.gluten === "true"
+					? true
+					: false,
+			alcohol:
+				values.category === CATEGORIES.COFFEE_TO_PREPARED
+					? null
+					: values.alcohol === "true"
+					? true
+					: false,
 			stock: values.stock === "true" ? true : false,
-			ingredients: values.ingredients,
-			originCountry: values.originCountry,
+			ingredients:
+				values.category === CATEGORIES.COFFEE_TO_PREPARED ? null : values.ingredients,
+			originCountry:
+				values.category === CATEGORIES.COFFEE_TO_PREPARED ? values.originCountry : null,
 			isPrepared: values.category === CATEGORIES.COFFEE_TO_PREPARED ? false : true,
-			state: "active",
-			cream: values.cream === "true" ? true : false,
-			texture: values.texture,
-			body: values.body,
-			acidity: values.acidity,
-			bitterness: values.bitterness,
-			roast: values.roast,
-			color: values.color
+			cream:
+				values.category === CATEGORIES.COFFEE_READY_TO_DRINK
+					? values.cream === "true"
+						? true
+						: false
+					: null,
+			texture:
+				values.category === CATEGORIES.COFFEE_READY_TO_DRINK ? values.texture : null,
+			body: values.category === CATEGORIES.COFFEE_READY_TO_DRINK ? values.body : null,
+			acidity:
+				values.category === CATEGORIES.COFFEE_READY_TO_DRINK ? values.acidity : null,
+			bitterness:
+				values.category === CATEGORIES.COFFEE_READY_TO_DRINK ? values.bitterness : null,
+			roast: values.category === CATEGORIES.COFFEE_READY_TO_DRINK ? values.roast : null,
+			color: values.category === CATEGORIES.COFFEE_READY_TO_DRINK ? values.color : null
 		};
 
 		console.log(newProduct);
-		// dispatch(putNewProduct(newProduct));
-		// resetForm();
+		dispatch(putProducts(dataProduct.id, newProduct));
 	};
 	notiSwal();
 
@@ -117,8 +166,8 @@ const EditProducts = ({ exitF }) => {
 			<h1>Edit Product</h1>
 			<Formik
 				initialValues={initialValues}
-				// validationSchema={productSchema}
-				onSubmit={(values, { resetForm }) => addProduct(values, resetForm)}
+				validationSchema={productEditSchema}
+				onSubmit={values => addProduct(values)}
 			>
 				{({ values, touched, errors, isSubmitting, handleChange, handleBlur }) => (
 					<Form className="formNewProductBody1">
@@ -330,6 +379,41 @@ const EditProducts = ({ exitF }) => {
 										id="ingredients"
 										name="ingredients[4]"
 										placeholder="Ingredient 5"
+										className="ingredientsInputNP"
+									/>
+									<Field
+										type="text"
+										id="ingredients"
+										name="ingredients[5]"
+										placeholder="Ingredient 6"
+										className="ingredientsInputNP"
+									/>
+									<Field
+										type="text"
+										id="ingredients"
+										name="ingredients[6]"
+										placeholder="Ingredient 7"
+										className="ingredientsInputNP"
+									/>
+									<Field
+										type="text"
+										id="ingredients"
+										name="ingredients[7]"
+										placeholder="Ingredient 8"
+										className="ingredientsInputNP"
+									/>
+									<Field
+										type="text"
+										id="ingredients"
+										name="ingredients[8]"
+										placeholder="Ingredient 9"
+										className="ingredientsInputNP"
+									/>
+									<Field
+										type="text"
+										id="ingredients"
+										name="ingredients[9]"
+										placeholder="Ingredient 10"
 										className="ingredientsInputNP"
 									/>
 									{errors.ingredients && touched.ingredients && (

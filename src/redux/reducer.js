@@ -6,6 +6,8 @@ const initialState = {
 	products: [],
 	errorSProducts: [],
 	productDetails: {},
+	responseCreateProduct: [],
+	resUpdatedProduct: [],
 	accessToken: localAccessToken || "" ,
 	refreshToken: localRefreshToken || "" ,
 	checkEmail: {},
@@ -17,6 +19,7 @@ const initialState = {
 	quantity: 0,
 	order: [],
 	myFavourites: []
+
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -328,6 +331,16 @@ export default function rootReducer(state = initialState, action) {
 		case "DELETE_PRODUCT":
 			return {
 				...state
+			};
+		case "PUT_PRODUCTS":
+			return {
+				...state,
+				resUpdatedProduct: action.payload
+			};
+		case "CLEAR_RES_PUT_PRODUCTS":
+			return {
+				...state,
+				resUpdatedProduct: []
 			};
 
 		default:
