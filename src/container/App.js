@@ -23,6 +23,7 @@ const url = "http://localhost:3001";
 function App() {
 	const dispatch = useDispatch();
 	const refresh = useSelector(state => state.refreshToken);
+	// const user = useSelector(state => state.user);
 	const accessToken = useSelector(state => state.accessToken);
 
 	useEffect(() => {

@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import NavBar from "../navbar/Navbar.jsx";
-// import NavBarClient from "../client/navClient/NavClient.jsx";
+import NavBarClient from "../client/navClient/NavClient.jsx";
 import New from "../new/New.jsx";
 import "./home.css";
 import { useAuth0 } from "@auth0/auth0-react";
@@ -33,9 +33,10 @@ const Home = () => {
   // console.log(refreshToken)
 	return (
 		<div className="homeDiv">
-		  { usuario &&
-
-		   <NavBar />}
+		  { usuario.hasOwnProperty("user") ? (
+				<NavBarClient />
+		  ) : <NavBar />}
+			{/* { refreshToken ? <NavBarClient /> : <NavBar /> } */}
 
 			<div className="banner"></div>
 			<div className="discountsAndNews">
