@@ -2,18 +2,23 @@ import React, { useState ,useEffect } from "react";
 import './formLogin.css';
 import { useDispatch , useSelector } from 'react-redux';
 import { LoginUser,  checkEmailUser, logPostData} from '../../../redux/action.js';
+import { useNavigate } from "react-router-dom";
+
 
 
 
 
 
 const FormLogin = () => {
-  const accessToken = useSelector(state => state.accessToken);
+	const user = useSelector(state => state.user);
   const checkEmail = useSelector(state => state.checkEmail);
   const dispatch = useDispatch();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 	const tokenAcc = useSelector(state => state.accessToken);
+	const navigate = useNavigate();
+
+	console.log('token access on reducer')
 	console.log(tokenAcc);
 
 	var validEmail =  /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
@@ -54,12 +59,26 @@ const FormLogin = () => {
 
 
 
+	//ME ESTABA CAUSANDO QUE USER SE VACIARA EN EL REDUCER
+  // useEffect(() => {
+  //   if(accessToken) {
+  //     window.location.href = "/menu"
+  //   }
+  // } , [accessToken])
 
-  useEffect(() => {
-    if(accessToken) {
-      window.location.href = "/menu"
-    }
-  } , [accessToken])
+	 useEffect(() => {
+		console.log("bu")
+		console.log(tokenAcc);
+		console.log(user)
+		console.log(user.name);
+		console.log(user.id)
+    if (tokenAcc && user?.name) {
+			console.log("éstoy");
+        setTimeout(() => {
+          navigate("/menu", { replace: true });
+        }, 3600);
+      }
+  }, [navigate, user, tokenAcc]);
 
   return (
     <div  className='contenedor-principal-login'>

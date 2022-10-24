@@ -29,6 +29,11 @@ const NavBar = () => {
 						<button className="btnNBCU">Log In</button>
 					</Link>
 				}
+				{ (user?.name) &&
+					<Link to="/logIn">
+						<button className="btnNBCU">Log In</button>
+					</Link>
+				}
 
 				<Link to={"/cart"}>
 					<button className="btnNBCU">

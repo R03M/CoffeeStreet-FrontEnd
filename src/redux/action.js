@@ -100,7 +100,7 @@ export function postUserNew(payload) {
 		return async function () {
 			const response = await axios.post(`${url}/register`, payload);
 			alert("Created user successfully");
-			window.location.href = "/login";
+			// window.location.href = "/login";
 		};
 	} catch (error) {
 		return error;
@@ -138,7 +138,7 @@ export function logOutUser(accessToken) {
 				}
 			);
 
-			window.location.href = "/";
+			// window.location.href = "/";
 			if (response) {
 				dispatch({
 					type: "LOGOUT_USER"
@@ -210,9 +210,11 @@ export function logPostData(token) {
 					Accept: "aplication/json"
 				}
 			});
+			console.log("estoy en action");
+			console.log(response);
 			dispatch({
 				type: "LOG_POST_DATA",
-				payload: response.data
+				payload: response.data.user
 			});
 		} catch (error) {
 			dispatch({
