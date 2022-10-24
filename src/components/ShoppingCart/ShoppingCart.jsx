@@ -21,20 +21,24 @@ const ShoppingCart = () => {
 	const quantity = useSelector(state => state.quantity);
 	const [order, setOrder] = useState([]);
 	const user = useSelector(state => state.user);
+	const product = useSelector(state => state.products);
+	// const usuario = user.user.auth.id
 
-	useEffect(() => {
-			dispatch(getOrCreateShoppingCart(cart));
+	console.log("cart " , cart)
+	// useEffect(() => {
+	// 	if (user.hasOwnProperty("user")) {
+	// 		dispatch(getOrCreateShoppingCart(usuario));
+	// 	} 
+	// }, []);
 
-	}, [dispatch, cart, user.id]);
-
-
-	const handleAdd = id => {
-		if(user.id){
-			dispatch(addItemShoppingCart(id))
+	const handleAdd = () => {
+		if(user.hasOwnProperty("user")){
+			console.log("entre")
+			dispatch(addItemShoppingCart({  idCart: cart.cartId, idProduct: product.id}));
 		}else{
-			dispatch(addProductToCart(id));
+			dispatch(addProductToCart(product.id));
 			quantity.map(q => {
-				if (q.id === id) {
+				if (q.idProduct === product.id) {
 					setCount(q.quantity);
 				}
 			});
@@ -88,11 +92,13 @@ const ShoppingCart = () => {
 	};
 
 	const handleTotal = () => {
-		let total = 0;
-		cart.map(p => {
-			total += p.price * p.quantity;
-		});
-		return Math.round(total);
+	// 	let total = 0;
+	// 	if (cart.length > 0) {
+	// 		cart.map(e => {
+	// 			total += e.price * e.quantity;
+	// 		});
+	// 		return Math.round(total);
+	// 	}
 	};
 	// console.log(count)
 	return (
@@ -106,7 +112,7 @@ const ShoppingCart = () => {
 			</div>
 
 			<div className="bodyCartSC">
-				{cart.map(e => (
+				{cart?.map(e => (
 					<div className="cardCartSC">
 						<div className="titleCardSC">
 							<h3>ud ${e.price}</h3>

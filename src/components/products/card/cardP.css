@@ -193,3 +193,16 @@
 	background-color: rgb(239, 234, 224);
 	box-shadow: #541911 0px 0px 5px;
 }
+.like{
+	position: absolute;
+	background-color: transparent;
+	border: none;
+	top: 0;
+	right: 0;
+	margin: 10px;
+	font-size: 2rem;
+	color: #541911;
+	cursor: pointer;
+	z-index: 1;
+	
+}
