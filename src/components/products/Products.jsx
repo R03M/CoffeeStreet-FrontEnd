@@ -12,7 +12,7 @@ import {
 } from "../../redux/action";
 
 import NavBar from "../navbar/Navbar";
-import NavBarClient from "../client/navClient/NavClient";
+// import NavBarClient from "../client/navClient/NavClient";
 import CardP from "./card/CardP";
 import NavbarProduc from "./navbarProducts/NavbarProduc";
 import Pagination from "../pagination/Pagination";
@@ -146,7 +146,7 @@ const Products = () => {
 						<div className="cardsProd">
 							{dataEnd.map(data => {
 								return <CardP key={data.id} product={data}
-								 				userId={ usuario.hasOwnProperty("user") ? usuario.user.id : null}
+								 				userId={ usuario ? usuario.id : null}
 								/>;
 							})}
 						</div>
@@ -161,14 +161,9 @@ const Products = () => {
 
 	return (
 		<div className="productsDiv">
-		{ usuario.hasOwnProperty("user") ? (
-
-				<NavBarClient />
-
-
-		  ) : (
-				<NavBar />
-				)}
+		{ usuario?.name  &&
+				<NavBar/>
+		}
 			<div className="navbarProduc">
 				<NavbarProduc />
 				{pagACards()}

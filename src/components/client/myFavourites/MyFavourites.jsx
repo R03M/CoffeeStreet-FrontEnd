@@ -25,8 +25,8 @@ const MyFavourites = () => {
 	// }, [dispach, accessToken])
 
 	useEffect(() => {
-		if(usuario.hasOwnProperty("user")){
-			dispach(getMyFavorites(usuario.user.id))
+		if(usuario){
+			dispach(getMyFavorites(usuario.id))
 		}
 
 

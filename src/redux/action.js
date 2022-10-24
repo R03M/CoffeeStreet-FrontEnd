@@ -109,6 +109,8 @@ export function postUserNew(payload) {
 
 export function LoginUser(payload) {
 	return async function (dispatch) {
+		console.log("action log");
+		console.log(payload);
 		try {
 			const response = await axios.post(`${url}/login`, payload);
 

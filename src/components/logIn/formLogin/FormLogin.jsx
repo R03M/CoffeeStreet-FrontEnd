@@ -38,17 +38,17 @@ const FormLogin = () => {
   	}, [dispatch, tokenAcc])
 
 	const handleEmail = (e) => {
-				if(validEmail.test(e.target.value)){
-				dispatch(checkEmailUser(e.target.value))
-				// console.log('valid')
+				// if(validEmail.test(e.target.value)){
+				// dispatch(checkEmailUser(e.target.value))
+				// // console.log('valid')
 
-				if(checkEmail.isGoogle === false){
+				// if(checkEmail.isGoogle === false){
 					setEmail(e.target.value)
-				}
-    	}
-    	else{
-      	dispatch(checkEmailUser(e.target.value))
-    	}
+			// 	}
+    	// }
+    	// else{
+      // 	dispatch(checkEmailUser(e.target.value))
+    	// }
   	}
 
 	const handlePassword = (e) => {
@@ -67,11 +67,8 @@ const FormLogin = () => {
   // } , [accessToken])
 
 	 useEffect(() => {
-		console.log("bu")
-		console.log(tokenAcc);
-		console.log(user)
-		console.log(user.name);
-		console.log(user.id)
+		console.log('redireccioname menu');
+
     if (tokenAcc && user?.name) {
 			console.log("éstoy");
         setTimeout(() => {

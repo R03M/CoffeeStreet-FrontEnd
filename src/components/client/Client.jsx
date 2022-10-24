@@ -7,6 +7,7 @@ import MyAccount from "./myAccountsC/MyAccount";
 import MyOrders from "./myOrders/MyOrders";
 import MyFavourites from "./myFavourites/MyFavourites";
 import "./client.css";
+import NavBar from "../navbar/Navbar";
 
 const Client = () => {
 	let [cards, setCards] = useState(true);
@@ -69,6 +70,8 @@ const Client = () => {
 	function cardsClients() {
 		if (cards === true) {
 			return (
+		 <div>
+      <NavBar />
 				<div className="divCardClient">
 					<div className="cardsFauvoritesClients" onClick={() => handlerFavourites()}>
 						<AiOutlineStar className="iconClientCards" />
@@ -83,9 +86,13 @@ const Client = () => {
 						<p className="lettersCardsCli">My account</p>
 					</div>
 				</div>
+			</div>
+
 			);
 		} else if (nav === true) {
 			return (
+		<div>
+      <NavBar />
 				<div className="navbarClient">
 					<p
 						className={favourites === true ? "activeTabsCli" : "nbClient"}
@@ -109,6 +116,8 @@ const Client = () => {
 						Mode Cards
 					</p>
 				</div>
+			</div>
+
 			);
 		}
 	}
