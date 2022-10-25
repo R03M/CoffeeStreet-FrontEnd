@@ -202,7 +202,7 @@ export const productEditSchema = Yup.object().shape({
 		then: Yup.string()
 			.oneOf(["false", "true"], "You must select if it has cream.")
 			.required("Cream is required if ready-to-drink coffee is selected"),
-		otherwise: Yup.string().notRequired()
+		otherwise: Yup.string().nullable().notRequired()
 	}),
 	//? //////////////////////////////////////////////////////////////////////////////////
 	texture: Yup.string().when("category", {
@@ -219,7 +219,7 @@ export const productEditSchema = Yup.object().shape({
 				"You must a select a texture"
 			)
 			.required("Texture is required if ready-to-drink coffee is selected"),
-		otherwise: Yup.string().notRequired()
+		otherwise: Yup.string().nullable().notRequired()
 	}),
 
 	//? //////////////////////////////////////////////////////////////////////////////////
@@ -231,7 +231,7 @@ export const productEditSchema = Yup.object().shape({
 				"You must a select a body"
 			)
 			.required("Body is required if ready-to-drink coffee is selected"),
-		otherwise: Yup.string().notRequired()
+		otherwise: Yup.string().nullable().notRequired()
 	}),
 	//? //////////////////////////////////////////////////////////////////////////////////
 	acidity: Yup.string().when("category", {
@@ -248,7 +248,7 @@ export const productEditSchema = Yup.object().shape({
 				"You must a select a acidity"
 			)
 			.required("Acidity is required if ready-to-drink coffee is selected"),
-		otherwise: Yup.string().notRequired()
+		otherwise: Yup.string().nullable().notRequired()
 	}),
 	//? //////////////////////////////////////////////////////////////////////////////////
 	bitterness: Yup.string().when("category", {
@@ -265,7 +265,7 @@ export const productEditSchema = Yup.object().shape({
 				"You must a select a bitterness"
 			)
 			.required("Body is required if ready-to-drink coffee is selected"),
-		otherwise: Yup.string().notRequired()
+		otherwise: Yup.string().nullable().notRequired()
 	}),
 	//? //////////////////////////////////////////////////////////////////////////////////
 	roast: Yup.string().when("category", {
@@ -284,7 +284,7 @@ export const productEditSchema = Yup.object().shape({
 				"You must a select a roast"
 			)
 			.required("Body is required if ready-to-drink coffee is selected"),
-		otherwise: Yup.string().notRequired()
+		otherwise: Yup.string().nullable().notRequired()
 	}),
 	//? //////////////////////////////////////////////////////////////////////////////////
 	color: Yup.string().when("category", {
@@ -302,6 +302,6 @@ export const productEditSchema = Yup.object().shape({
 				"You must a select a color"
 			)
 			.required("Body is required if ready-to-drink coffee is selected"),
-		otherwise: Yup.string().notRequired()
+		otherwise: Yup.string().nullable().notRequired()
 	})
 });
