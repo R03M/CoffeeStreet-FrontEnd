@@ -4,7 +4,8 @@ import {
 	addItemShoppingCart,
 	emptyCart,
 	getOrCreateShoppingCart,
-	checkOut
+	checkOut,
+	deleteItemCompletedCart
 } from "../../redux/action";
 import { useDispatch, useSelector } from "react-redux";
 import NavBar from "../navbar/Navbar";
@@ -30,7 +31,7 @@ const ShoppingCart = () => {
 
 	const handleRemove = e => {
 		if (user.hasOwnProperty("user")) {
-			dispatch(deleteItemShoppingCart({ idCart: cart.cartId, idProduct: e.idProduct }));
+			dispatch(deleteItemCompletedCart({ idCart: cart.cartId, idProduct: e.idProduct }));
 			swal({
 				title: "Product removed",
 				text: "The product has been removed from the cart",
@@ -78,7 +79,7 @@ const ShoppingCart = () => {
 			icon: "warning"
 		}).then(value => {
 			if (value) {
-				dispatch(checkOut({ cart: cart }));
+				dispatch(checkOut({ cart: cart  }));
 				swal("Checkout", {
 					button: false,
 					timer: 1500,
@@ -132,7 +133,7 @@ const ShoppingCart = () => {
 						</div>
 						<div className="totalCardSC">
 							<h2>Subtotal</h2>
-							<h2>${e.price}</h2>
+							<h2>{e.price}</h2>
 						</div>
 					</div>
 				))}

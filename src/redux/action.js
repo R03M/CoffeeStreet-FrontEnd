@@ -382,3 +382,13 @@ export function checkOut (cart){
 		}
 	}
 }
+
+export function deleteItemCompletedCart(cart){
+	return async function (){
+		try{
+			await axios.delete(`${url}/cart/byproduct` , {data: cart});
+		}catch(error){
+			return error;
+		}
+	}
+}
