@@ -3,7 +3,8 @@ import {
 	deleteItemShoppingCart,
 	addItemShoppingCart,
 	emptyCart,
-	getOrCreateShoppingCart
+	getOrCreateShoppingCart,
+	checkOut
 } from "../../redux/action";
 import { useDispatch, useSelector } from "react-redux";
 import NavBar from "../navbar/Navbar";
@@ -68,6 +69,31 @@ const ShoppingCart = () => {
 		});
 	};
 
+	const handleCheckout = () => {
+		swal({
+			text: `Are you sure you want to checkout ?`,
+			buttons: ["cancel", "confirm"],
+			dangerMode: true,
+			closeOnClickOutside: false,
+			icon: "warning"
+		}).then(value => {
+			if (value) {
+				dispatch(checkOut({ cart: cart }));
+				swal("Checkout", {
+					button: false,
+					timer: 1500,
+					icon: "success"
+				});
+			} else {
+				swal("Operation cancelled", {
+					button: false,
+					timer: 1500,
+					icon: "error"
+				});
+			}
+		});
+	};
+
 	return (
 		<div className="shoppingCart">
 			<NavBar />
@@ -76,7 +102,7 @@ const ShoppingCart = () => {
 				<button className="deleteBtnAllCartSC" onClick={() => handleClear()}>
 					Delete All
 				</button>
-				<button className="btnBCartTemp">Buy</button>
+				<button className="btnBCartTemp" onClick={()=> handleCheckout()}>Buy</button>
 			</div>
 			<div className="containerCartSC">
 				<h2>Total</h2>

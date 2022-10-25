@@ -281,6 +281,7 @@ export function getOrCreateShoppingCart(id){
 				type: "GET_CREATE_SHOPPING_CART",
 				payload: response.data
 			});
+			console.log("response",response.data)
 		}catch(error){
 			return error;
 		}
@@ -370,4 +371,14 @@ export function changeStatus(productStock, productId) {
 			return error;
 		}
 	};
+}
+
+export function checkOut (cart){
+	return async function (){
+		try{
+			await axios.post(`${url}/algo`, cart);
+		}catch(error){
+			return error;
+		}
+	}
 }
