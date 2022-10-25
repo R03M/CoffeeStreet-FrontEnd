@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { FcLike, FcLikePlaceholder } from "react-icons/fc";
 import { Link, useNavigate } from "react-router-dom";
 import { BiDrink } from "react-icons/bi";
@@ -6,13 +6,16 @@ import { GiMilkCarton, GiWheat } from "react-icons/gi";
 import { BsInfo, BsFillCartPlusFill } from "react-icons/bs";
 import swal from "sweetalert";
 import "./cardP.css";
-import { addProductToCart , addProductFavourite, addItemShoppingCart,deleteProductFavourite } from "../../../redux/action";
+import {
+	addProductFavourite,
+	addItemShoppingCart,
+	deleteProductFavourite
+} from "../../../redux/action";
 import { useDispatch, useSelector } from "react-redux";
 
-
-const CardP = ({ product ,userId }) => {
+const CardP = ({ product, userId }) => {
 	const dispatch = useDispatch();
-  let navigate = useNavigate();
+	let navigate = useNavigate();
 	const listaFavoritos = useSelector(state => state.myFavourites);
 	const user = useSelector(state => state.user.user);
 
@@ -75,18 +78,22 @@ const CardP = ({ product ,userId }) => {
 
 	const cart = useSelector(state => state.cart);
 	const handleAdd = () => {
-		console.log("cart", cart)
-		
-			dispatch(addItemShoppingCart({  idCart: cart.cartId, idProduct: product.id}));
-		// }else{
-		// 	dispatch(addProductToCart(product.id));
-		// 	quantity.map(q => {
-		// 		if (q.idProduct === product.id) {
-		// 			setCount(q.quantity);
-		// 		}
-		// 	});
-		// }
-	;}
+		if (!user.id) {
+			swal({
+				title: "You must be logged in to add products to your cart",
+				icon: "info",
+				button: "Ok"
+			});
+		} else {
+			dispatch(addItemShoppingCart({ idCart: cart.cartId, idProduct: product.id }));
+			swal({
+				title: "Product added to cart",
+				text: "You can see your cart in the top right corner",
+				icon: "success",
+				button: "Ok"
+			});
+		}
+	};
 
 	const handlerFavorite = () => {
 		if (!user) {
@@ -104,7 +111,7 @@ const CardP = ({ product ,userId }) => {
 						timer: 1500,
 						icon: "success"
 					});
-					navigate("/signIn")
+					navigate("/signIn");
 				} else {
 					swal("Staying on menu", {
 						button: false,
@@ -120,9 +127,8 @@ const CardP = ({ product ,userId }) => {
 				dispatch(addProductFavourite({ idProduct: product.id }, user.id));
 			}
 		}
-// console.log(product.id)
-};
-
+		// console.log(product.id)
+	};
 
 	return (
 		<div className={product.stock === true ? "cardDiv" : "cardDivF"} key={product.id}>

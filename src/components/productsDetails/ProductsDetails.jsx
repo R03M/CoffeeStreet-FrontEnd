@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { addProductToCart, productDetails } from "../../redux/action";
+import { addItemShoppingCart, productDetails } from "../../redux/action";
 import { BsFillCartPlusFill } from "react-icons/bs";
 import NavBar from "../navbar/Navbar";
 import swal from "sweetalert";
@@ -12,6 +12,8 @@ const ProductsDetails = () => {
 	const { id } = useParams();
 	const dispatch = useDispatch();
 	const product = useSelector(state => state.productDetails);
+	const cart = useSelector(state => state.cart);
+	const user = useSelector(state => state.user.user);
 
 	useEffect(() => {
 		dispatch(productDetails(id));
@@ -28,8 +30,23 @@ const ProductsDetails = () => {
 		}
 	};
 
-	const handleAdd = (id) => {
-        dispatch(addProductToCart(id))
+	const handleAdd = product => {
+		if (!user.id) {
+			swal({
+				title: "Inicia sesión",
+				text: "Para poder agregar productos al carrito",
+				icon: "info",
+				button: "Ok"
+			});
+		} else {
+			dispatch(addItemShoppingCart({ idCart: cart.cartId, idProduct: product.id }));
+			swal({
+				title: "Producto agregado",
+				text: "El producto se ha agregado al carrito",
+				icon: "success",
+				button: "Ok"
+			});
+		}
     }
 
 	function moreDetails() {

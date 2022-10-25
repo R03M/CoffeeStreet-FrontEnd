@@ -1,9 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import {
-	addProductToCart,
-	removeProductFromCart,
-	clearCart,
-	removeOneProductFromCart,
 	deleteItemShoppingCart,
 	addItemShoppingCart,
 	emptyCart,
@@ -34,6 +30,12 @@ const ShoppingCart = () => {
 	const handleRemove = e => {
 		if (user.hasOwnProperty("user")) {
 			dispatch(deleteItemShoppingCart({ idCart: cart.cartId, idProduct: e.idProduct }));
+			swal({
+				title: "Product removed",
+				text: "The product has been removed from the cart",
+				icon: "success",
+				button: "Ok",
+			});
 		}
 	};
 	const handleRemoveOne = e => {
@@ -66,14 +68,6 @@ const ShoppingCart = () => {
 		});
 	};
 
-	const handleTotal = () => {
-		let total = 0;
-		cart.items.forEach(e => {
-			total += e.price * e.qty;
-		});
-		return Math.round(total);
-	};
-
 	return (
 		<div className="shoppingCart">
 			<NavBar />
@@ -86,14 +80,14 @@ const ShoppingCart = () => {
 			</div>
 			<div className="containerCartSC">
 				<h2>Total</h2>
-				<h2>{handleTotal()}$</h2>
+				<h2>{cart.cartTotal}$</h2>
 			</div>
 
 			<div className="bodyCartSC">
 				{cart.items?.map(e => (
-					<div className="cardCartSC">
+					<div key={e.id} className="cardCartSC">
 						<div className="titleCardSC">
-							<h3>ud ${e.price}</h3>
+							<h3>ud ${e.price / e.qty}</h3>
 							<h2>{e.name}</h2>
 							<button className="removeBtnCardSC" onClick={() => handleRemove(e)}>
 								X
@@ -112,7 +106,7 @@ const ShoppingCart = () => {
 						</div>
 						<div className="totalCardSC">
 							<h2>Subtotal</h2>
-							<h2>${e.qty * e.price}</h2>
+							<h2>${e.price}</h2>
 						</div>
 					</div>
 				))}

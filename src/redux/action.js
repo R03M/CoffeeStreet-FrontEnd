@@ -272,31 +272,6 @@ export function deleteProduct(id) {
 	};
 }
 
-export function addProductToCart(payload) {
-	return {
-		type: "ADD_PRODUCT_TO_CART",
-		payload
-	};
-}
-
-export function removeProductFromCart(payload) {
-	return {
-		type: "REMOVE_PRODUCT_FROM_CART",
-		payload
-	};
-}
-export function removeOneProductFromCart(payload) {
-	return {
-		type: "REMOVE_ONE_PRODUCT_FROM_CART",
-		payload
-	};
-}
-
-export function clearCart() {
-	return {
-		type: "CLEAR_CART"
-	};
-}
 
 export function getOrCreateShoppingCart(id){
 	return async function(dispatch){
@@ -306,7 +281,6 @@ export function getOrCreateShoppingCart(id){
 				type: "GET_CREATE_SHOPPING_CART",
 				payload: response.data
 			});
-			console.log("response",response.data)
 		}catch(error){
 			return error;
 		}
@@ -314,14 +288,9 @@ export function getOrCreateShoppingCart(id){
 }
 
 export function deleteItemShoppingCart(cart){
-	console.log("delete",cart)
-	return async function (dispatch){
+	return async function (){
 		try{
-			const response = await axios.delete(`${url}/cart`, {data: cart});
-			// dispatch({
-			// 	type: "DELETE_ITEM_SHOPPING_CART",
-			// 	payload: response.data
-			// });
+			await axios.delete(`${url}/cart`, {data: cart});
 		}catch(error){
 			return error;
 		}
@@ -329,13 +298,9 @@ export function deleteItemShoppingCart(cart){
 }
 export function addItemShoppingCart(cart){
 	
-	return async function (dispatch){
+	return async function (){
 		try{
-			const response = await axios.put(`${url}/cart`, cart );
-			// dispatch({
-			// 	type: "ADD_ITEM_SHOPPING_CART",
-			// 	payload: response.data
-			// });
+			await axios.put(`${url}/cart`, cart );
 		}catch(error){
 			return error;
 		}
@@ -344,13 +309,9 @@ export function addItemShoppingCart(cart){
 
 export function emptyCart(cart){
 	console.log("cart",cart)
-	return async function (dispatch){
+	return async function (){
 		try{
-			const response = await axios.delete(`${url}/cart/all`, {data: cart});
-			// dispatch({
-			// 	type: "EMPTY_CART",
-			// 	payload: response.data
-			// });
+			await axios.delete(`${url}/cart/all`, {data: cart});
 		}catch(error){
 			return error;
 		}
