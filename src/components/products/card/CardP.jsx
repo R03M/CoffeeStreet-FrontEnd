@@ -14,7 +14,6 @@ const CardP = ({ product ,userId }) => {
 	const dispatch = useDispatch();
   let navigate = useNavigate();
 	const listaFavoritos = useSelector(state => state.myFavourites);
-	const quantity = useSelector(state => state.quantity);
 	const user = useSelector(state => state.user.user);
 
 	const alcohol = () => {
@@ -89,16 +88,6 @@ const CardP = ({ product ,userId }) => {
 		// }
 	;}
 
-	const handleQuantity = (id) => {
-		let count = 0
-		quantity.map((q) => {
-			if (q.id === id) {
-				count = q.quantity;
-			}
-		});
-		return count;
-	};
-
 	const handlerFavorite = () => {
 		if (!user) {
 			swal({
@@ -164,8 +153,8 @@ const CardP = ({ product ,userId }) => {
 			<p className="priceCardPC">Price by unit $ {product.price}</p>
 
 			<div className="divTempCart">
-				<p className="pCartTemp">{`Qty`}</p>
-				<input type="number" className="inputCartTemp" value={handleQuantity} />
+				<p className="pCartTemp">{product.qty}</p>
+				<input type="number" className="inputCartTemp" value={product.qty} />
 				<button
 					className={product.stock === true ? "btnBCartTemp" : "btnBCartTempNSCP"}
 					onClick={e => handlerTemp(e)}

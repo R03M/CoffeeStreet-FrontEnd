@@ -317,7 +317,7 @@ export function deleteItemShoppingCart(cart){
 	console.log("delete",cart)
 	return async function (dispatch){
 		try{
-			const response = await axios.delete(`${url}/cart`, cart);
+			const response = await axios.delete(`${url}/cart`, {data: cart});
 			// dispatch({
 			// 	type: "DELETE_ITEM_SHOPPING_CART",
 			// 	payload: response.data
@@ -328,7 +328,7 @@ export function deleteItemShoppingCart(cart){
 	}
 }
 export function addItemShoppingCart(cart){
-	console.log("cart",cart)
+	
 	return async function (dispatch){
 		try{
 			const response = await axios.put(`${url}/cart`, cart );
@@ -343,13 +343,14 @@ export function addItemShoppingCart(cart){
 }
 
 export function emptyCart(cart){
+	console.log("cart",cart)
 	return async function (dispatch){
 		try{
-			const response = await axios.delete(`${url}/cart`,cart);
-			dispatch({
-				type: "EMPTY_CART",
-				payload: response.data
-			});
+			const response = await axios.delete(`${url}/cart/all`, {data: cart});
+			// dispatch({
+			// 	type: "EMPTY_CART",
+			// 	payload: response.data
+			// });
 		}catch(error){
 			return error;
 		}
