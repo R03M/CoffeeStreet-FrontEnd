@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { clearDetailsProductId, clearResponseNewProduct } from "../../../redux/action";
 import { Formik, Form, Field, ErrorMessage, isString } from "formik";
-import { putProducts, clearResPutProducts } from "../../../redux/action";
+import { putProducts, clearResPutProducts, clearDetailsProductId } from "../../../redux/action";
 import { CATEGORIES } from "../../../models/categories.enum";
 import { TEXTURES } from "../../../models/textures.enum";
 import { BODY } from "../../../models/body.enum";
@@ -11,13 +10,11 @@ import { BITTERNESS } from "../../../models/bitterness.enum";
 import { ROAST } from "../../../models/roast.enum";
 import { COLOR } from "../../../models/color.enum";
 import { productEditSchema } from "./schemaEp/formEditProductSchema.js";
-import { useLocation } from "react-router-dom";
 import swal from "sweetalert";
 import "./formEditProducts.css";
 
 const EditProducts = ({ exitF }) => {
 	const dispatch = useDispatch();
-	const location = useLocation();
 	const responseOFUpdatedP = useSelector(state => state.resUpdatedProduct);
 	const dataProduct = useSelector(state => state.productsDataId);
 
@@ -53,31 +50,31 @@ const EditProducts = ({ exitF }) => {
 		cream:
 			dataProduct.category === "coffee" && dataProduct.isPrepared === true
 				? dataProduct.attribute.cream
-				: null,
+				: "null",
 		texture:
 			dataProduct.category === "coffee" && dataProduct.isPrepared === true
 				? dataProduct.attribute.texture
-				: null,
+				: "null",
 		body:
 			dataProduct.category === "coffee" && dataProduct.isPrepared === true
 				? dataProduct.attribute.body
-				: null,
+				: "null",
 		acidity:
 			dataProduct.category === "coffee" && dataProduct.isPrepared === true
 				? dataProduct.attribute.acidity
-				: null,
+				: "null",
 		bitterness:
 			dataProduct.category === "coffee" && dataProduct.isPrepared === true
 				? dataProduct.attribute.bitterness
-				: null,
+				: "null",
 		roast:
 			dataProduct.category === "coffee" && dataProduct.isPrepared === true
 				? dataProduct.attribute.roast
-				: null,
+				: "null",
 		color:
 			dataProduct.category === "coffee" && dataProduct.isPrepared === true
 				? dataProduct.attribute.color
-				: null
+				: "null"
 	};
 
 	const notiSwal = () => {

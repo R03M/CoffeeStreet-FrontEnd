@@ -50,7 +50,7 @@ const MyAccount = () => {
 		if (passwordConfirm !== userEdited.password) {
 			alert("La contraseña no coincide");
 		} else {
-			console.log(userEdited);
+			// console.log(userEdited);
 		}
 	};
 
@@ -61,12 +61,12 @@ const MyAccount = () => {
 	const borrado = () => {
 		setEdit(false);
 		setInputEditImage(false);
-		
+
 	};
 
-	console.log(userEdited);
+	// console.log(userEdited);
 
-	console.log(user);
+	// console.log(user);
 	return (
 		<div className="contenedor-principal-mi-cuenta">
 			<div className="contenedor-mi-cuenta">
