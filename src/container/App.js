@@ -1,6 +1,8 @@
 import axios from "axios";
+import { useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { logPostData } from "../redux/action";
 import Home from "../components/home/Home.jsx";
 import SignUp from "../components/signUp/SignUp.jsx";
 import LogIn from "../components/logIn/LogIn.jsx";
@@ -13,11 +15,9 @@ import Products from "../components/products/Products.jsx";
 import CurrentNews from "../components/new/currentNews/CurrentNews.jsx";
 import About from "../components/About/About.jsx";
 import ProductsDetails from "../components/productsDetails/ProductsDetails.jsx";
-import { logPostData } from "../redux/action";
 import ShoppingCart from "../components/ShoppingCart/ShoppingCart.jsx";
-
 import "./App.css";
-import { useEffect, useState } from "react";
+
 const url = "http://localhost:3001";
 
 function App() {

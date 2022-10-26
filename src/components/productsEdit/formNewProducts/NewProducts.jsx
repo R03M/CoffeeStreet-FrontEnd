@@ -11,13 +11,27 @@ import { BITTERNESS } from "../../../models/bitterness.enum";
 import { ROAST } from "../../../models/roast.enum";
 import { COLOR } from "../../../models/color.enum";
 import { productSchema } from "./schema/productSchema";
+import { uploadImage } from "../../../utils/cloudinary";
 import "./newProducts.css";
 
 const NewProducts = () => {
 	const dispatch = useDispatch();
 	const responseOfCreateNp = useSelector(state => state.responseCreateProduct);
-
 	const [errorNoti, setErrorNoti] = useState(false);
+	const [img, setImg] = useState("");
+
+	const handlerImg = async e => {
+		const res = await uploadImage(e);
+		if (img === "") {
+			setImg(res);
+		} else {
+			setImg("");
+		}
+	};
+
+	const deleteImg = () => {
+		setImg("");
+	};
 
 	const initialValues = {
 		name: "",
@@ -63,15 +77,22 @@ const NewProducts = () => {
 		}
 	};
 
+	const selectUrlImg = (formImg, cloudImg) => {
+		if (formImg !== "") {
+			return formImg;
+		} else if (cloudImg !== "") {
+			return cloudImg;
+		} else {
+			return "https://res.cloudinary.com/db6aq84ze/image/upload/v1666550286/coffeeStreet_vhewoj.png";
+		}
+	};
+
 	const addProduct = (values, resetForm) => {
 		setErrorNoti(true);
 		let newProduct = {
 			name: values.name,
 			description: values.description,
-			image:
-				values.image.length > 0
-					? values.image
-					: "https://res.cloudinary.com/db6aq84ze/image/upload/v1666550286/coffeeStreet_vhewoj.png",
+			image: selectUrlImg(values.image, img),
 			price: values.price,
 			category:
 				values.category === CATEGORIES.COFFEE_READY_TO_DRINK ||
@@ -162,17 +183,64 @@ const NewProducts = () => {
 								)}
 							</div>
 
-							<div className="imageFieldNewProduct">
-								<label htmlFor="image">Image</label>
-								<Field
-									id="image"
-									type="text"
-									name="image"
-									placeholder="castleInd.com/coffee.jpg"
-								/>
-								{errors.image && touched.image && (
-									<ErrorMessage name="image" component="div" className="colorErrorMsg" />
-								)}
+							<div className="zoneImgNP">
+									<div className="titleImgZoneNp">You can paste the url of an image or upload a local image.</div>
+								<div className="imageFieldNewProduct">
+									{img === "" ? (
+										<div className="imageFieldNewProduct2">
+											<label htmlFor="image">Image</label>
+											<Field
+												id="image"
+												type="seach"
+												name="image"
+												placeholder="www.castleInd.com/coffee.jpg"
+											/>
+											{errors.image && touched.image && (
+												<ErrorMessage
+													name="image"
+													component="div"
+													className="colorErrorMsg"
+												/>
+											)}
+										</div>
+									) : (
+										"You have selected a local file, if you want to change to url, tap delete image."
+									)}
+								</div>
+
+								<div className="imgURLNP">
+									{values.image === "" ? (
+										"URL not added"
+									) : (
+										<img src={values.image} className="imgViewNP" />
+									)}
+								</div>
+
+								<div className="btnDivCloudinaryNP">
+									{values.image === "" ? (
+										<div className="btnDivCloudinaryNP2">
+											<input
+												type="file"
+												name="file"
+												onChange={handlerImg}
+												accept="image/png, image/jpeg"
+											/>
+											<button type="button" onClick={deleteImg}>
+												Delete file local
+											</button>
+										</div>
+									) : (
+										"You have entered a url, if you want to change it by local file, delete the entered url."
+									)}
+								</div>
+
+								<div className="imgCludinaryNP">
+									{img === "" ? (
+										"No local file uploaded"
+									) : (
+										<img src={img} className="imgViewNP" />
+									)}
+								</div>
 							</div>
 
 							<div className="categoryFieldNewProduct">
