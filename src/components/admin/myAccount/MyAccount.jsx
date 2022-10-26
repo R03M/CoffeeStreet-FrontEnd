@@ -61,7 +61,6 @@ const MyAccount = () => {
 	const borrado = () => {
 		setEdit(false);
 		setInputEditImage(false);
-
 	};
 
 	// console.log(userEdited);
@@ -92,15 +91,23 @@ const MyAccount = () => {
 				</div>
 				<div className="contenedor-mi-cuenta-derecha">
 					<div className="contenedor-mi-cuenta-derecha-arriba">
-						{edit ? (
-							null
-						) : (
+						{edit ? null : (
 							<button className="btn-Edit" onClick={editUser}>
-   						 <svg class="css-i6dzq1" stroke-linejoin="round" stroke-linecap="round" fill="none" stroke-width="2" stroke="#FFFFFF" height="24" width="24" viewBox="0 0 24 24">
-        				<path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path>
-    						</svg>
-    Edit
-</button>
+								<svg
+									class="css-i6dzq1"
+									stroke-linejoin="round"
+									stroke-linecap="round"
+									fill="none"
+									stroke-width="2"
+									stroke="#FFFFFF"
+									height="24"
+									width="24"
+									viewBox="0 0 24 24"
+								>
+									<path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path>
+								</svg>
+								Edit
+							</button>
 						)}
 					</div>
 
@@ -188,4 +195,3 @@ const MyAccount = () => {
 };
 
 export default MyAccount;
-

@@ -100,7 +100,7 @@ export function postUserNew(payload) {
 		return async function () {
 			const response = await axios.post(`${url}/register`, payload);
 			// alert("Created user successfully");
-			window.location.href = "/login";
+			window.location.href = "/signIn";
 		};
 	} catch (error) {
 		console.log(error);
