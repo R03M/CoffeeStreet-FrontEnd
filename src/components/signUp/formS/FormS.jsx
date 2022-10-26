@@ -5,10 +5,12 @@ import { ROLES } from "../../../models/roles.enum";
 import { User } from "../../../models/user.class";
 import { postUserNew } from "../../../redux/action";
 import { useDispatch } from "react-redux";
-// import { redirect } from "react-router-dom";
+import swal from "sweetalert";
 import "./formS.css";
 
 const FormS = () => {
+	const dispatch = useDispatch();
+
 	const initialValues = {
 		name: String,
 		surname: String,
@@ -16,7 +18,6 @@ const FormS = () => {
 		email: String,
 		password: String
 	};
-	const dispatch = useDispatch();
 	const addUser = e => {
 		let user = new User(e.name, e.surname, e.role, e.email, e.password);
 		dispatch(postUserNew(user));
@@ -49,7 +50,9 @@ const FormS = () => {
 				{({ values, touched, errors, isSubmitting, handleChange, handleBlur }) => (
 					<Form className="bodyFormSignUPC">
 						<div className="nameFormSC">
-							<label htmlFor="name" className="labelsFormSC">Name</label>
+							<label htmlFor="name" className="labelsFormSC">
+								Name
+							</label>
 							<Field
 								id="name"
 								type="text"
@@ -58,11 +61,13 @@ const FormS = () => {
 								className="inputsFormSC"
 							/>
 							{errors.name && touched.name && (
-								<ErrorMessage name="name" component="div" className="errorsMsgFSC"/>
+								<ErrorMessage name="name" component="div" className="errorsMsgFSC" />
 							)}
 						</div>
 						<div className="surnameFormSC">
-							<label htmlFor="surname" className="labelsFormSC">Surname</label>
+							<label htmlFor="surname" className="labelsFormSC">
+								Surname
+							</label>
 							<Field
 								id="surname"
 								type="text"
@@ -71,11 +76,13 @@ const FormS = () => {
 								className="inputsFormSC"
 							/>
 							{errors.surname && touched.surname && (
-								<ErrorMessage name="surname" component="div" className="errorsMsgFSC"/>
+								<ErrorMessage name="surname" component="div" className="errorsMsgFSC" />
 							)}
 						</div>
 						<div className="emailFormSC">
-							<label htmlFor="email" className="labelsFormSC">Email</label>
+							<label htmlFor="email" className="labelsFormSC">
+								Email
+							</label>
 							<Field
 								id="email"
 								type="email"
@@ -84,11 +91,13 @@ const FormS = () => {
 								className="inputsFormSC"
 							/>
 							{errors.email && touched.email && (
-								<ErrorMessage name="email" component="div" className="errorsMsgFSC"/>
+								<ErrorMessage name="email" component="div" className="errorsMsgFSC" />
 							)}
 						</div>
 						<div className="passWFormSC">
-							<label htmlFor="password" className="labelsFormSC">Password</label>
+							<label htmlFor="password" className="labelsFormSC">
+								Password
+							</label>
 							<Field
 								id="password"
 								type="password"
@@ -97,14 +106,22 @@ const FormS = () => {
 								className="inputsFormSC"
 							/>
 							{errors.password && touched.password && (
-								<ErrorMessage name="password" component="div" className="errorsMsgFSC"/>
+								<ErrorMessage name="password" component="div" className="errorsMsgFSC" />
 							)}
 						</div>
 
 						<button type="submit" className="btnSingUpFormSC">
 							Save
 						</button>
-						{isSubmitting ? <p>Register your credentials</p> : null}
+						{isSubmitting
+							? swal({
+									title: "Register your credentials",
+									text: "",
+									icon: "success",
+									button: false,
+									timer: 1500
+							  })
+							: null}
 					</Form>
 				)}
 			</Formik>
