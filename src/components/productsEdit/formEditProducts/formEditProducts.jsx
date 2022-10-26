@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Formik, Form, Field, ErrorMessage, isString } from "formik";
-import { putProducts, clearResPutProducts, clearDetailsProductId } from "../../../redux/action";
+import {
+	putProducts,
+	clearResPutProducts,
+	clearDetailsProductId
+} from "../../../redux/action";
 import { CATEGORIES } from "../../../models/categories.enum";
 import { TEXTURES } from "../../../models/textures.enum";
 import { BODY } from "../../../models/body.enum";
@@ -10,6 +14,7 @@ import { BITTERNESS } from "../../../models/bitterness.enum";
 import { ROAST } from "../../../models/roast.enum";
 import { COLOR } from "../../../models/color.enum";
 import { productEditSchema } from "./schemaEp/formEditProductSchema.js";
+import { uploadImage } from "../../../utils/cloudinary";
 import swal from "sweetalert";
 import "./formEditProducts.css";
 
@@ -17,8 +22,21 @@ const EditProducts = ({ exitF }) => {
 	const dispatch = useDispatch();
 	const responseOFUpdatedP = useSelector(state => state.resUpdatedProduct);
 	const dataProduct = useSelector(state => state.productsDataId);
-
 	const [errorNoti, setErrorNoti] = useState(false);
+	const [img, setImg] = useState("");
+
+	const handlerImg = async e => {
+		const res = await uploadImage(e);
+		if (img === "") {
+			setImg(res);
+		} else {
+			setImg("");
+		}
+	};
+
+	const deleteImg = () => {
+		setImg("");
+	};
 
 	const handleExit = () => {
 		dispatch(clearDetailsProductId());
@@ -101,15 +119,23 @@ const EditProducts = ({ exitF }) => {
 		}
 	};
 
+	const selectUrlImg = (formImg, cloudImg) => {
+		if (formImg !== "") {
+			return formImg;
+		} else if (cloudImg !== "") {
+			return cloudImg;
+		} else {
+			return "https://res.cloudinary.com/db6aq84ze/image/upload/v1666550286/coffeeStreet_vhewoj.png";
+		}
+	};
+
 	const addProduct = values => {
 		setErrorNoti(true);
 		let newProduct = {
 			name: values.name,
 			description: values.description,
-			image:
-				values.image.length > 0
-					? values.image
-					: "https://res.cloudinary.com/db6aq84ze/image/upload/v1666550286/coffeeStreet_vhewoj.png",
+			image: selectUrlImg(values.image, img),
+
 			price: values.price,
 			category:
 				values.category === CATEGORIES.COFFEE_READY_TO_DRINK ||
@@ -157,7 +183,6 @@ const EditProducts = ({ exitF }) => {
 			roast: values.category === CATEGORIES.COFFEE_READY_TO_DRINK ? values.roast : null,
 			color: values.category === CATEGORIES.COFFEE_READY_TO_DRINK ? values.color : null
 		};
-
 		dispatch(putProducts(dataProduct.id, newProduct));
 	};
 	notiSwal();
@@ -171,21 +196,21 @@ const EditProducts = ({ exitF }) => {
 				onSubmit={values => addProduct(values)}
 			>
 				{({ values, touched, errors, isSubmitting, handleChange, handleBlur }) => (
-					<Form className="formNewProductBody1">
-						<div className="formBodyNP">
-							<div className="nameFieldNewProduct">
+					<Form className="formEditProductBody1">
+						<div className="formBodyEP">
+							<div className="nameFieldEditProduct">
 								<label htmlFor="name">Name</label>
 								<Field id="name" type="text" name="name" placeholder="product name" />
 								{errors.name && touched.name && (
-									<ErrorMessage name="name" component="div" className="colorErrorMsg" />
+									<ErrorMessage name="name" component="div" className="colorErrorMsgEP" />
 								)}
 							</div>
 
-							<div className="descriptionFieldNewProduct">
+							<div className="descriptionFieldEditProduct">
 								<label htmlFor="description">Description</label>
 								<Field
 									as="textarea"
-									className="textAreaDescriptionNP"
+									className="textAreaDescriptionEP"
 									id="description"
 									type="text"
 									name="description"
@@ -195,30 +220,79 @@ const EditProducts = ({ exitF }) => {
 									<ErrorMessage
 										name="description"
 										component="div"
-										className="colorErrorMsg"
+										className="colorErrorMsgEP"
 									/>
 								)}
 							</div>
 
-							<div className="imageFieldNewProduct">
-								<label htmlFor="image">Image</label>
-								<Field
-									id="image"
-									type="text"
-									name="image"
-									placeholder="castleInd.com/coffee.jpg"
-								/>
-								{errors.image && touched.image && (
-									<ErrorMessage name="image" component="div" className="colorErrorMsg" />
-								)}
+							<div className="zoneImgEP">
+								<div className="titleImgZoneEP">
+									You can paste the url of an image or upload a local image.
+								</div>
+								<div className="imageFieldEditProduct">
+									{img === "" ? (
+										<div className="imageFieldEditProduct2">
+											<label htmlFor="image">Image</label>
+											<Field
+												id="image"
+												type="seach"
+												name="image"
+												placeholder="www.castleInd.com/coffee.jpg"
+											/>
+											{errors.image && touched.image && (
+												<ErrorMessage
+													name="image"
+													component="div"
+													className="colorErrorMsgEP"
+												/>
+											)}
+										</div>
+									) : (
+										"You have selected a local file, if you want to change to url, tap delete image."
+									)}
+								</div>
+
+								<div className="imgURLEP">
+									{values.image === "" ? (
+										"URL not added"
+									) : (
+										<img src={values.image} className="imgViewEP" />
+									)}
+								</div>
+
+								<div className="btnDivCloudinaryEP">
+									{values.image === "" ? (
+										<div className="btnDivCloudinaryEP2">
+											<input
+												type="file"
+												name="file"
+												onChange={handlerImg}
+												accept="image/png, image/jpeg"
+											/>
+											<button type="button" onClick={deleteImg}>
+												Delete file local
+											</button>
+										</div>
+									) : (
+										"You have entered a url, if you want to change it by local file, delete the entered url."
+									)}
+								</div>
+
+								<div className="imgCludinaryEP">
+									{img === "" ? (
+										"No local file uploaded"
+									) : (
+										<img src={img} className="imgViewEP" />
+									)}
+								</div>
 							</div>
 
-							<div className="categoryFieldNewProduct">
+							<div className="categoryFieldEditProduct">
 								<Field
 									as="select"
 									id="category"
 									name="category"
-									className="selectcard1newProduct"
+									className="selectcard1EditProduct"
 								>
 									<option hidden>Category</option>
 									<option disabled="disabled" default={true} value="null">
@@ -238,25 +312,25 @@ const EditProducts = ({ exitF }) => {
 									<ErrorMessage
 										name="category"
 										component="div"
-										className="colorErrorMsg"
+										className="colorErrorMsgEP"
 									/>
 								)}
 							</div>
 
-							<div className="priceFieldNewProduct">
+							<div className="priceFieldEditProduct">
 								<label htmlFor="price">Price</label>
 								<Field id="price" type="number" name="price" placeholder="10" />
 								{errors.price && touched.price && (
-									<ErrorMessage name="price" component="div" className="colorErrorMsg" />
+									<ErrorMessage name="price" component="div" className="colorErrorMsgEP" />
 								)}
 							</div>
 
-							<div className="stockFieldNewProduct">
+							<div className="stockFieldEditProduct">
 								<Field
 									as="select"
 									id="stock"
 									name="stock"
-									className="selectcard1newProduct"
+									className="selectcard1EditProduct"
 								>
 									<option hidden>There is stock ?</option>
 									<option disabled="disabled" default={true} value={"null"}>
@@ -266,20 +340,20 @@ const EditProducts = ({ exitF }) => {
 									<option value={false}>No stock</option>
 								</Field>
 								{errors.stock && touched.stock && (
-									<ErrorMessage name="stock" component="div" className="colorErrorMsg" />
+									<ErrorMessage name="stock" component="div" className="colorErrorMsgEP" />
 								)}
 							</div>
 						</div>
 
 						{values.category === CATEGORIES.COFFEE_TO_PREPARED ||
 						values.category === "null" ? null : (
-							<div className="ingredientsAndtypesNP">
-								<div className="lactoseFieldNewProduct">
+							<div className="ingredientsAndtypesEP">
+								<div className="lactoseFieldEditProduct">
 									<Field
 										as="select"
 										id="lactose"
 										name="lactose"
-										className="selectcard1newProduct"
+										className="selectcard1EditProduct"
 									>
 										<option hidden>Contains lactose?</option>
 										<option disabled="disabled" default={true} value={"null"}>
@@ -292,18 +366,18 @@ const EditProducts = ({ exitF }) => {
 										<ErrorMessage
 											name="lactose"
 											component="div"
-											className="colorErrorMsg"
+											className="colorErrorMsgEP"
 										/>
 									)}
 								</div>
 
 								{values.category !== CATEGORIES.TEA ? (
-									<div className="glutenFieldNewProduct">
+									<div className="glutenFieldEditProduct">
 										<Field
 											as="select"
 											id="gluten"
 											name="gluten"
-											className="selectcard1newProduct"
+											className="selectcard1EditProduct"
 										>
 											<option hidden>Contains gluten ?</option>
 											<option disabled="disabled" default={true} value={"null"}>
@@ -316,18 +390,18 @@ const EditProducts = ({ exitF }) => {
 											<ErrorMessage
 												name="gluten"
 												component="div"
-												className="colorErrorMsg"
+												className="colorErrorMsgEP"
 											/>
 										)}
 									</div>
 								) : null}
 
-								<div className="alcoholFieldNewProduct">
+								<div className="alcoholFieldEditProduct">
 									<Field
 										as="select"
 										id="alcohol"
 										name="alcohol"
-										className="selectcard1newProduct"
+										className="selectcard1EditProduct"
 									>
 										<option hidden>Contains alcohol ?</option>
 										<option disabled="disabled" default={true} value={"null"}>
@@ -340,88 +414,88 @@ const EditProducts = ({ exitF }) => {
 										<ErrorMessage
 											name="alcohol"
 											component="div"
-											className="colorErrorMsg"
+											className="colorErrorMsgEP"
 										/>
 									)}
 								</div>
 
-								<div className="ingredientsFieldNewProduct">
+								<div className="ingredientsFieldEditProduct">
 									<label htmlFor="ingredients">Ingredients</label>
 									<Field
 										type="text"
 										id="ingredients"
 										name="ingredients[0]"
 										placeholder="Ingredient 1"
-										className="ingredientsInputNP"
+										className="ingredientsInputEP"
 									/>
 									<Field
 										type="text"
 										id="ingredients"
 										name="ingredients[1]"
 										placeholder="Ingredient 2"
-										className="ingredientsInputNP"
+										className="ingredientsInputEP"
 									/>
 									<Field
 										type="text"
 										id="ingredients"
 										name="ingredients[2]"
 										placeholder="Ingredient 3"
-										className="ingredientsInputNP"
+										className="ingredientsInputEP"
 									/>
 									<Field
 										type="text"
 										id="ingredients"
 										name="ingredients[3]"
 										placeholder="Ingredient 4"
-										className="ingredientsInputNP"
+										className="ingredientsInputEP"
 									/>
 									<Field
 										type="text"
 										id="ingredients"
 										name="ingredients[4]"
 										placeholder="Ingredient 5"
-										className="ingredientsInputNP"
+										className="ingredientsInputEP"
 									/>
 									<Field
 										type="text"
 										id="ingredients"
 										name="ingredients[5]"
 										placeholder="Ingredient 6"
-										className="ingredientsInputNP"
+										className="ingredientsInputEP"
 									/>
 									<Field
 										type="text"
 										id="ingredients"
 										name="ingredients[6]"
 										placeholder="Ingredient 7"
-										className="ingredientsInputNP"
+										className="ingredientsInputEP"
 									/>
 									<Field
 										type="text"
 										id="ingredients"
 										name="ingredients[7]"
 										placeholder="Ingredient 8"
-										className="ingredientsInputNP"
+										className="ingredientsInputEP"
 									/>
 									<Field
 										type="text"
 										id="ingredients"
 										name="ingredients[8]"
 										placeholder="Ingredient 9"
-										className="ingredientsInputNP"
+										className="ingredientsInputEP"
 									/>
 									<Field
 										type="text"
 										id="ingredients"
 										name="ingredients[9]"
 										placeholder="Ingredient 10"
-										className="ingredientsInputNP"
+										className="ingredientsInputEP"
 									/>
 									{errors.ingredients && touched.ingredients && (
 										<ErrorMessage
 											name="ingredients"
 											component="div"
-											className="colorErrorMsg"
+											className="colorErrorMsgEP"
 										/>
 									)}
 								</div>
@@ -441,7 +515,7 @@ const EditProducts = ({ exitF }) => {
 									<ErrorMessage
 										name="originCountry"
 										component="div"
-										className="colorErrorMsg"
+										className="colorErrorMsgEP"
 									/>
 								)}
 							</div>
@@ -451,10 +525,10 @@ const EditProducts = ({ exitF }) => {
 								// * Inicio de los Atributos
 						*/}
 						{values.category === CATEGORIES.COFFEE_READY_TO_DRINK ? (
-							<div className="attibutesNPC">
-								<div className="creamFieldNewProduct">
+							<div className="attibutesEPC">
+								<div className="creamFieldEditProduct">
 									<label>Attributes</label>
-									<Field as="select" name="cream" className="selectcard1newProduct">
+									<Field as="select" name="cream" className="selectcard1EditProduct">
 										<option hidden>Does it contain cream?</option>
 										<option disabled="disabled" default={true} value={"null"}>
 											Does it contain cream?
@@ -466,13 +540,13 @@ const EditProducts = ({ exitF }) => {
 										<ErrorMessage
 											name="cream"
 											component="div"
-											className="colorErrorMsg"
+											className="colorErrorMsgEP"
 										/>
 									)}
 								</div>
 
-								<div className="textureFieldNewProduct">
-									<Field as="select" name="texture" className="selectcard1newProduct">
+								<div className="textureFieldEditProduct">
+									<Field as="select" name="texture" className="selectcard1EditProduct">
 										<option hidden>Texture</option>
 										<option disabled="disabled" default={true}>
 											Texture
@@ -487,13 +561,13 @@ const EditProducts = ({ exitF }) => {
 										<ErrorMessage
 											name="texture"
 											component="div"
-											className="colorErrorMsg"
+											className="colorErrorMsgEP"
 										/>
 									)}
 								</div>
 
-								<div className="bodyFieldNewProduct">
-									<Field as="select" name="body" className="selectcard1newProduct">
+								<div className="bodyFieldEditProduct">
+									<Field as="select" name="body" className="selectcard1EditProduct">
 										<option hidden>Body</option>
 										<option disabled="disabled" default={true}>
 											Body
@@ -505,12 +579,12 @@ const EditProducts = ({ exitF }) => {
 										<option value={BODY.THICK}>thick</option>
 									</Field>
 									{errors.body && touched.body && (
-										<ErrorMessage name="body" component="div" className="colorErrorMsg" />
+										<ErrorMessage name="body" component="div" className="colorErrorMsgEP" />
 									)}
 								</div>
 
-								<div className="acidityFieldNewProduct">
-									<Field as="select" name="acidity" className="selectcard1newProduct">
+								<div className="acidityFieldEditProduct">
+									<Field as="select" name="acidity" className="selectcard1EditProduct">
 										<option hidden>Acidity</option>
 										<option disabled="disabled" default={true}>
 											Acidity
@@ -525,13 +599,13 @@ const EditProducts = ({ exitF }) => {
 										<ErrorMessage
 											name="acidity"
 											component="div"
-											className="colorErrorMsg"
+											className="colorErrorMsgEP"
 										/>
 									)}
 								</div>
 
-								<div className="bitternessFieldNewProduct">
-									<Field as="select" name="bitterness" className="selectcard1newProduct">
+								<div className="bitternessFieldEditProduct">
+									<Field as="select" name="bitterness" className="selectcard1EditProduct">
 										<option hidden>Bitterness</option>
 										<option disabled="disabled" default={true}>
 											Bitterness
@@ -546,13 +620,13 @@ const EditProducts = ({ exitF }) => {
 										<ErrorMessage
 											name="bitterness"
 											component="div"
-											className="colorErrorMsg"
+											className="colorErrorMsgEP"
 										/>
 									)}
 								</div>
 
-								<div className="roastFieldNewProduct">
-									<Field as="select" name="roast" className="selectcard1newProduct">
+								<div className="roastFieldEditProduct">
+									<Field as="select" name="roast" className="selectcard1EditProduct">
 										<option hidden>Roast</option>
 										<option disabled="disabled" default={true}>
 											Roast
@@ -569,13 +643,13 @@ const EditProducts = ({ exitF }) => {
 										<ErrorMessage
 											name="roast"
 											component="div"
-											className="colorErrorMsg"
+											className="colorErrorMsgEP"
 										/>
 									)}
 								</div>
 
-								<div className="colorFieldNewProduct">
-									<Field as="select" name="color" className="selectcard1newProduct">
+								<div className="colorFieldEditProduct">
+									<Field as="select" name="color" className="selectcard1EditProduct">
 										<option hidden>Color</option>
 										<option disabled="disabled" default={true}>
 											Color
@@ -591,7 +665,7 @@ const EditProducts = ({ exitF }) => {
 										<ErrorMessage
 											name="color"
 											component="div"
-											className="colorErrorMsg"
+											className="colorErrorMsgEP"
 										/>
 									)}
 								</div>
