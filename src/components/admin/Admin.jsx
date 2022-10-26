@@ -11,12 +11,12 @@ import { FaFileInvoice } from "react-icons/fa";
 import ProductsEdit from "../productsEdit/ProductsEdit";
 import FormEditProducts from "../productsEdit/formEditProducts/formEditProducts";
 import UsersE from "./usersE/UsersE";
-import MyAccount from "./myAccount/MyAccount";
 import News from "./news/News";
 import Discounts from "../discounts/Discounts";
 import Profits from "./profits/Profits";
 import NewProducts from "../productsEdit/formNewProducts/NewProducts";
 import Orders from "../orders/Orders";
+import MyAccount from "../myAccount/MyAccount";
 import "./admin.css";
 
 const Admin = () => {
@@ -376,6 +376,7 @@ const Admin = () => {
 	useEffect(() => {
 		dispatch(getProducts());
 	}, []);
+
 
 	return (
 		<div className="adminDiv">

@@ -402,3 +402,30 @@ export function changeStatus(productStock, productId) {
 		}
 	};
 }
+
+export function updateUser(email) {
+	return async function () {
+		try {
+			await axios.post(`${url}/user/update`, email);
+		} catch (error) {
+			console.log(error);
+		}
+	};
+}
+
+export function deleteUser(email) {
+	return async function (dispatch) {
+		try {
+			const response = await axios.delete(`${url}/users/delete`, { data: email });
+
+			localStorage.removeItem("refreshToken");
+			localStorage.removeItem("accessToken");
+			window.location.href = "/";
+			dispatch({
+				type: "LOGOUT_USER"
+			});
+		} catch (error) {
+			return error;
+		}
+	};
+}

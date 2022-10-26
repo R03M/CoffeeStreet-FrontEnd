@@ -3,11 +3,10 @@ import { Link } from "react-router-dom";
 import { RiAccountPinCircleFill } from "react-icons/ri";
 import { AiOutlineStar } from "react-icons/ai";
 import { FaFileInvoiceDollar } from "react-icons/fa";
-import MyAccount from "./myAccountsC/MyAccount";
 import MyOrders from "./myOrders/MyOrders";
 import MyFavourites from "./myFavourites/MyFavourites";
+import MyAccount from "../myAccount/MyAccount";
 import "./client.css";
-
 
 
 const Client = () => {
