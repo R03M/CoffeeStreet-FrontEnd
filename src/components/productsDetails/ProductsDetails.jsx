@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { addItemShoppingCart, productDetails } from "../../redux/action";
+import { addItemShoppingCart, productDetails, checkOut } from "../../redux/action";
 import { BsFillCartPlusFill } from "react-icons/bs";
 import NavBar from "../navbar/Navbar";
 import swal from "sweetalert";
@@ -74,6 +74,34 @@ const ProductsDetails = () => {
 		}
 	}
 
+	const handleCheckOut = () => {
+		if (!user.id) {
+			swal({
+				title: "Log in",
+				text: "To be able to buy",
+				icon: "info",
+				button: "Ok"
+			});
+		} else {
+			swal({
+				title: "Are you sure?",
+				text: "Once you buy, you will not be able to change your order",
+				icon: "warning",
+				buttons: true,
+				dangerMode: true
+			}).then(value => {
+				if (value) {
+					dispatch(checkOut(cart.cartId));
+					swal("Your order has been placed!", {
+						icon: "success"
+					});
+				} else {
+					swal("Your order is safe!");
+				}
+			});
+		}
+	};
+
 	return (
 		<div className="productDetailsDiv">
 			<NavBar />
@@ -127,7 +155,7 @@ const ProductsDetails = () => {
 					<button className={product.stock === true ? "tempPDbuyAAdd" : "tempPDbuyAAddNSPD"} onClick={() => handleAdd(product)}>
 						Add to <BsFillCartPlusFill />
 					</button>
-					<button className={product.stock === true ? "tempPDbuyABuy" : "tempPDbuyABuyNSPD"} onClick={() => handlerTemp()}>
+					<button className={product.stock === true ? "tempPDbuyABuy" : "tempPDbuyABuyNSPD"} onClick={() => handleCheckOut()}>
 						Buy now
 					</button>
 				</div>

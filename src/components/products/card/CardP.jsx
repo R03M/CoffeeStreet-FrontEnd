@@ -9,7 +9,8 @@ import "./cardP.css";
 import {
 	addProductFavourite,
 	addItemShoppingCart,
-	deleteProductFavourite
+	deleteProductFavourite,
+	checkOut,
 } from "../../../redux/action";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -130,6 +131,41 @@ const CardP = ({ product, userId }) => {
 		// console.log(product.id)
 	};
 
+	const handleCheckout = () => {
+		if (!user.id) {
+			swal({
+				title: "You must be logged in to make a purchase",
+				icon: "info",
+				button: "Ok"
+			});
+		} else {
+		swal({
+			title: "Are you sure you want to buy this product?",
+			text: "You will be redirected to the checkout page",
+			icon: "warning",
+			buttons: ["Cancel", "Yes, I'm sure"],
+			dangerMode: true,
+			closeOnClickOutside: false
+		}).then(value => {
+			if (value) {
+				swal("Redirecting to checkout", {
+					button: false,
+					timer: 1500,
+					icon: "success"
+				});
+				dispatch(checkOut({ cart: cart }));
+				// navigate("/checkout");
+			} else {
+				swal("Staying on menu", {
+					button: false,
+					timer: 1200,
+					icon: "success"
+				});
+			}
+		});
+	};
+	};
+
 	return (
 		<div className={product.stock === true ? "cardDiv" : "cardDivF"} key={product.id}>
 			<button onClick={handlerFavorite} className="like">
@@ -163,7 +199,7 @@ const CardP = ({ product, userId }) => {
 				<input type="number" className="inputCartTemp" value={product.qty} />
 				<button
 					className={product.stock === true ? "btnBCartTemp" : "btnBCartTempNSCP"}
-					onClick={e => handlerTemp(e)}
+					onClick={e => handleCheckout(e)}
 				>
 					Buy
 				</button>
