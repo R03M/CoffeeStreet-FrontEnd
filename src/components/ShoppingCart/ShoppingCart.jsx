@@ -20,7 +20,16 @@ const ShoppingCart = () => {
 	useEffect(() => {
 		if (user.hasOwnProperty("user")) {
 			dispatch(getOrCreateShoppingCart(user.user.auth.id));
-		}
+		} else{
+			swal({
+				title: "You must be logged in to access your shopping cart",
+				text: "You will be redirected to the menu",
+				icon: "info",
+				button: "Ok"
+			}).then(() => {
+				return window.location.href = "/menu";
+			});
+			}
 	}, []);
 
 	const handleAdd = e => {

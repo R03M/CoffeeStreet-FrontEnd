@@ -6,7 +6,7 @@ import { BsFillCartPlusFill } from "react-icons/bs";
 import NavBar from "../navbar/Navbar";
 import swal from "sweetalert";
 import "./ProductsDetails.css";
-import ShoppingCart from "../ShoppingCart/ShoppingCart";
+// import ShoppingCart from "../ShoppingCart/ShoppingCart";
 
 const ProductsDetails = () => {
 	const { id } = useParams();
@@ -31,18 +31,18 @@ const ProductsDetails = () => {
 	};
 
 	const handleAdd = product => {
-		if (!user.id) {
+		if (!user) {
 			swal({
-				title: "Inicia sesión",
-				text: "Para poder agregar productos al carrito",
+				title: "Loging required",
+				text: "You must be logged in to add products to your cart",
 				icon: "info",
 				button: "Ok"
 			});
 		} else {
 			dispatch(addItemShoppingCart({ idCart: cart.cartId, idProduct: product.id }));
 			swal({
-				title: "Producto agregado",
-				text: "El producto se ha agregado al carrito",
+				title: "Product added to cart",
+				text: "You can see it in the cart",
 				icon: "success",
 				button: "Ok"
 			});
@@ -75,7 +75,7 @@ const ProductsDetails = () => {
 	}
 
 	const handleCheckOut = () => {
-		if (!user.id) {
+		if (!user) {
 			swal({
 				title: "Log in",
 				text: "To be able to buy",
@@ -105,7 +105,7 @@ const ProductsDetails = () => {
 	return (
 		<div className="productDetailsDiv">
 			<NavBar />
-			<ShoppingCart />
+			{/* <ShoppingCart /> */}
 			<div className="productDetailsBody">
 				<p className="productNameDC">{product.name}</p>
 

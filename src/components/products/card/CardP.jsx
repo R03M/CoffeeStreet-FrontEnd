@@ -79,7 +79,7 @@ const CardP = ({ product, userId }) => {
 
 	const cart = useSelector(state => state.cart);
 	const handleAdd = () => {
-		if (!user.id) {
+		if (!user) {
 			swal({
 				title: "You must be logged in to add products to your cart",
 				icon: "info",
@@ -132,7 +132,7 @@ const CardP = ({ product, userId }) => {
 	};
 
 	const handleCheckout = () => {
-		if (!user.id) {
+		if (!user) {
 			swal({
 				title: "You must be logged in to make a purchase",
 				icon: "info",
