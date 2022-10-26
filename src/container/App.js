@@ -10,7 +10,7 @@ import Landing from "../components/Landing/Landing.jsx";
 import Admin from "../components/admin/Admin.jsx";
 import Employee from "../components/employee/Employee.jsx";
 import Client from "../components/client/Client.jsx";
-import Error from "../components/error/Error.jsx";
+import Error from "../components/error/Error.jsx"; 
 import Products from "../components/products/Products.jsx";
 import CurrentNews from "../components/new/currentNews/CurrentNews.jsx";
 import About from "../components/About/About.jsx";

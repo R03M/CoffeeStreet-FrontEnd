@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import "./miAccount.css";
 import { RiImageEditLine } from "react-icons/ri";
+import swal from "sweetalert";
+import { useDispatch } from "react-redux";
+import {updateUser , deleteUser} from "../../../redux/action.js"
 
 const MyAccount = () => {
 	const user = useSelector(state => state.user);
@@ -14,6 +17,7 @@ const MyAccount = () => {
 		image: user.user.image,
 		password: ""
 	});
+	const dispatch =  useDispatch()
 
 	const editUser = () => {
 		if (edit === false) {
@@ -50,7 +54,28 @@ const MyAccount = () => {
 		if (passwordConfirm !== userEdited.password) {
 			alert("La contraseña no coincide");
 		} else {
-			// console.log(userEdited);
+			swal({
+				text: `Are you sure you want to delete your entire cart ?`,
+				buttons: ["cancel", "confirm"],
+				dangerMode: true,
+				closeOnClickOutside: false,
+				icon: "warning"
+			}).then(value => {
+				if (value) {
+					dispatch(updateUser(user.user.auth.email));
+					swal("Removed", {
+						button: false,
+						timer: 1500,
+						icon: "success"
+					});
+				} else {
+					swal("Operation cancelled", {
+						button: false,
+						timer: 1500,
+						icon: "error"
+					});
+				}
+			});
 		}
 	};
 
@@ -64,11 +89,38 @@ const MyAccount = () => {
 
 	};
 
-	// console.log(userEdited);
+	const deleteMyAcount =() => {
+		swal({
+			text: `Are you sure you want to delete the account?`,
+			buttons: ["cancel", "confirm"],
+			dangerMode: true,
+			closeOnClickOutside: false,
+			icon: "warning"
+		}).then(value => {
+			if (value) {
+				dispatch(deleteUser({
+					email:user.user.auth.email
+				}));
+				swal("Delete", {
+					button: false,
+					timer: 1500,
+					icon: "success"
+				});
+			} else {
+				swal("Operation cancelled", {
+					button: false,
+					timer: 1500,
+					icon: "error"
+				});
+			}
+		});
 
-	// console.log(user);
-	return (
-		<div className="contenedor-principal-mi-cuenta">
+	}
+
+
+
+		return (
+			<div className="contenedor-principal-mi-cuenta">
 			<div className="contenedor-mi-cuenta">
 				<div className="contenedor-mi-cuenta-izquierda">
 					<div>
@@ -91,9 +143,9 @@ const MyAccount = () => {
 					<h1 className="nombre-cuenta">{user.user.auth.email}</h1>
 				</div>
 				<div className="contenedor-mi-cuenta-derecha">
-					<div className="contenedor-mi-cuenta-derecha-arriba">
+					<div className={edit ? "contenedor-mi-cuenta-derecha-arriba-borrar-cuenta" : "contenedor-mi-cuenta-derecha-arriba"}>
 						{edit ? (
-							null
+							<button onClick={deleteMyAcount} className="btn-borrar-cuenta">Delete Acount</button>
 						) : (
 							<button className="btn-Edit" onClick={editUser}>
    						 <svg class="css-i6dzq1" stroke-linejoin="round" stroke-linecap="round" fill="none" stroke-width="2" stroke="#FFFFFF" height="24" width="24" viewBox="0 0 24 24">
@@ -110,7 +162,7 @@ const MyAccount = () => {
 							Name{" "}
 							{edit === false ? (
 								<input type="text" disabled placeholder={user.user.name} />
-							) : (
+								) : (
 								<input type="text" onChange={capturar} name="name" />
 							)}
 						</label>
@@ -128,9 +180,9 @@ const MyAccount = () => {
 							Password{" "}
 							{edit === false ? (
 								<input type="password" disabled placeholder="*********" />
-							) : (
+								) : (
 								<input type="password" onChange={capturar} name="password" />
-							)}
+								)}
 						</label>
 						<label>
 							{" "}
@@ -174,7 +226,7 @@ const MyAccount = () => {
 										width="24"
 										height="24"
 										viewBox="0 0 24 24"
-									>
+										>
 										<path d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z"></path>
 									</svg>
 								</span>
@@ -186,5 +238,7 @@ const MyAccount = () => {
 		</div>
 	);
 };
+
+
 
 export default MyAccount;
