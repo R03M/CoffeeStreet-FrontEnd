@@ -8,9 +8,10 @@ import { BsUiChecksGrid } from "react-icons/bs";
 import { FaFileInvoice } from "react-icons/fa";
 import Discounts from "../discounts/Discounts";
 import Orders from "../orders/Orders";
-import MyAccountE from "./myAccountE/MyAccountE";
 import ProductsEdit from "../productsEdit/ProductsEdit";
+import MyAccount from "../myAccount/MyAccount";
 import "./employee.css";
+
 
 const Employee = () => {
 	const dispatch = useDispatch();
@@ -174,7 +175,7 @@ const Employee = () => {
 				</div>
 			) : null}
 			{orders === true && nav === true ? <Orders /> : null}
-			{myAcc === true && nav === true ? <MyAccountE /> : null}
+			{myAcc === true && nav === true ? <MyAccount /> : null}
 			{discounts === true && nav === true ? <Discounts /> : null}
 		</div>
 	);
