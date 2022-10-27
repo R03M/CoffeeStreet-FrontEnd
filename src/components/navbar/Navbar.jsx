@@ -9,6 +9,7 @@ const NavBar = () => {
 	const statusCart = useSelector(state => state.cart);
 	const user = useSelector(state => state.user.user);
 	const [viewUser, setViewUser] = useState(false);
+	console.log(user)
 
 	const handlerUser = () => {
 		if (viewUser === false) {
@@ -42,7 +43,7 @@ const NavBar = () => {
 						<img
 							onClick={handlerUser}
 							className="imgUserNC"
-							srcSet={user.image}
+							src={user.image}
 							alt={user.name}
 						/>
 						{viewUser ? (
