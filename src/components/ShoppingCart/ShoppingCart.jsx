@@ -11,6 +11,7 @@ import { TbShoppingCartX } from "react-icons/tb";
 import NavBar from "../navbar/Navbar";
 import swal from "sweetalert";
 import "./ShoppingCart.css";
+import userEvent from "@testing-library/user-event";
 
 const ShoppingCart = () => {
 	const navigate = useNavigate();
@@ -75,6 +76,10 @@ const ShoppingCart = () => {
 		return Math.round(total);
 	};
 	// console.log(count)
+
+
+
+	
 	return (
 		<div className="shoppingCart">
 			<NavBar />

@@ -19,7 +19,10 @@ const initialState = {
 	order: [],
 	myFavourites: [],
 	allUsers: [],
-	allUsersB: []
+	allUsersB: [],
+	ordenesFilter: [],
+	filterUserOrden: false,
+	ordenes: []
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -112,6 +115,56 @@ export default function rootReducer(state = initialState, action) {
 				...state,
 				errorSProductsAdmin: []
 			};
+
+		case "FILTER_ORDEN_CLIENT":
+			let ordenesDeCliente =  state.ordenes
+			if(action.payload === "All"){
+				return {
+					...state,
+					ordenesFilter: ordenesDeCliente,
+					filterUserOrden: false
+				} 
+			} else if (	action.payload === "pending"){
+					return {
+						...state,
+						ordenesFilter : ordenesDeCliente.filter(orden => orden.status === "pending"),
+						filterUserOrden: true
+					}
+			}
+			else if (	action.payload === "Completed"){
+				return {
+					...state,
+					ordenesFilter : ordenesDeCliente.filter(orden => orden.status === "Completed"),
+					filterUserOrden: true
+				}
+
+			
+
+			}
+			else if (	action.payload === "cancelado"){
+				return {
+					...state,
+					ordenesFilter : ordenesDeCliente.filter(orden => orden.status === "cancelado"),
+					filterUserOrden: true
+				}
+			}
+			
+			break;
+		
+		
+
+		
+		
+			case "GET_ORDENES":
+			return {
+				...state,
+				// ordenes: action.payload,
+				ordenesFilter: state.ordenes
+			}
+
+
+
+		
 
 		case "FILTER_BY_CATEGORY":
 			if (state.products.length) {
