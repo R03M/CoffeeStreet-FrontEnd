@@ -446,3 +446,29 @@ export function getAllUsers() {
 		}
 	};
 }
+export function getUsersByName(name) {
+	return async function (dispatch) {
+		try {
+			const response = await axios.get(`${url}/users/${name}`);
+			dispatch({
+				type: "GET_USERS_BY_NAME",
+				payload: response.data
+			});
+		} catch (error) {
+			return error;
+		}
+	};
+}
+
+export function filterUsersByRole(payload) {
+	return {
+		type: "FILTER_USERS_BY_ROLE",
+		payload
+	};
+}
+
+export function clearErrorSUser() {
+	return {
+		type: "CLEAR_ERROR_SEARCH_USER"
+	};
+}

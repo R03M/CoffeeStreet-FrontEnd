@@ -1,0 +1,36 @@
+.navbarUsersC {
+	display: flex;
+	width: 800px;
+	align-items: center;
+	margin-bottom: 1rem;
+	background-color: #eed9ad;
+	box-shadow: #541911 0px 0px 4px;
+	font-size: 1.2rem;
+}
+
+.titleFiltersRUC {
+	width: 100%;
+	margin: 4px;
+	font-weight: 700;
+	color: #541911;
+}
+
+.btnCurrentUsers {
+	background-color: #f5c04d;
+	color: #541911;
+	font-size: 1.2rem;
+	font-weight: 600;
+	width: 45%;
+	cursor: pointer;
+	margin: 4px;
+}
+
+.btnOUsers {
+	color: #f5c04d;
+	background-color: #541911;
+	font-size: 1.2rem;
+	font-weight: 600;
+	width: 45%;
+	cursor: pointer;
+	margin: 4px;
+}

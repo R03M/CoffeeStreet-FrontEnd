@@ -19,7 +19,8 @@ const initialState = {
 	order: [],
 	myFavourites: [],
 	allUsers: [],
-	allUsersB: []
+	allUsersB: [],
+	errorSearchUser: []
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -344,6 +345,32 @@ export default function rootReducer(state = initialState, action) {
 				...state,
 				allUsers: action.payload,
 				allUsersB: action.payload
+			};
+		case "GET_USERS_BY_NAME":
+			if (action.payload.errorMessage === "No exit") {
+				return {
+					...state,
+					errorSearchUser: "No exit"
+				};
+			} else {
+				return {
+					...state,
+					allUsersB: action.payload
+				};
+			}
+		case "CLEAR_ERROR_SEARCH_USER":
+			return {
+				...state,
+				errorSearchUser: []
+			};
+		case "FILTER_USERS_BY_ROLE":
+			let filterUR =
+				action.payload === "all"
+					? state.allUsers
+					: state.allUsers.filter(u => u.role && u.role.includes(action.payload));
+			return {
+				...state,
+				allUsersB: filterUR
 			};
 		default:
 			return state;
