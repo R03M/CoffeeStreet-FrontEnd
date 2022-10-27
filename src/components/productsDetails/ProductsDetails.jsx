@@ -1,17 +1,19 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { addProductToCart, productDetails } from "../../redux/action";
+import { addItemShoppingCart, productDetails, checkOut } from "../../redux/action";
 import { BsFillCartPlusFill } from "react-icons/bs";
 import NavBar from "../navbar/Navbar";
 import swal from "sweetalert";
 import "./ProductsDetails.css";
-import ShoppingCart from "../ShoppingCart/ShoppingCart";
+// import ShoppingCart from "../ShoppingCart/ShoppingCart";
 
 const ProductsDetails = () => {
 	const { id } = useParams();
 	const dispatch = useDispatch();
 	const product = useSelector(state => state.productDetails);
+	const cart = useSelector(state => state.cart);
+	const user = useSelector(state => state.user.user);
 
 	useEffect(() => {
 		dispatch(productDetails(id));
@@ -28,8 +30,23 @@ const ProductsDetails = () => {
 		}
 	};
 
-	const handleAdd = (id) => {
-        dispatch(addProductToCart(id))
+	const handleAdd = product => {
+		if (!user) {
+			swal({
+				title: "Loging required",
+				text: "You must be logged in to add products to your cart",
+				icon: "info",
+				button: "Ok"
+			});
+		} else {
+			dispatch(addItemShoppingCart({ idCart: cart.cartId, idProduct: product.id }));
+			swal({
+				title: "Product added to cart",
+				text: "You can see it in the cart",
+				icon: "success",
+				button: "Ok"
+			});
+		}
     }
 
 	function moreDetails() {
@@ -57,10 +74,38 @@ const ProductsDetails = () => {
 		}
 	}
 
+	const handleCheckOut = () => {
+		if (!user) {
+			swal({
+				title: "Log in",
+				text: "To be able to buy",
+				icon: "info",
+				button: "Ok"
+			});
+		} else {
+			swal({
+				title: "Are you sure?",
+				text: "Once you buy, you will not be able to change your order",
+				icon: "warning",
+				buttons: true,
+				dangerMode: true
+			}).then(value => {
+				if (value) {
+					dispatch(checkOut(cart.cartId));
+					swal("Your order has been placed!", {
+						icon: "success"
+					});
+				} else {
+					swal("Your order is safe!");
+				}
+			});
+		}
+	};
+
 	return (
 		<div className="productDetailsDiv">
 			<NavBar />
-			<ShoppingCart />
+			{/* <ShoppingCart /> */}
 			<div className="productDetailsBody">
 				<p className="productNameDC">{product.name}</p>
 
@@ -110,7 +155,7 @@ const ProductsDetails = () => {
 					<button className={product.stock === true ? "tempPDbuyAAdd" : "tempPDbuyAAddNSPD"} onClick={() => handleAdd(product)}>
 						Add to <BsFillCartPlusFill />
 					</button>
-					<button className={product.stock === true ? "tempPDbuyABuy" : "tempPDbuyABuyNSPD"} onClick={() => handlerTemp()}>
+					<button className={product.stock === true ? "tempPDbuyABuy" : "tempPDbuyABuyNSPD"} onClick={() => handleCheckOut()}>
 						Buy now
 					</button>
 				</div>
