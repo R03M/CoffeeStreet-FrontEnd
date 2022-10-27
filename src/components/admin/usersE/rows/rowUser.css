@@ -1,0 +1,29 @@
+.selectRolesUsersC {
+	width: 70%;
+	font-size: 1.2rem;
+	font-weight: 600;
+	background-color: #f5c04d;
+	color: #541911;
+	text-align: center;
+	cursor: pointer;
+	text-transform: uppercase;
+}
+
+.selectRolesUsersC:hover {
+	color: #f5c04d;
+	background-color: #541911;
+}
+
+.btnDeteleUsersC {
+	background-color: #f5c04d;
+	color: #541911;
+	font-size: 1.2rem;
+	font-weight: 600;
+	width: 60%;
+	cursor: pointer;
+}
+
+.btnDeteleUsersC:hover {
+	color: aliceblue;
+	background-color: red;
+}

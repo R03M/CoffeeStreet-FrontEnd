@@ -22,6 +22,7 @@ import Loading from "../loading/Loading";
 import ErrorSearch from "../errorSearch/ErrorSearch";
 import { useAuth0 } from "@auth0/auth0-react";
 import "./products.css";
+
 // import ShoppingCart from "../ShoppingCart/ShoppingCart.jsx";
 
 const Products = () => {
@@ -34,6 +35,17 @@ const Products = () => {
 	const newlyCreated = useSelector(state => state.newlyCreated);
 	const usuario = useSelector(state => state.user);
 	const { isAuthenticated, user } = useAuth0();
+	console.log('user de auth0 ')
+	console.log(user)
+	console.log('isAuthenticated');
+	console.log(isAuthenticated)
+	console.log('checkemail')
+	console.log(checkEmail);
+	console.log('newlyCreated')
+	console.log(newlyCreated)
+	console.log('usuario')
+	console.log(usuario);
+
 
 	const [currentPage, setCurrentPage] = useState(1);
 	const [productsPerPage, setProductsPerPage] = useState(9);
@@ -47,6 +59,7 @@ const Products = () => {
 
 	useEffect(() => {
 		if (isAuthenticated) {
+			console.log(user.email);
 			dispatch(checkEmailUser(user.email));
 		}
 	}, [dispatch, isAuthenticated]);

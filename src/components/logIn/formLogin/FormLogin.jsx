@@ -14,7 +14,7 @@ const FormLogin = () => {
 	const tokenAcc = useSelector(state => state.accessToken);
 	const navigate = useNavigate();
 
-	var validEmail = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
+	let validEmail = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
 
 	const loginUser = e => {
 		dispatch(
