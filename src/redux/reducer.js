@@ -17,7 +17,9 @@ const initialState = {
 	cart: [],
 	quantity: 0,
 	order: [],
-	myFavourites: []
+	myFavourites: [],
+	allUsers: [],
+	allUsersB: []
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -337,7 +339,12 @@ export default function rootReducer(state = initialState, action) {
 				...state,
 				resUpdatedProduct: []
 			};
-
+		case "GET_ALL_USERS":
+			return {
+				...state,
+				allUsers: action.payload,
+				allUsersB: action.payload
+			};
 		default:
 			return state;
 	}
