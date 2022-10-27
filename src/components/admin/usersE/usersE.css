@@ -1,7 +1,29 @@
-.userEDivC{
+.userEDivC {
 	height: 100vh;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	justify-items: center;
 	object-fit: cover;
 }
+
+.tableUserL {
+	width: 80%;
+	background-color: #eed9ad;
+	box-shadow: #541911 0px 0px 4px;
+	padding: 1rem;
+}
+
+.theadUserL {
+	background-color: #541911;
+	box-shadow: #f5c04d 0px 0px 2px;
+	color: #f5c04d;
+	font-size: 1.5rem;
+	text-transform: uppercase;
+
+}
+
+.tbodyUsersC {
+	font-size: 1.2rem;
+}
+

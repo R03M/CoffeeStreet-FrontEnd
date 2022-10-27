@@ -429,3 +429,17 @@ export function deleteUser(email) {
 		}
 	};
 }
+
+export function getAllUsers() {
+	return async function (dispatch) {
+		try {
+			const response = await axios.get(`${url}/users`);
+			dispatch({
+				type: "GET_ALL_USERS",
+				payload: response.data
+			});
+		} catch (error) {
+			return error;
+		}
+	};
+}
