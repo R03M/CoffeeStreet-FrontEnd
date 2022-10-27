@@ -57,6 +57,7 @@ const Products = () => {
 
 	useEffect(() => {
 		if (isAuthenticated) {
+			console.log(user.email);
 			dispatch(checkEmailUser(user.email));
 		}
 	}, [dispatch, isAuthenticated]);
