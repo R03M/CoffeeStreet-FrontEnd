@@ -38,24 +38,24 @@ Api de proyecto final para Soy Henry - FT-29a
 | Add Products(Admin)   | active |
 | **END SPRINT 1**      | ******* |
 | **START SPRINT 2**    | ******* |
-| Form New Client       | pending |
-| Sign Up               | pending |
-| Log In                | pending |
+| Form New Client       | active |
+| Sign Up               | active |
+| Log In                | active |
 | Profits(Admin)        | pending |
-| My account(Admin)     | pending |
+| My account(Admin)     | active |
 | Employee dashboard    | active |
-| My account(Employee)  | pending |
+| My account(Employee)  | active |
 | Client dashboard      | active |
-| My account(Client)    | pending |
-| Favoritos(clients)    | pending |
+| My account(Client)    | active |
+| Favoritos(clients)    | active |
 | My Orders(clients)    | pending |
 | **END SPRINT 2**      | ******* |
 | **START SPRINT 3**    | ******* |
-| Edit Products(Admin)  | pending |
+| Edit Products(Admin)  | active |
 | All Orders(Admin)     | pending |
-| All Users(Admin)      | pending |
+| All Users(Admin)      | active |
 | Edit discounts(Admin) | pending |
-| Shopping cart         | pending |
+| Shopping cart         | active |
 | payment market        | pending |
 | **END SPRINT 3**      | ******* |
 ----------------------
