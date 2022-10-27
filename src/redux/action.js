@@ -275,85 +275,54 @@ export function deleteProduct(id) {
 	};
 }
 
-export function addProductToCart(payload) {
-	return {
-		type: "ADD_PRODUCT_TO_CART",
-		payload
-	};
-}
 
-export function removeProductFromCart(payload) {
-	return {
-		type: "REMOVE_PRODUCT_FROM_CART",
-		payload
-	};
-}
-export function removeOneProductFromCart(payload) {
-	return {
-		type: "REMOVE_ONE_PRODUCT_FROM_CART",
-		payload
-	};
-}
-
-export function clearCart() {
-	return {
-		type: "CLEAR_CART"
-	};
-}
-export function postShoppingCart(cart) {
-	return async function (dispatch) {
-		try {
-			const response = await axios.post(`${url}/cart`, cart);
+export function getOrCreateShoppingCart(id){
+	return async function(dispatch){
+		try{
+			const response = await axios.post(`${url}/cart`,{id:id});
 			dispatch({
-				type: "POST_SHOPPING_CART",
+				type: "GET_CREATE_SHOPPING_CART",
 				payload: response.data
 			});
-		} catch (error) {
+			console.log("response",response.data)
+		}catch(error){
 			return error;
 		}
 	};
 }
 
-export function getShoppingCart() {
-	return async function (dispatch) {
-		try {
-			const response = await axios.get(`${url}/cart`);
-			dispatch({
-				type: "GET_SHOPPING_CART",
-				payload: response.data
-			});
-		} catch (error) {
+export function deleteItemShoppingCart(cart){
+	return async function (){
+		try{
+			await axios.delete(`${url}/cart`, {data: cart});
+		}catch(error){
 			return error;
 		}
-	};
+	}
+}
+export function addItemShoppingCart(cart){
+	
+	return async function (){
+		try{
+			await axios.put(`${url}/cart`, cart );
+		}catch(error){
+			return error;
+		}
+	}
 }
 
-export function deleteShoppingCart() {
-	return async function (dispatch) {
-		try {
-			const response = await axios.delete(`${url}/cart`);
-			dispatch({
-				type: "DELETE_SHOPPING_CART",
-				payload: response.data
-			});
-		} catch (error) {
+export function emptyCart(cart){
+	console.log("cart",cart)
+	return async function (){
+		try{
+			await axios.delete(`${url}/cart/all`, {data: cart});
+		}catch(error){
 			return error;
 		}
-	};
+	}
 }
-export function putShoppingCart() {
-	return async function (dispatch) {
-		try {
-			const response = await axios.put(`${url}/cart`);
-			dispatch({
-				type: "PUT_SHOPPING_CART",
-				payload: response.data
-			});
-		} catch (error) {
-			return error;
-		}
-	};
-}
+
+
 
 export function putProducts(id, payload) {
 	return async function (dispatch) {
@@ -393,6 +362,7 @@ export function refreshLog(accessToken, refreshToken) {
 		} catch (error) {
 			return error;
 		}
+
 	};
 }
 
@@ -404,6 +374,26 @@ export function changeStatus(productStock, productId) {
 			return error;
 		}
 	};
+}
+
+export function checkOut (cart){
+	return async function (){
+		try{
+			await axios.post(`${url}/algo`, cart);
+		}catch(error){
+			return error;
+		}
+	}
+}
+
+export function deleteItemCompletedCart(cart){
+	return async function (){
+		try{
+			await axios.delete(`${url}/cart/byproduct` , {data: cart});
+		}catch(error){
+			return error;
+		}
+	}
 }
 
 export function updateUser(email) {
@@ -446,6 +436,7 @@ export function getAllUsers() {
 		}
 	};
 }
+
 export function getUsersByName(name) {
 	return async function (dispatch) {
 		try {
@@ -472,3 +463,4 @@ export function clearErrorSUser() {
 		type: "CLEAR_ERROR_SEARCH_USER"
 	};
 }
+
