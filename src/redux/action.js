@@ -95,17 +95,20 @@ export function clearDetails() {
 	};
 }
 
-export function postUserNew(payload) {
-	try {
-		return async function () {
-			const response = await axios.post(`${url}/register`, payload);
-			// alert("Created user successfully");
-			window.location.href = "/signIn";
-		};
-	} catch (error) {
-		console.log(error);
-	}
-}
+// export function postUserNew(payload) {
+// 	try {
+// 		return async function (dispatch) {
+// 			const response = await axios.post(`${url}/register`, payload);
+// 			dispatch({
+// 				type: "REGISTER_USER_GOOGLE",
+// 				payload: response.data
+// 			});
+// 		};
+// 		// eslint-disable-next-line no-unreachable
+// 	} catch (error) {
+// 		console.log(error);
+// 	}
+// }
 
 export function LoginUser(payload) {
 	return async function (dispatch) {
@@ -194,7 +197,7 @@ export function deleteProductFavourite(payload, id) {
 export function registerUserGoogle(payload) {
 	return async function (dispatch) {
 		try {
-			const response = await axios.post(`${url}/register`, payload);
+			await axios.post(`${url}/register`, payload);
 			dispatch({
 				type: "REGISTER_USER_GOOGLE",
 				payload: true

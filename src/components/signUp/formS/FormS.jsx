@@ -1,15 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
+import axios from "axios";
 import { Formik, Form, Field, ErrorMessage } from "formik";
+import { LoginUser, logPostData } from "../../../redux/action.js";
 import * as Yup from "yup";
 import { ROLES } from "../../../models/roles.enum";
 import { User } from "../../../models/user.class";
-import { postUserNew } from "../../../redux/action";
-import { useDispatch } from "react-redux";
+
+import { useDispatch, useSelector } from "react-redux";
 import swal from "sweetalert";
 import "./formS.css";
+import { useNavigate } from "react-router-dom";
+const url = "http://localhost:3001";
+
 
 const FormS = () => {
 	const dispatch = useDispatch();
+	const accessToken = useSelector(state => state.accessToken);
+	const navigate = useNavigate()
+
 
 	const initialValues = {
 		name: String,
@@ -18,10 +26,35 @@ const FormS = () => {
 		email: String,
 		password: String
 	};
-	const addUser = e => {
+	const addUser = async e => {
 		let user = new User(e.name, e.surname, e.role, e.email, e.password);
-		dispatch(postUserNew(user));
+		const response = await axios.post(`${url}/register`, user);
+		console.log(response)
+		if(response){
+			dispatch(
+			LoginUser ({
+				email: response.data.data.email,
+				password: response.data.data.password,
+				reg: true
+			})
+		);
+		}else{
+			console.log("error at register")
+		}
 	};
+
+	useEffect(() => {
+		if (accessToken) {
+			dispatch(logPostData(accessToken));
+			setTimeout(() => {
+          navigate("/menu", { replace: true });
+        }, 500);
+		}
+
+
+	}, [dispatch, accessToken]);
+
+
 
 	const userSchema = Yup.object().shape({
 		name: Yup.string()
@@ -113,7 +146,7 @@ const FormS = () => {
 						<button type="submit" className="btnSingUpFormSC">
 							Save
 						</button>
-						{isSubmitting
+						{/* {isSubmitting
 							? swal({
 									title: "Register your credentials",
 									text: "",
@@ -121,7 +154,7 @@ const FormS = () => {
 									button: false,
 									timer: 1500
 							  })
-							: null}
+							: null} */}
 					</Form>
 				)}
 			</Formik>
