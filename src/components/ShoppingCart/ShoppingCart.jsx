@@ -16,6 +16,7 @@ const ShoppingCart = () => {
 	const dispatch = useDispatch();
 	const cart = useSelector(state => state.cart);
 	const user = useSelector(state => state.user);
+	const localAccessToken = JSON.parse(localStorage.getItem("accessToken"));
 
 	useEffect(() => {
 		if (user.hasOwnProperty("user")) {
@@ -30,7 +31,7 @@ const ShoppingCart = () => {
 				return window.location.href = "/menu";
 			});
 			}
-	}, []);
+	}, [ dispatch, user, localAccessToken ]);
 
 	const handleAdd = e => {
 		if (user.hasOwnProperty("user")) {
@@ -46,7 +47,7 @@ const ShoppingCart = () => {
 				text: "The product has been removed from the cart",
 				icon: "success",
 				button: "Ok",
-			});
+			})
 		}
 	};
 	const handleRemoveOne = e => {
