@@ -8,6 +8,7 @@ import "./usersE.css";
 const UsersE = () => {
 	const dispatch = useDispatch();
 	const currentUsers = useSelector(state => state.allUsersB);
+	let rows = 1;
 
 	useEffect(() => {
 		if (currentUsers.length === 0) {
@@ -41,9 +42,9 @@ const UsersE = () => {
 	};
 
 	const changeRole = (e, u) => {
-		if (e.target.value !== e.role) {
+		if (e !== e.role) {
 			swal({
-				text: `${u.name} ${u.surname} role will be changed from ${u.role} to ${e.target.value}?`,
+				text: `${u.name} ${u.surname} role will be changed from ${u.role} to ${e}?`,
 				buttons: ["cancel", "confirm"],
 				dangerMode: true,
 				closeOnClickOutside: false,
@@ -77,6 +78,7 @@ const UsersE = () => {
 						<th>surname</th>
 						<th>email</th>
 						<th>role</th>
+						<th>switch to</th>
 						<th>account</th>
 					</tr>
 				</thead>
@@ -88,6 +90,7 @@ const UsersE = () => {
 								user={user}
 								deleteU={deleteUser}
 								changeRole={changeRole}
+								rows={rows++}
 							/>
 						);
 					})}
