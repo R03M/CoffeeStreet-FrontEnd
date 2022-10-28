@@ -275,54 +275,50 @@ export function deleteProduct(id) {
 	};
 }
 
-
-export function getOrCreateShoppingCart(id){
-	return async function(dispatch){
-		try{
-			const response = await axios.post(`${url}/cart`,{id:id});
+export function getOrCreateShoppingCart(id) {
+	return async function (dispatch) {
+		try {
+			const response = await axios.post(`${url}/cart`, { id: id });
 			dispatch({
 				type: "GET_CREATE_SHOPPING_CART",
 				payload: response.data
 			});
-			console.log("response",response.data)
-		}catch(error){
+			console.log("response", response.data);
+		} catch (error) {
 			return error;
 		}
 	};
 }
 
-export function deleteItemShoppingCart(cart){
-	return async function (){
-		try{
-			await axios.delete(`${url}/cart`, {data: cart});
-		}catch(error){
+export function deleteItemShoppingCart(cart) {
+	return async function () {
+		try {
+			await axios.delete(`${url}/cart`, { data: cart });
+		} catch (error) {
 			return error;
 		}
-	}
+	};
 }
-export function addItemShoppingCart(cart){
-	
-	return async function (){
-		try{
-			await axios.put(`${url}/cart`, cart );
-		}catch(error){
+export function addItemShoppingCart(cart) {
+	return async function () {
+		try {
+			await axios.put(`${url}/cart`, cart);
+		} catch (error) {
 			return error;
 		}
-	}
+	};
 }
 
-export function emptyCart(cart){
-	console.log("cart",cart)
-	return async function (){
-		try{
-			await axios.delete(`${url}/cart/all`, {data: cart});
-		}catch(error){
+export function emptyCart(cart) {
+	console.log("cart", cart);
+	return async function () {
+		try {
+			await axios.delete(`${url}/cart/all`, { data: cart });
+		} catch (error) {
 			return error;
 		}
-	}
+	};
 }
-
-
 
 export function putProducts(id, payload) {
 	return async function (dispatch) {
@@ -362,7 +358,6 @@ export function refreshLog(accessToken, refreshToken) {
 		} catch (error) {
 			return error;
 		}
-
 	};
 }
 
@@ -383,17 +378,17 @@ export function checkOut (){
 		}catch(error){
 			return error;
 		}
-	}
+	};
 }
 
-export function deleteItemCompletedCart(cart){
-	return async function (){
-		try{
-			await axios.delete(`${url}/cart/byproduct` , {data: cart});
-		}catch(error){
+export function deleteItemCompletedCart(cart) {
+	return async function () {
+		try {
+			await axios.delete(`${url}/cart/byproduct`, { data: cart });
+		} catch (error) {
 			return error;
 		}
-	}
+	};
 }
 
 export function updateUser(email) {
@@ -461,6 +456,24 @@ export function filterUsersByRole(payload) {
 export function clearErrorSUser() {
 	return {
 		type: "CLEAR_ERROR_SEARCH_USER"
+	};
+}
+
+
+export function updateDiscountProduct(value, productId) {
+	return async function (dispatch) {
+		try {
+			const response = await axios.post(`${url}/products/update-discount`, {
+				percentage: value,
+				idProduct: productId
+			});
+			dispatch({
+				type: "UPDATE_DISCOUNT_PRODUCT",
+				payload: response.data.message
+			});
+		} catch (error) {
+			return error;
+		}
 	};
 }
 
