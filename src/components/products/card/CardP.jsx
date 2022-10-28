@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { FcLike, FcLikePlaceholder } from "react-icons/fc";
 import { Link, useNavigate } from "react-router-dom";
 import { BiDrink } from "react-icons/bi";
@@ -7,17 +7,17 @@ import { BsInfo, BsFillCartPlusFill } from "react-icons/bs";
 import swal from "sweetalert";
 import "./cardP.css";
 import {
-	addProductToCart,
 	addProductFavourite,
-	deleteProductFavourite
+	addItemShoppingCart,
+	deleteProductFavourite,
+	checkOut,
 } from "../../../redux/action";
 import { useDispatch, useSelector } from "react-redux";
 
-const CardP = ({ product }) => {
+const CardP = ({ product, userId }) => {
 	const dispatch = useDispatch();
-  let navigate = useNavigate();
+	let navigate = useNavigate();
 	const listaFavoritos = useSelector(state => state.myFavourites);
-	const quantity = useSelector(state => state.quantity);
 	const user = useSelector(state => state.user.user);
 
 	const alcohol = () => {
@@ -76,17 +76,24 @@ const CardP = ({ product }) => {
 			});
 		}
 	};
-	const handleAdd = id => {
-		dispatch(addProductToCart(id));
-	};
-	const handleQuantity = id => {
-		let count = 0;
-		quantity.map(q => {
-			if (q.id === id) {
-				count = q.quantity;
-			}
-		});
-		return count;
+
+	const cart = useSelector(state => state.cart);
+	const handleAdd = () => {
+		if (!user) {
+			swal({
+				title: "You must be logged in to add products to your cart",
+				icon: "info",
+				button: "Ok"
+			});
+		} else {
+			dispatch(addItemShoppingCart({ idCart: cart.cartId, idProduct: product.id }));
+			swal({
+				title: "Product added to cart",
+				text: "You can see your cart in the top right corner",
+				icon: "success",
+				button: "Ok"
+			});
+		}
 	};
 
 	const handlerFavorite = () => {
@@ -105,7 +112,7 @@ const CardP = ({ product }) => {
 						timer: 1500,
 						icon: "success"
 					});
-					navigate("/signIn")
+					navigate("/signIn");
 				} else {
 					swal("Staying on menu", {
 						button: false,
@@ -121,6 +128,42 @@ const CardP = ({ product }) => {
 				dispatch(addProductFavourite({ idProduct: product.id }, user.id));
 			}
 		}
+		// console.log(product.id)
+	};
+
+	const handleCheckout = () => {
+		if (!user) {
+			swal({
+				title: "You must be logged in to make a purchase",
+				icon: "info",
+				button: "Ok"
+			});
+		} else {
+		swal({
+			title: "Are you sure you want to buy this product?",
+			text: "You will be redirected to the checkout page",
+			icon: "warning",
+			buttons: ["Cancel", "Yes, I'm sure"],
+			dangerMode: true,
+			closeOnClickOutside: false
+		}).then(value => {
+			if (value) {
+				swal("Redirecting to checkout", {
+					button: false,
+					timer: 1500,
+					icon: "success"
+				});
+				dispatch(checkOut({ cart: cart }));
+				// navigate("/checkout");
+			} else {
+				swal("Staying on menu", {
+					button: false,
+					timer: 1200,
+					icon: "success"
+				});
+			}
+		});
+	};
 	};
 
 	return (
@@ -152,11 +195,11 @@ const CardP = ({ product }) => {
 			<p className="priceCardPC">Price by unit $ {product.price}</p>
 
 			<div className="divTempCart">
-				<p className="pCartTemp">{`Qty`}</p>
-				<input type="number" className="inputCartTemp" value={handleQuantity} />
+				<p className="pCartTemp">{product.qty}</p>
+				<input type="number" className="inputCartTemp" value={product.qty} />
 				<button
 					className={product.stock === true ? "btnBCartTemp" : "btnBCartTempNSCP"}
-					onClick={e => handlerTemp(e)}
+					onClick={e => handleCheckout(e)}
 				>
 					Buy
 				</button>

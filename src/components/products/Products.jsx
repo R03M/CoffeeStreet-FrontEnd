@@ -9,7 +9,9 @@ import {
 	registerUserGoogle,
 	logPostData,
 	LoginUser,
+	getOrCreateShoppingCart,
 	getMyFavorites
+
 } from "../../redux/action";
 
 import NavBar from "../navbar/Navbar";
@@ -28,7 +30,7 @@ const Products = () => {
 	const allProducts = useSelector(state => state.products);
 	const errorMessage = useSelector(state => state.errorSProducts);
 	const checkEmail = useSelector(state => state.checkEmail);
-
+	const cart = useSelector(state => state.cart);
 	const accessToken = useSelector(state => state.accessToken);
 	const newlyCreated = useSelector(state => state.newlyCreated);
 	const usuario = useSelector(state => state.user);
@@ -106,6 +108,12 @@ const Products = () => {
 			dispatch(logPostData(accessToken));
 		}
 	}, [dispatch, accessToken]);
+
+	useEffect(() => {
+		if( usuario.hasOwnProperty("user")){
+			dispatch(getOrCreateShoppingCart(usuario.user.auth.id))
+		}
+	}, []);
 
 	useEffect(() => {
 		if (allProducts.length === 0) {

@@ -19,7 +19,9 @@ const initialState = {
 	order: [],
 	myFavourites: [],
 	allUsers: [],
-	allUsersB: []
+	allUsersB: [],
+	errorSearchUser: [],
+	resUpdateDiscountP: []
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -258,22 +260,17 @@ export default function rootReducer(state = initialState, action) {
 				productsDataId: []
 			};
 
-		case "POST_SHOPPING_CART":
+		case "GET_CREATE_SHOPPING_CART":
 			return {
 				...state,
 				cart: action.payload
 			};
-		case "GET_SHOPPING_CART":
+		case "DELETE_ITEM_SHOPPING_CART":
 			return {
 				...state,
 				cart: action.payload
 			};
-		case "DELETE_PRODUCT_CART":
-			return {
-				...state,
-				cart: action.payload
-			};
-		case "PUT_SHOPPING_CART":
+		case "ADD_ITEM_SHOPPING_CART":
 			return {
 				...state,
 				cart: action.payload
@@ -324,7 +321,11 @@ export default function rootReducer(state = initialState, action) {
 				...state,
 				cart: []
 			};
-
+		case "EMPTY_CART":
+			return {
+				...state,
+				cart: []
+			};
 		case "DELETE_PRODUCT":
 			return {
 				...state
@@ -344,6 +345,37 @@ export default function rootReducer(state = initialState, action) {
 				...state,
 				allUsers: action.payload,
 				allUsersB: action.payload
+			};
+		case "GET_USERS_BY_NAME":
+			if (action.payload.errorMessage === "No exit") {
+				return {
+					...state,
+					errorSearchUser: "No exit"
+				};
+			} else {
+				return {
+					...state,
+					allUsersB: action.payload
+				};
+			}
+		case "CLEAR_ERROR_SEARCH_USER":
+			return {
+				...state,
+				errorSearchUser: []
+			};
+		case "FILTER_USERS_BY_ROLE":
+			let filterUR =
+				action.payload === "all"
+					? state.allUsers
+					: state.allUsers.filter(u => u.role && u.role.includes(action.payload));
+			return {
+				...state,
+				allUsersB: filterUR
+			};
+		case "UPDATE_DISCOUNT_PRODUCT":
+			return {
+				...state,
+				resUpdateDiscountP: action.payload
 			};
 		default:
 			return state;

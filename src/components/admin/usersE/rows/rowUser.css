@@ -1,15 +1,15 @@
-.selectRolesUsersC {
-	width: 70%;
-	font-size: 1.2rem;
-	font-weight: 600;
+.btnCRoleUsersC {
 	background-color: #f5c04d;
 	color: #541911;
-	text-align: center;
+	font-size: 1.2rem;
+	font-weight: 600;
+	width: 40%;
 	cursor: pointer;
-	text-transform: uppercase;
+	margin-left: 2px;
+	margin-right: 2px;
 }
 
-.selectRolesUsersC:hover {
+.btnCRoleUsersC:hover {
 	color: #f5c04d;
 	background-color: #541911;
 }
@@ -19,8 +19,10 @@
 	color: #541911;
 	font-size: 1.2rem;
 	font-weight: 600;
-	width: 60%;
+	width: 45%;
 	cursor: pointer;
+	margin-left: 2px;
+	margin-right: 2px;
 }
 
 .btnDeteleUsersC:hover {

@@ -126,7 +126,7 @@ const MyAccount = () => {
 					<div className="imageMyAccAD">
 						<img
 							className="imgURLMYAccAD"
-							srcSet={img !== "" ? img : userEdited.image}
+							src={img !== "" ? img : userEdited.image}
 							alt="imagen de perfil"
 						/>
 					</div>
