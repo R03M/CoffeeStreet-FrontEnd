@@ -20,7 +20,8 @@ const initialState = {
 	myFavourites: [],
 	allUsers: [],
 	allUsersB: [],
-	errorSearchUser: []
+	errorSearchUser: [],
+	resUpdateDiscountP: []
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -259,10 +260,10 @@ export default function rootReducer(state = initialState, action) {
 				productsDataId: []
 			};
 
-      	case "GET_CREATE_SHOPPING_CART":
+		case "GET_CREATE_SHOPPING_CART":
 			return {
 				...state,
-				cart : action.payload
+				cart: action.payload
 			};
 		case "DELETE_ITEM_SHOPPING_CART":
 			return {
@@ -274,20 +275,20 @@ export default function rootReducer(state = initialState, action) {
 				...state,
 				cart: action.payload
 			};
-			
+
 		case "ADD_PRODUCT_TO_CART":
 			let product = state.products.find(p => p.id === action.payload.id);
 			let productInCart = state.cart.find(p => p.id === action.payload.id);
-				if (productInCart) {
-					return {
-						...state,
-						cart: state.cart.map(p =>
+			if (productInCart) {
+				return {
+					...state,
+					cart: state.cart.map(p =>
 						p.id === productInCart.id
 							? { ...productInCart, quantity: productInCart.quantity + 1 }
 							: p
 					)
 				};
-			}	 else {
+			} else {
 				return {
 					...state,
 					cart: [...state.cart, { ...product, quantity: 1 }]
@@ -320,7 +321,7 @@ export default function rootReducer(state = initialState, action) {
 				...state,
 				cart: []
 			};
-			case "EMPTY_CART":
+		case "EMPTY_CART":
 			return {
 				...state,
 				cart: []
@@ -370,6 +371,11 @@ export default function rootReducer(state = initialState, action) {
 			return {
 				...state,
 				allUsersB: filterUR
+			};
+		case "UPDATE_DISCOUNT_PRODUCT":
+			return {
+				...state,
+				resUpdateDiscountP: action.payload
 			};
 		default:
 			return state;

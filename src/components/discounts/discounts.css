@@ -5,3 +5,15 @@
 	align-items: center;
 	object-fit: cover;
 }
+
+.navbarDiscountsC {
+	display: flex;
+	align-items: flex-start;
+	margin-top: 1rem;
+	margin-bottom: 1rem;
+}
+
+.discountsCardsC {
+	display: flex;
+	flex-wrap: wrap;
+}
