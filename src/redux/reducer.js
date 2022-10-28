@@ -25,7 +25,7 @@ const initialState = {
 	ordenes: [],
 	errorSearchUser: [],
 	resUpdateDiscountP: [],
-
+	checkOut: ""
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -330,51 +330,6 @@ export default function rootReducer(state = initialState, action) {
 				cart: action.payload
 			};
 
-		case "ADD_PRODUCT_TO_CART":
-			let product = state.products.find(p => p.id === action.payload.id);
-			let productInCart = state.cart.find(p => p.id === action.payload.id);
-			if (productInCart) {
-				return {
-					...state,
-					cart: state.cart.map(p =>
-						p.id === productInCart.id
-							? { ...productInCart, quantity: productInCart.quantity + 1 }
-							: p
-					)
-				};
-			} else {
-				return {
-					...state,
-					cart: [...state.cart, { ...product, quantity: 1 }]
-				};
-			}
-		case "REMOVE_PRODUCT_FROM_CART":
-			return {
-				...state,
-				cart: state.cart.filter(p => p.id !== action.payload)
-			};
-		case "REMOVE_ONE_PRODUCT_FROM_CART":
-			let productCart = state.cart.find(p => p.id === action.payload.id);
-			if (productCart.quantity > 1) {
-				return {
-					...state,
-					cart: state.cart.map(p =>
-						p.id === productCart.id
-							? { ...productCart, quantity: productCart.quantity - 1 }
-							: p
-					)
-				};
-			} else {
-				return {
-					...state,
-					cart: state.cart.filter(p => p.id !== action.payload.id)
-				};
-			}
-		case "CLEAR_CART":
-			return {
-				...state,
-				cart: []
-			};
 		case "EMPTY_CART":
 			return {
 				...state,
@@ -431,6 +386,11 @@ export default function rootReducer(state = initialState, action) {
 				...state,
 				resUpdateDiscountP: action.payload
 			};
+			case "CHECK_OUT":
+				return {
+					...state,
+					checkOut: action.payload
+				};
 		default:
 			return state;
 	}
