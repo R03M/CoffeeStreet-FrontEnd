@@ -364,7 +364,7 @@ export function refreshLog(accessToken, refreshToken) {
 export function changeStatus(productStock, productId) {
 	return async function () {
 		try {
-			await axios.put(`${url}/products/${productId}/stock`, { data: productStock });
+			await axios.put(`${url}/products/${productId}/stock`, { stock: productStock });
 		} catch (error) {
 			return error;
 		}
