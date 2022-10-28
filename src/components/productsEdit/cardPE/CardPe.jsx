@@ -13,6 +13,7 @@ const CardPe = ({ product, editC }) => {
 	const dispatch = useDispatch();
 	let stockCurret = product.stock;
 	let stockName = stockCurret ? "with stock" : "out of stock";
+	const url = process.env.REACT_APP_BACK_URL;
 
 	const handlerStock = () => {
 		swal({
@@ -25,9 +26,9 @@ const CardPe = ({ product, editC }) => {
 			icon: "warning"
 		}).then(value => {
 			if (value) {
-				// dispatch(changeStatus({ stock: product.stock }, product.id));
-				// dispatch(getProducts());
-				swal("Coming soon Updated (S3)", {
+				dispatch(changeStatus(!product.stock, product.id));
+				dispatch(getProducts());
+				swal("Updated", {
 					button: false,
 					timer: 1500,
 					icon: "success"
@@ -88,13 +89,17 @@ const CardPe = ({ product, editC }) => {
 				<button className="btnBCardPeStock" onClick={() => handlerStock()}>
 					Stock
 				</button>
-				{}
-				<button className="btnBCardPeEdit" onClick={() => handlerEdit()}>
-					Edit
-				</button>
-				<button className="btnBCardPeDelete" onClick={e => handlerDelete(e)}>
-					Delete
-				</button>
+
+				{`${url}/employee` ? null : (
+					<>
+						<button className="btnBCardPeEdit" onClick={() => handlerEdit()}>
+							Edit
+						</button>
+						<button className="btnBCardPeDelete" onClick={e => handlerDelete(e)}>
+							Delete
+						</button>
+					</>
+				)}
 			</div>
 		</div>
 	);
