@@ -476,3 +476,9 @@ export function updateDiscountProduct(value, productId) {
 	};
 }
 
+export function filterByDiscount(payload) {
+	return {
+		type: "FILTER_BY_STATUS_DISCOUNT",
+		payload
+	};
+}
