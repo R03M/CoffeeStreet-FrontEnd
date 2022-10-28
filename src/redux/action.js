@@ -1,4 +1,5 @@
 import axios from "axios";
+import { redirect } from "react-router-dom";
 
 const url = process.env.REACT_APP_BACK_URL;
 
@@ -372,14 +373,17 @@ export function changeStatus(productStock, productId) {
 }
 
 export function checkOut (cart){
-	console.log(cart)
-	return async function (){
+	return async function (dispatch){
 		try{
-			await axios.get(`${url}/pay/mercadopago`, cart);
+			const response = await axios.post(`${url}/pay/mercadopago`, cart);			
+			dispatch({
+				type: "CHECK_OUT",
+				payload: response.data
+			})
 		}catch(error){
-			return error;
+			return error
 		}
-	};
+	}
 }
 
 export function deleteItemCompletedCart(cart) {
