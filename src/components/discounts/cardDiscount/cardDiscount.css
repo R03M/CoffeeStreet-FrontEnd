@@ -1,0 +1,141 @@
+.cardDiscountDiv {
+	display: inline-block;
+	position: relative;
+	align-items: center;
+	justify-items: center;
+	margin: 20px;
+	width: 20rem;
+	height: 27rem;
+	max-height: 27rem;
+	min-height: 27rem;
+	background-color: rgba(247, 195, 81, 0.529);
+	backdrop-filter: blur(5px);
+	box-shadow: #541911 0px 0px 2px;
+	padding: 0rem 1rem;
+}
+
+.cardDiscountDivOutS {
+	display: inline-block;
+	position: relative;
+	align-items: center;
+	justify-items: center;
+	margin: 20px;
+	width: 20rem;
+	height: 27rem;
+	max-height: 27rem;
+	min-height: 27rem;
+	background-color: rgba(108, 90, 53, 0.529);
+	backdrop-filter: blur(5px);
+	box-shadow: #541911 0px 0px 2px;
+	padding: 0rem 1rem;
+}
+
+.titleCardDC {
+	font-size: 1.3rem;
+	font-weight: 700;
+}
+
+.priceTextCardDC {
+	font-size: 1.2rem;
+	font-weight: 700;
+}
+
+.imgCardDC {
+	height: 35%;
+	max-height: 35%;
+	margin: 5px;
+}
+
+.categoryCardDC {
+	font-size: 1.1rem;
+	font-weight: 700;
+}
+
+.discountCardC {
+	position: absolute;
+	border: none;
+	top: 0;
+	right: 0;
+	margin: 10px;
+	font-size: 2rem;
+	color: #15cd24;
+}
+
+.triangleColorCardDC {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 0;
+	height: 0;
+	margin: 1px;
+	border-top: 100px solid #d9320d;
+	border-right: 100px solid transparent;
+}
+
+.textTriangleCDC {
+	color: white;
+	position: relative;
+	top: -80px;
+	left: 15px;
+	font-weight: bold;
+	padding: 5px;
+	transform: rotate(-45deg);
+}
+
+
+.triangleDiscountCardDC{
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	width: 0;
+	height: 0;
+	margin: 1px;
+	border-top: 100px solid #3baf14;
+	border-left: 100px solid transparent;
+}
+
+.textTriangleDiscCDC {
+	color: white;
+	position: relative;
+	top: -105px;
+	right: 40px;
+	font-weight: bold;
+	padding: 5px;
+	transform: rotate(+45deg);
+}
+
+.sectorDiscountCardDC {
+	display: flex;
+	flex-direction: column;
+	margin: 0.5rem;
+}
+
+.btnDiscontCardDC {
+	font-size: 1.2rem;
+	margin: 0.5rem;
+	color: rgb(245, 192, 77);
+	background-color: #541911;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+.btnDiscontCardDC:hover {
+	background-color: rgb(245, 192, 77);
+	color: #541911;
+}
+
+.applyDiscountCardDC {
+	text-align: center;
+	font-size: 1.2rem;
+	margin: 0.5rem;
+	color: rgb(245, 192, 77);
+	background-color: #541911;
+	cursor: pointer;
+	font-weight: bold;
+	padding: 1px 6px;
+}
+
+.applyDiscountCardDC:hover {
+	background-color: rgb(245, 192, 77);
+	color: #541911;
+}
