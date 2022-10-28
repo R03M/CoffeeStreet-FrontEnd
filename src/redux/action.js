@@ -376,10 +376,10 @@ export function changeStatus(productStock, productId) {
 	};
 }
 
-export function checkOut (cart){
+export function checkOut (){
 	return async function (){
 		try{
-			await axios.post(`${url}/algo`, cart);
+			await axios.get(`${url}/pay/mercadopago`);
 		}catch(error){
 			return error;
 		}
@@ -464,3 +464,23 @@ export function clearErrorSUser() {
 	};
 }
 
+export function createOrder (payload){
+	console.log(payload)
+	return async function (){
+		try{
+			await axios.post(`${url}/order`,  payload);
+		}catch(error){
+			return error;
+		}
+	}
+}
+
+export function changeStatusOrder(id, status) {
+	return async function () {
+		try {
+			await axios.put(`${url}/order/${id}/change-status`, {status: status});
+		} catch (error) {
+			return error;
+		}
+	};
+}
