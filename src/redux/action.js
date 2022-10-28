@@ -490,6 +490,15 @@ export function filterByDiscount(payload) {
 	};
 }
 
+
+export function filterByStock(payload) {
+	return {
+		type: "FILTER_BY_STOCK",
+		payload
+	};
+}
+
+
 export function createOrder (payload){
 	console.log(payload)
 	return async function (){
@@ -501,6 +510,7 @@ export function createOrder (payload){
 	}
 }
 
+
 export function changeStatusOrder(id, status) {
 	return async function () {
 		try {
@@ -510,3 +520,4 @@ export function changeStatusOrder(id, status) {
 		}
 	};
 }
+
