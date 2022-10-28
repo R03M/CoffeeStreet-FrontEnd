@@ -32,11 +32,7 @@ function App() {
 				const response = await axios.post(
 					`${url}/login/refresh`,
 					{ refreshToken: refresh },
-					{
-						headers: {
-							authorization: `Bearer ${accessToken}`
-						}
-					}
+					{ headers: { authorization: `Bearer ${accessToken}` } }
 				);
 				if (response.data.accessToken) {
 					localStorage.setItem("accessToken", JSON.stringify(response.data.accessToken));
@@ -49,6 +45,7 @@ function App() {
 		};
 		refreshToken();
 	}, []);
+	
 
 	return (
 		<div className="App">

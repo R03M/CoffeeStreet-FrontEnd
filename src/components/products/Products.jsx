@@ -9,7 +9,9 @@ import {
 	registerUserGoogle,
 	logPostData,
 	LoginUser,
+	getOrCreateShoppingCart,
 	getMyFavorites
+
 } from "../../redux/action";
 
 import NavBar from "../navbar/Navbar";
@@ -20,6 +22,7 @@ import Loading from "../loading/Loading";
 import ErrorSearch from "../errorSearch/ErrorSearch";
 import { useAuth0 } from "@auth0/auth0-react";
 import "./products.css";
+
 // import ShoppingCart from "../ShoppingCart/ShoppingCart.jsx";
 
 const Products = () => {
@@ -27,11 +30,22 @@ const Products = () => {
 	const allProducts = useSelector(state => state.products);
 	const errorMessage = useSelector(state => state.errorSProducts);
 	const checkEmail = useSelector(state => state.checkEmail);
-
+	const cart = useSelector(state => state.cart);
 	const accessToken = useSelector(state => state.accessToken);
 	const newlyCreated = useSelector(state => state.newlyCreated);
 	const usuario = useSelector(state => state.user);
 	const { isAuthenticated, user } = useAuth0();
+	console.log('user de auth0 ')
+	console.log(user)
+	console.log('isAuthenticated');
+	console.log(isAuthenticated)
+	console.log('checkemail')
+	console.log(checkEmail);
+	console.log('newlyCreated')
+	console.log(newlyCreated)
+	console.log('usuario')
+	console.log(usuario);
+
 
 	const [currentPage, setCurrentPage] = useState(1);
 	const [productsPerPage, setProductsPerPage] = useState(9);
@@ -45,6 +59,7 @@ const Products = () => {
 
 	useEffect(() => {
 		if (isAuthenticated) {
+			console.log(user.email);
 			dispatch(checkEmailUser(user.email));
 		}
 	}, [dispatch, isAuthenticated]);
@@ -93,6 +108,12 @@ const Products = () => {
 			dispatch(logPostData(accessToken));
 		}
 	}, [dispatch, accessToken]);
+
+	useEffect(() => {
+		if( usuario.hasOwnProperty("user")){
+			dispatch(getOrCreateShoppingCart(usuario.user.auth.id))
+		}
+	}, []);
 
 	useEffect(() => {
 		if (allProducts.length === 0) {

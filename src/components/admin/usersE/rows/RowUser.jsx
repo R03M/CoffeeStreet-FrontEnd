@@ -1,31 +1,36 @@
 import React from "react";
 import "./rowUser.css";
 
-const RowUser = ({ user, deleteU, changeRole }) => {
-	let rows = 1;
-
+const RowUser = ({ user, deleteU, changeRole, rows }) => {
 	return (
 		<tr key={user.id}>
-			<th>{rows++}</th>
+			<th>{rows}</th>
 			<th>{user.name}</th>
 			<th>{user.surname}</th>
 			<th>email</th>
+			<th>{user.role}</th>
 			<th>
-				<select onChange={(e) => changeRole(e, user)} className="selectRolesUsersC">
-					<option hidden>{user.role}</option>
-					<option disabled="disabled" default={true} value="">
-						{user.role}
-					</option>
-					<option hidden={user.role === "admin"} value={"admin"}>
-						admin
-					</option>
-					<option hidden={user.role === "client"} value={"client"}>
-						client
-					</option>
-					<option hidden={user.role === "employee"} value={"employee"}>
-						employee
-					</option>
-				</select>
+				<button
+					onClick={() => changeRole("admin", user)}
+					hidden={user.role === "admin"}
+					className="btnCRoleUsersC"
+				>
+					Admin
+				</button>
+				<button
+					onClick={() => changeRole("client", user)}
+					hidden={user.role === "client"}
+					className="btnCRoleUsersC"
+				>
+					Client
+				</button>
+				<button
+					onClick={() => changeRole("employee", user)}
+					hidden={user.role === "employee"}
+					className="btnCRoleUsersC"
+				>
+					Employee
+				</button>
 			</th>
 			<th>
 				<button className="btnDeteleUsersC" onClick={() => deleteU(user)}>
