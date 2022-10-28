@@ -1,7 +1,144 @@
 .profitsDivC{
-	height: 100vh;
+	height: 100%;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	object-fit: cover;
+}
+.top-sellers{
+	
+	display: flex;
+	width: 100%;
+	height: 40%;
+	justify-content: center;
+	border-bottom: 3px solid rgb(0, 0, 0);
+	
+
+}
+.top-sellers-title-page{	
+	background-color: rgba(0, 0, 0, 0.373);
+	width: 90%;
+	border-radius: 20px;
+	color: white;
+	
+	
+	position:absolute;
+}
+
+.top-sellers-div1{
+	display: flex;
+	background-color: rgba(0, 162, 40, 0.365);
+	width: 100%;
+	height: 100%;
+	border-right: 1px solid rgb(0, 0, 0);
+	justify-content: center;
+	align-items: center;
+
+}
+.top-sellers-div2{
+	display: flex;
+	background-color: rgba(121, 113, 0, 0.285);
+	width: 100%;
+	height: 100%;
+	border-right: 1px solid rgb(0, 0, 0);
+	justify-content: center;
+	align-items: center;
+}
+.top-sellers-div3{
+	display: flex;
+	background-color: rgba(122, 0, 0, 0.361);
+	width: 100%;
+	height: 100%;
+	justify-content: center;
+	align-items: center;
+}
+.graphics-visualization{
+	display: flex;
+	width: 100%;
+	height: 60%;
+	justify-content: space-between;
+	border-bottom: 3px solid rgb(0, 0, 0);
+}
+.graphic-top{
+	display: flex;
+	width: 100%;
+	height: 100%;
+	justify-content: center;
+	align-items: center;
+	
+}
+.graphic-torta{
+	display: flex;
+	width: 100%;
+	height: 100%;
+	justify-content: center;
+	align-items: center;
+
+}
+.graphic-barras{
+	display: flex;
+	width: 100%;
+	height: 100%;
+	justify-content: center;
+	align-items: center;
+
+}
+.top{
+	display: flex;
+	background-image: url("https://res.cloudinary.com/dmpqjroj5/image/upload/v1666978186/imagenes%20Proyecto%20final%20henry/graficodebarradeedadesparani%C3%B1os-e1556425717797_ohz7n7.jpg");
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: initial;
+	width: 70%;
+	height: 40%;
+	justify-content: center;
+	align-items: center;
+	border-radius: 20px;
+}
+.top:hover{
+	cursor: pointer;
+	border: 2px solid rgb(0, 0, 0);
+
+}
+
+
+.torta{
+	display: flex;
+	background-image: url("https://res.cloudinary.com/dmpqjroj5/image/upload/v1666978380/imagenes%20Proyecto%20final%20henry/3349622_syypig.png");
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
+	width: 70%;
+	height: 40%;
+	justify-content: center;
+	align-items: center;
+	border-radius: 20px;
+}
+
+.torta:hover{
+	cursor: pointer;
+	border: 2px solid rgb(0, 0, 0);
+
+}
+
+.barras{
+	display: flex;
+	background-image: url("https://res.cloudinary.com/dmpqjroj5/image/upload/v1666978933/imagenes%20Proyecto%20final%20henry/interpretacion-de-grafico-de-barras_xbxbvn.png");
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
+	
+	background-position: center;
+
+	width: 70%;
+	height:40%;
+	justify-content: center;
+	align-items: center;
+	border-radius: 20px;
+}
+
+.barras:hover{
+	cursor: pointer;
+	border: 2px solid rgb(0, 0, 0);
+
 }
