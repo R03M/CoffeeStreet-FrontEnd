@@ -1,5 +1,4 @@
 import React from "react";
-import { TbDiscount2 } from "react-icons/tb";
 import "./cardDiscount.css";
 
 const CardDiscount = ({ product, changeDiscount, removeDiscount }) => {
@@ -24,9 +23,21 @@ const CardDiscount = ({ product, changeDiscount, removeDiscount }) => {
 				</div>
 			</div>
 
-			<div className={product.discount !== null ? "triangleDiscountCardDC" : ""}>
-				<div className={product.discount !== null ? "textTriangleDiscCDC" : ""}>
-					{product.discount === true ? null : valuesRDiscount(product.discount)}
+			<div
+				className={
+					product.discount === null || product.discount === 0
+						? ""
+						: "triangleDiscountCardDC"
+				}
+			>
+				<div
+					className={
+						product.discount === null || product.discount === 0
+							? ""
+							: "textTriangleDiscCDC"
+					}
+				>
+					{product.discount < 0 ? null : valuesRDiscount(product.discount)}
 				</div>
 			</div>
 
