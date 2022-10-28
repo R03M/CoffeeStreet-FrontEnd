@@ -10,7 +10,7 @@ import {
 	addProductFavourite,
 	addItemShoppingCart,
 	deleteProductFavourite,
-	checkOut,
+	checkOut
 } from "../../../redux/action";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -66,17 +66,6 @@ const CardP = ({ product, userId }) => {
 		}
 	};
 
-	const handlerTemp = () => {
-		if (product.stock === true) {
-			swal({
-				title: "Proximamente...",
-				text: "Tal vez en el tercer Sprint",
-				icon: "info",
-				button: "Ok"
-			});
-		}
-	};
-
 	const cart = useSelector(state => state.cart);
 	const handleAdd = () => {
 		if (!user) {
@@ -128,7 +117,6 @@ const CardP = ({ product, userId }) => {
 				dispatch(addProductFavourite({ idProduct: product.id }, user.id));
 			}
 		}
-		// console.log(product.id)
 	};
 
 	const handleCheckout = () => {
@@ -139,35 +127,40 @@ const CardP = ({ product, userId }) => {
 				button: "Ok"
 			});
 		} else {
-		swal({
-			title: "Are you sure you want to buy this product?",
-			text: "You will be redirected to the checkout page",
-			icon: "warning",
-			buttons: ["Cancel", "Yes, I'm sure"],
-			dangerMode: true,
-			closeOnClickOutside: false
-		}).then(value => {
-			if (value) {
-				swal("Redirecting to checkout", {
-					button: false,
-					timer: 1500,
-					icon: "success"
-				});
-				dispatch(checkOut({ cart: cart }));
-				// navigate("/checkout");
-			} else {
-				swal("Staying on menu", {
-					button: false,
-					timer: 1200,
-					icon: "success"
-				});
-			}
-		});
-	};
+			swal({
+				title: "Are you sure you want to buy this product?",
+				text: "You will be redirected to the checkout page",
+				icon: "warning",
+				buttons: ["Cancel", "Yes, I'm sure"],
+				dangerMode: true,
+				closeOnClickOutside: false
+			}).then(value => {
+				if (value) {
+					swal("Redirecting to checkout", {
+						button: false,
+						timer: 1500,
+						icon: "success"
+					});
+					dispatch(checkOut({ cart: cart }));
+					// navigate("/checkout");
+				} else {
+					swal("Staying on menu", {
+						button: false,
+						timer: 1200,
+						icon: "success"
+					});
+				}
+			});
+		}
 	};
 
 	return (
 		<div className={product.stock === true ? "cardDiv" : "cardDivF"} key={product.id}>
+			<div className={product.stock === false ? "triangleColorCardPC" : ""}>
+				<div className={product.stock === false ? "textTrianglePC" : ""}>
+					{product.stock === true ? null : "Out Stock"}
+				</div>
+			</div>
 			<button onClick={handlerFavorite} className="like">
 				{listaFavoritos.length &&
 				listaFavoritos.map(e => e.id === product.id).includes(true) ? (
