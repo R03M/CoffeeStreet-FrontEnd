@@ -158,12 +158,10 @@ export default function rootReducer(state = initialState, action) {
 			};
 
 		case "FILTER_BY_CATEGORY":
-			if (state.products.length) {
+			if (action.payload === "all") {
 				return {
 					...state,
-					products: state.products.filter(
-						c => c.category && c.category.includes(action.payload)
-					)
+					products: state.allProducts
 				};
 			} else {
 				return {
@@ -392,11 +390,26 @@ export default function rootReducer(state = initialState, action) {
 					products: state.allProducts.filter(e => e.discount >= 0.1)
 				};
 			}
+
+		case "FILTER_BY_STOCK":
+			if (action.payload === "withStock") {
+				return {
+					...state,
+					products: state.allProducts.filter(p => p.stock === true)
+				};
+			} else if (action.payload === "outStock") {
+				return {
+					...state,
+					products: state.allProducts.filter(p => p.stock === false)
+				};
+			}
+
 			case "CHECK_OUT":
 				return {
 					...state,
 					checkOut: action.payload
 				};
+
 		default:
 			return state;
 	}

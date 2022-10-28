@@ -15,7 +15,7 @@ const CardPe = ({ product, editC }) => {
 	const dispatch = useDispatch();
 	let stockCurret = product.stock;
 	let stockName = stockCurret ? "with stock" : "out of stock";
-	const urlC = `${urlBase}/admin`
+	const urlC = `${urlBase}/admin`;
 	const currentURL = window.location.href;
 
 	const handlerStock = () => {
@@ -84,6 +84,11 @@ const CardPe = ({ product, editC }) => {
 			className={product.stock === true ? "cardPeDivT" : "cardPeDivF"}
 			key={product.id}
 		>
+			<div className={product.stock === false ? "triangleColorCardPEC" : ""}>
+				<div className={product.stock === false ? "textTrianglePEC" : ""}>
+					{product.stock === true ? null : "Out Stock"}
+				</div>
+			</div>
 			<div className="nameCardPe">{product.name}</div>
 			<div className="priceCardPe"> $ {product.price}</div>
 			<img className="imgCardPe" src={product.image} alt={`Pic to ${product.name}`} />
