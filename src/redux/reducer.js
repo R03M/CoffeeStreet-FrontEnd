@@ -24,8 +24,7 @@ const initialState = {
 	filterUserOrden: false,
 	ordenes: [],
 	errorSearchUser: [],
-	resUpdateDiscountP: [],
-
+	resUpdateDiscountP: []
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -120,54 +119,41 @@ export default function rootReducer(state = initialState, action) {
 			};
 
 		case "FILTER_ORDEN_CLIENT":
-			let ordenesDeCliente =  state.ordenes
-			if(action.payload === "All"){
+			let ordenesDeCliente = state.ordenes;
+			if (action.payload === "All") {
 				return {
 					...state,
 					ordenesFilter: ordenesDeCliente,
 					filterUserOrden: false
-				} 
-			} else if (	action.payload === "pending"){
-					return {
-						...state,
-						ordenesFilter : ordenesDeCliente.filter(orden => orden.status === "pending"),
-						filterUserOrden: true
-					}
-			}
-			else if (	action.payload === "Completed"){
+				};
+			} else if (action.payload === "pending") {
 				return {
 					...state,
-					ordenesFilter : ordenesDeCliente.filter(orden => orden.status === "Completed"),
+					ordenesFilter: ordenesDeCliente.filter(orden => orden.status === "pending"),
 					filterUserOrden: true
-				}
-
-			
-
-			}
-			else if (	action.payload === "cancelado"){
+				};
+			} else if (action.payload === "Completed") {
 				return {
 					...state,
-					ordenesFilter : ordenesDeCliente.filter(orden => orden.status === "cancelado"),
+					ordenesFilter: ordenesDeCliente.filter(orden => orden.status === "Completed"),
 					filterUserOrden: true
-				}
+				};
+			} else if (action.payload === "cancelado") {
+				return {
+					...state,
+					ordenesFilter: ordenesDeCliente.filter(orden => orden.status === "cancelado"),
+					filterUserOrden: true
+				};
 			}
-			
+
 			break;
-		
-		
 
-		
-		
-			case "GET_ORDENES":
+		case "GET_ORDENES":
 			return {
 				...state,
 				// ordenes: action.payload,
 				ordenesFilter: state.ordenes
-			}
-
-
-
-		
+			};
 
 		case "FILTER_BY_CATEGORY":
 			if (state.products.length) {
@@ -431,6 +417,23 @@ export default function rootReducer(state = initialState, action) {
 				...state,
 				resUpdateDiscountP: action.payload
 			};
+		case "FILTER_BY_STATUS_DISCOUNT":
+			if (action.payload === "all") {
+				return {
+					...state,
+					products: state.allProducts
+				};
+			} else if (action.payload === "outDisc") {
+				return {
+					...state,
+					products: state.allProducts.filter(e => e.discount === null || e.discount === 0)
+				};
+			} else if (action.payload === "withDisc") {
+				return {
+					...state,
+					products: state.allProducts.filter(e => e.discount >= 0.1)
+				};
+			}
 		default:
 			return state;
 	}
