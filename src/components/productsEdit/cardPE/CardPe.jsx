@@ -9,11 +9,14 @@ import {
 import swal from "sweetalert";
 import "./cardPe.css";
 
+const urlBase = process.env.REACT_APP_FRONT_URL;
+
 const CardPe = ({ product, editC }) => {
 	const dispatch = useDispatch();
 	let stockCurret = product.stock;
 	let stockName = stockCurret ? "with stock" : "out of stock";
-	const url = process.env.REACT_APP_BACK_URL;
+	const urlC = `${urlBase}/admin`
+	const currentURL = window.location.href;
 
 	const handlerStock = () => {
 		swal({
@@ -90,7 +93,7 @@ const CardPe = ({ product, editC }) => {
 					Stock
 				</button>
 
-				{`${url}/employee` ? null : (
+				{currentURL !== urlC ? null : (
 					<>
 						<button className="btnBCardPeEdit" onClick={() => handlerEdit()}>
 							Edit
