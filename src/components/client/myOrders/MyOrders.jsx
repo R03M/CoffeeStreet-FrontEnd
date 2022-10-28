@@ -75,7 +75,7 @@ const MyOrders = () => {
 
 				})
 			) : (
-				<div>You have not added products to your favorites list yet</div>
+				<div>You still don't have orders</div>
 			)}
 			
 			</div>  
