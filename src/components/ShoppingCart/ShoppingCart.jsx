@@ -5,17 +5,20 @@ import {
 	emptyCart,
 	getOrCreateShoppingCart,
 	checkOut,
-	deleteItemCompletedCart
+	deleteItemCompletedCart,
+	createOrder
 } from "../../redux/action";
 import { useDispatch, useSelector } from "react-redux";
 import NavBar from "../navbar/Navbar";
 import swal from "sweetalert";
 import "./ShoppingCart.css";
 
+
 const ShoppingCart = () => {
 	const dispatch = useDispatch();
 	const cart = useSelector(state => state.cart);
 	const user = useSelector(state => state.user);
+	const checkoutCart = useSelector(state => state.checkOut);
 	const localAccessToken = JSON.parse(localStorage.getItem("accessToken"));
 
 	useEffect(() => {
@@ -80,31 +83,35 @@ const ShoppingCart = () => {
 		});
 	};
 
-	const handleCheckout = () => {
-		swal({
-			text: `Are you sure you want to checkout ?`,
-			buttons: ["cancel", "confirm"],
-			dangerMode: true,
-			closeOnClickOutside: false,
-			icon: "warning"
-		}).then(value => {
-			if (value) {
-				dispatch(checkOut({ cart: cart  }));
-				swal("Checkout", {
-					button: false,
-					timer: 1500,
-					icon: "success"
-				});
-			} else {
-				swal("Operation cancelled", {
-					button: false,
-					timer: 1500,
-					icon: "error"
-				});
-			}
-		});
+	const handleCheckout = ()	=> {
+		if (user.hasOwnProperty("user")) {
+			swal({
+				text: `Are you sure you want to checkout your cart ?`,
+				buttons: ["cancel", "confirm"],
+				dangerMode: true,
+				closeOnClickOutside: false,
+				icon: "warning"
+			}).then(value => {
+				if (value) {
+					dispatch(checkOut({ idUser: user.user.id, items: cart.items }));
+					// dispatch(emptyCart({ idCart: cart.cartId }));
+					swal("Checkout", {
+						button: false,
+						timer: 1500,
+						icon: "success"
+					});
+				} else {
+					swal("Operation cancelled", {
+						button: false,
+						timer: 1500,
+						icon: "error"
+					});
+				}
+			});
+		}
 	};
 
+console.log("checkoutCart", checkoutCart)
 	return (
 		<div className="shoppingCart">
 			<NavBar />
@@ -113,13 +120,13 @@ const ShoppingCart = () => {
 				<button className="deleteBtnAllCartSC" onClick={() => handleClear()}>
 					Delete All
 				</button>
-				<button className="btnBCartTemp" onClick={()=> handleCheckout()}>Buy</button>
+				{checkoutCart? 
+				<a href={checkoutCart} >Pay with Mercado Pago</a> : <button className="btnBCartTemp" onClick={()=> handleCheckout()}>Create Order</button> }
 			</div>
 			<div className="containerCartSC">
 				<h2>Total</h2>
 				<h2>{cart.cartTotal}$</h2>
 			</div>
-
 			<div className="bodyCartSC">
 				{cart.items?.map(e => (
 					<div key={e.id} className="cardCartSC">
