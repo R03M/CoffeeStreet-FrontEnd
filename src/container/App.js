@@ -43,9 +43,11 @@ function App() {
 			}
 			setLoaded(true);
 		};
-		refreshToken();
+		if (accessToken) {
+			refreshToken();
+		}
+		setLoaded(true);
 	}, []);
-	
 
 	return (
 		<div className="App">
