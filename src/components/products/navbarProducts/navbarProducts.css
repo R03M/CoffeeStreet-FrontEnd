@@ -8,26 +8,26 @@
 	max-width: 300px;
 }
 
-.statusProductsNPC1{
+.statusProductsNPC1 {
 	width: 100%;
 	margin: 4px;
 	background-color: #1a180d70;
 	color: aliceblue;
 	font-weight: 700;
 	font-size: 1.2rem;
-	border-radius: 10px;
+	border-radius: 5px;
 	padding: 0.2rem;
 	color: rgb(247, 196, 90);
 	background-color: rgb(84, 25, 17);
 }
 
-.statusProductsNPC2{
+.statusProductsNPC2 {
 	width: 100%;
 	margin: 4px;
 	background-color: #1a180d70;
 	color: aliceblue;
 	font-weight: 700;
-	border-radius: 10px;
+	border-radius: 5px;
 	padding: 0.2rem;
 }
 
@@ -46,16 +46,13 @@
 	background-color: #501711;
 }
 
-
-.statusProductsNPC3{
+.statusProductsNPC3 {
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
 }
 
-
-
 .nameTagsNavBar {
-	border-radius: 15px;
+	border-radius: 5px;
 	margin: 10px;
 	padding: 10px;
 	background-color: #1a180d70;
@@ -89,7 +86,7 @@
 	color: rgb(245, 192, 77);
 	background-color: #541911;
 	padding: 0.7rem;
-	border-radius: 15px;
+	border-radius: 10px;
 	font-size: 2rem;
 	cursor: pointer;
 }
@@ -102,7 +99,6 @@
 .falseBtnNB {
 	color: #541911;
 	padding: 0.7rem;
-	border-radius: 15px;
 	font-size: 2rem;
 	cursor: pointer;
 }
@@ -119,7 +115,7 @@
 }
 
 .navProductCatagory {
-	border-radius: 15px;
+	border-radius: 5px;
 	margin: 10px;
 	padding: 10px;
 	background-color: #1a180d70;
@@ -144,7 +140,7 @@
 
 .selectNavProd {
 	background-color: rgba(0, 0, 0, 0.474);
-	border-radius: 15px;
+	border-radius: 5px;
 	margin: 10px;
 	padding: 10px;
 	width: 290px;
@@ -171,7 +167,7 @@
 
 .navProductIsPrepared {
 	background-color: rgba(0, 0, 0, 0.474);
-	border-radius: 15px;
+	border-radius: 5px;
 	margin: 10px;
 	padding: 10px;
 	box-shadow: rgb(0, 0, 0) 0px 0px 5px;
@@ -191,14 +187,6 @@
 .btnProductIsPrepared:hover {
 	color: rgb(247, 196, 90);
 	background-color: rgb(84, 25, 17);
-}
-
-.navProductType {
-	background-color: rgba(0, 0, 0, 0.474);
-	border-radius: 15px;
-	margin: 10px;
-	padding: 10px;
-	box-shadow: rgb(0, 0, 0) 0px 0px 5px;
 }
 
 .typeNavProductTypes {

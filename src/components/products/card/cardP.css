@@ -9,13 +9,11 @@
 	max-height: 32rem;
 	min-height: 32rem;
 	background-color: rgba(247, 195, 81, 0.35);
-	border-radius: 15px;
 	backdrop-filter: blur(5px);
-	box-shadow: #541911 0px 0px 8px;
+	box-shadow: #541911 0px 0px 4px;
 	padding: 0rem 1rem;
 }
 
-/*clase para cuando no exista stock(en proceso)*/
 .cardDivF {
 	display: inline-block;
 	position: relative;
@@ -27,8 +25,29 @@
 	max-height: 32rem;
 	min-height: 32rem;
 	background-color: rgba(114, 91, 41, 0.457);
-	border-radius: 15px;
+	box-shadow: #541911 0px 0px 4px;
 	padding: 0rem 1rem;
+}
+
+.triangleColorCardPC {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 0;
+	height: 0;
+	margin: 1px;
+	border-top: 100px solid #d9320d;
+	border-right: 100px solid transparent;
+}
+
+.textTrianglePC {
+	color: white;
+	position: relative;
+	top: -80px;
+	left: 15px;
+	font-weight: bold;
+	padding: 5px;
+	transform: rotate(-45deg);
 }
 
 .linkCardP {
@@ -204,5 +223,5 @@
 	color: #541911;
 	cursor: pointer;
 	z-index: 1;
-	
+
 }
