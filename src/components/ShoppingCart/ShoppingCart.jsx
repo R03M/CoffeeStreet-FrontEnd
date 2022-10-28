@@ -90,7 +90,8 @@ const ShoppingCart = () => {
 			icon: "warning"
 		}).then(value => {
 			if (value) {
-				dispatch(checkOut());
+				console.log(user.user.auth.id, cart.items)
+				dispatch(checkOut({ idUser: user.user.auth.id, items: cart.items }));
 				swal("Purchase confirmed", {
 					button: false,
 					timer: 1500,
@@ -103,7 +104,7 @@ const ShoppingCart = () => {
 					icon: "error"
 				});
 			}
-			dispatch(createOrder({ status: "pending", idUser: user.user.id, total: cart.cartTotal, ordersByProduct: cart.items}));
+			// dispatch(createOrder({ status: "pending", idUser: user.user.id, total: cart.cartTotal, ordersByProduct: cart.items}));
 		});
 	};
 

@@ -371,10 +371,11 @@ export function changeStatus(productStock, productId) {
 	};
 }
 
-export function checkOut (){
+export function checkOut (cart){
+	console.log(cart)
 	return async function (){
 		try{
-			await axios.get(`${url}/pay/mercadopago`);
+			await axios.get(`${url}/pay/mercadopago`, cart);
 		}catch(error){
 			return error;
 		}
