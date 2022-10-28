@@ -482,3 +482,11 @@ export function filterByDiscount(payload) {
 		payload
 	};
 }
+export function filterByStock(payload) {
+	return {
+		type: "FILTER_BY_STOCK",
+		payload
+	};
+}
+
+

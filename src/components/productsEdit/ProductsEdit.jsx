@@ -3,11 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { clearError, getProducts, clearDetails } from "../../redux/action";
 import CardPe from "./cardPE/CardPe";
 import Loading from "../loading/Loading";
-import NavbarProduc from "../products/navbarProducts/NavbarProduc";
+import NavbarPE from "./navbarPe/NavbarPE";
 import ErrorSearch from "../errorSearch/ErrorSearch";
 import "./productsEdit.css";
 
-const ProductsEdit = ({editCPe}) => {
+const ProductsEdit = ({ editCPe }) => {
 	const dispatch = useDispatch();
 	const allProducts = useSelector(state => state.products);
 	const errorMessage = useSelector(state => state.errorSProducts);
@@ -19,7 +19,6 @@ const ProductsEdit = ({editCPe}) => {
 		dispatch(clearError());
 		dispatch(clearDetails());
 	}, [dispatch, allProducts]);
-
 
 	function pagACards() {
 		if (errorMessage === "There is no product with that name") {
@@ -33,7 +32,7 @@ const ProductsEdit = ({editCPe}) => {
 				return (
 					<div className="cardsEditPe">
 						{allProducts.map(data => {
-							return <CardPe key={data.id} product={data} editC={editCPe}/>;
+							return <CardPe key={data.id} product={data} editC={editCPe} />;
 						})}
 					</div>
 				);
@@ -45,12 +44,8 @@ const ProductsEdit = ({editCPe}) => {
 
 	return (
 		<div className="productsEditdiv">
-			<div className="navBarACardsAdminC">
-				<div className="navBarProductsEdit">
-					<NavbarProduc />
-				</div>
-				{pagACards()}
-			</div>
+			<NavbarPE />
+			{pagACards()}
 		</div>
 	);
 };
