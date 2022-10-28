@@ -1,4 +1,5 @@
 import axios from "axios";
+import { redirect } from "react-router-dom";
 
 const url = process.env.REACT_APP_BACK_URL;
 
@@ -371,14 +372,18 @@ export function changeStatus(productStock, productId) {
 	};
 }
 
-export function checkOut(cart) {
-	return async function () {
-		try {
-			await axios.post(`${url}/algo`, cart);
-		} catch (error) {
-			return error;
+export function checkOut (cart){
+	return async function (dispatch){
+		try{
+			const response = await axios.post(`${url}/pay/mercadopago`, cart);			
+			dispatch({
+				type: "CHECK_OUT",
+				payload: response.data
+			})
+		}catch(error){
+			return error
 		}
-	};
+	}
 }
 
 export function deleteItemCompletedCart(cart) {
@@ -459,6 +464,7 @@ export function clearErrorSUser() {
 	};
 }
 
+
 export function updateDiscountProduct(value, productId) {
 	return async function (dispatch) {
 		try {
@@ -476,12 +482,15 @@ export function updateDiscountProduct(value, productId) {
 	};
 }
 
+
 export function filterByDiscount(payload) {
 	return {
 		type: "FILTER_BY_STATUS_DISCOUNT",
 		payload
 	};
 }
+
+
 export function filterByStock(payload) {
 	return {
 		type: "FILTER_BY_STOCK",
@@ -489,4 +498,26 @@ export function filterByStock(payload) {
 	};
 }
 
+
+export function createOrder (payload){
+	console.log(payload)
+	return async function (){
+		try{
+			await axios.post(`${url}/order`,  payload);
+		}catch(error){
+			return error;
+		}
+	}
+}
+
+
+export function changeStatusOrder(id, status) {
+	return async function () {
+		try {
+			await axios.put(`${url}/order/${id}/change-status`, {status: status});
+		} catch (error) {
+			return error;
+		}
+	};
+}
 
