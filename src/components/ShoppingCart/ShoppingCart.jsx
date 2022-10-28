@@ -5,7 +5,8 @@ import {
 	emptyCart,
 	getOrCreateShoppingCart,
 	checkOut,
-	deleteItemCompletedCart
+	deleteItemCompletedCart,
+	createOrder
 } from "../../redux/action";
 import { useDispatch, useSelector } from "react-redux";
 import NavBar from "../navbar/Navbar";
@@ -82,15 +83,16 @@ const ShoppingCart = () => {
 
 	const handleCheckout = () => {
 		swal({
-			text: `Are you sure you want to checkout ?`,
+			text: `Are you sure you want to confirm your purchase ?`,
 			buttons: ["cancel", "confirm"],
 			dangerMode: true,
 			closeOnClickOutside: false,
 			icon: "warning"
 		}).then(value => {
 			if (value) {
-				dispatch(checkOut({ cart: cart  }));
-				swal("Checkout", {
+				console.log(user.user.auth.id, cart.items)
+				dispatch(checkOut({ idUser: user.user.auth.id, items: cart.items }));
+				swal("Purchase confirmed", {
 					button: false,
 					timer: 1500,
 					icon: "success"
@@ -102,6 +104,7 @@ const ShoppingCart = () => {
 					icon: "error"
 				});
 			}
+			// dispatch(createOrder({ status: "pending", idUser: user.user.id, total: cart.cartTotal, ordersByProduct: cart.items}));
 		});
 	};
 
