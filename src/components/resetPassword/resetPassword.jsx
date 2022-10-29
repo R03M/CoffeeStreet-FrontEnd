@@ -34,13 +34,13 @@ const { token } = useParams() // resetToken
 				setTimeout(() => {
 					navigate("/menu", { replace: true });
 				}, 500);
-				// SWAL mensaje de exito, password cambiado
+				alert('mensaje de exito, password cambiado')
 			} else {
 				// SWAL mensaje de error
-				console.log("error http");
+				alert('error al solicitar reset password');
 			}
 			}else{
-				console.log("passwords no son iguales");
+				alert("passwords no son iguales");
 			}
 		} catch (error) {
 			console.log("error at reseting password");

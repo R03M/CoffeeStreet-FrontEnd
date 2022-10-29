@@ -23,16 +23,18 @@ const FormLogin = () => {
 
 	const loginUser = async e => {
 		console.log("email", email);
+		if(!email) alert('email está vacío')
 		if(forgot){
 			const response = await axios.post(`${url}/login/forgot-pass`, {email})
 			if(response){
-				console.log('mensaje llegara a tu bandeja de correo')
+				alert('mensaje llegara a tu bandeja de correo')
 				//SWAL mensaje de swal de correo llegara a tu bandeja
 			}else{
-				//SWAL mensaje de error , no se envio a tu correo
+				alert('mensaje de error , no se envió a tu correo')
 			}
 
 		}else{
+			if(!password) alert('password está vacío')
 			dispatch(
 			LoginUser({
 				email: email,
