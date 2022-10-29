@@ -1,18 +1,18 @@
 import React, { useEffect } from "react";
 import axios from "axios";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import { LoginUser, logPostData } from "../../../redux/action.js";
 import * as Yup from "yup";
-import { User } from "../../../models/user.class";
 
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 // import swal from "sweetalert";
-import "./formS.css";
+import "../signUp/formS/formS.css";
+import { useParams } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
 const url = "http://localhost:3001";
 
-const FormS = () => {
-	const dispatch = useDispatch();
+
+const ResetPassword = () => {
+const { token } = useParams() // resetToken
 	const accessToken = useSelector(state => state.accessToken);
 	const navigate = useNavigate();
 
@@ -31,18 +31,25 @@ const FormS = () => {
 
 	const changePassword = async e => {
 		try {
+			const newPassword = e.password1
 			const headers = createHeaders(accessToken);
 			const authAxios = axios.create(headers);
 
-			const response = await authAxios.post(`${url}/login/reset-pass`, {});
+			if(newPassword === e.password2){
+				const response = await authAxios.post(`${url}/login/reset-pass`, {
+				newPassword,
+				token
+			});
 			if (response) {
-				dispatch();
 				setTimeout(() => {
 					navigate("/menu", { replace: true });
 				}, 500);
 			} else {
 				// mensaje de error
-				console.log("error at reseting password");
+				console.log("error http");
+			}
+			}else{
+				console.log("passwords no son iguales");
 			}
 		} catch (error) {
 			console.log("error at reseting password");
@@ -82,11 +89,11 @@ const FormS = () => {
 								placeholder="New Password"
 								className="inputsFormSC"
 							/>
-							{errors.name && touched.name && (
+							{errors.password1 && touched.password1 && (
 								<ErrorMessage name="name" component="div" className="errorsMsgFSC" />
 							)}
 						</div>
-						<div className="nameFormSC">
+						<div className="">
 							<label htmlFor="name" className="labelsFormSC">
 								Repeat password
 							</label>
@@ -97,7 +104,7 @@ const FormS = () => {
 								placeholder="Repeat Password"
 								className="inputsFormSC"
 							/>
-							{errors.name && touched.name && (
+							{errors.password2 && touched.password2 && (
 								<ErrorMessage name="name" component="div" className="errorsMsgFSC" />
 							)}
 						</div>
@@ -121,4 +128,4 @@ const FormS = () => {
 	);
 };
 
-export default FormS;
+export default ResetPassword;

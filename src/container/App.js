@@ -16,6 +16,7 @@ import CurrentNews from "../components/new/currentNews/CurrentNews.jsx";
 import About from "../components/About/About.jsx";
 import ProductsDetails from "../components/productsDetails/ProductsDetails.jsx";
 import ShoppingCart from "../components/ShoppingCart/ShoppingCart.jsx";
+import ResetPassword from "../components/resetPassword/resetPassword.jsx";
 import "./App.css";
 
 const url = "http://localhost:3001";
@@ -65,6 +66,7 @@ function App() {
 					<Route path="/client" element={<Client />} />
 					<Route path="/about" element={<About />} />
 					<Route path="/cart" element={<ShoppingCart />} />
+					<Route path="/resetpass/:token" element={<ResetPassword />} />
 					<Route path="*" element={<Error />} />
 				</Routes>
 			) : (
