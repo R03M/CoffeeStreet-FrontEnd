@@ -65,7 +65,8 @@ const Products = () => {
 	}, [dispatch, isAuthenticated]);
 
 	useEffect(() => {
-		if (checkEmail.isGoogle === false && checkEmail.email === false) {
+		if(isAuthenticated){
+			if (checkEmail.isGoogle === false && checkEmail.email === false) {
 			dispatch(
 				registerUserGoogle({
 					email: user.email,
@@ -75,6 +76,7 @@ const Products = () => {
 					isGoogle: true
 				})
 			);
+		}
 		}
 		if (checkEmail.isGoogle === true && checkEmail.email === true) {
 			dispatch(

@@ -83,7 +83,7 @@ const NewProducts = () => {
 		} else if (cloudImg !== "") {
 			return cloudImg;
 		} else {
-			return "https://res.cloudinary.com/db6aq84ze/image/upload/v1666550286/coffeeStreet_vhewoj.png";
+			return "https://res.cloudinary.com/db6aq84ze/image/upload/v1667006862/coffeeStreetData/logoCS_mgvc4f.png";
 		}
 	};
 

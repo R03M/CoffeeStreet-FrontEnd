@@ -1,4 +1,5 @@
 import axios from "axios";
+import { redirect } from "react-router-dom";
 
 const url = process.env.REACT_APP_BACK_URL;
 
@@ -371,6 +372,7 @@ export function changeStatus(productStock, productId) {
 	};
 }
 
+<<<<<<< HEAD
 
 export function checkOut (cart){
 	console.log(cart)
@@ -379,6 +381,17 @@ export function checkOut (cart){
 			await axios.get(`${url}/pay/mercadopago`, cart);
 		}catch(error){
 
+=======
+export function checkOut(cart) {
+	return async function (dispatch) {
+		try {
+			const response = await axios.post(`${url}/pay/mercadopago`, cart);
+			dispatch({
+				type: "CHECK_OUT",
+				payload: response.data
+			});
+		} catch (error) {
+>>>>>>> 4168e288127e53bdbb20643c16ceded26312da6e
 			return error;
 		}
 	};
@@ -462,7 +475,6 @@ export function clearErrorSUser() {
 	};
 }
 
-
 export function updateDiscountProduct(value, productId) {
 	return async function (dispatch) {
 		try {
@@ -480,7 +492,6 @@ export function updateDiscountProduct(value, productId) {
 	};
 }
 
-
 export function filterByDiscount(payload) {
 	return {
 		type: "FILTER_BY_STATUS_DISCOUNT",
@@ -488,23 +499,50 @@ export function filterByDiscount(payload) {
 	};
 }
 
-export function createOrder (payload){
-	console.log(payload)
-	return async function (){
-		try{
-			await axios.post(`${url}/order`,  payload);
-		}catch(error){
+export function filterByStock(payload) {
+	return {
+		type: "FILTER_BY_STOCK",
+		payload
+	};
+}
+
+export function createOrder(payload) {
+	console.log(payload);
+	return async function () {
+		try {
+			await axios.post(`${url}/order`, payload);
+		} catch (error) {
 			return error;
 		}
-	}
+	};
 }
 
 export function changeStatusOrder(id, status) {
 	return async function () {
 		try {
-			await axios.put(`${url}/order/${id}/change-status`, {status: status});
+			await axios.put(`${url}/order/${id}/change-status`, { status: status });
 		} catch (error) {
 			return error;
 		}
+	};
+}
+
+export function sendNewsLetter(payload) {
+	return async function (dispatch) {
+		try {
+			const response = await axios.post(`${url}/newsletter/create`, payload);
+			dispatch({
+				type: "POST_SEND_NEWSLETTER",
+				payload: response.data.message
+			});
+		} catch (error) {
+			return error;
+		}
+	};
+}
+
+export function clearErrorSendNL() {
+	return {
+		type: "CLEAR_ERROR_SEND_NL"
 	};
 }

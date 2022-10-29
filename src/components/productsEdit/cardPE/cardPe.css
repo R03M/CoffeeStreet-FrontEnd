@@ -7,13 +7,11 @@
 	width: 280px;
 	height: 320px;
 	background-color: rgba(247, 195, 81, 0.447);
-	border-radius: 15px;
 	backdrop-filter: blur(4px);
-	box-shadow: #541911 0px 0px 8px;
+	box-shadow: #541911 0px 0px 4px;
 	padding: 1rem;
 }
 
-/*clase para cuando no exista stock(en proceso)*/
 .cardPeDivF {
 	display: inline-block;
 	position: relative;
@@ -23,8 +21,29 @@
 	width: 280px;
 	height: 320px;
 	background-color: rgba(114, 91, 41, 0.457);
-	border-radius: 15px;
+	box-shadow: #541911 0px 0px 4px;
 	padding: 1rem;
+}
+
+.triangleColorCardPEC {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 0;
+	height: 0;
+	margin: 1px;
+	border-top: 100px solid #d9320d;
+	border-right: 100px solid transparent;
+}
+
+.textTrianglePEC {
+	color: white;
+	position: relative;
+	top: -80px;
+	left: 15px;
+	font-weight: bold;
+	padding: 5px;
+	transform: rotate(-45deg);
 }
 
 .nameCardPe {
