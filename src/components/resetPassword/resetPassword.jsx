@@ -20,23 +20,13 @@ const { token } = useParams() // resetToken
 		password1: String,
 		password2: String
 	};
-	function createHeaders(token) {
-		return {
-			headers: {
-				Authorization: token,
-				Accept: "aplication/json"
-			}
-		};
-	}
 
 	const changePassword = async e => {
 		try {
 			const newPassword = e.password1
-			const headers = createHeaders(accessToken);
-			const authAxios = axios.create(headers);
 
 			if(newPassword === e.password2){
-				const response = await authAxios.post(`${url}/login/reset-pass`, {
+				const response = await axios.post(`${url}/login/reset-pass`, {
 				newPassword,
 				token
 			});
@@ -44,8 +34,9 @@ const { token } = useParams() // resetToken
 				setTimeout(() => {
 					navigate("/menu", { replace: true });
 				}, 500);
+				// SWAL mensaje de exito, password cambiado
 			} else {
-				// mensaje de error
+				// SWAL mensaje de error
 				console.log("error http");
 			}
 			}else{
