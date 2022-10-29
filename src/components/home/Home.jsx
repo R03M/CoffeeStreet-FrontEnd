@@ -2,6 +2,7 @@ import React from "react";
 import NavBar from "../navbar/Navbar.jsx";
 import New from "../new/New.jsx";
 import Geolocation from "../Geolocation/geolocation";
+import ViewNewsL from "../home/viewNewsL/ViewNewsL";
 import "./home.css";
 
 const discounts = [
@@ -29,7 +30,8 @@ const Home = () => {
 				<New />
 			</div>
 
-				<Geolocation />
+			<Geolocation />
+			<ViewNewsL />
 		</div>
 	);
 };
