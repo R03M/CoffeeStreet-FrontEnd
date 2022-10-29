@@ -36,6 +36,7 @@ function App() {
 					{ headers: { authorization: `Bearer ${accessToken}` } }
 				);
 				if (response.data.accessToken) {
+					console.log("aaaa");
 					localStorage.setItem("accessToken", JSON.stringify(response.data.accessToken));
 					dispatch(logPostData(accessToken));
 				}
@@ -44,10 +45,8 @@ function App() {
 			}
 			setLoaded(true);
 		};
-		if (accessToken) {
-			refreshToken();
-		}
-		setLoaded(true);
+
+		refreshToken();
 	}, []);
 
 	return (
