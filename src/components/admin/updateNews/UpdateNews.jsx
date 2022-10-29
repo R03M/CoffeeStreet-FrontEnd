@@ -7,7 +7,6 @@ import * as Yup from "yup";
 import swal from "sweetalert";
 import "./updateNews.css";
 
-
 const UpdateNews = () => {
 	const dispatch = useDispatch();
 	const resUpdate = useSelector(state => state.resUpdateNews);
@@ -76,11 +75,28 @@ const UpdateNews = () => {
 		}
 	};
 
+	const selectUrlImg = (formImg, cloudImg) => {
+		if (formImg !== "") {
+			return formImg;
+		} else if (cloudImg !== "") {
+			return cloudImg;
+		} else {
+			return "https://res.cloudinary.com/db6aq84ze/image/upload/v1667052481/coffeeStreetData/wallpaperbetter.com_1920x1080_1_iugflo.jpg";
+		}
+	};
+
 	const submUpdateNews = values => {
 		setErrorNoti(true);
-		let data = {};
-		console.log(values);
-		dispatch(updateNews(data));
+		let data = {
+			title: values.title,
+			image: selectUrlImg(values.image, img),
+			description: values.description,
+			paragraph1: values.paragraph1,
+			paragraph2: values.paragraph2.length !== "" ? values.paragraph2 : null,
+			paragraph3: values.paragraph3.length !== "" ? values.paragraph3 : null
+		};
+		console.log(data);
+		// dispatch(updateNews(data));
 	};
 	notiSwal();
 

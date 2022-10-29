@@ -54,11 +54,11 @@ const SendNewsletter = () => {
 		}
 	};
 
-	const productSchema = Yup.object().shape({
+	const newsletterSchema = Yup.object().shape({
 		title: Yup.string()
-			.min(5, "Name too short")
-			.max(55, "Name too long")
-			.required("Name is required"),
+			.min(5, "Title too short")
+			.max(55, "Title too long")
+			.required("Title is required"),
 		image: Yup.string().matches(
 			/[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/gi, // eslint-disable-next-line
 			"Enter correct url!"
@@ -96,7 +96,7 @@ const SendNewsletter = () => {
 		<div className="divSendNLC">
 			<Formik
 				initialValues={initialValues}
-				validationSchema={productSchema}
+				validationSchema={newsletterSchema}
 				onSubmit={(values, { resetForm }) => sendNews(values, resetForm)}
 			>
 				{({ values, touched, errors }) => (
