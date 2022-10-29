@@ -372,6 +372,7 @@ export function changeStatus(productStock, productId) {
 	};
 }
 
+
 export function checkOut(cart) {
 	return async function (dispatch) {
 		try {
@@ -535,3 +536,24 @@ export function clearErrorSendNL() {
 		type: "CLEAR_ERROR_SEND_NL"
 	};
 }
+
+export function updateNews(payload) {
+	return async function (dispatch) {
+		try {
+			const response = await axios.put(`${url}/updateNews`, payload);
+			dispatch({
+				type: "PUT_UPDATE_NEWS",
+				payload: response.data.message
+			});
+		} catch (error) {
+			return error;
+		}
+	};
+}
+
+export function clearErrorUpdateN() {
+	return {
+		type: "CLEAR_ERROR_UPDATE_NEWS"
+	};
+}
+

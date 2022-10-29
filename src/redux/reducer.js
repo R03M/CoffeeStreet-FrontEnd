@@ -26,7 +26,8 @@ const initialState = {
 	errorSearchUser: [],
 	resUpdateDiscountP: [],
 	checkOut: "",
-	resSendNewsL: ""
+	resSendNewsL: "",
+	resUpdateNews: ""
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -418,6 +419,17 @@ export default function rootReducer(state = initialState, action) {
 				...state,
 				resSendNewsL: ""
 			};
+		case "PUT_UPDATE_NEWS":
+			return {
+				...state,
+				resUpdateNews: action.payload
+			};
+		case "CLEAR_ERROR_UPDATE_NEWS":
+			return {
+				...state,
+				resUpdateNews: ""
+			};
+
 		default:
 			return state;
 	}
