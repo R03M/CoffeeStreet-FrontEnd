@@ -372,6 +372,7 @@ export function changeStatus(productStock, productId) {
 	};
 }
 
+
 export function checkOut(cart) {
 	return async function (dispatch) {
 		try {
