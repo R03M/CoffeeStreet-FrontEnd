@@ -372,16 +372,7 @@ export function changeStatus(productStock, productId) {
 	};
 }
 
-<<<<<<< HEAD
 
-export function checkOut (cart){
-	console.log(cart)
-	return async function (){
-		try{
-			await axios.get(`${url}/pay/mercadopago`, cart);
-		}catch(error){
-
-=======
 export function checkOut(cart) {
 	return async function (dispatch) {
 		try {
@@ -391,7 +382,6 @@ export function checkOut(cart) {
 				payload: response.data
 			});
 		} catch (error) {
->>>>>>> 4168e288127e53bdbb20643c16ceded26312da6e
 			return error;
 		}
 	};
