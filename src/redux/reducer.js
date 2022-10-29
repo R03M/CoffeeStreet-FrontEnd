@@ -25,8 +25,8 @@ const initialState = {
 	ordenes: [],
 	errorSearchUser: [],
 	resUpdateDiscountP: [],
-	checkOut: ""
-
+	checkOut: "",
+	resSendNewsL: ""
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -403,13 +403,21 @@ export default function rootReducer(state = initialState, action) {
 					products: state.allProducts.filter(p => p.stock === false)
 				};
 			}
-
-			case "CHECK_OUT":
-				return {
-					...state,
-					checkOut: action.payload
-				};
-
+		case "CHECK_OUT":
+			return {
+				...state,
+				checkOut: action.payload
+			};
+		case "POST_SEND_NEWSLETTER":
+			return {
+				...state,
+				resSendNewsL: action.payload
+			};
+		case "CLEAR_ERROR_SEND_NL":
+			return {
+				...state,
+				resSendNewsL: ""
+			};
 		default:
 			return state;
 	}
