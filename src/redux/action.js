@@ -557,3 +557,12 @@ export function clearErrorUpdateN() {
 	};
 }
 
+export function saveEmailNL(payload) {
+	return async function () {
+		try {
+			await axios.post(`${url}/newsletter`, payload);
+		} catch (error) {
+			return error;
+		}
+	};
+}
