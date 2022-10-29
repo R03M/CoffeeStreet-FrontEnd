@@ -65,7 +65,7 @@ function App() {
 					<Route path="/client" element={<Client />} />
 					<Route path="/about" element={<About />} />
 					<Route path="/cart" element={<ShoppingCart />} />
-					<Route path="/resetpass/:token" element={<ResetPassword />} />
+					<Route path="/resetPass/:token" element={<ResetPassword />} />
 					<Route path="*" element={<Error />} />
 				</Routes>
 			) : (
