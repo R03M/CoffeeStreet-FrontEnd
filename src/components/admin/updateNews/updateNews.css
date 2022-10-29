@@ -1,0 +1,91 @@
+.divUpdateNewsC {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin: 1rem;
+}
+
+.formUpdateNewsC{
+	padding: 2rem;
+	background-color: #eed9ad;
+	border-radius: 15px;
+	box-shadow: #541911 0px 0px 4px;
+}
+
+.titleFielUNC{
+	height: 80px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	font-size: 1.2rem;
+	font-weight: 600;
+}
+
+.inputTitleUNC{
+	width: 95%;
+	border-radius: 5px;
+	font-size: 1.4rem;
+	margin: 2px;
+}
+
+.descriptionFieldUNC{
+	height: 180px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	font-size: 1.2rem;
+	font-weight: 600;
+	margin-top: 1rem;
+
+}
+
+.inputDescripFUNC{
+	height: 120px;
+	max-height: 120px;
+	width: 95%;
+	border-radius: 5px;
+	margin: 4px;
+}
+
+.paragraph1FieldUNC{
+	height: 180px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	font-size: 1.2rem;
+	font-weight: 600;
+	margin-top: 1rem;
+
+}
+
+.inputparagraphUNC{
+	height: 120px;
+	max-height: 120px;
+	width: 95%;
+	border-radius: 5px;
+	margin: 4px;
+}
+
+.colorErrorMsgUNC{
+	color: red;
+	font-size: 1.2rem;
+}
+
+.divBtnUpdNC{
+	margin-top: 1rem;
+}
+
+.btnUpdateNewsC{
+	font-size: 2rem;
+	font-weight: 700;
+	padding: 0.5rem 1.5rem;
+	border-radius: 4px;
+	color: #541911;
+	background-color: #f5c04d;
+	cursor: pointer;
+}
+
+.btnUpdateNewsC:hover {
+	background-color: #541911;
+	color: #f5c04d;
+}
