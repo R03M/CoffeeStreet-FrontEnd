@@ -372,7 +372,6 @@ export function changeStatus(productStock, productId) {
 	};
 }
 
-
 export function checkOut(cart) {
 	return async function (dispatch) {
 		try {
@@ -561,6 +560,20 @@ export function saveEmailNL(payload) {
 	return async function () {
 		try {
 			await axios.post(`${url}/newsletter`, payload);
+		} catch (error) {
+			return error;
+		}
+	};
+}
+
+export function getReview() {
+	return async function (dispatch) {
+		try {
+			const response = await axios.get(`${url}/review`);
+			dispatch({
+				type: "GET_REVIEWS",
+				payload: response.data
+			});
 		} catch (error) {
 			return error;
 		}

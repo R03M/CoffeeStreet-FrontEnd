@@ -1,9 +1,11 @@
 .viewNewsDivC {
-	background-color: #edd195;
-	width: 50%;
-	border-radius: 5px;
-	box-shadow: black 0px 0px 2px;
+	display: flex;
 	margin: 1rem;
+	align-items: center;
+	background-color: #ddc592;
+	border-radius: 5px;
+	box-shadow: rgb(107, 19, 19) 0px 0px 4px;
+	color: #541911
 }
 
 .viewNewsbodyC {

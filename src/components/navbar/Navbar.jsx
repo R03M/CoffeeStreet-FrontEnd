@@ -27,7 +27,7 @@ const NavBar = () => {
 
 			<div className="btnNavbarDiv">
 				<Link to="/home">
-					<button className="btnNBCU">New</button>
+					<button className="btnNBCU">Home</button>
 				</Link>
 				<Link to="/menu">
 					<button className="btnNBCU">Menu</button>
