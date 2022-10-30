@@ -1,17 +1,48 @@
-.aboutDiv{
+.aboutDivC {
 	height: 100vh;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	object-fit: cover;
 	overflow-y: scroll;
-	background: linear-gradient(to bottom, #2b2b2b41 0%, #0000005f 100%),url("../../media/mk04.jpg");
+	background: linear-gradient(to bottom, #2b2b2b41 0%, #0000005f 100%),
+		url("../../media/mk22.jpg");
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: center;
 }
 
-.aboutBody {
+.aboutBodyC {
 	height: 100%;
 	margin: 1rem;
+}
+
+.headerAboutC {
+	display: flex;
+	align-items: center;
+}
+
+.btnAboutC {
+	height: 30px;
+	width: 30px;
+	border-radius: 50%;
+	margin: 0.5rem;
+	cursor: pointer;
+}
+
+.btnAboutC:hover {
+	background-color: black;
+	color: white;
+}
+
+.titleAboutC {
+	color: white;
+	font-size: 2rem;
+	text-transform: uppercase;
+}
+
+.allCardsAboutC {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
 }
