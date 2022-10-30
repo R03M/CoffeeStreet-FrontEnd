@@ -422,6 +422,7 @@ export default function rootReducer(state = initialState, action) {
 				...state,
 				resSendNewsL: ""
 			};
+
 		case "PUT_UPDATE_NEWS":
 			return {
 				...state,
@@ -442,6 +443,7 @@ export default function rootReducer(state = initialState, action) {
 				...state,
 				productsWithDiscounts: action.payload
 			};
+
 		default:
 			return state;
 	}
