@@ -133,7 +133,7 @@ const CardP = ({ product, userId }) => {
 					dispatch(checkOut({ idUser: user.id, 
 						items: [
 							{
-								id: product.id,
+								idProduct: product.id,
 								qty: 1,
 								price: product.price,
 								name: product.name
@@ -196,8 +196,6 @@ const CardP = ({ product, userId }) => {
 			<p className="priceCardPC">Price by unit $ {product.price}</p>
 
 			<div className="divTempCart">
-				<p className="pCartTemp">{product.qty}</p>
-				<input type="number" className="inputCartTemp" value={product.qty} />
 				{checkoutCart? 
 				<a href={checkoutCart} >Pay with Mercado Pago</a> : <button
 					className={product.stock === true ? "btnBCartTemp" : "btnBCartTempNSCP"}

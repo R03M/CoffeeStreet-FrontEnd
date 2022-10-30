@@ -93,7 +93,7 @@ const ProductsDetails = () => {
 			}).then(value => {
 				if (value) {
 					dispatch(checkOut({idUser: user.id, items: [{
-						id: product.id,
+						idProduct: product.id,
 						qty: 1,
 						price: product.price,
 						name: product.name}]}));
@@ -155,8 +155,6 @@ const ProductsDetails = () => {
 						Go Back
 					</button>
 					<p className="tempPDbuyAPrice">Price by unit $ {product.price}</p>
-					<p className="tempPDAQty">{`Qty`}</p>
-					<input className="tempPDAInput" type="number" value={1} />
 					<button className={product.stock === true ? "tempPDbuyAAdd" : "tempPDbuyAAddNSPD"} onClick={() => handleAdd(product)}>
 						Add to <BsFillCartPlusFill />
 					</button>
