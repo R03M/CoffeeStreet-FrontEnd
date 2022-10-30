@@ -31,6 +31,7 @@ const initialState = {
 	reviews: [],
 	productsWithDiscounts: [],
 	detailsOrder: [],
+
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -157,7 +158,7 @@ export default function rootReducer(state = initialState, action) {
 		case "GET_ORDENES":
 			return {
 				...state,
-				// ordenes: action.payload,
+				ordenes: action.payload,
 				ordenesFilter: state.ordenes
 			};
 
@@ -422,6 +423,7 @@ export default function rootReducer(state = initialState, action) {
 				...state,
 				resSendNewsL: ""
 			};
+
 		case "PUT_UPDATE_NEWS":
 			return {
 				...state,
@@ -442,6 +444,7 @@ export default function rootReducer(state = initialState, action) {
 				...state,
 				productsWithDiscounts: action.payload
 			};
+
 		case "GET_ALL_ORDERS":
 			return {
 				...state,
@@ -452,6 +455,7 @@ export default function rootReducer(state = initialState, action) {
 					...state,
 					detailsOrder: action.payload
 				};
+
 		default:
 			return state;
 	}
