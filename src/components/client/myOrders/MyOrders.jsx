@@ -12,6 +12,7 @@ const MyOrders = () => {
 	const dispatch = useDispatch();
 	const ordenes = useSelector((state) => state.ordenesFilter);
 	const filter = useSelector((state) => state.filterUserOrden);
+	console.log("ordenes", ordenes);
 
 	
 	
@@ -45,7 +46,6 @@ const MyOrders = () => {
 			<div className='contenedor-ordenes'>
 			{ordenes.length > 0 ? (
 				ordenes.map(orden => {
-				console.log(orden.name)
 					return (
 						<div className='Contenedor-Orden'>
 						  <div className={orden.status === "pending"? "status-orden-pending" : orden.status === "Completed" ? "status-orden-completed" : "status-orden-cancelado" }>
@@ -53,19 +53,19 @@ const MyOrders = () => {
 
 							</div>
 							<div className='cuerpo-Orden'>
-								{orden.items.map(item => {
+								{orden.order_product.map(item => {
 									return (
 										<div className='item-orden'>
-											<p>{item.name}</p>
-											<img className='image' src={item.image} alt={item.name}/>
-											<p>{item.qty}</p>
-											<h2 className='price-item'>{item.price}$</h2>
+											<p>{item.product.name}</p>
+											{/* <img className='image' src={item.image} alt={item.name}/> */}
+											<p> Qty : {item.quantity}</p>
+											<h2 className='price-item'>{item.total / item.quantity}$</h2>
 										</div>
 									)
 								})}
 
 							<div className='total-orden'>
-								<h1>Total: {orden.cartTotal}$</h1>
+								<h1>Total: {orden.total}$</h1>
 							</div>
 							
 							</div>
