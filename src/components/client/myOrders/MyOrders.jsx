@@ -1,7 +1,7 @@
 import React, { useState,useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import "./myOrders.css";
-
+import {getOrdersByUser} from "../../../redux/action";
 
 
 
@@ -12,14 +12,15 @@ const MyOrders = () => {
 	const dispatch = useDispatch();
 	const ordenes = useSelector((state) => state.ordenesFilter);
 	const filter = useSelector((state) => state.filterUserOrden);
-	console.log("ordenes", ordenes);
+	const user = useSelector((state) => state.user);
+	console.log("user", user);
+
 
 	
 	
 	useEffect(() => {
 		if(!filter) {
-			dispatch({type: "GET_ORDENES"})
-
+			dispatch(getOrdersByUser(user.user.id))
 		}
 	}, [dispatch])
 	

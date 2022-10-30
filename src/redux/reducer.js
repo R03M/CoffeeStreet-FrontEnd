@@ -153,7 +153,7 @@ export default function rootReducer(state = initialState, action) {
 		case "GET_ORDENES":
 			return {
 				...state,
-				// ordenes: action.payload,
+				ordenes: action.payload,
 				ordenesFilter: state.ordenes
 			};
 
