@@ -1,0 +1,53 @@
+.viewNewsDivC {
+	display: flex;
+	margin: 1rem;
+	align-items: center;
+	background-color: #ddc592;
+	border-radius: 5px;
+	box-shadow: rgb(107, 19, 19) 0px 0px 4px;
+	color: #541911
+}
+
+.viewNewsbodyC {
+	display: flex;
+	flex-direction: column;
+	margin: 1rem;
+	font-size: 1.3rem;
+	font-weight: 700;
+	height: 100px;
+}
+
+.viewNewsbodyC2 {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	justify-content: center;
+	margin: 0.5rem;
+}
+
+.inputEmailViewNewsC {
+	height: 25px;
+	width: 250px;
+	border-radius: 4px;
+	font-size: 1.2rem;
+	font-weight: 600;
+}
+
+.colorErrorMsgVNC {
+	color: red;
+}
+
+.btnToSubsCribeVNC {
+	height: 32px;
+	font-size: 1.2rem;
+	font-weight: 600;
+	border-radius: 4px;
+	cursor: pointer;
+	background-color: rgb(245, 192, 77);
+	color: #541911;
+}
+
+.btnToSubsCribeVNC:hover {
+	color: rgb(245, 192, 77);
+	background-color: #541911;
+}
