@@ -372,7 +372,6 @@ export function changeStatus(productStock, productId) {
 	};
 }
 
-
 export function checkOut(cart) {
 	return async function (dispatch) {
 		try {
@@ -468,7 +467,7 @@ export function clearErrorSUser() {
 export function updateDiscountProduct(value, productId) {
 	return async function (dispatch) {
 		try {
-			const response = await axios.post(`${url}/products/update-discount`, {
+			const response = await axios.put(`${url}/discount`, {
 				percentage: value,
 				idProduct: productId
 			});
@@ -557,6 +556,7 @@ export function clearErrorUpdateN() {
 	};
 }
 
+
 export function getOrdersByUser(id) {
 	console.log(id)
 	try {
@@ -570,5 +570,43 @@ export function getOrdersByUser(id) {
 	} catch (error) {
 		return error;
 	}
+}
+
+
+export function saveEmailNL(payload) {
+	return async function () {
+		try {
+			await axios.post(`${url}/newsletter`, payload);
+		} catch (error) {
+			return error;
+		}
+	};
+}
+
+export function getReview() {
+	return async function (dispatch) {
+		try {
+			const response = await axios.get(`${url}/review`);
+			dispatch({
+				type: "GET_REVIEWS",
+				payload: response.data
+			});
+		} catch (error) {
+			return error;
+		}
+	};
+}
+export function getProductsWDiscounts() {
+	return async function (dispatch) {
+		try {
+			const response = await axios.get(`${url}/discount`);
+			dispatch({
+				type: "GET_PRODUCTS_WITH_DISCOUNT",
+				payload: response.data
+			});
+		} catch (error) {
+			return error;
+		}
+	};
 }
 

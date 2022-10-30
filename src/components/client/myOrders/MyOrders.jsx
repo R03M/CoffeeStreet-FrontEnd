@@ -1,6 +1,7 @@
-import React, { useState,useEffect } from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import "./myOrders.css";
+
 import {getOrdersByUser} from "../../../redux/action";
 
 
@@ -16,32 +17,35 @@ const MyOrders = () => {
 	console.log("user", user);
 
 
-	
-	
+
 	useEffect(() => {
 		if(!filter) {
 			dispatch(getOrdersByUser(user.user.id))
+
 		}
-	}, [dispatch])
-	
-	const filterOrdenClient =(e) =>{
-		dispatch({type: "FILTER_ORDEN_CLIENT", payload: e.target.value})
-		
-	}
+	}, [dispatch, filter])// eslint-disable-next-line
 
-
-
-
+	const filterOrdenClient = e => {
+		dispatch({ type: "FILTER_ORDEN_CLIENT", payload: e.target.value });
+	};
 
 	return (
-		<div className='contenedor-principal'>
-			<div	className='filtros-orden'>
-				<div className='buttons-orden'>
-				<button  onClick={filterOrdenClient} value="All">All</button>
-				<button  onClick={filterOrdenClient} value="Completed">Completed</button>
-				<button  onClick={filterOrdenClient} value="pending">Pending</button>
-				<button  onClick={filterOrdenClient} value="cancelado">Cancelled</button>
-			</div>
+		<div className="contenedor-principal">
+			<div className="filtros-orden">
+				<div className="buttons-orden">
+					<button onClick={filterOrdenClient} value="All">
+						All
+					</button>
+					<button onClick={filterOrdenClient} value="Completed">
+						Completed
+					</button>
+					<button onClick={filterOrdenClient} value="pending">
+						Pending
+					</button>
+					<button onClick={filterOrdenClient} value="cancelado">
+						Cancelled
+					</button>
+				</div>
 			</div>
 
 			<div className='contenedor-ordenes'>
@@ -67,21 +71,16 @@ const MyOrders = () => {
 
 							<div className='total-orden'>
 								<h1>Total: {orden.total}$</h1>
-							</div>
-							
-							</div>
 
-						</div>
-					)
-
-				})
-			) : (
-				<div>You still don't have orders</div>
-			)}
-			
-			</div>  
+							</div>
+						);
+					})
+				) : (
+					<div>You still don't have orders</div>
+				)}
+			</div>
 		</div>
 	);
-}
+};
 
 export default MyOrders;
