@@ -467,7 +467,7 @@ export function clearErrorSUser() {
 export function updateDiscountProduct(value, productId) {
 	return async function (dispatch) {
 		try {
-			const response = await axios.post(`${url}/products/update-discount`, {
+			const response = await axios.put(`${url}/discount`, {
 				percentage: value,
 				idProduct: productId
 			});
@@ -572,6 +572,19 @@ export function getReview() {
 			const response = await axios.get(`${url}/review`);
 			dispatch({
 				type: "GET_REVIEWS",
+				payload: response.data
+			});
+		} catch (error) {
+			return error;
+		}
+	};
+}
+export function getProductsWDiscounts() {
+	return async function (dispatch) {
+		try {
+			const response = await axios.get(`${url}/discount`);
+			dispatch({
+				type: "GET_PRODUCTS_WITH_DISCOUNT",
 				payload: response.data
 			});
 		} catch (error) {
