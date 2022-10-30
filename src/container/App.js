@@ -16,6 +16,8 @@ import CurrentNews from "../components/new/currentNews/CurrentNews.jsx";
 import About from "../components/About/About.jsx";
 import ProductsDetails from "../components/productsDetails/ProductsDetails.jsx";
 import ShoppingCart from "../components/ShoppingCart/ShoppingCart.jsx";
+import ResetPassword from "../components/resetPassword/resetPassword.jsx";
+import OrdersDetails from "../components/orders/ordersDetails.jsx";
 import "./App.css";
 
 const url = "http://localhost:3001";
@@ -35,6 +37,7 @@ function App() {
 					{ headers: { authorization: `Bearer ${accessToken}` } }
 				);
 				if (response.data.accessToken) {
+					console.log("aaaa");
 					localStorage.setItem("accessToken", JSON.stringify(response.data.accessToken));
 					dispatch(logPostData(accessToken));
 				}
@@ -43,9 +46,9 @@ function App() {
 			}
 			setLoaded(true);
 		};
+
 		refreshToken();
 	}, []);
-	
 
 	return (
 		<div className="App">
@@ -63,7 +66,9 @@ function App() {
 					<Route path="/client" element={<Client />} />
 					<Route path="/about" element={<About />} />
 					<Route path="/cart" element={<ShoppingCart />} />
+					<Route path="/resetPass/:token" element={<ResetPassword />} />
 					<Route path="*" element={<Error />} />
+					<Route path="/order/:id" element={<OrdersDetails />} />
 				</Routes>
 			) : (
 				<h4>Loading...</h4>

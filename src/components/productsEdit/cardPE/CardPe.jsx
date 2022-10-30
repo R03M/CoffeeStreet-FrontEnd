@@ -9,10 +9,14 @@ import {
 import swal from "sweetalert";
 import "./cardPe.css";
 
+const urlBase = process.env.REACT_APP_FRONT_URL;
+
 const CardPe = ({ product, editC }) => {
 	const dispatch = useDispatch();
 	let stockCurret = product.stock;
 	let stockName = stockCurret ? "with stock" : "out of stock";
+	const urlC = `${urlBase}/admin`;
+	const currentURL = window.location.href;
 
 	const handlerStock = () => {
 		swal({
@@ -25,9 +29,9 @@ const CardPe = ({ product, editC }) => {
 			icon: "warning"
 		}).then(value => {
 			if (value) {
-				// dispatch(changeStatus({ stock: product.stock }, product.id));
-				// dispatch(getProducts());
-				swal("Coming soon Updated (S3)", {
+				dispatch(changeStatus(!product.stock, product.id));
+				dispatch(getProducts());
+				swal("Updated", {
 					button: false,
 					timer: 1500,
 					icon: "success"
@@ -80,6 +84,11 @@ const CardPe = ({ product, editC }) => {
 			className={product.stock === true ? "cardPeDivT" : "cardPeDivF"}
 			key={product.id}
 		>
+			<div className={product.stock === false ? "triangleColorCardPEC" : ""}>
+				<div className={product.stock === false ? "textTrianglePEC" : ""}>
+					{product.stock === true ? null : "Out Stock"}
+				</div>
+			</div>
 			<div className="nameCardPe">{product.name}</div>
 			<div className="priceCardPe"> $ {product.price}</div>
 			<img className="imgCardPe" src={product.image} alt={`Pic to ${product.name}`} />
@@ -88,13 +97,17 @@ const CardPe = ({ product, editC }) => {
 				<button className="btnBCardPeStock" onClick={() => handlerStock()}>
 					Stock
 				</button>
-				{}
-				<button className="btnBCardPeEdit" onClick={() => handlerEdit()}>
-					Edit
-				</button>
-				<button className="btnBCardPeDelete" onClick={e => handlerDelete(e)}>
-					Delete
-				</button>
+
+				{currentURL !== urlC ? null : (
+					<>
+						<button className="btnBCardPeEdit" onClick={() => handlerEdit()}>
+							Edit
+						</button>
+						<button className="btnBCardPeDelete" onClick={e => handlerDelete(e)}>
+							Delete
+						</button>
+					</>
+				)}
 			</div>
 		</div>
 	);

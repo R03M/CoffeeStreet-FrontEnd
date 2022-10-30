@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import SearchP from "../../products/search/SearchP";
 import { filterByDiscount } from "../../../redux/action";
 import "./navbarDisc.css";
 
 const NavbarDisc = () => {
 	const dispatch = useDispatch();
+	const lengthProducts = useSelector(state => state.products);
 	const [active, setActive] = useState("all");
 
 	const handlerDiscount = v => {
@@ -15,6 +16,7 @@ const NavbarDisc = () => {
 
 	return (
 		<div className="navbarDiscC">
+			<p className="textNavbarDiscountC">Products ➡ {lengthProducts.length}</p>
 			<SearchP className="searchPDiscC" />
 			<button
 				className={active === "all" ? "btnSPDiscC" : "btnSPDiscCFalse"}

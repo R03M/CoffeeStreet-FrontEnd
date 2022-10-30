@@ -92,8 +92,12 @@ const ProductsDetails = () => {
 				dangerMode: true
 			}).then(value => {
 				if (value) {
-					dispatch(checkOut({idUser: user.id, items: cart.items}));
-					swal("Your order has been placed!", {
+					dispatch(checkOut({idUser: user.id, items: [{
+						id: product.id,
+						qty: 1,
+						price: product.price,
+						name: product.name}]}));
+					swal("You can pay", {
 						icon: "success"
 					});
 				} else {
@@ -102,7 +106,7 @@ const ProductsDetails = () => {
 			});
 		}
 	};
-console.log(product)
+
 	return (
 		<div className="productDetailsDiv">
 			<NavBar />

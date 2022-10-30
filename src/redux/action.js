@@ -365,7 +365,7 @@ export function refreshLog(accessToken, refreshToken) {
 export function changeStatus(productStock, productId) {
 	return async function () {
 		try {
-			await axios.put(`${url}/products/${productId}/stock`, { data: productStock });
+			await axios.put(`${url}/products/${productId}/stock`, { stock: productStock });
 		} catch (error) {
 			return error;
 		}
@@ -379,12 +379,12 @@ export function checkOut (cart){
 			const response = await axios.post(`${url}/pay/mercadopago`, cart);			
 			dispatch({
 				type: "CHECK_OUT",
-				payload: response.data
-			})
-		}catch(error){
-			return error
+				payload: response.data.initPointMP
+			});
+		} catch (error) {
+			return error;
 		}
-	}
+	};
 }
 
 export function deleteItemCompletedCart(cart) {
@@ -465,11 +465,10 @@ export function clearErrorSUser() {
 	};
 }
 
-
 export function updateDiscountProduct(value, productId) {
 	return async function (dispatch) {
 		try {
-			const response = await axios.post(`${url}/products/update-discount`, {
+			const response = await axios.put(`${url}/discount`, {
 				percentage: value,
 				idProduct: productId
 			});
@@ -483,7 +482,6 @@ export function updateDiscountProduct(value, productId) {
 	};
 }
 
-
 export function filterByDiscount(payload) {
 	return {
 		type: "FILTER_BY_STATUS_DISCOUNT",
@@ -491,21 +489,124 @@ export function filterByDiscount(payload) {
 	};
 }
 
-export function createOrder (payload){
-	console.log(payload)
-	return async function (){
-		try{
-			await axios.post(`${url}/order`,  payload);
-		}catch(error){
+export function filterByStock(payload) {
+	return {
+		type: "FILTER_BY_STOCK",
+		payload
+	};
+}
+
+export function getAllOrders() {
+	return async function (dispatch) {
+		try {
+			const response = await axios.get(`${url}/order`);
+			dispatch({
+				type: "GET_ALL_ORDERS",
+				payload: response.data
+			});
+		} catch (error) {
 			return error;
 		}
-	}
+	};
 }
 
 export function changeStatusOrder(id, status) {
 	return async function () {
 		try {
-			await axios.put(`${url}/order/${id}/change-status`, {status: status});
+			await axios.put(`${url}/order/${id}/change-status`, status );
+		} catch (error) {
+			return error;
+		}
+	};
+}
+
+export function sendNewsLetter(payload) {
+	return async function (dispatch) {
+		try {
+			const response = await axios.post(`${url}/newsletter/create`, payload);
+			dispatch({
+				type: "POST_SEND_NEWSLETTER",
+				payload: response.data.message
+			});
+		} catch (error) {
+			return error;
+		}
+	};
+}
+
+export function clearErrorSendNL() {
+	return {
+		type: "CLEAR_ERROR_SEND_NL"
+	};
+}
+
+export function updateNews(payload) {
+	return async function (dispatch) {
+		try {
+			const response = await axios.put(`${url}/updateNews`, payload);
+			dispatch({
+				type: "PUT_UPDATE_NEWS",
+				payload: response.data.message
+			});
+		} catch (error) {
+			return error;
+		}
+	};
+}
+
+export function clearErrorUpdateN() {
+	return {
+		type: "CLEAR_ERROR_UPDATE_NEWS"
+	};
+}
+
+export function saveEmailNL(payload) {
+	return async function () {
+		try {
+			await axios.post(`${url}/newsletter`, payload);
+		} catch (error) {
+			return error;
+		}
+	};
+}
+
+export function getReview() {
+	return async function (dispatch) {
+		try {
+			const response = await axios.get(`${url}/review`);
+			dispatch({
+				type: "GET_REVIEWS",
+				payload: response.data
+			});
+		} catch (error) {
+			return error;
+		}
+	};
+}
+export function getProductsWDiscounts() {
+	return async function (dispatch) {
+		try {
+			const response = await axios.get(`${url}/discount`);
+			dispatch({
+				type: "GET_PRODUCTS_WITH_DISCOUNT",
+				payload: response.data
+			});
+		} catch (error) {
+			return error;
+		}
+	};
+}
+
+export function detailsOrder (id) {
+	console.log(id)
+	return async function (dispatch) {
+		try {
+			const response = await axios.get(`${url}/order/${id}`);
+			console.log( response.data)
+			dispatch({
+				type: "GET_DETAILS_ORDER",
+				payload: response.data
+			});
 		} catch (error) {
 			return error;
 		}

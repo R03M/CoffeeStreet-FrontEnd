@@ -1,14 +1,14 @@
 .geolocation {
 	display: flex;
-	width: 95%;
-	height: 100%;
-	background-color: rgba(206, 168, 97, 0.438);
-	border-radius: 1rem;
+	background-color: #ddc592;
+	border-radius: 4px;
 	justify-content: center;
 	flex-direction: column;
 	align-items: center;
 	margin: 1rem;
 	padding: 1rem;
+	box-shadow: rgb(107, 19, 19) 0px 0px 4px;
+	color: #541911;
 }
 .geolocation__container {
 	display: flex;
@@ -19,5 +19,6 @@
 
 .mapGeoC {
 	height: 100%;
-	width: 95%;
+	width: 100%;
+	border-radius: 4px;
 }

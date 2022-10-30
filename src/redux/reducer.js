@@ -25,8 +25,12 @@ const initialState = {
 	ordenes: [],
 	errorSearchUser: [],
 	resUpdateDiscountP: [],
-	checkOut: ""
-
+	checkOut: "",
+	resSendNewsL: "",
+	resUpdateNews: "",
+	reviews: [],
+	productsWithDiscounts: [],
+	detailsOrder: [],
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -158,12 +162,10 @@ export default function rootReducer(state = initialState, action) {
 			};
 
 		case "FILTER_BY_CATEGORY":
-			if (state.products.length) {
+			if (action.payload === "all") {
 				return {
 					...state,
-					products: state.products.filter(
-						c => c.category && c.category.includes(action.payload)
-					)
+					products: state.allProducts
 				};
 			} else {
 				return {
@@ -392,10 +394,63 @@ export default function rootReducer(state = initialState, action) {
 					products: state.allProducts.filter(e => e.discount >= 0.1)
 				};
 			}
-			case "CHECK_OUT":
+
+		case "FILTER_BY_STOCK":
+			if (action.payload === "withStock") {
 				return {
 					...state,
-					checkOut: action.payload
+					products: state.allProducts.filter(p => p.stock === true)
+				};
+			} else if (action.payload === "outStock") {
+				return {
+					...state,
+					products: state.allProducts.filter(p => p.stock === false)
+				};
+			}
+		case "CHECK_OUT":
+			return {
+				...state,
+				checkOut: action.payload
+			};
+		case "POST_SEND_NEWSLETTER":
+			return {
+				...state,
+				resSendNewsL: action.payload
+			};
+		case "CLEAR_ERROR_SEND_NL":
+			return {
+				...state,
+				resSendNewsL: ""
+			};
+		case "PUT_UPDATE_NEWS":
+			return {
+				...state,
+				resUpdateNews: action.payload
+			};
+		case "CLEAR_ERROR_UPDATE_NEWS":
+			return {
+				...state,
+				resUpdateNews: ""
+			};
+		case "GET_REVIEWS":
+			return {
+				...state,
+				reviews: action.payload
+			};
+		case "GET_PRODUCTS_WITH_DISCOUNT":
+			return {
+				...state,
+				productsWithDiscounts: action.payload
+			};
+		case "GET_ALL_ORDERS":
+			return {
+				...state,
+				ordenes: action.payload
+			};
+			case "GET_DETAILS_ORDER":
+				return {
+					...state,
+					detailsOrder: action.payload
 				};
 		default:
 			return state;
