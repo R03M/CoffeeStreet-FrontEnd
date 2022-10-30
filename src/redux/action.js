@@ -556,6 +556,23 @@ export function clearErrorUpdateN() {
 	};
 }
 
+
+export function getOrdersByUser(id) {
+	console.log(id)
+	try {
+		return async function (dispatch) {
+			const response = await axios.get(`${url}/order/user/${id}`);
+			dispatch({
+				type: "GET_ORDENES",
+				payload: response.data
+			});
+		};
+	} catch (error) {
+		return error;
+	}
+}
+
+
 export function saveEmailNL(payload) {
 	return async function () {
 		try {
@@ -592,3 +609,4 @@ export function getProductsWDiscounts() {
 		}
 	};
 }
+

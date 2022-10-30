@@ -30,6 +30,7 @@ const initialState = {
 	resUpdateNews: "",
 	reviews: [],
 	productsWithDiscounts: [],
+
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -156,7 +157,7 @@ export default function rootReducer(state = initialState, action) {
 		case "GET_ORDENES":
 			return {
 				...state,
-				// ordenes: action.payload,
+				ordenes: action.payload,
 				ordenesFilter: state.ordenes
 			};
 
@@ -421,6 +422,7 @@ export default function rootReducer(state = initialState, action) {
 				...state,
 				resSendNewsL: ""
 			};
+
 		case "PUT_UPDATE_NEWS":
 			return {
 				...state,
@@ -441,6 +443,7 @@ export default function rootReducer(state = initialState, action) {
 				...state,
 				productsWithDiscounts: action.payload
 			};
+
 		default:
 			return state;
 	}
