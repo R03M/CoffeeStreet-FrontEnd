@@ -19,6 +19,7 @@ const CardP = ({ product, userId }) => {
 	let navigate = useNavigate();
 	const listaFavoritos = useSelector(state => state.myFavourites);
 	const user = useSelector(state => state.user.user);
+	const checkoutCart = useSelector(state => state.checkOut);
 
 	const alcohol = () => {
 		if (product.alcohol === true) {
@@ -132,39 +133,39 @@ const CardP = ({ product, userId }) => {
 	};
 
 	const handleCheckout = () => {
-		if (!user) {
+		if (user) {
 			swal({
-				title: "You must be logged in to make a purchase",
+				title: "Are you sure you want to buy this product?",
+				icon: "warning",
+				buttons: ["Cancel", "Yes"],
+				dangerMode: true,
+				closeOnClickOutside: false
+			}).then(value => {
+				if (value) {
+					console.log(product)
+					dispatch(checkOut({ idUser: user.id, items: [product] }));
+					swal("Checkout", {
+						button: false,
+						timer: 1500,
+						icon: "success"
+					});
+				} else {
+					swal("Staying on menu", {
+						button: false,
+						timer: 1200,
+						icon: "success"
+					});
+				}
+			});
+		} else {
+			swal({
+				title: "You must be logged in to buy products",
 				icon: "info",
 				button: "Ok"
 			});
-		} else {
-		swal({
-			title: "Are you sure you want to buy this product?",
-			text: "You will be redirected to the checkout page",
-			icon: "warning",
-			buttons: ["Cancel", "Yes, I'm sure"],
-			dangerMode: true,
-			closeOnClickOutside: false
-		}).then(value => {
-			if (value) {
-				swal("Redirecting to checkout", {
-					button: false,
-					timer: 1500,
-					icon: "success"
-				});
-				dispatch(checkOut({ cart: cart }));
-				// navigate("/checkout");
-			} else {
-				swal("Staying on menu", {
-					button: false,
-					timer: 1200,
-					icon: "success"
-				});
-			}
-		});
+		}
 	};
-	};
+
 
 	return (
 		<div className={product.stock === true ? "cardDiv" : "cardDivF"} key={product.id}>
@@ -197,12 +198,13 @@ const CardP = ({ product, userId }) => {
 			<div className="divTempCart">
 				<p className="pCartTemp">{product.qty}</p>
 				<input type="number" className="inputCartTemp" value={product.qty} />
-				<button
+				{checkoutCart? 
+				<a href={checkoutCart} >Pay with Mercado Pago</a> : <button
 					className={product.stock === true ? "btnBCartTemp" : "btnBCartTempNSCP"}
-					onClick={e => handleCheckout(e)}
+					onClick={e => handleCheckout()}
 				>
 					Buy
-				</button>
+				</button>}
 				<button
 					className={product.stock === true ? "btnACartTemp" : "btnACartTempNSCP"}
 					onClick={() => handleAdd(product)}

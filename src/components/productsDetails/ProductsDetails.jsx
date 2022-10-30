@@ -14,6 +14,7 @@ const ProductsDetails = () => {
 	const product = useSelector(state => state.productDetails);
 	const cart = useSelector(state => state.cart);
 	const user = useSelector(state => state.user.user);
+	const checkoutCart = useSelector(state => state.checkOut);
 
 	useEffect(() => {
 		dispatch(productDetails(id));
@@ -91,7 +92,7 @@ const ProductsDetails = () => {
 				dangerMode: true
 			}).then(value => {
 				if (value) {
-					dispatch(checkOut(cart.cartId));
+					dispatch(checkOut({idUser: user.id, items: cart.items}));
 					swal("Your order has been placed!", {
 						icon: "success"
 					});
@@ -101,7 +102,7 @@ const ProductsDetails = () => {
 			});
 		}
 	};
-
+console.log(product)
 	return (
 		<div className="productDetailsDiv">
 			<NavBar />
@@ -155,9 +156,10 @@ const ProductsDetails = () => {
 					<button className={product.stock === true ? "tempPDbuyAAdd" : "tempPDbuyAAddNSPD"} onClick={() => handleAdd(product)}>
 						Add to <BsFillCartPlusFill />
 					</button>
-					<button className={product.stock === true ? "tempPDbuyABuy" : "tempPDbuyABuyNSPD"} onClick={() => handleCheckOut()}>
+					{checkoutCart? 
+				<a href={checkoutCart} >Pay with Mercado Pago</a> : <button className={product.stock === true ? "tempPDbuyABuy" : "tempPDbuyABuyNSPD"} onClick={() => handleCheckOut()}>
 						Buy now
-					</button>
+					</button>}
 				</div>
 			</div>
 		</div>

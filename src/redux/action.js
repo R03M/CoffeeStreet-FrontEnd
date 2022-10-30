@@ -373,6 +373,7 @@ export function changeStatus(productStock, productId) {
 }
 
 export function checkOut (cart){
+	console.log(cart)
 	return async function (dispatch){
 		try{
 			const response = await axios.post(`${url}/pay/mercadopago`, cart);			
