@@ -1,16 +1,24 @@
 import React from "react";
-import TempNd from "../tempNoDelete/TempNd.jsx";
+import { BiArrowBack } from "react-icons/bi";
+import { teamDev } from "./teamDev";
+import CardA from "./cardAb/CardA";
 import "./About.css";
 
 const About = () => {
 	return (
-		<div className="aboutDiv">
-			<div className="aboutBody">
-				<button style={{fontSize: "1.5rem"}} onClick={() => window.history.back()}>
-					Go Back
-				</button>
-				<h1 style={{ fontSize: "2rem", color: "white" }}>About</h1>
-				<TempNd />
+		<div className="aboutDivC">
+			<div className="aboutBodyC">
+				<div className="headerAboutC">
+					<button className="btnAboutC" onClick={() => window.history.back()}>
+						<BiArrowBack />
+					</button>
+					<h1 className="titleAboutC">developer team</h1>
+				</div>
+				<div className="allCardsAboutC">
+					{teamDev.map(dev => {
+						return <CardA dev={dev} />;
+					})}
+				</div>
 			</div>
 		</div>
 	);
