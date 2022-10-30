@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import "./myOrders.css";
 import {getOrdersByUser} from "../../../redux/action";
@@ -15,33 +15,34 @@ const MyOrders = () => {
 	const user = useSelector((state) => state.user);
 	console.log("user", user);
 
-
-	
-	
 	useEffect(() => {
 		if(!filter) {
 			dispatch(getOrdersByUser(user.user.id))
+
 		}
-	}, [dispatch])
-	
-	const filterOrdenClient =(e) =>{
-		dispatch({type: "FILTER_ORDEN_CLIENT", payload: e.target.value})
-		
-	}
+	}, [dispatch, filter])// eslint-disable-next-line
 
-
-
-
+	const filterOrdenClient = e => {
+		dispatch({ type: "FILTER_ORDEN_CLIENT", payload: e.target.value });
+	};
 
 	return (
-		<div className='contenedor-principal'>
-			<div	className='filtros-orden'>
-				<div className='buttons-orden'>
-				<button  onClick={filterOrdenClient} value="All">All</button>
-				<button  onClick={filterOrdenClient} value="Completed">Completed</button>
-				<button  onClick={filterOrdenClient} value="pending">Pending</button>
-				<button  onClick={filterOrdenClient} value="cancelado">Cancelled</button>
-			</div>
+		<div className="contenedor-principal">
+			<div className="filtros-orden">
+				<div className="buttons-orden">
+					<button onClick={filterOrdenClient} value="All">
+						All
+					</button>
+					<button onClick={filterOrdenClient} value="Completed">
+						Completed
+					</button>
+					<button onClick={filterOrdenClient} value="pending">
+						Pending
+					</button>
+					<button onClick={filterOrdenClient} value="cancelado">
+						Cancelled
+					</button>
+				</div>
 			</div>
 
 			<div className='contenedor-ordenes'>
@@ -50,9 +51,10 @@ const MyOrders = () => {
 					return (
 						<div className='Contenedor-Orden'>
 						  <div className={orden.status === "pending"? "status-orden-pending" : orden.status === "Completed" ? "status-orden-completed" : "status-orden-cancelado" }>
-									<h2>{orden.status}</h2>
 
-							</div>
+									<h2>{orden.status}</h2>
+								</div>
+
 							<div className='cuerpo-Orden'>
 								{orden.order_product.map(item => {
 									return (
@@ -80,8 +82,9 @@ const MyOrders = () => {
 			)}
 			
 			</div>  
+
 		</div>
 	);
-}
+};
 
 export default MyOrders;

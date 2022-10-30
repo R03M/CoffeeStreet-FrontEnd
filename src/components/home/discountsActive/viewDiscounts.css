@@ -1,5 +1,5 @@
-.viewReviewDivC {
-	margin: 1rem;
+.viewDiscountsDivC {
+	margin: 2rem;
 	padding: 0.5rem;
 	background-color: #ddc592;
 	border-radius: 4px;
@@ -7,24 +7,25 @@
 	color: #541911;
 }
 
-.titleviewReviewC {
+.titleviewDiscountsC {
 	font-size: 1.4rem;
 	font-weight: 700;
 	margin: 0.5rem;
 }
 
-.bodyCardsReviewsC {
+.bodyproductsDiscountssC {
 	display: flex;
 	justify-content: center;
 }
 
-.cardsReviewsC {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
+.productsDiscountssC {
+	display: inline-flex;
+	position: relative;
+	align-items: center;
+	justify-items: center;
 	background-color: #541911;
 	height: 320px;
-	width: 550px;
+	width: 95%;
 	color: white;
 	margin: 1rem;
 	border-radius: 4px;
@@ -32,36 +33,34 @@
 	padding: 0.5rem;
 }
 
-.descripReviewC {
+.descripDiscountsC {
 	font-size: 1.2rem;
 	font-style: oblique;
 	padding: 0.5rem;
 	font-weight: 600;
 }
 
-.nameReviewC {
+.imgViewDiscountDC {
+	width: 70%;
+}
+
+.nameDiscountsC {
 	font-style: oblique;
 	padding: 0.5rem;
 }
 
-.slideVRC {
+.slideVDC {
 	max-width: 100%;
 	height: auto;
 	opacity: 0;
 	transition: opacity 0.5s ease-in-out;
 }
 
-.slideVRC.activeVRC {
+.slideVDC.activeVDC {
 	opacity: 1;
 }
 
-.iconsStarViewReviewC {
-	color: #f5c04d;
-	font-size: 2rem;
-	margin: 0.5rem;
-}
-
-.btnsSlideVRC {
+.btnsSlideVDC {
 	background-color: rgba(255, 255, 255, 0);
 	border: none;
 	cursor: pointer;
@@ -69,6 +68,27 @@
 	color: #541911;
 }
 
-.btnsSlideVRC:hover {
+.btnsSlideVDC:hover {
 	color: white;
+}
+
+.triangleViewDiscountCardDC {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 0;
+	height: 0;
+	margin: 1px;
+	border-top: 100px solid #3baf14;
+	border-right: 100px solid transparent;
+}
+
+.textTriangleViewDiscCDC {
+	color: white;
+	position: relative;
+	top: -80px;
+	left: 15px;
+	font-weight: bold;
+	padding: 5px;
+	transform: rotate(-45deg);
 }
