@@ -29,6 +29,7 @@ const initialState = {
 	resSendNewsL: "",
 	resUpdateNews: "",
 	reviews: [],
+	productsWithDiscounts: [],
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -434,6 +435,11 @@ export default function rootReducer(state = initialState, action) {
 			return {
 				...state,
 				reviews: action.payload
+			};
+		case "GET_PRODUCTS_WITH_DISCOUNT":
+			return {
+				...state,
+				productsWithDiscounts: action.payload
 			};
 		default:
 			return state;
