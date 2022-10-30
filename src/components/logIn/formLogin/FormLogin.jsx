@@ -31,17 +31,19 @@ const FormLogin = () => {
 				});
 		}
 		if(forgot){
-			const response = await axios.post(`${url}/login/forgot-pass`, {email})
-			if(response){
+			try{
+				const response = await axios.post(`${url}/login/forgot-pass`, {email})
+			  if(response){
 				swal("Please, check your email's inbox", {
 					button: false,
 					timer: 2500,
 					icon: "success"
 				});
-			}else{
-				swal("Error. Please try again", {
+			}
+			}catch(error){
+				swal("Any account registered with this email", {
 					button: false,
-					timer: 2000,
+					timer: 2500,
 					icon: "error"
 				});
 			}
