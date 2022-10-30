@@ -30,6 +30,7 @@ const initialState = {
 	resUpdateNews: "",
 	reviews: [],
 	productsWithDiscounts: [],
+	detailsOrder: [],
 
 };
 
@@ -443,6 +444,17 @@ export default function rootReducer(state = initialState, action) {
 				...state,
 				productsWithDiscounts: action.payload
 			};
+
+		case "GET_ALL_ORDERS":
+			return {
+				...state,
+				ordenes: action.payload
+			};
+			case "GET_DETAILS_ORDER":
+				return {
+					...state,
+					detailsOrder: action.payload
+				};
 
 		default:
 			return state;

@@ -372,13 +372,14 @@ export function changeStatus(productStock, productId) {
 	};
 }
 
-export function checkOut(cart) {
-	return async function (dispatch) {
-		try {
-			const response = await axios.post(`${url}/pay/mercadopago`, cart);
+export function checkOut (cart){
+	console.log(cart)
+	return async function (dispatch){
+		try{
+			const response = await axios.post(`${url}/pay/mercadopago`, cart);			
 			dispatch({
 				type: "CHECK_OUT",
-				payload: response.data
+				payload: response.data.initPointMP
 			});
 		} catch (error) {
 			return error;
@@ -495,11 +496,14 @@ export function filterByStock(payload) {
 	};
 }
 
-export function createOrder(payload) {
-	console.log(payload);
-	return async function () {
+export function getAllOrders() {
+	return async function (dispatch) {
 		try {
-			await axios.post(`${url}/order`, payload);
+			const response = await axios.get(`${url}/order`);
+			dispatch({
+				type: "GET_ALL_ORDERS",
+				payload: response.data
+			});
 		} catch (error) {
 			return error;
 		}
@@ -509,7 +513,7 @@ export function createOrder(payload) {
 export function changeStatusOrder(id, status) {
 	return async function () {
 		try {
-			await axios.put(`${url}/order/${id}/change-status`, { status: status });
+			await axios.put(`${url}/order/${id}/change-status`, status );
 		} catch (error) {
 			return error;
 		}
@@ -602,6 +606,23 @@ export function getProductsWDiscounts() {
 			const response = await axios.get(`${url}/discount`);
 			dispatch({
 				type: "GET_PRODUCTS_WITH_DISCOUNT",
+				payload: response.data
+			});
+		} catch (error) {
+			return error;
+		}
+	};
+}
+
+
+export function detailsOrder (id) {
+	console.log(id)
+	return async function (dispatch) {
+		try {
+			const response = await axios.get(`${url}/order/${id}`);
+			console.log( response.data)
+			dispatch({
+				type: "GET_DETAILS_ORDER",
 				payload: response.data
 			});
 		} catch (error) {

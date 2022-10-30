@@ -14,6 +14,7 @@ const ProductsDetails = () => {
 	const product = useSelector(state => state.productDetails);
 	const cart = useSelector(state => state.cart);
 	const user = useSelector(state => state.user.user);
+	const checkoutCart = useSelector(state => state.checkOut);
 
 	useEffect(() => {
 		dispatch(productDetails(id));
@@ -91,8 +92,12 @@ const ProductsDetails = () => {
 				dangerMode: true
 			}).then(value => {
 				if (value) {
-					dispatch(checkOut(cart.cartId));
-					swal("Your order has been placed!", {
+					dispatch(checkOut({idUser: user.id, items: [{
+						idProduct: product.id,
+						qty: 1,
+						price: product.price,
+						name: product.name}]}));
+					swal("You can pay", {
 						icon: "success"
 					});
 				} else {
@@ -150,14 +155,13 @@ const ProductsDetails = () => {
 						Go Back
 					</button>
 					<p className="tempPDbuyAPrice">Price by unit $ {product.price}</p>
-					<p className="tempPDAQty">{`Qty`}</p>
-					<input className="tempPDAInput" type="number" value={1} />
 					<button className={product.stock === true ? "tempPDbuyAAdd" : "tempPDbuyAAddNSPD"} onClick={() => handleAdd(product)}>
 						Add to <BsFillCartPlusFill />
 					</button>
-					<button className={product.stock === true ? "tempPDbuyABuy" : "tempPDbuyABuyNSPD"} onClick={() => handleCheckOut()}>
+					{checkoutCart? 
+				<a href={checkoutCart} >Pay with Mercado Pago</a> : <button className={product.stock === true ? "tempPDbuyABuy" : "tempPDbuyABuyNSPD"} onClick={() => handleCheckOut()}>
 						Buy now
-					</button>
+					</button>}
 				</div>
 			</div>
 		</div>
