@@ -79,7 +79,7 @@ const ViewReview = () => {
 										<div className="cardsReviewsC" key={index}>
 											<div>{iconStar(e.rating)}</div>
 											<div className="descripReviewC">"{e.description}"</div>
-											<p className="nameReviewC">{e.name}</p>
+											<p className="nameReviewC">{e.fullname}</p>
 										</div>
 									)}
 								</div>
