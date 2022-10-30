@@ -74,7 +74,7 @@ const ViewReview = () => {
 				{allReview.length > 0
 					? allReview.map((e, index) => {
 							return (
-								<div className={card === index ? `${"slide"} ${"active"}` : "slide"}>
+								<div className={card === index ? `${"slideVRC"} ${"activeVRC"}` : "slideVRC"}>
 									{card === index && (
 										<div className="cardsReviewsC" key={index}>
 											<div>{iconStar(e.rating)}</div>
