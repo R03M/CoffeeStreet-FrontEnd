@@ -23,26 +23,53 @@ const FormLogin = () => {
 
 	const loginUser = async e => {
 		console.log("email", email);
-		if(!email) alert('email está vacío')
+		if(!email) {
+			swal("Write an email", {
+					button: false,
+					timer: 2000,
+					icon: "warning"
+				});
+		}
 		if(forgot){
-			const response = await axios.post(`${url}/login/forgot-pass`, {email})
-			if(response){
-				alert('mensaje llegara a tu bandeja de correo')
-				//SWAL mensaje de swal de correo llegara a tu bandeja
-			}else{
-				alert('mensaje de error , no se envió a tu correo')
+			try{
+				const response = await axios.post(`${url}/login/forgot-pass`, {email})
+			  if(response){
+				swal("Please, check your email's inbox", {
+					button: false,
+					timer: 2500,
+					icon: "success"
+				});
+				setForgot(false)
+			}
+			}catch(error){
+				swal("Any account registered with this email", {
+					button: false,
+					timer: 2500,
+					icon: "error"
+				});
 			}
 
 		}else{
-			if(!password) alert('password está vacío')
-			dispatch(
-			LoginUser({
-				email: email,
-				password: password
-			})
-		);
+			if(email){
+				if(!password) {
+				swal("Write your password", {
+					button: false,
+					timer: 2000,
+					icon: "warning"
+				});
+				}else{
+					dispatch(
+					LoginUser({
+					email: email,
+					password: password
+					}))
+					setForgot(false)
+
+				}
+			}
 		}
-		setForgot(false)
+		// setPassword('')
+		// setEmail('')
 	};
 
 	useEffect(() => {
@@ -50,7 +77,7 @@ const FormLogin = () => {
 			dispatch(logPostData(tokenAcc));
 			setTimeout(() => {
 				navigate("/menu", { replace: true });
-			}, 100);
+			}, 1000);
 		}
 	}, [dispatch, tokenAcc, navigate]);
 
