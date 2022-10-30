@@ -39,6 +39,7 @@ const FormLogin = () => {
 					timer: 2500,
 					icon: "success"
 				});
+				setForgot(false)
 			}
 			}catch(error){
 				swal("Any account registered with this email", {
@@ -62,10 +63,11 @@ const FormLogin = () => {
 					email: email,
 					password: password
 					}))
+					setForgot(false)
+
 				}
 			}
 		}
-		setForgot(false)
 		// setPassword('')
 		// setEmail('')
 	};

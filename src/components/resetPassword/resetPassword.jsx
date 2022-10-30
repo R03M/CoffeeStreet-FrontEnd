@@ -84,7 +84,7 @@ const { token } = useParams() // resetToken
 			>
 				{({ values, touched, errors, isSubmitting, handleChange, handleBlur }) => (
 					<Form className="bodyFormSignUPC">
-						<div className="nameFormSC">
+						<div className="">
 							<label htmlFor="password" className="labelsFormSC">
 								Password
 							</label>
@@ -96,7 +96,7 @@ const { token } = useParams() // resetToken
 								className="inputsFormSC"
 							/>
 							{errors.password && touched.password && (
-								<ErrorMessage name="name" component="div" className="errorsMsgFSC" />
+								<ErrorMessage name="password" component="div" className="errorsMsgFSC" />
 							)}
 						</div>
 						<div className="">
