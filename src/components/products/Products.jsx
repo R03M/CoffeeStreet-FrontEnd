@@ -139,7 +139,9 @@ const Products = () => {
 				return (
 					<div>
 						<div className="navbarProduc">
-							<NavbarProduc />
+							<NavbarProduc 
+              	currentPage={currentPage}
+              />
 							<div className="cardsProd">
 								{dataEnd.map(data => {
 									return (

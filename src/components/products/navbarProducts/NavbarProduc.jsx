@@ -13,7 +13,8 @@ import { GiMilkCarton } from "react-icons/gi";
 import { GiWheat } from "react-icons/gi";
 import "./navbarProducts.css";
 
-const NavbarProduc = () => {
+const NavbarProduc = ({currentPage}) => {
+	console.log('currentPage', currentPage)
 	const dispatch = useDispatch();
 	const contProducts = useSelector(state => state.products);
 
