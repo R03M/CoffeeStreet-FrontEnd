@@ -11,7 +11,6 @@ import {
 	LoginUser,
 	getOrCreateShoppingCart,
 	getMyFavorites
-
 } from "../../redux/action";
 
 import NavBar from "../navbar/Navbar";
@@ -46,7 +45,6 @@ const Products = () => {
 	// console.log('usuario')
 	// console.log(usuario);
 
-
 	const [currentPage, setCurrentPage] = useState(1);
 	const [productsPerPage, setProductsPerPage] = useState(9);
 	const max = Math.ceil(allProducts.length / productsPerPage);
@@ -65,18 +63,18 @@ const Products = () => {
 	}, [dispatch, isAuthenticated]);
 
 	useEffect(() => {
-		if(isAuthenticated){
+		if (isAuthenticated) {
 			if (checkEmail.isGoogle === false && checkEmail.email === false) {
-			dispatch(
-				registerUserGoogle({
-					email: user.email,
-					name: user.given_name,
-					surname: user.family_name,
-					image: user.picture,
-					isGoogle: true
-				})
-			);
-		}
+				dispatch(
+					registerUserGoogle({
+						email: user.email,
+						name: user.given_name,
+						surname: user.family_name,
+						image: user.picture,
+						isGoogle: true
+					})
+				);
+			}
 		}
 		if (checkEmail.isGoogle === true && checkEmail.email === true) {
 			dispatch(
@@ -112,8 +110,8 @@ const Products = () => {
 	}, [dispatch, accessToken]);
 
 	useEffect(() => {
-		if( usuario.hasOwnProperty("user")){
-			dispatch(getOrCreateShoppingCart(usuario.user.auth.id))
+		if (usuario.hasOwnProperty("user")) {
+			dispatch(getOrCreateShoppingCart(usuario.user.auth.id));
 		}
 	}, []);
 
@@ -140,22 +138,25 @@ const Products = () => {
 			if (allProducts.length) {
 				return (
 					<div>
-						<div className="cardsProd">
-							{dataEnd.map(data => {
-								return (
-									<CardP
-										key={data.id}
-										product={data}
-										userId={usuario.hasOwnProperty("user") ? usuario.user.id : null}
-									/>
-								);
-							})}
+						<div className="navbarProduc">
+							<NavbarProduc />
+							<div className="cardsProd">
+								{dataEnd.map(data => {
+									return (
+										<CardP
+											key={data.id}
+											product={data}
+											userId={usuario.hasOwnProperty("user") ? usuario.user.id : null}
+										/>
+									);
+								})}
+							</div>
 						</div>
 						<Pagination currentPage={currentPage} setPage={setCurrentPage} max={max} />
 					</div>
 				);
 			} else {
-				<Loading />;
+				return <Loading />;
 			}
 		}
 	}
@@ -163,10 +164,7 @@ const Products = () => {
 	return (
 		<div className="productsDiv">
 			<NavBar />
-			<div className="navbarProduc">
-				<NavbarProduc />
-				{pagACards()}
-			</div>
+			{pagACards()}
 		</div>
 	);
 };
