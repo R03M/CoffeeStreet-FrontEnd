@@ -125,7 +125,7 @@ export function LoginUser(payload) {
 				localStorage.setItem("accessToken", JSON.stringify(response.data.accessToken));
 			}
 		} catch (error) {
-			return alert("Invalid email or password");
+			console.log(error);
 		}
 	};
 }
@@ -372,11 +372,11 @@ export function changeStatus(productStock, productId) {
 	};
 }
 
-export function checkOut (cart){
-	console.log(cart)
-	return async function (dispatch){
-		try{
-			const response = await axios.post(`${url}/pay/mercadopago`, cart);			
+export function checkOut(cart) {
+	console.log(cart);
+	return async function (dispatch) {
+		try {
+			const response = await axios.post(`${url}/pay/mercadopago`, cart);
 			dispatch({
 				type: "CHECK_OUT",
 				payload: response.data.initPointMP
@@ -513,7 +513,7 @@ export function getAllOrders() {
 export function changeStatusOrder(id, status) {
 	return async function () {
 		try {
-			await axios.put(`${url}/order/${id}/change-status`, status );
+			await axios.put(`${url}/order/${id}/change-status`, status);
 		} catch (error) {
 			return error;
 		}
@@ -560,9 +560,8 @@ export function clearErrorUpdateN() {
 	};
 }
 
-
 export function getOrdersByUser(id) {
-	console.log(id)
+	console.log(id);
 	try {
 		return async function (dispatch) {
 			const response = await axios.get(`${url}/order/user/${id}`);
@@ -575,7 +574,6 @@ export function getOrdersByUser(id) {
 		return error;
 	}
 }
-
 
 export function saveEmailNL(payload) {
 	return async function () {
@@ -614,13 +612,12 @@ export function getProductsWDiscounts() {
 	};
 }
 
-
-export function detailsOrder (id) {
-	console.log(id)
+export function detailsOrder(id) {
+	console.log(id);
 	return async function (dispatch) {
 		try {
 			const response = await axios.get(`${url}/order/${id}`);
-			console.log( response.data)
+			console.log(response.data);
 			dispatch({
 				type: "GET_DETAILS_ORDER",
 				payload: response.data
@@ -630,4 +627,3 @@ export function detailsOrder (id) {
 		}
 	};
 }
-
