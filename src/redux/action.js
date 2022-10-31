@@ -617,13 +617,6 @@ export function getProductsWDiscounts() {
 
 export function detailsOrder(id) {
 
-	// console.log(id);
-	return async function (dispatch) {
-		try {
-			const response = await axios.get(`${url}/order/${id}`);
-			// console.log(response.data);
-
-	console.log(id);
 	return async function (dispatch) {
 		try {
 			const response = await axios.get(`${url}/order/${id}`);
