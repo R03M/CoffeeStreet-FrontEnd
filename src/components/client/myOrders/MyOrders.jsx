@@ -13,20 +13,20 @@ const MyOrders = () => {
 	const ordenes = useSelector((state) => state.ordenesFilter);
 	const filter = useSelector((state) => state.filterUserOrden);
 	const user = useSelector((state) => state.user);
-	console.log("user", user);
+	// console.log("user", user);
 
 
-	
-	
+
+
 	useEffect(() => {
 		if(!filter) {
 			dispatch(getOrdersByUser(user.user.id))
 		}
 	}, [dispatch])
-	
+
 	const filterOrdenClient =(e) =>{
 		dispatch({type: "FILTER_ORDEN_CLIENT", payload: e.target.value})
-		
+
 	}
 
 
@@ -68,7 +68,7 @@ const MyOrders = () => {
 							<div className='total-orden'>
 								<h1>Total: {orden.total}$</h1>
 							</div>
-							
+
 							</div>
 
 						</div>
@@ -78,8 +78,8 @@ const MyOrders = () => {
 			) : (
 				<div>You still don't have orders</div>
 			)}
-			
-			</div>  
+
+			</div>
 		</div>
 	);
 }

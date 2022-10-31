@@ -111,7 +111,7 @@ const ShoppingCart = () => {
 		}
 	};
 
-console.log("checkoutCart", checkoutCart)
+// console.log("checkoutCart", checkoutCart)
 	return (
 		<div className="shoppingCart">
 			<NavBar />
@@ -120,7 +120,7 @@ console.log("checkoutCart", checkoutCart)
 				<button className="deleteBtnAllCartSC" onClick={() => handleClear()}>
 					Delete All
 				</button>
-				{checkoutCart? 
+				{checkoutCart?
 				<a href={checkoutCart} >Pay with Mercado Pago</a> : <button className="btnBCartTemp" onClick={()=> handleCheckout()}>Create Order</button> }
 			</div>
 			<div className="containerCartSC">
