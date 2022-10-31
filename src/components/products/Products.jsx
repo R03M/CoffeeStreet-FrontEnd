@@ -127,7 +127,7 @@ const Products = () => {
 		setCurrentPage(1);
 		dispatch(clearError());
 		dispatch(clearDetails());
-	}, [dispatch, allProducts]);
+	}, [dispatch]);
 
 	function pagACards() {
 		if (errorMessage === "There is no product with that name") {

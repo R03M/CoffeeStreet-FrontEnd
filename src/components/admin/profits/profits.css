@@ -27,7 +27,13 @@
 
 .top-sellers-div1{
 	display: flex;
-	background-color: rgba(0, 162, 40, 0.365);
+	background: rgb(164,102,0);
+	background: linear-gradient(90deg, rgba(164,102,0,1) 0%, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 100%);
+
+	background-image: url("https://res.cloudinary.com/dniicx4yf/image/upload/v1665603409/640px-A_small_cup_of_coffee-removebg-preview_pfntvj.png");
+	background-repeat: no-repeat;
+	background-size: auto;
+	background-position: center;
 	width: 100%;
 	height: 100%;
 	border-right: 1px solid rgb(0, 0, 0);
@@ -37,7 +43,10 @@
 }
 .top-sellers-div2{
 	display: flex;
-	background-color: rgba(121, 113, 0, 0.285);
+	background-image: url("https://res.cloudinary.com/dniicx4yf/image/upload/v1665603878/Wet_Cappuccino_with_heart_latte_art-removebg-preview_w5nu1b.png");
+	background-repeat: no-repeat;
+	background-size: auto;
+	background-position: center;
 	width: 100%;
 	height: 100%;
 	border-right: 1px solid rgb(0, 0, 0);
@@ -46,7 +55,10 @@
 }
 .top-sellers-div3{
 	display: flex;
-	background-color: rgba(122, 0, 0, 0.361);
+	background-image: url("https://res.cloudinary.com/dniicx4yf/image/upload/v1665604715/1280px-Gal%C3%A3o-removebg-preview_etpcfm.png");
+	background-repeat: no-repeat;
+	background-size: auto;
+	background-position: center;
 	width: 100%;
 	height: 100%;
 	justify-content: center;

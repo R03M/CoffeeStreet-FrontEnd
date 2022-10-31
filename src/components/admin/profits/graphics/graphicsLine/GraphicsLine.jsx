@@ -6,7 +6,7 @@ import "./graphicsLine.css";
 const GraphicsBar = ({charData}) => {
   return (
     <div className='graphics-line'>
-      <Line data={charData}/>
+      <Line width={800} height={400} data={charData}/>
     </div>
   )
 };
