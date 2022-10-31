@@ -631,7 +631,6 @@ export function detailsOrder(id) {
 	};
 }
 
-
 export function changeRoleUser(id, role) {
 	return async function () {
 		try {

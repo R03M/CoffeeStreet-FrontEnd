@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { filterByCategory, filterByStock } from "../../../redux/action";
+import { getProducts, filterByStock } from "../../../redux/action";
 import SearchP from "../../products/search/SearchP";
 import "./navbarPE.css";
 
@@ -8,11 +8,6 @@ const NavbarPE = () => {
 	const dispatch = useDispatch();
 	const lengthProducts = useSelector(state => state.products);
 	const [activeS, setActiveS] = useState("all");
-
-	const handlerCategory = e => {
-		setActiveS(e);
-		dispatch(filterByCategory(e));
-	};
 
 	const handlerStock = e => {
 		setActiveS(e);
@@ -24,16 +19,16 @@ const NavbarPE = () => {
 			<div className="divSAPCNPC">
 				<p className="textNavbarProductsEditC">Products ➡ {lengthProducts.length}</p>
 				<SearchP />
+				<p className="textNavbarProductsEditC">Filter by ➡</p>
 				<button
-					onClick={() => handlerCategory("all")}
+					onClick={() => handlerStock("all")}
 					className={
 						activeS === "all" ? "btnsNavbarProductsEditC" : "btnsNavbarProductsEditCFalse"
 					}
 					value="all"
 				>
-					All Products
+					All
 				</button>
-				<p className="textNavbarProductsEditC">Filter by ➡</p>
 				<button
 					onClick={() => handlerStock("withStock")}
 					className={
