@@ -10,7 +10,7 @@ const Orders = () => {
 	const orders = useSelector((state) => state.ordenes);
 	const product= orders.map((order)=>order.order_product);
 	const dispatch = useDispatch();
-	console.log(orders);
+	// console.log(orders);
 	useEffect(() => {
 		dispatch(getAllOrders());
 	}, [dispatch]);

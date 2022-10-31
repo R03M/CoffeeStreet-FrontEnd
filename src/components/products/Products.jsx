@@ -35,16 +35,16 @@ const Products = () => {
 	const newlyCreated = useSelector(state => state.newlyCreated);
 	const usuario = useSelector(state => state.user);
 	const { isAuthenticated, user } = useAuth0();
-	console.log('user de auth0 ')
-	console.log(user)
-	console.log('isAuthenticated');
-	console.log(isAuthenticated)
-	console.log('checkemail')
-	console.log(checkEmail);
-	console.log('newlyCreated')
-	console.log(newlyCreated)
-	console.log('usuario')
-	console.log(usuario);
+	// console.log('user de auth0 ')
+	// console.log(user)
+	// console.log('isAuthenticated');
+	// console.log(isAuthenticated)
+	// console.log('checkemail')
+	// console.log(checkEmail);
+	// console.log('newlyCreated')
+	// console.log(newlyCreated)
+	// console.log('usuario')
+	// console.log(usuario);
 
 
 	const [currentPage, setCurrentPage] = useState(1);
