@@ -31,7 +31,8 @@ export const teamDev = [
 	},
 	{
 		name: "Lucas Rodríguez",
-		image: "",
+		image:
+			"https://res.cloudinary.com/dr1n4zzvd/image/upload/v1667249896/Lucasrodriguez_fkxt83.jpg",
 		linkedIn: "https://www.linkedin.com/in/lucasezr",
 		gitHub: "https://github.com/lucasezr",
 		frontEnd: false,
@@ -50,7 +51,8 @@ export const teamDev = [
 	},
 	{
 		name: "Nora Rodríguez",
-		image: "https://res.cloudinary.com/db6aq84ze/image/upload/v1667162125/coffeeStreetData/fotocv_v0wts7.jpg",
+		image:
+			"https://res.cloudinary.com/db6aq84ze/image/upload/v1667162125/coffeeStreetData/fotocv_v0wts7.jpg",
 		linkedIn: "https://www.linkedin.com/in/nora-rodriguez-b90947248/",
 		gitHub: "https://github.com/noravers",
 		frontEnd: true,
@@ -59,7 +61,8 @@ export const teamDev = [
 	},
 	{
 		name: "Miguel E. Rodríguez C.",
-		image: "https://res.cloudinary.com/db6aq84ze/image/upload/v1667162341/coffeeStreetData/TPRS7H4PN-U02TTSWQH0V-fb420c706257-512_ayf9dt.png",
+		image:
+			"https://res.cloudinary.com/db6aq84ze/image/upload/v1667162341/coffeeStreetData/TPRS7H4PN-U02TTSWQH0V-fb420c706257-512_ayf9dt.png",
 		linkedIn: "https://www.linkedin.com/in/mrbluegru/",
 		gitHub: "https://github.com/MrBluegru",
 		frontEnd: true,
