@@ -145,11 +145,10 @@
 
 .divTempCart {
 	display: grid;
-	grid-template-columns: repeat(4, 1fr);
+	grid-template-columns: repeat(2, 1fr);
 	justify-content: center;
 	align-items: center;
 	justify-items: center;
-	margin-right: 2rem;
 }
 
 .pCartTemp {
@@ -252,4 +251,25 @@
 
 .btnLikeOff {
 	color: #7a2418;
+}
+
+.triangleCardPC {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 0;
+	height: 0;
+	margin: 1px;
+	border-top: 100px solid #3baf14;
+	border-right: 100px solid transparent;
+}
+
+.textTriangleCardPC {
+	color: white;
+	position: relative;
+	top: -80px;
+	left: 15px;
+	font-weight: bold;
+	padding: 5px;
+	transform: rotate(-45deg);
 }

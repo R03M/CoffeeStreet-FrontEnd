@@ -1,26 +1,31 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { BiDrink, BiHeart } from "react-icons/bi";
-import { RiHeart3Fill } from "react-icons/ri"
+import { RiHeart3Fill } from "react-icons/ri";
 import { GiMilkCarton, GiWheat } from "react-icons/gi";
 import { BsInfo, BsFillCartPlusFill } from "react-icons/bs";
-import swal from "sweetalert";
-import "./cardP.css";
+import { useDispatch, useSelector } from "react-redux";
 import {
 	addProductFavourite,
 	addItemShoppingCart,
 	deleteProductFavourite,
-	checkOut
+	checkOut,
+	getMyFavorites
 } from "../../../redux/action";
-import { useDispatch, useSelector } from "react-redux";
+import swal from "sweetalert";
+import "./cardP.css";
 
-const CardP = ({ product, userId }) => {
+const CardP = ({ product }) => {
 	const dispatch = useDispatch();
 	let navigate = useNavigate();
 	const listaFavoritos = useSelector(state => state.myFavourites);
 	const user = useSelector(state => state.user.user);
 	const checkoutCart = useSelector(state => state.checkOut);
+
 	const [linkMp , setLinkMp] = useState(false);
+
+	const cart = useSelector(state => state.cart);
+
 
 	const alcohol = () => {
 		if (product.alcohol === true) {
@@ -68,7 +73,19 @@ const CardP = ({ product, userId }) => {
 		}
 	};
 
-	const cart = useSelector(state => state.cart);
+	const valuesRDiscount = value => {
+		if (value === 0.1) return "off 10%";
+		if (value === 0.2) return "off 20%";
+		if (value === 0.3) return "off 30%";
+		if (value === 0.4) return "off 40%";
+		if (value === 0.5) return "off 50%";
+		if (value === 0.6) return "off 60%";
+		if (value === 0.7) return "off 70%";
+		if (value === 0.8) return "off 80%";
+		if (value === 0.9) return "off 90%";
+		if (value === 1) return "off 100%";
+	};
+
 	const handleAdd = () => {
 		if (!user) {
 			swal({
@@ -112,11 +129,20 @@ const CardP = ({ product, userId }) => {
 					});
 				}
 			});
-		} else {
-			if (listaFavoritos.map(e => e.id === product.id).includes(true)) {
+		} else if (user) {
+			if (
+				listaFavoritos.length &&
+				listaFavoritos.map(e => e.id === product.id).includes(true)
+			) {
 				dispatch(deleteProductFavourite({ idProduct: product.id }, user.id));
+				setTimeout(() => {
+					dispatch(getMyFavorites(user.id));
+				}, 500);
 			} else {
 				dispatch(addProductFavourite({ idProduct: product.id }, user.id));
+				setTimeout(() => {
+					dispatch(getMyFavorites(user.id));
+				}, 500);
 			}
 		}
 	};
@@ -131,15 +157,19 @@ const CardP = ({ product, userId }) => {
 				closeOnClickOutside: false
 			}).then(value => {
 				if (value) {
-					dispatch(checkOut({ idUser: user.id,
-						items: [
-							{
-								idProduct: product.id,
-								qty: 1,
-								price: product.price,
-								name: product.name
-							}
-						] }));
+					dispatch(
+						checkOut({
+							idUser: user.id,
+							items: [
+								{
+									idProduct: product.id,
+									qty: 1,
+									price: product.price,
+									name: product.name
+								}
+							]
+						})
+					);
 					swal("Pay", {
 						button: false,
 						timer: 1500,
@@ -163,9 +193,24 @@ const CardP = ({ product, userId }) => {
 		}
 	};
 
-
 	return (
 		<div className={product.stock === true ? "cardDiv" : "cardDivF"} key={product.id}>
+			<div
+				className={
+					product.discount === null || product.discount === 0 ? "" : "triangleCardPC"
+				}
+			>
+				<div
+					className={
+						product.discount === null || product.discount === 0
+							? ""
+							: "textTriangleCardPC"
+					}
+				>
+					{product.discount < 0 ? null : valuesRDiscount(product.discount)}
+				</div>
+			</div>
+
 			<div className={product.stock === false ? "triangleColorCardPC" : ""}>
 				<div className={product.stock === false ? "textTrianglePC" : ""}>
 					{product.stock === true ? null : "Out Stock"}
@@ -174,9 +219,9 @@ const CardP = ({ product, userId }) => {
 			<button onClick={handlerFavorite} className="btnlikeCardPC">
 				{listaFavoritos.length &&
 				listaFavoritos.map(e => e.id === product.id).includes(true) ? (
-					<RiHeart3Fill className="btnLikeCardTrue"/>
+					<RiHeart3Fill className="btnLikeCardTrue" />
 				) : (
-					<BiHeart className="btnLikeOff"/>
+					<BiHeart className="btnLikeOff" />
 				)}
 			</button>
 
