@@ -9,7 +9,8 @@ import {
 	addProductFavourite,
 	addItemShoppingCart,
 	deleteProductFavourite,
-	checkOut
+	checkOut,
+	getMyFavorites
 } from "../../../redux/action";
 import swal from "sweetalert";
 import "./cardP.css";
@@ -124,11 +125,20 @@ const CardP = ({ product }) => {
 					});
 				}
 			});
-		} else {
-			if (listaFavoritos.map(e => e.id === product.id).includes(true)) {
+		} else if (user) {
+			if (
+				listaFavoritos.length &&
+				listaFavoritos.map(e => e.id === product.id).includes(true)
+			) {
 				dispatch(deleteProductFavourite({ idProduct: product.id }, user.id));
+				setTimeout(() => {
+					dispatch(getMyFavorites(user.id));
+				}, 500);
 			} else {
 				dispatch(addProductFavourite({ idProduct: product.id }, user.id));
+				setTimeout(() => {
+					dispatch(getMyFavorites(user.id));
+				}, 500);
 			}
 		}
 	};
