@@ -57,7 +57,7 @@ const Products = () => {
 
 	useEffect(() => {
 		if (isAuthenticated) {
-			console.log(user.email);
+			// console.log(user.email);
 			dispatch(checkEmailUser(user.email));
 		}
 	}, [dispatch, isAuthenticated]);
@@ -146,7 +146,6 @@ const Products = () => {
 										<CardP
 											key={data.id}
 											product={data}
-											userId={usuario.hasOwnProperty("user") ? usuario.user.id : null}
 										/>
 									);
 								})}
