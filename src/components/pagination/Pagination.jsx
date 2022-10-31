@@ -1,8 +1,11 @@
-import React, { useState } from "react";
+import React, { useState , useEffect } from "react";
+
 import "./pagination.css";
 
 const Pagination = ({ currentPage, setPage, max }) => {
 	const [input, setInput] = useState(1);
+	let min = 1
+
 
 	const netPage = () => {
 		setInput(parseInt(input) + 1);
@@ -13,6 +16,7 @@ const Pagination = ({ currentPage, setPage, max }) => {
 		setInput(parseInt(input) - 1);
 		setPage(parseInt(currentPage) - 1);
 	};
+	
 
 	const onKeyDown = e => {
 		if (e.keyCode === 13) {
@@ -28,6 +32,8 @@ const Pagination = ({ currentPage, setPage, max }) => {
 		}
 	};
 
+
+
 	const onChange = e => {
 		if(e.target.value > 0 && e.target.value <= max) {
 			setPage(parseInt(e.target.value));
@@ -37,6 +43,7 @@ const Pagination = ({ currentPage, setPage, max }) => {
 		setInput(e.target.value);
 	};
 	console.log("input", input);
+	console.log("currentPage", currentPage);
 
 
 	return (
@@ -49,6 +56,7 @@ const Pagination = ({ currentPage, setPage, max }) => {
 				Previous
 			</button>
 			<input
+				id="inputPage"
 				onChange={e => onChange(e)}
 				onKeyDown={e => onKeyDown(e)}
 				autoComplete="off"

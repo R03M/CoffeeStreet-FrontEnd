@@ -164,8 +164,7 @@ const Products = () => {
 		<div className="productsDiv">
 			<NavBar />
 			<div className="navbarProduc">
-				<NavbarProduc 
-				currentPage={currentPage} />
+				<NavbarProduc />
 				{pagACards()}
 			</div>
 		</div>
