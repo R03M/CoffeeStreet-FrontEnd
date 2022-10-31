@@ -212,7 +212,7 @@
 	background-color: rgb(239, 234, 224);
 	box-shadow: #541911 0px 0px 5px;
 }
-.like{
+.btnlikeCardPC {
 	position: absolute;
 	background-color: transparent;
 	border: none;
@@ -220,8 +220,14 @@
 	right: 0;
 	margin: 10px;
 	font-size: 2rem;
-	color: #541911;
 	cursor: pointer;
 	z-index: 1;
+}
 
+.btnLikeCardTrue {
+	color: #b83928;
+}
+
+.btnLikeOff {
+	color: #7a2418;
 }

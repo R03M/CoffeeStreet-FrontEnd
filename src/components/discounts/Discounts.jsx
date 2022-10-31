@@ -23,12 +23,14 @@ const Discounts = () => {
 		}).then(value => {
 			if (value) {
 				dispatch(updateDiscountProduct(valueP, productId));
-				dispatch(getProducts());
 				swal("Applying discount", {
 					button: false,
 					timer: 1500,
 					icon: "success"
 				});
+				setTimeout(() => {
+					dispatch(getProducts());
+				}, 500);
 			} else {
 				swal("The discount was not applied", {
 					button: false,
@@ -55,7 +57,9 @@ const Discounts = () => {
 					timer: 1500,
 					icon: "success"
 				});
-				dispatch(getProducts());
+				setTimeout(() => {
+					dispatch(getProducts());
+				}, 500);
 			} else {
 				swal("Operation cancelled", {
 					button: false,

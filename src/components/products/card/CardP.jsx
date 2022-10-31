@@ -1,7 +1,7 @@
 import React from "react";
-import { FcLike, FcLikePlaceholder } from "react-icons/fc";
 import { Link, useNavigate } from "react-router-dom";
-import { BiDrink } from "react-icons/bi";
+import { BiDrink, BiHeart } from "react-icons/bi";
+import { RiHeart3Fill } from "react-icons/ri"
 import { GiMilkCarton, GiWheat } from "react-icons/gi";
 import { BsInfo, BsFillCartPlusFill } from "react-icons/bs";
 import swal from "sweetalert";
@@ -130,7 +130,7 @@ const CardP = ({ product, userId }) => {
 				closeOnClickOutside: false
 			}).then(value => {
 				if (value) {
-					dispatch(checkOut({ idUser: user.id, 
+					dispatch(checkOut({ idUser: user.id,
 						items: [
 							{
 								idProduct: product.id,
@@ -169,12 +169,12 @@ const CardP = ({ product, userId }) => {
 					{product.stock === true ? null : "Out Stock"}
 				</div>
 			</div>
-			<button onClick={handlerFavorite} className="like">
+			<button onClick={handlerFavorite} className="btnlikeCardPC">
 				{listaFavoritos.length &&
 				listaFavoritos.map(e => e.id === product.id).includes(true) ? (
-					<FcLike />
+					<RiHeart3Fill className="btnLikeCardTrue"/>
 				) : (
-					<FcLikePlaceholder />
+					<BiHeart className="btnLikeOff"/>
 				)}
 			</button>
 
@@ -196,7 +196,7 @@ const CardP = ({ product, userId }) => {
 			<p className="priceCardPC">Price by unit $ {product.price}</p>
 
 			<div className="divTempCart">
-				{checkoutCart? 
+				{checkoutCart?
 				<a href={checkoutCart} >Pay with Mercado Pago</a> : <button
 					className={product.stock === true ? "btnBCartTemp" : "btnBCartTempNSCP"}
 					onClick={e => handleCheckout()}

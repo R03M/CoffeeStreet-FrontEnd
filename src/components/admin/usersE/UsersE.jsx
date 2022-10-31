@@ -1,25 +1,40 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import swal from "sweetalert";
-import { clearErrorSUser, getAllUsers, changeRoleUser } from "../../../redux/action";
+import {
+	clearErrorSUser,
+	getAllUsers,
+	changeRoleUser,
+	filterUsersByRole
+} from "../../../redux/action";
 import NavbarUsers from "./navbarUsers/NavbarUsers";
 import RowUser from "./rows/RowUser";
 import "./usersE.css";
 
 const UsersE = () => {
 	const dispatch = useDispatch();
-	const [update, setUpdate] = useState(false);
 	const currentUsers = useSelector(state => state.allUsersB);
 	const errorSearch = useSelector(state => state.errorSearchUser);
+	const [current, setCurrent] = useState("all");
+
 	let rows = 1;
 
 	useEffect(() => {
-		if (update === true || currentUsers.length === 0 ) {
+		if (currentUsers.length === 0) {
 			dispatch(getAllUsers());
+			setState();
 		}
-		setUpdate(false);
 		dispatch(clearErrorSUser());
 	}, [dispatch]);
+
+	const filterRoleCD = e => {
+		dispatch(filterUsersByRole(e));
+		setCurrent(e);
+	};
+
+	const setState = () => {
+		setCurrent("all");
+	};
 
 	const deleteUser = e => {
 		swal({
@@ -56,13 +71,15 @@ const UsersE = () => {
 				icon: "warning"
 			}).then(value => {
 				if (value) {
-					setUpdate(true);
 					dispatch(changeRoleUser(u.id, e));
 					swal("Changed", {
 						button: false,
 						timer: 1000,
 						icon: "success"
 					});
+					setTimeout(() => {
+						dispatch(getAllUsers());
+					}, 500);
 				} else {
 					swal("Operation cancelled", {
 						button: false,
@@ -110,7 +127,7 @@ const UsersE = () => {
 
 	return (
 		<div className="userEDivC">
-			<NavbarUsers />
+			<NavbarUsers filterRoleCD={filterRoleCD} current={current} />
 			{currentUsers.length ? <>{tableUsers()}</> : "Users not found"}
 		</div>
 	);
