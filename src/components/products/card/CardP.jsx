@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { BiDrink, BiHeart } from "react-icons/bi";
 import { RiHeart3Fill } from "react-icons/ri"
@@ -20,6 +20,7 @@ const CardP = ({ product, userId }) => {
 	const listaFavoritos = useSelector(state => state.myFavourites);
 	const user = useSelector(state => state.user.user);
 	const checkoutCart = useSelector(state => state.checkOut);
+	const [linkMp , setLinkMp] = useState(false);
 
 	const alcohol = () => {
 		if (product.alcohol === true) {
@@ -144,6 +145,7 @@ const CardP = ({ product, userId }) => {
 						timer: 1500,
 						icon: "success"
 					});
+					setLinkMp(true);
 				} else {
 					swal("Staying on menu", {
 						button: false,
@@ -196,8 +198,8 @@ const CardP = ({ product, userId }) => {
 			<p className="priceCardPC">Price by unit $ {product.price}</p>
 
 			<div className="divTempCart">
-				{checkoutCart?
-				<a href={checkoutCart} >Pay with Mercado Pago</a> : <button
+				{linkMp?
+				<a className="btnMercadoPago" href={checkoutCart} >Pay MP</a> : <button
 					className={product.stock === true ? "btnBCartTemp" : "btnBCartTempNSCP"}
 					onClick={e => handleCheckout()}
 				>
