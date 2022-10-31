@@ -30,7 +30,9 @@ const CardPe = ({ product, editC }) => {
 		}).then(value => {
 			if (value) {
 				dispatch(changeStatus(!product.stock, product.id));
-				dispatch(getProducts());
+				setTimeout(() => {
+					dispatch(getProducts());
+				},500);
 				swal("Updated", {
 					button: false,
 					timer: 1500,

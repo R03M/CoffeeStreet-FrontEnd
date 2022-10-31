@@ -396,7 +396,12 @@ export default function rootReducer(state = initialState, action) {
 			}
 
 		case "FILTER_BY_STOCK":
-			if (action.payload === "withStock") {
+			if (action.payload === "all") {
+				return {
+					...state,
+					products: state.allProducts
+				};
+			} else if (action.payload === "withStock") {
 				return {
 					...state,
 					products: state.allProducts.filter(p => p.stock === true)

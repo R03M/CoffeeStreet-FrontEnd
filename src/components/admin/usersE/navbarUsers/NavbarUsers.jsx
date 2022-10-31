@@ -1,16 +1,11 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { filterUsersByRole } from "../../../../redux/action";
+import React from "react";
 import SearchUsers from "../searchUsers/SearchUsers";
 import "./navbarUsers.css";
 
-const NavbarUsers = () => {
-	const dispatch = useDispatch();
-	const [current, setCurrent] = useState("all");
+const NavbarUsers = ({filterRoleCD, current}) => {
 
 	const filterRole = e => {
-		dispatch(filterUsersByRole(e));
-		setCurrent(e);
+		filterRoleCD(e)
 	};
 
 	return (
