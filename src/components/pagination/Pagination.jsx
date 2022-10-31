@@ -16,10 +16,7 @@ const Pagination = ({ currentPage, setPage, max }) => {
 
 	const onKeyDown = e => {
 		if (e.keyCode === 13) {
-			setPage(parseInt(e.target.value));
-
-			if (
-				parseInt(e.target.value < 1) ||
+			if (e.target.value  < 1||
 				e.target.value > max ||
 				isNaN(parseInt(e.target.value))
 			) {
@@ -32,13 +29,20 @@ const Pagination = ({ currentPage, setPage, max }) => {
 	};
 
 	const onChange = e => {
+		if(e.target.value > 0 && e.target.value <= max) {
+			setPage(parseInt(e.target.value));
+		}
+
+
 		setInput(e.target.value);
 	};
+	console.log("input", input);
+
 
 	return (
 		<div className="pagination">
 			<button
-				disabled={currentPage === 1 || currentPage < 1}
+				disabled={currentPage === 1 || currentPage < 1 || input > max || input  == 0|| input < 0 || isNaN(parseInt(input))}
 				onClick={prevPage}
 				className="btnNP"
 			>
@@ -50,11 +54,12 @@ const Pagination = ({ currentPage, setPage, max }) => {
 				autoComplete="off"
 				value={input}
 				className="inputPag"
+				
 			/>
 			<p className="pPagesPagination"> Pages of {max} </p>
 
-			<button disabled={currentPage === max} onClick={netPage} className="btnNP">
-
+			<button disabled={currentPage === max || input > max ||currentPage < 1 || input == 0 || input < 0 || isNaN(parseInt(input))} onClick={netPage} className="btnNP">
+			
 				Next
 			</button>
 		</div>
