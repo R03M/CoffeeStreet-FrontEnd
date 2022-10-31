@@ -39,7 +39,7 @@ const FormS = () => {
 			})
 		);
 		}else{
-			console.log("error at register")
+			// console.log("error at register")
 		}
 	};
 

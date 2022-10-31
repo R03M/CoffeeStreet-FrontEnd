@@ -22,7 +22,7 @@ const FormLogin = () => {
 	let validEmail = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
 
 	const loginUser = async e => {
-		console.log("email", email);
+		// console.log("email", email);
 		if(!email) {
 			swal("Write an email", {
 					button: false,
@@ -127,7 +127,7 @@ const FormLogin = () => {
 	const back = async e => {
 		setForgot(false)
 	}
-	console.log(forgot);
+	// console.log(forgot);
 
 	return (
 		<div className="contenedor-principal-login">

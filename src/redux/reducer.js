@@ -30,8 +30,7 @@ const initialState = {
 	resUpdateNews: "",
 	reviews: [],
 	productsWithDiscounts: [],
-	detailsOrder: [],
-
+	detailsOrder: []
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -347,15 +346,15 @@ export default function rootReducer(state = initialState, action) {
 				allUsersB: action.payload
 			};
 		case "GET_USERS_BY_NAME":
-			if (action.payload.errorMessage === "No exit") {
-				return {
-					...state,
-					errorSearchUser: "No exit"
-				};
-			} else {
+			if (action.payload.length > 0) {
 				return {
 					...state,
 					allUsersB: action.payload
+				};
+			} else if (action.payload.errorMessage.length > 0) {
+				return {
+					...state,
+					errorSearchUser: action.payload.errorMessage
 				};
 			}
 		case "CLEAR_ERROR_SEARCH_USER":
@@ -450,11 +449,11 @@ export default function rootReducer(state = initialState, action) {
 				...state,
 				ordenes: action.payload
 			};
-			case "GET_DETAILS_ORDER":
-				return {
-					...state,
-					detailsOrder: action.payload
-				};
+		case "GET_DETAILS_ORDER":
+			return {
+				...state,
+				detailsOrder: action.payload
+			};
 
 		default:
 			return state;

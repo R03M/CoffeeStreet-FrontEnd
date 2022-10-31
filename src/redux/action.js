@@ -284,7 +284,7 @@ export function getOrCreateShoppingCart(id) {
 				type: "GET_CREATE_SHOPPING_CART",
 				payload: response.data
 			});
-			console.log("response", response.data);
+			// console.log("response", response.data);
 		} catch (error) {
 			return error;
 		}
@@ -311,7 +311,7 @@ export function addItemShoppingCart(cart) {
 }
 
 export function emptyCart(cart) {
-	console.log("cart", cart);
+	// console.log("cart", cart);
 	return async function () {
 		try {
 			await axios.delete(`${url}/cart/all`, { data: cart });
@@ -373,7 +373,8 @@ export function changeStatus(productStock, productId) {
 }
 
 export function checkOut(cart) {
-	console.log(cart);
+
+	// console.log(cart);
 	return async function (dispatch) {
 		try {
 			const response = await axios.post(`${url}/pay/mercadopago`, cart);
@@ -427,7 +428,7 @@ export function deleteUser(email) {
 export function getAllUsers() {
 	return async function (dispatch) {
 		try {
-			const response = await axios.get(`${url}/users`);
+			const response = await axios.get(`${url}/admin/users`);
 			dispatch({
 				type: "GET_ALL_USERS",
 				payload: response.data
@@ -441,7 +442,7 @@ export function getAllUsers() {
 export function getUsersByName(name) {
 	return async function (dispatch) {
 		try {
-			const response = await axios.get(`${url}/users/${name}`);
+			const response = await axios.get(`${url}/admin/users?name=${name}`);
 			dispatch({
 				type: "GET_USERS_BY_NAME",
 				payload: response.data
@@ -561,7 +562,9 @@ export function clearErrorUpdateN() {
 }
 
 export function getOrdersByUser(id) {
-	console.log(id);
+
+	// console.log(id);
+
 	try {
 		return async function (dispatch) {
 			const response = await axios.get(`${url}/order/user/${id}`);
@@ -613,11 +616,19 @@ export function getProductsWDiscounts() {
 }
 
 export function detailsOrder(id) {
+
+	// console.log(id);
+	return async function (dispatch) {
+		try {
+			const response = await axios.get(`${url}/order/${id}`);
+			// console.log(response.data);
+
 	console.log(id);
 	return async function (dispatch) {
 		try {
 			const response = await axios.get(`${url}/order/${id}`);
 			console.log(response.data);
+
 			dispatch({
 				type: "GET_DETAILS_ORDER",
 				payload: response.data
@@ -627,3 +638,15 @@ export function detailsOrder(id) {
 		}
 	};
 }
+
+
+export function changeRoleUser(id, role) {
+	return async function () {
+		try {
+			await axios.put(`${url}/users/${id}`, { role: role });
+		} catch (error) {
+			return error;
+		}
+	};
+}
+

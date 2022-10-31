@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { getAllUsers, getUsersByName } from "../../../../redux/action";
+import { getAllUsers, getUsersByName, clearErrorSUser } from "../../../../redux/action";
 import "./searchUsers.css";
 
 const SearchUsers = () => {
@@ -11,6 +11,7 @@ const SearchUsers = () => {
 		e.preventDefault();
 		setName(e.target.value);
 		!e.target.value ? dispatch(getAllUsers()) : dispatch(getUsersByName(e.target.value));
+		dispatch(clearErrorSUser());
 	};
 	return (
 		<input
