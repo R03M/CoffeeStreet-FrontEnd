@@ -68,8 +68,8 @@ const MyOrders = () => {
 							<div className='total-orden'>
 								<h1>Total: {orden.total}$</h1>
 							</div>
-							
 							</div>
+								<button className='button-orden'>Review</button>
 
 						</div>
 					)
