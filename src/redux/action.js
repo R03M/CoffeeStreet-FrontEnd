@@ -125,7 +125,7 @@ export function LoginUser(payload) {
 				localStorage.setItem("accessToken", JSON.stringify(response.data.accessToken));
 			}
 		} catch (error) {
-			return alert("Invalid email or password");
+			console.log(error);
 		}
 	};
 }
@@ -373,6 +373,7 @@ export function changeStatus(productStock, productId) {
 }
 
 export function checkOut(cart) {
+
 	// console.log(cart);
 	return async function (dispatch) {
 		try {
@@ -561,7 +562,9 @@ export function clearErrorUpdateN() {
 }
 
 export function getOrdersByUser(id) {
+
 	// console.log(id);
+
 	try {
 		return async function (dispatch) {
 			const response = await axios.get(`${url}/order/user/${id}`);
@@ -613,11 +616,19 @@ export function getProductsWDiscounts() {
 }
 
 export function detailsOrder(id) {
+
 	// console.log(id);
 	return async function (dispatch) {
 		try {
 			const response = await axios.get(`${url}/order/${id}`);
 			// console.log(response.data);
+
+	console.log(id);
+	return async function (dispatch) {
+		try {
+			const response = await axios.get(`${url}/order/${id}`);
+			console.log(response.data);
+
 			dispatch({
 				type: "GET_DETAILS_ORDER",
 				payload: response.data
@@ -628,6 +639,7 @@ export function detailsOrder(id) {
 	};
 }
 
+
 export function changeRoleUser(id, role) {
 	return async function () {
 		try {
@@ -637,3 +649,4 @@ export function changeRoleUser(id, role) {
 		}
 	};
 }
+

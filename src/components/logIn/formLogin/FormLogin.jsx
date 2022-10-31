@@ -50,7 +50,8 @@ const FormLogin = () => {
 			}
 
 		}else{
-			if(email){
+			if(checkEmail.email){
+
 				if(!password) {
 				swal("Write your password", {
 					button: false,
@@ -58,14 +59,34 @@ const FormLogin = () => {
 					icon: "warning"
 				});
 				}else{
+					try {
+					const response = await axios.post(`${url}/register/pass?password=${password}`, {email});
+					if(response.data.password){
 					dispatch(
 					LoginUser({
 					email: email,
 					password: password
 					}))
+					}else{
+						swal("Password invalid", {
+						button: false,
+						timer: 2500,
+						icon: "error"
+				});
+
+					}
 					setForgot(false)
 
+				} catch (error) {
+					console.log(error)
 				}
+				}
+			}else{
+				swal("Account invalid", {
+					button: false,
+					timer: 2500,
+					icon: "error"
+				});
 			}
 		}
 		// setPassword('')
