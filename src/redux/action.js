@@ -616,7 +616,6 @@ export function getProductsWDiscounts() {
 }
 
 export function detailsOrder(id) {
-
 	return async function (dispatch) {
 		try {
 			const response = await axios.get(`${url}/order/${id}`);
@@ -631,7 +630,6 @@ export function detailsOrder(id) {
 		}
 	};
 }
-
 
 export function changeRoleUser(id, role) {
 	return async function () {
