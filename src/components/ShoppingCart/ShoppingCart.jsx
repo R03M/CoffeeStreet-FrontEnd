@@ -20,12 +20,17 @@ const ShoppingCart = () => {
 	const user = useSelector(state => state.user);
 	const checkoutCart = useSelector(state => state.checkOut);
 	const localAccessToken = JSON.parse(localStorage.getItem("accessToken"));
+	const [actualCart, setActualCart] = React.useState(false);
+	
 
 	useEffect(() => {
-		if (user.hasOwnProperty("user")) {
-			dispatch(getOrCreateShoppingCart(user.user.auth.id));
-		} else{
-			swal({
+		if (localAccessToken) {
+				setTimeout(() => {
+					dispatch(getOrCreateShoppingCart(user.user.auth.id))
+				}, 5000);
+			}
+			else{
+				swal({
 				title: "You must be logged in to access your shopping cart",
 				text: "You will be redirected to the menu",
 				icon: "info",
@@ -33,18 +38,28 @@ const ShoppingCart = () => {
 			}).then(() => {
 				return window.location.href = "/menu";
 			});
-			}
-	}, [ dispatch, user, localAccessToken ]);
+		} 
+	}, [dispatch,user,localAccessToken, actualCart]);
+
 
 	const handleAdd = e => {
 		if (user.hasOwnProperty("user")) {
 			dispatch(addItemShoppingCart({ idCart: cart.cartId, idProduct: e.idProduct }));
-		}
+			if (actualCart === false) {
+				setActualCart(true);
+			} else {
+				setActualCart(false);
+			}
+		} 
 	};
-
 	const handleRemove = e => {
 		if (user.hasOwnProperty("user")) {
 			dispatch(deleteItemCompletedCart({ idCart: cart.cartId, idProduct: e.idProduct }));
+			if (actualCart === false) {
+				setActualCart(true);
+			} else {
+				setActualCart(false);
+			}
 			swal({
 				title: "Product removed",
 				text: "The product has been removed from the cart",
@@ -56,6 +71,11 @@ const ShoppingCart = () => {
 	const handleRemoveOne = e => {
 		if (user.hasOwnProperty("user")) {
 			dispatch(deleteItemShoppingCart({ idCart: cart.cartId, idProduct: e.idProduct }));
+			if (actualCart === false) {
+				setActualCart(true);
+			} else {
+				setActualCart(false);
+			}
 		}
 	};
 	const handleClear = () => {
@@ -68,6 +88,11 @@ const ShoppingCart = () => {
 		}).then(value => {
 			if (value) {
 				dispatch(emptyCart({ idCart: cart.cartId }));
+				if (actualCart === false) {
+					setActualCart(true);
+				} else {
+					setActualCart(false);
+				}
 				swal("Removed", {
 					button: false,
 					timer: 1500,
@@ -94,12 +119,12 @@ const ShoppingCart = () => {
 			}).then(value => {
 				if (value) {
 					dispatch(checkOut({ idUser: user.user.id, items: cart.items }));
-					// dispatch(emptyCart({ idCart: cart.cartId }));
 					swal("Checkout", {
 						button: false,
 						timer: 1500,
 						icon: "success"
 					});
+					// dispatch(emptyCart({ idCart: cart.cartId }));
 				} else {
 					swal("Operation cancelled", {
 						button: false,
@@ -111,7 +136,7 @@ const ShoppingCart = () => {
 		}
 	};
 
-console.log("checkoutCart", checkoutCart)
+// console.log("checkoutCart", checkoutCart)
 	return (
 		<div className="shoppingCart">
 			<NavBar />
@@ -120,7 +145,7 @@ console.log("checkoutCart", checkoutCart)
 				<button className="deleteBtnAllCartSC" onClick={() => handleClear()}>
 					Delete All
 				</button>
-				{checkoutCart? 
+				{checkoutCart?
 				<a href={checkoutCart} >Pay with Mercado Pago</a> : <button className="btnBCartTemp" onClick={()=> handleCheckout()}>Create Order</button> }
 			</div>
 			<div className="containerCartSC">

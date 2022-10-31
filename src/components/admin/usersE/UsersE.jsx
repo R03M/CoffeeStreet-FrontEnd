@@ -1,21 +1,23 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import swal from "sweetalert";
-import { clearErrorSUser, getAllUsers } from "../../../redux/action";
+import { clearErrorSUser, getAllUsers, changeRoleUser } from "../../../redux/action";
 import NavbarUsers from "./navbarUsers/NavbarUsers";
 import RowUser from "./rows/RowUser";
 import "./usersE.css";
 
 const UsersE = () => {
 	const dispatch = useDispatch();
+	const [update, setUpdate] = useState(false);
 	const currentUsers = useSelector(state => state.allUsersB);
 	const errorSearch = useSelector(state => state.errorSearchUser);
 	let rows = 1;
 
 	useEffect(() => {
-		if (currentUsers.length === 0) {
+		if (update === true || currentUsers.length === 0 ) {
 			dispatch(getAllUsers());
 		}
+		setUpdate(false);
 		dispatch(clearErrorSUser());
 	}, [dispatch]);
 
@@ -54,7 +56,8 @@ const UsersE = () => {
 				icon: "warning"
 			}).then(value => {
 				if (value) {
-					// dispatch(changeRoleUser(e.id))
+					setUpdate(true);
+					dispatch(changeRoleUser(u.id, e));
 					swal("Changed", {
 						button: false,
 						timer: 1000,
@@ -72,8 +75,8 @@ const UsersE = () => {
 	};
 
 	const tableUsers = () => {
-		if (errorSearch === "No exist") {
-			return <div>The user sought does not exist.</div>;
+		if (errorSearch.length > 0) {
+			return <div>{errorSearch}</div>;
 		} else {
 			return (
 				<table className="tableUserL">
@@ -82,7 +85,6 @@ const UsersE = () => {
 							<th>row</th>
 							<th>name</th>
 							<th>surname</th>
-							<th>email</th>
 							<th>role</th>
 							<th>switch to</th>
 							<th>account</th>
@@ -108,14 +110,8 @@ const UsersE = () => {
 
 	return (
 		<div className="userEDivC">
-			{currentUsers.length ? (
-				<>
-					<NavbarUsers />
-					{tableUsers()}
-				</>
-			) : (
-				"Users not found"
-			)}
+			<NavbarUsers />
+			{currentUsers.length ? <>{tableUsers()}</> : "Users not found"}
 		</div>
 	);
 };

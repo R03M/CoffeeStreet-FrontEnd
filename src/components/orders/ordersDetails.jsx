@@ -7,7 +7,7 @@ const OrdersDetails = () => {
     const dispatch = useDispatch();
     const {id} = useParams();
     const orderDetails = useSelector((state) => state.detailsOrder.order_product);
-    console.log("detalles",orderDetails);
+    // console.log("detalles",orderDetails);
 
     useEffect(() => {
         dispatch(detailsOrder(id));

@@ -22,7 +22,7 @@ const FormLogin = () => {
 	let validEmail = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
 
 	const loginUser = async e => {
-		console.log("email", email);
+		// console.log("email", email);
 		if(!email) {
 			swal("Write an email", {
 					button: false,
@@ -50,7 +50,8 @@ const FormLogin = () => {
 			}
 
 		}else{
-			if(email){
+			if(checkEmail.email){
+
 				if(!password) {
 				swal("Write your password", {
 					button: false,
@@ -58,14 +59,34 @@ const FormLogin = () => {
 					icon: "warning"
 				});
 				}else{
+					try {
+					const response = await axios.post(`${url}/register/pass?password=${password}`, {email});
+					if(response.data.password){
 					dispatch(
 					LoginUser({
 					email: email,
 					password: password
 					}))
+					}else{
+						swal("Password invalid", {
+						button: false,
+						timer: 2500,
+						icon: "error"
+				});
+
+					}
 					setForgot(false)
 
+				} catch (error) {
+					console.log(error)
 				}
+				}
+			}else{
+				swal("Account invalid", {
+					button: false,
+					timer: 2500,
+					icon: "error"
+				});
 			}
 		}
 		// setPassword('')
@@ -106,7 +127,7 @@ const FormLogin = () => {
 	const back = async e => {
 		setForgot(false)
 	}
-	console.log(forgot);
+	// console.log(forgot);
 
 	return (
 		<div className="contenedor-principal-login">

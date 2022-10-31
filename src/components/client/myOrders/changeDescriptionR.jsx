@@ -1,30 +1,34 @@
 import React from 'react'
 import { Formik } from 'formik'
 import * as Yup from 'yup'
-import {createReview, changeReviewDesc, changeReviewRat} from "../../../redux/action";
-import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { changeReviewDesc } from '../../../redux/action'
+import { useDispatch, useSelector } from 'react-redux'
+import { useParams } from 'react-router-dom'
+import swal from 'sweetalert'
 
-const Reviews = () => {
+const ChangeDescriptionR = () => {
+    const reviewCreated = useSelector((state) => state.reviews);
+    const {id} = useParams();
     const dispatch = useDispatch();
-    const user = useSelector((state) => state.user);
-
     const validationSchema = Yup.object({
         description : Yup.string().required('Required'),
-        rating : Yup.number().min(1).max(5).required('Rating as a number between 1 and 5')
     })
 
-    const initialValues = {  
+    const initialValues = {
             description : '',
-            rating : 0,
-            }
-    
+    }
+
     const onSubmit = (values) => {
-        dispatch(createReview({description: values.description, rating: values.rating, idUser: user.user.id}))
+        dispatch(changeReviewDesc(reviewCreated[0].id ,values))
+        swal({
+            title: "Description changed!",
+            icon: "success",
+            button: "Ok",
+        })
     }
 
     return (
-        <div>  
+        <div> 
             <Formik
                 initialValues={initialValues}
                 validationSchema={validationSchema}
@@ -42,21 +46,14 @@ const Reviews = () => {
                                 value={formik.values.description}
                             />
                             {formik.errors.description ? <div>{formik.errors.description}</div> : null}
-                            <label htmlFor="rating">Rating</label>
-                            <input
-                                type="number"
-                                id="rating" 
-                                name="rating"
-                                onChange={formik.handleChange}
-                                value={formik.values.rating}
-                            />
-                            {formik.errors.rating ? <div>{formik.errors.rating}</div> : null}
-                            <button type="submit">Submit</button>
+                            <button type="submit">Save</button>
                         </form>
                     </div>
                 )}
             </Formik>
-        </div>  
+
+        </div>
     )
 }
-export default Reviews
+
+export default ChangeDescriptionR
