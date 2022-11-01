@@ -1,5 +1,4 @@
 import axios from "axios";
-import { redirect } from "react-router-dom";
 
 const url = process.env.REACT_APP_BACK_URL;
 
@@ -725,6 +724,20 @@ export function deleteUserIdAdmin(email) {
 	return async function () {
 		try {
 			await axios.delete(`${url}/admin/deleteUser?email=${email}`);
+		} catch (error) {
+			return error;
+		}
+	};
+}
+
+export function getDataNews() {
+	return async function (dispatch) {
+		try {
+			const response = await axios.get(`${url}/news`);
+			dispatch({
+				type: "GET_DATA_NEWS",
+				payload: response.data
+			});
 		} catch (error) {
 			return error;
 		}

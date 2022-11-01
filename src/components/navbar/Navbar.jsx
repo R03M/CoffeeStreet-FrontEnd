@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { BsFillCartFill } from "react-icons/bs";
 import LogOutAuth0 from "../logIn/logOutButtonAuth0/LogOutAuth0";
-import "./navbar.css";
 import { getOrCreateShoppingCart } from "../../redux/action";
+import "./navbar.css";
 
 const NavBar = () => {
 	const statusCart = useSelector(state => state.cart);
