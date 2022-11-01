@@ -33,7 +33,7 @@ const OrdersDetails = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {orderDetails.map((order) => (
+                            {orderDetails?.map((order) => (
                                 <tr key={order.id}>
                                     <td>{order.id}</td>
                                     <td>{order.idProduct}</td>
