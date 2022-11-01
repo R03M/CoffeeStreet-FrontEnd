@@ -1,16 +1,25 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { BsFillCartFill } from "react-icons/bs";
 import LogOutAuth0 from "../logIn/logOutButtonAuth0/LogOutAuth0";
 import "./navbar.css";
+import { getOrCreateShoppingCart } from "../../redux/action";
 
 const NavBar = () => {
 	const statusCart = useSelector(state => state.cart);
 	const user = useSelector(state => state.user.user);
 	const [viewUser, setViewUser] = useState(false);
-	// console.log(statusCart.items.length);
+	const dispatch = useDispatch();
+	const accessToken = useSelector(state => state.accessToken);
 
+	useEffect(() => {
+		if (accessToken) {
+			setTimeout(() => {
+			dispatch(getOrCreateShoppingCart(user.auth.id));
+			}, 500);
+		}
+	}, [accessToken]);
 	const handlerUser = () => {
 		if (viewUser === false) {
 			setViewUser(true);

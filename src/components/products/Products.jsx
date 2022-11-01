@@ -43,7 +43,7 @@ const Products = () => {
 	// console.log('newlyCreated')
 	// console.log(newlyCreated)
 	// console.log('usuario')
-	// console.log(usuario);
+	console.log(accessToken);
 
 	const [currentPage, setCurrentPage] = useState(1);
 	const [productsPerPage, setProductsPerPage] = useState(9);
@@ -110,10 +110,12 @@ const Products = () => {
 	}, [dispatch, accessToken]);
 
 	useEffect(() => {
-		if (usuario.hasOwnProperty("user")) {
+		if (accessToken) {
+			setTimeout(() => {
 			dispatch(getOrCreateShoppingCart(usuario.user.auth.id));
+			}, 500);
 		}
-	}, []);
+	}, [ dispatch, accessToken, usuario]);
 
 	useEffect(() => {
 		if (allProducts.length === 0) {
