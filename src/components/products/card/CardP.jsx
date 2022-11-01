@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { BiDrink, BiHeart } from "react-icons/bi";
 import { RiHeart3Fill } from "react-icons/ri";
@@ -21,7 +21,11 @@ const CardP = ({ product }) => {
 	const listaFavoritos = useSelector(state => state.myFavourites);
 	const user = useSelector(state => state.user.user);
 	const checkoutCart = useSelector(state => state.checkOut);
+
+	const [linkMp , setLinkMp] = useState(false);
+
 	const cart = useSelector(state => state.cart);
+
 
 	const alcohol = () => {
 		if (product.alcohol === true) {
@@ -171,6 +175,7 @@ const CardP = ({ product }) => {
 						timer: 1500,
 						icon: "success"
 					});
+					setLinkMp(true);
 				} else {
 					swal("Staying on menu", {
 						button: false,
@@ -238,16 +243,13 @@ const CardP = ({ product }) => {
 			<p className="priceCardPC">Price by unit $ {product.price}</p>
 
 			<div className="divTempCart">
-				{checkoutCart ? (
-					<a href={checkoutCart}>Pay with Mercado Pago</a>
-				) : (
-					<button
-						className={product.stock === true ? "btnBCartTemp" : "btnBCartTempNSCP"}
-						onClick={e => handleCheckout()}
-					>
-						Buy
-					</button>
-				)}
+				{linkMp?
+				<a className="btnMercadoPago" href={checkoutCart} >Pay MP</a> : <button
+					className={product.stock === true ? "btnBCartTemp" : "btnBCartTempNSCP"}
+					onClick={e => handleCheckout()}
+				>
+					Buy
+				</button>}
 				<button
 					className={product.stock === true ? "btnACartTemp" : "btnACartTempNSCP"}
 					onClick={() => handleAdd(product)}

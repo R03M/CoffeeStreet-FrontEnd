@@ -165,7 +165,12 @@ const Products = () => {
 	return (
 		<div className="productsDiv">
 			<NavBar />
-			{pagACards()}
+
+			<div className="navbarProduc">
+				<NavbarProduc />
+				{pagACards()}
+			</div>
+
 		</div>
 	);
 };
