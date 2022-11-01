@@ -616,14 +616,6 @@ export function getProductsWDiscounts() {
 }
 
 export function detailsOrder(id) {
-
-	// console.log(id);
-	// return async function (dispatch) {
-	// 	try {
-	// 		const response = await axios.get(`${url}/order/${id}`);
-	// 		// console.log(response.data);
-
-	console.log(id);
 	return async function (dispatch) {
 		try {
 			const response = await axios.get(`${url}/order/${id}`);
@@ -649,3 +641,80 @@ export function changeRoleUser(id, role) {
 	};
 }
 
+export function createReview (payload){
+	return async function (dispatch){
+		try{
+			const response = await axios.post(`${url}/review/create`, payload)
+			dispatch({
+				type: "CREATE_REVIEW",
+				payload: response.data.review
+			})
+		}
+		catch(error){
+			return error
+		}
+	}
+}
+
+export function changeReviewDesc (id, description){
+	console.log(id, description)
+	return async function (dispatch){
+		try{
+			const response = await axios.put(`${url}/review/${id}/changedescription`,  description )
+			dispatch({
+				type: "CHANGE_REVIEW_DESC",
+				payload: response.data
+			})
+		}
+		catch(error){
+			return error
+		}
+	}
+}
+
+export function changeReviewRat (id, rating){
+	return async function (dispatch){
+		try{
+			const response = await axios.put(`${url}/review/${id}/changerating`,  rating )
+			dispatch({
+				type: "CHANGE_REVIEW_RAT",
+				payload: response.data.updatedRating
+			})
+		}
+		catch(error){
+			return error
+		}
+	}
+}
+
+export function getReviewByUser (id){
+	console.log(id)
+	return async function (dispatch){
+		try{
+			const response = await axios.get(`${url}/review/${id}/user`)
+			console.log( "response",response)
+			dispatch({
+				type: "GET_REVIEW_BY_USER",
+				payload: response.data
+			})
+		}
+		catch(error){
+			return error
+		}
+	}
+}
+
+export function deleteReviews (id){
+	return async function (dispatch){
+		try{
+			const response = await axios.delete(`${url}/review/${id}/remove`)
+			dispatch({
+				type: "DELETE_REVIEW",
+				payload: response.data
+			})
+		}
+		catch(error){
+			return error
+		}
+	}
+}

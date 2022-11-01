@@ -1,8 +1,17 @@
-import React, { useState } from "react";
+
+import React, { useState  } from "react";
+
 import "./pagination.css";
 
 const Pagination = ({ currentPage, setPage, max }) => {
-	const [input, setInput] = useState(1);
+	const [input, setInput] = useState(currentPage);
+	let pages = [];
+
+	
+	for (let i = 0; i < max; i++) {
+		pages.push(i + 1);
+		
+	}
 
 	const netPage = () => {
 		setInput(parseInt(input) + 1);
@@ -14,26 +23,7 @@ const Pagination = ({ currentPage, setPage, max }) => {
 		setPage(parseInt(currentPage) - 1);
 	};
 
-	const onKeyDown = e => {
-		if (e.keyCode === 13) {
-			setPage(parseInt(e.target.value));
-
-			if (
-				parseInt(e.target.value < 1) ||
-				e.target.value > max ||
-				isNaN(parseInt(e.target.value))
-			) {
-				setPage(1);
-				setInput(1);
-			} else {
-				setPage(parseInt(e.target.value));
-			}
-		}
-	};
-
-	const onChange = e => {
-		setInput(e.target.value);
-	};
+	
 
 	return (
 		<div className="pagination">
@@ -44,17 +34,23 @@ const Pagination = ({ currentPage, setPage, max }) => {
 			>
 				Previous
 			</button>
-			<input
-				onChange={e => onChange(e)}
-				onKeyDown={e => onKeyDown(e)}
-				autoComplete="off"
-				value={input}
-				className="inputPag"
-			/>
-			<p className="pPagesPagination"> Pages of {max} </p>
 
-			<button disabled={currentPage === max} onClick={netPage} className="btnNP">
-
+			{pages.map(page => {
+				return (
+					<button
+						key={page}
+						onClick={() => {
+							setPage(page);
+							setInput(page);
+						}}
+						className={page === currentPage ? "btnPageActive" : "btnPage"}
+					>
+						{page}
+					</button>
+				);
+			})}
+			<button disabled={currentPage === max ||currentPage < 1 } onClick={netPage} className="btnNP">
+			
 				Next
 			</button>
 		</div>
@@ -62,3 +58,5 @@ const Pagination = ({ currentPage, setPage, max }) => {
 };
 
 export default Pagination;
+
+

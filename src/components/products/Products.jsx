@@ -125,7 +125,7 @@ const Products = () => {
 		setCurrentPage(1);
 		dispatch(clearError());
 		dispatch(clearDetails());
-	}, [dispatch, allProducts]);
+	}, [dispatch]);
 
 	function pagACards() {
 		if (errorMessage === "There is no product with that name") {
@@ -139,7 +139,9 @@ const Products = () => {
 				return (
 					<div>
 						<div className="navbarProduc">
-							<NavbarProduc />
+							<NavbarProduc 
+              	currentPage={currentPage}
+              />
 							<div className="cardsProd">
 								{dataEnd.map(data => {
 									return (
@@ -163,7 +165,12 @@ const Products = () => {
 	return (
 		<div className="productsDiv">
 			<NavBar />
-			{pagACards()}
+
+			<div className="navbarProduc">
+				<NavbarProduc />
+				{pagACards()}
+			</div>
+
 		</div>
 	);
 };
