@@ -15,7 +15,8 @@
 
 .bodyproductsDiscountssC {
 	display: flex;
-	justify-content: center;
+	justify-content: space-between;
+	align-items: center;
 }
 
 .productsDiscountssC {
@@ -33,11 +34,17 @@
 	padding: 0.5rem;
 }
 
+.descripAndNameDiscountC {
+	width: 100%;
+}
+
 .descripDiscountsC {
 	font-size: 1.2rem;
 	font-style: oblique;
 	padding: 0.5rem;
 	font-weight: 600;
+	width: 100%;
+
 }
 
 .imgViewDiscountDC {

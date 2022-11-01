@@ -69,12 +69,11 @@ const ViewDiscounts = () => {
 												</div>
 											</div>
 											<div>
-												<img src={e.image} className="imgViewDiscountDC"/>
+												<img src={e.image} className="imgViewDiscountDC" />
 											</div>
-											<div>
-												<div className="descripDiscountsC">{e.description}</div>
+											<div className="descripAndNameDiscountC">
+												<p className="descripDiscountsC">{e.description}</p>
 												<p className="nameDiscountsC">{e.name}</p>
-
 											</div>
 										</div>
 									)}
