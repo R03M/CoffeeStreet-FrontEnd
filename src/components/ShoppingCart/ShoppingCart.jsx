@@ -21,13 +21,13 @@ const ShoppingCart = () => {
 	const checkoutCart = useSelector(state => state.checkOut);
 	const localAccessToken = JSON.parse(localStorage.getItem("accessToken"));
 	const [actualCart, setActualCart] = React.useState(false);
-	
+
 
 	useEffect(() => {
 		if (localAccessToken) {
 				setTimeout(() => {
 					dispatch(getOrCreateShoppingCart(user.user.auth.id))
-				}, 5000);
+				}, 100);
 			}
 			else{
 				swal({
@@ -38,7 +38,7 @@ const ShoppingCart = () => {
 			}).then(() => {
 				return window.location.href = "/menu";
 			});
-		} 
+		}
 	}, [dispatch,user,localAccessToken, actualCart]);
 
 
@@ -50,7 +50,7 @@ const ShoppingCart = () => {
 			} else {
 				setActualCart(false);
 			}
-		} 
+		}
 	};
 	const handleRemove = e => {
 		if (user.hasOwnProperty("user")) {
