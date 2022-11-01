@@ -396,10 +396,11 @@ export function deleteItemCompletedCart(cart) {
 	};
 }
 
-export function updateUser(email) {
+export function updateUser(id, payload) {
+	console.log(id,payload)
 	return async function () {
 		try {
-			await axios.post(`${url}/user/update`, email);
+			await axios.put(`${url}/users/update/${id}`, payload);
 		} catch (error) {
 			console.log(error);
 		}
