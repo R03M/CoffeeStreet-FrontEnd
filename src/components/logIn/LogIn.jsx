@@ -4,6 +4,7 @@ import LoginAuth0 from "./loginButtonAuth0/LoginAuth0.jsx";
 import FormLogin from "./formLogin/FormLogin.jsx";
 import { Link } from "react-router-dom";
 import "./logIn.css";
+import Footter from "../footter/Footter.jsx";
 
 const LogIn = () => {
 	return (
@@ -18,6 +19,7 @@ const LogIn = () => {
 					<button className="btnSULC">Create account</button>
 				</Link>
 			</div>
+			<Footter/>
 		</div>
 	);
 };

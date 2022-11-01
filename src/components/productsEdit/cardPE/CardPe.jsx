@@ -32,7 +32,7 @@ const CardPe = ({ product, editC }) => {
 				dispatch(changeStatus(!product.stock, product.id));
 				setTimeout(() => {
 					dispatch(getProducts());
-				},500);
+				}, 500);
 				swal("Updated", {
 					button: false,
 					timer: 1500,
@@ -65,12 +65,14 @@ const CardPe = ({ product, editC }) => {
 		}).then(value => {
 			if (value) {
 				dispatch(deleteProduct(product.id));
-				dispatch(getProducts());
 				swal("Removed", {
 					button: false,
 					timer: 1500,
 					icon: "success"
 				});
+				setTimeout(() => {
+					dispatch(getProducts());
+				}, 500);
 			} else {
 				swal("Operation cancelled", {
 					button: false,

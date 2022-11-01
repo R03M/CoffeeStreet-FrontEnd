@@ -6,6 +6,7 @@ import { BsFillCartPlusFill } from "react-icons/bs";
 import NavBar from "../navbar/Navbar";
 import swal from "sweetalert";
 import "./ProductsDetails.css";
+import Footter from "../footter/Footter";
 // import ShoppingCart from "../ShoppingCart/ShoppingCart";
 
 const ProductsDetails = () => {
@@ -48,7 +49,7 @@ const ProductsDetails = () => {
 				button: "Ok"
 			});
 		}
-    }
+	};
 
 	function moreDetails() {
 		if (product.isPrepared === true && product.category === "coffee") {
@@ -63,7 +64,9 @@ const ProductsDetails = () => {
 						<p>Roast ➡ {product.attribute.roast}</p>
 						<p>Color ➡ {product.attribute.color}</p>
 					</div>
-						<p className="attributesPDetailsCCream">Cream ➡ {product.attribute.cream === true ? "Yes" : "No"}</p>
+					<p className="attributesPDetailsCCream">
+						Cream ➡ {product.attribute.cream === true ? "Yes" : "No"}
+					</p>
 				</div>
 			);
 		} else if (product.isPrepared === false) {
@@ -92,11 +95,19 @@ const ProductsDetails = () => {
 				dangerMode: true
 			}).then(value => {
 				if (value) {
-					dispatch(checkOut({idUser: user.id, items: [{
-						idProduct: product.id,
-						qty: 1,
-						price: product.price,
-						name: product.name}]}));
+					dispatch(
+						checkOut({
+							idUser: user.id,
+							items: [
+								{
+									idProduct: product.id,
+									qty: 1,
+									price: product.price,
+									name: product.name
+								}
+							]
+						})
+					);
 					swal("You can pay", {
 						icon: "success"
 					});
@@ -138,11 +149,11 @@ const ProductsDetails = () => {
 					</div>
 
 					<div className="typeDescripC">
-							<p className="titleTypeDescripC">This product is:</p>
-							<div className="typeDetailsProductC">
-								<p>{product.lactose === false ? "● Lactose-free" : "● With lactose"}</p>
-								<p>{product.gluten === false ? "● Gluten-free" : "● With gluten"}</p>
-								<p>{product.alcohol === false ? "● Alcohol-free" : "● With alcohol"}</p>
+						<p className="titleTypeDescripC">This product is:</p>
+						<div className="typeDetailsProductC">
+							<p>{product.lactose === false ? "● Lactose-free" : "● With lactose"}</p>
+							<p>{product.gluten === false ? "● Gluten-free" : "● With gluten"}</p>
+							<p>{product.alcohol === false ? "● Alcohol-free" : "● With alcohol"}</p>
 						</div>
 						{moreDetails()}
 					</div>
@@ -155,15 +166,25 @@ const ProductsDetails = () => {
 						Go Back
 					</button>
 					<p className="tempPDbuyAPrice">Price by unit $ {product.price}</p>
-					<button className={product.stock === true ? "tempPDbuyAAdd" : "tempPDbuyAAddNSPD"} onClick={() => handleAdd(product)}>
+					<button
+						className={product.stock === true ? "tempPDbuyAAdd" : "tempPDbuyAAddNSPD"}
+						onClick={() => handleAdd(product)}
+					>
 						Add to <BsFillCartPlusFill />
 					</button>
-					{checkoutCart? 
-				<a href={checkoutCart} >Pay with Mercado Pago</a> : <button className={product.stock === true ? "tempPDbuyABuy" : "tempPDbuyABuyNSPD"} onClick={() => handleCheckOut()}>
-						Buy now
-					</button>}
+					{checkoutCart ? (
+						<a href={checkoutCart}>Pay with Mercado Pago</a>
+					) : (
+						<button
+							className={product.stock === true ? "tempPDbuyABuy" : "tempPDbuyABuyNSPD"}
+							onClick={() => handleCheckOut()}
+						>
+							Buy now
+						</button>
+					)}
 				</div>
 			</div>
+			<Footter />
 		</div>
 	);
 };
