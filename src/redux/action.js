@@ -722,10 +722,9 @@ export function deleteReviews(id) {
 }
 
 export function deleteUserIdAdmin(email) {
-	console.log(email);
 	return async function () {
 		try {
-			await axios.delete(`${url}/admin/deleteUser`, { email: email });
+			await axios.delete(`${url}/admin/deleteUser?email=${email}`);
 		} catch (error) {
 			return error;
 		}
