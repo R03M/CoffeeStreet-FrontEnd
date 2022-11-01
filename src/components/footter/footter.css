@@ -1,0 +1,16 @@
+.footerDivC {
+	height: 130px;
+	min-height: 120px;
+	max-height: 120px;
+	border: 15px;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	background-color: rgba(221, 213, 213, 0.712);
+	background: linear-gradient(to bottom, #7d383841 100%, #0000005f 0%),
+		url("../../media/mk03.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;
+	box-shadow: rgb(253, 188, 37) 0px 0px 25px;
+}

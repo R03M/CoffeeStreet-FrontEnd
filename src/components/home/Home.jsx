@@ -6,6 +6,7 @@ import ViewNewsL from "../home/viewNewsL/ViewNewsL";
 import ViewReview from "./viewReview/ViewReview.jsx";
 import ViewDiscounts from "./discountsActive/ViewDiscounts.jsx";
 import "./home.css";
+import Footter from "../footter/Footter.jsx";
 
 const Home = () => {
 	return (
@@ -22,6 +23,7 @@ const Home = () => {
 					<Geolocation />
 					<ViewNewsL />
 				</div>
+				<Footter />
 			</div>
 		</div>
 	);
