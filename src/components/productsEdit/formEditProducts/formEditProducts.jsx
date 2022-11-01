@@ -4,7 +4,8 @@ import { Formik, Form, Field, ErrorMessage, isString } from "formik";
 import {
 	putProducts,
 	clearResPutProducts,
-	clearDetailsProductId
+	clearDetailsProductId,
+	getProducts
 } from "../../../redux/action";
 import { CATEGORIES } from "../../../models/categories.enum";
 import { TEXTURES } from "../../../models/textures.enum";
@@ -108,6 +109,9 @@ const EditProducts = ({ exitF }) => {
 			}, 1000);
 			dispatch(clearResPutProducts());
 			setErrorNoti(false);
+			setTimeout(()=>{
+				dispatch(getProducts())
+			},500)
 		} else if (errorNoti === true) {
 			swal({
 				title: "Error",

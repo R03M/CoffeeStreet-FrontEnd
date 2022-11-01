@@ -3,6 +3,7 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	justify-content: space-between;
 	object-fit: cover;
 	overflow-y: scroll;
 	background: linear-gradient(to bottom, #a4a4a441 100%, #5656565f 0%);

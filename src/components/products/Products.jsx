@@ -21,6 +21,7 @@ import Loading from "../loading/Loading";
 import ErrorSearch from "../errorSearch/ErrorSearch";
 import { useAuth0 } from "@auth0/auth0-react";
 import "./products.css";
+import Footter from "../footter/Footter";
 
 // import ShoppingCart from "../ShoppingCart/ShoppingCart.jsx";
 
@@ -161,6 +162,7 @@ const Products = () => {
 		<div className="productsDiv">
 			<NavBar />
 			{pagACards()}
+			<Footter />
 		</div>
 	);
 };

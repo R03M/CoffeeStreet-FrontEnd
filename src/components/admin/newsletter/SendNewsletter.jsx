@@ -87,7 +87,7 @@ const SendNewsletter = () => {
 			description: values.description
 		};
 		console.log(data);
-		// dispatch(sendNewsLetter(data));
+		dispatch(sendNewsLetter(data));
 		// resetForm();
 	};
 	notiSwal();
