@@ -6,8 +6,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import swal from 'sweetalert'
 
-const ChangeDescriptionR = () => {
-    const reviewCreated = useSelector((state) => state.reviews);
+const ChangeDescriptionR = ({setChangeDescription}) => {
+    const reviewCreated = useSelector((state) => state.reviewsUser);
     const {id} = useParams();
     const dispatch = useDispatch();
     const validationSchema = Yup.object({
@@ -17,9 +17,12 @@ const ChangeDescriptionR = () => {
     const initialValues = {
             description : '',
     }
-
+    
     const onSubmit = (values) => {
+        console.log(reviewCreated)
         dispatch(changeReviewDesc(reviewCreated[0].id ,values))
+        setChangeDescription(false)
+        console.log("entreeeeeeeeeeeeeeeeee")
         swal({
             title: "Description changed!",
             icon: "success",

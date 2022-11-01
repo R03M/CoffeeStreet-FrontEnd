@@ -1,13 +1,14 @@
 import React from 'react'
 import { Formik } from 'formik'
 import * as Yup from 'yup'
-import {createReview, changeReviewDesc, changeReviewRat} from "../../../redux/action";
+import {createReview, changeReviewDesc, changeReviewRat} from "../../../../redux/action";
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
+import "./reviews.css";
 
 const Reviews = () => {
     const dispatch = useDispatch();
-    const user = useSelector((state) => state.user);
+    const user = useSelector((state) => state.user);;
 
     const validationSchema = Yup.object({
         description : Yup.string().required('Required'),
@@ -31,8 +32,9 @@ const Reviews = () => {
                 onSubmit={onSubmit}
             >
                 {formik => (
-                    <div>
+                    <div className='contenedor-form-review'>
                         <form onSubmit={formik.handleSubmit}>
+                            <div className='input-description-review'>
                             <label htmlFor="description">Description</label>
                             <input
                                 type="text"
@@ -42,16 +44,22 @@ const Reviews = () => {
                                 value={formik.values.description}
                             />
                             {formik.errors.description ? <div>{formik.errors.description}</div> : null}
-                            <label htmlFor="rating">Rating</label>
-                            <input
-                                type="number"
-                                id="rating" 
-                                name="rating"
-                                onChange={formik.handleChange}
-                                value={formik.values.rating}
-                            />
-                            {formik.errors.rating ? <div>{formik.errors.rating}</div> : null}
-                            <button type="submit">Submit</button>
+                            </div>
+                            <div className='input-rating-review' >
+                                <label htmlFor="rating">Rating</label>
+                                <input className={formik.errors.rating ? "errors" : "good" }
+                                    type="number"
+                                    id="rating" 
+                                    name="rating"
+                                    onChange={formik.handleChange}
+                                    value={formik.values.rating}
+                                />
+                                
+                                {formik.errors.rating ?  <div>{formik.errors.rating}</div> : null}
+                            </div>
+                            <div className='btn-submit-review'>
+                                <button type="submit">Submit</button>
+                            </div>
                         </form>
                     </div>
                 )}
