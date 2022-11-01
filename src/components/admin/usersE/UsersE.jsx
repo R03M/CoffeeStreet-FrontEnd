@@ -5,7 +5,8 @@ import {
 	clearErrorSUser,
 	getAllUsers,
 	changeRoleUser,
-	filterUsersByRole
+	filterUsersByRole,
+	deleteUserIdAdmin
 } from "../../../redux/action";
 import NavbarUsers from "./navbarUsers/NavbarUsers";
 import RowUser from "./rows/RowUser";
@@ -45,7 +46,8 @@ const UsersE = () => {
 			icon: "warning"
 		}).then(value => {
 			if (value) {
-				// dispatch(deleteUser(e.id))
+				console.log(e.auth.email);
+				dispatch(deleteUserIdAdmin(e.auth.email))
 				swal("Removed", {
 					button: false,
 					timer: 1000,
@@ -102,6 +104,7 @@ const UsersE = () => {
 							<th>row</th>
 							<th>name</th>
 							<th>surname</th>
+							<th>email</th>
 							<th>role</th>
 							<th>switch to</th>
 							<th>account</th>

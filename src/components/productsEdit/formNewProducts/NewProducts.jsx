@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { clearResponseNewProduct, postNewProduct } from "../../../redux/action";
+import {
+	clearResponseNewProduct,
+	getProducts,
+	postNewProduct
+} from "../../../redux/action";
 import { Formik, Form, Field, ErrorMessage, isString } from "formik";
 import swal from "sweetalert";
 import { CATEGORIES } from "../../../models/categories.enum";
@@ -66,6 +70,9 @@ const NewProducts = () => {
 			});
 			setErrorNoti(false);
 			dispatch(clearResponseNewProduct());
+			setTimeout(() => {
+				dispatch(getProducts());
+			}, 500);
 		} else if (errorNoti === true) {
 			swal({
 				title: "Error",
@@ -184,7 +191,9 @@ const NewProducts = () => {
 							</div>
 
 							<div className="zoneImgNP">
-									<div className="titleImgZoneNp">You can paste the url of an image or upload a local image.</div>
+								<div className="titleImgZoneNp">
+									You can paste the url of an image or upload a local image.
+								</div>
 								<div className="imageFieldNewProduct">
 									{img === "" ? (
 										<div className="imageFieldNewProduct2">
