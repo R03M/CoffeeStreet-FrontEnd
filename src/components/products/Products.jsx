@@ -21,6 +21,7 @@ import Loading from "../loading/Loading";
 import ErrorSearch from "../errorSearch/ErrorSearch";
 import { useAuth0 } from "@auth0/auth0-react";
 import "./products.css";
+import Footter from "../footter/Footter";
 
 // import ShoppingCart from "../ShoppingCart/ShoppingCart.jsx";
 
@@ -43,7 +44,7 @@ const Products = () => {
 	// console.log('newlyCreated')
 	// console.log(newlyCreated)
 	// console.log('usuario')
-	// console.log(usuario);
+	console.log(accessToken);
 
 	const [currentPage, setCurrentPage] = useState(1);
 	const [productsPerPage, setProductsPerPage] = useState(9);
@@ -110,10 +111,12 @@ const Products = () => {
 	}, [dispatch, accessToken]);
 
 	useEffect(() => {
-		if (usuario.hasOwnProperty("user")) {
+		if (accessToken) {
+			setTimeout(() => {
 			dispatch(getOrCreateShoppingCart(usuario.user.auth.id));
+			}, 500);
 		}
-	}, []);
+	}, [ dispatch, accessToken, usuario]);
 
 	useEffect(() => {
 		if (allProducts.length === 0) {
@@ -159,6 +162,7 @@ const Products = () => {
 		<div className="productsDiv">
 			<NavBar />
 			{pagACards()}
+			<Footter />
 		</div>
 	);
 };

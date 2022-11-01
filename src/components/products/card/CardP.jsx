@@ -10,7 +10,8 @@ import {
 	addItemShoppingCart,
 	deleteProductFavourite,
 	checkOut,
-	getMyFavorites
+	getMyFavorites,
+	getOrCreateShoppingCart
 } from "../../../redux/action";
 import swal from "sweetalert";
 import "./cardP.css";
@@ -21,7 +22,7 @@ const CardP = ({ product }) => {
 	const listaFavoritos = useSelector(state => state.myFavourites);
 	const user = useSelector(state => state.user.user);
 	const checkoutCart = useSelector(state => state.checkOut);
-
+	const accessToken = useSelector(state => state.accessToken);
 	const [linkMp , setLinkMp] = useState(false);
 
 	const cart = useSelector(state => state.cart);
@@ -101,6 +102,11 @@ const CardP = ({ product }) => {
 				icon: "success",
 				button: "Ok"
 			});
+			if(accessToken){
+			setTimeout(() => {
+			dispatch(getOrCreateShoppingCart(user.auth.id))
+			}, 500);
+			}
 		}
 	};
 

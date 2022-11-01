@@ -1,6 +1,6 @@
 import React from "react";
+import Footter from "../footter/Footter.jsx";
 import NavBar from "../navbar/Navbar.jsx";
-import TempNd from "../tempNoDelete/TempNd.jsx";
 import FormS from "./formS/FormS.jsx";
 import "./signUp.css";
 
@@ -11,6 +11,7 @@ const SignUp = () => {
 			<div className="signUpBody">
 				<FormS />
 			</div>
+			<Footter />
 		</div>
 	);
 };

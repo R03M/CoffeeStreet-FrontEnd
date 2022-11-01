@@ -18,8 +18,11 @@ const Orders = () => {
 
 	const handleChangesStatus = (id) => {
 		if (id) {
-			dispatch(changeStatusOrder(id, {status:"complete"}));
+			dispatch(changeStatusOrder(id, {statusDelivery:"complete"}));
 			swal("Good job!", "You change status!", "success");
+			setTimeout(() => {
+			dispatch(getAllOrders());
+			}, 500);
 		} else {
 			swal("Error!", "You not change status!", "error");
 		}
