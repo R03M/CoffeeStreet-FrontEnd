@@ -139,17 +139,10 @@ const Products = () => {
 				return (
 					<div>
 						<div className="navbarProduc">
-							<NavbarProduc 
-              	currentPage={currentPage}
-              />
+							<NavbarProduc currentPage={currentPage} />
 							<div className="cardsProd">
 								{dataEnd.map(data => {
-									return (
-										<CardP
-											key={data.id}
-											product={data}
-										/>
-									);
+									return <CardP key={data.id} product={data} />;
 								})}
 							</div>
 						</div>
@@ -165,12 +158,7 @@ const Products = () => {
 	return (
 		<div className="productsDiv">
 			<NavBar />
-
-			<div className="navbarProduc">
-				<NavbarProduc />
-				{pagACards()}
-			</div>
-
+			{pagACards()}
 		</div>
 	);
 };
