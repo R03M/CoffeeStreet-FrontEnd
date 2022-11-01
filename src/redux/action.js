@@ -1,5 +1,4 @@
 import axios from "axios";
-import { redirect } from "react-router-dom";
 
 const url = process.env.REACT_APP_BACK_URL;
 
@@ -397,10 +396,11 @@ export function deleteItemCompletedCart(cart) {
 	};
 }
 
-export function updateUser(email) {
+export function updateUser(id, payload) {
+	console.log(id,payload)
 	return async function () {
 		try {
-			await axios.post(`${url}/user/update`, email);
+			await axios.put(`${url}/users/update/${id}`, payload);
 		} catch (error) {
 			console.log(error);
 		}
@@ -540,10 +540,10 @@ export function clearErrorSendNL() {
 	};
 }
 
-export function updateNews(payload) {
+export function updateNews(id, payload) {
 	return async function (dispatch) {
 		try {
-			const response = await axios.put(`${url}/updateNews`, payload);
+			const response = await axios.put(`${url}/news/${id}`, payload);
 			dispatch({
 				type: "PUT_UPDATE_NEWS",
 				payload: response.data.message
@@ -734,10 +734,23 @@ export function deleteReviews(id) {
 }
 
 export function deleteUserIdAdmin(email) {
-	console.log(email);
 	return async function () {
 		try {
-			await axios.delete(`${url}/admin/deleteUser`, { email: email });
+			await axios.delete(`${url}/admin/deleteUser?email=${email}`);
+		} catch (error) {
+			return error;
+		}
+	};
+}
+
+export function getDataNews() {
+	return async function (dispatch) {
+		try {
+			const response = await axios.get(`${url}/news`);
+			dispatch({
+				type: "GET_DATA_NEWS",
+				payload: response.data
+			});
 		} catch (error) {
 			return error;
 		}

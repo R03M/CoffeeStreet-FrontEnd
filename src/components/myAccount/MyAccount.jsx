@@ -9,13 +9,12 @@ const MyAccount = () => {
 	const dispatch = useDispatch();
 	const user = useSelector(state => state.user);
 	const [edit, setEdit] = useState(false);
-	const [passwordConfirm, setPasswordConfirm] = useState("");
+	// const [passwordConfirm, setPasswordConfirm] = useState("");
 
 	const [userEdited, setUserEdited] = useState({
 		name: user.user.name,
-		lastName: user.lastName,
+		surname: user.lastName,
 		image: user.user.image,
-		password: ""
 	});
 
 	const [img, setImg] = useState("");
@@ -50,13 +49,6 @@ const MyAccount = () => {
 
 	const submitNewUser = e => {
 		e.preventDefault();
-		if (passwordConfirm !== userEdited.password) {
-			swal("Passwords do not match", {
-				button: false,
-				timer: 1500,
-				icon: "error"
-			});
-		} else {
 			swal({
 				text: `Are you sure to update?`,
 				buttons: ["cancel", "confirm"],
@@ -65,7 +57,7 @@ const MyAccount = () => {
 				icon: "warning"
 			}).then(value => {
 				if (value) {
-					dispatch(updateUser(user.user.auth.email));
+					dispatch(updateUser(user.user.id, {name: userEdited.name, surname: userEdited.lastName, image: userEdited.image}));
 					swal("Updated", {
 						button: false,
 						timer: 1500,
@@ -79,7 +71,7 @@ const MyAccount = () => {
 					});
 				}
 			});
-		}
+		
 	};
 
 	const deleteMyAcount = () => {
@@ -111,9 +103,7 @@ const MyAccount = () => {
 		});
 	};
 
-	const confirmPassword = e => {
-		setPasswordConfirm(e.target.value);
-	};
+
 
 	const cancel = () => {
 		setEdit(false);
@@ -212,32 +202,7 @@ const MyAccount = () => {
 						) : null}
 					</div>
 
-					<div className="passWDivMyAcc">
-						{edit === false ? null : (
-							<>
-								<p>Password</p>
-								<input
-									type="text"
-									className="inputsMyAcc"
-									onChange={capturar}
-									name="password"
-								/>
-							</>
-						)}
-					</div>
-					<div className="passWCDivMyAcc">
-						{edit === false ? null : (
-							<>
-								<p>Confirm password</p>
-								<input
-									type="text"
-									className="inputsMyAcc"
-									onChange={confirmPassword}
-									name="repetePassworld"
-								/>
-							</>
-						)}
-					</div>
+					
 					<div className="allBtnsMyAcc">
 						{edit ? null : (
 							<>

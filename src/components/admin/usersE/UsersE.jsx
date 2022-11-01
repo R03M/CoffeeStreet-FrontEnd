@@ -46,13 +46,15 @@ const UsersE = () => {
 			icon: "warning"
 		}).then(value => {
 			if (value) {
-				console.log(e.auth.email);
-				dispatch(deleteUserIdAdmin(e.auth.email))
+				dispatch(deleteUserIdAdmin(e.auth.email));
 				swal("Removed", {
 					button: false,
 					timer: 1000,
 					icon: "success"
 				});
+				setTimeout(() => {
+					dispatch(getAllUsers());
+				}, 500);
 			} else {
 				swal("Operation cancelled", {
 					button: false,
@@ -112,15 +114,17 @@ const UsersE = () => {
 					</thead>
 					<tbody className="tbodyUsersC">
 						{currentUsers.map(user => {
-							return (
-								<RowUser
-									key={user.id}
-									user={user}
-									deleteU={deleteUser}
-									changeRole={changeRole}
-									rows={rows++}
-								/>
-							);
+							if (user.state !== "inactive") {
+								return (
+									<RowUser
+										key={user.id}
+										user={user}
+										deleteU={deleteUser}
+										changeRole={changeRole}
+										rows={rows++}
+									/>
+								);
+							}
 						})}
 					</tbody>
 				</table>
