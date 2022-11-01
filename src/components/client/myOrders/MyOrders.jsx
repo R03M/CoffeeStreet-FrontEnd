@@ -85,7 +85,7 @@ console.log("rc", reviewCreated)
 								</div>) : null}
 							{review ? (
 								<div className='review-orden'>
-								{reviewCreated ? (
+								{reviewCreated.length > 0 ? (
 									<div>
 										<button onClick={handleDelete}> Delete Reviews</button>
 										<p>Description : {reviewCreated[0].description}</p>
