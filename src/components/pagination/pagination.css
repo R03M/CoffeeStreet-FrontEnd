@@ -1,10 +1,11 @@
-.pagination{
-  display: flex;
-	/* align-items: center; */
+.pagination {
+	display: flex;
+	align-items: center;
 	justify-content: center;
+	margin: 1rem;
 }
 
-.inputPag{
+.inputPag {
 	width: 5%;
 	margin: 0.5rem;
 	border-radius: 5px;
@@ -13,10 +14,26 @@
 	font-weight: bold;
 }
 
-.btnPageActive{
-	background-color: rgb(173, 121, 30);
+.btnPageActive {
+	margin: 0.5rem;
+	padding: 0.5rem 1rem;
+	border-radius: 5px;
+	font-weight: bold;
+	font-size: 1rem;
+	cursor: pointer;
+	color: white;
+	background-color: rgb(0, 0, 0);
 }
 
+.btnPage {
+	margin: 0.5rem;
+	padding: 0.5rem 1rem;
+	border-radius: 5px;
+	font-weight: bold;
+	font-size: 1rem;
+	cursor: pointer;
+	background-color: rgb(255, 255, 255);
+}
 
 .btnNP {
 	margin: 0.5rem;
@@ -43,7 +60,6 @@
 .btnNP:hover {
 	color: aliceblue;
 	background-color: black;
-
 }
 
 .btnNP:disabled {

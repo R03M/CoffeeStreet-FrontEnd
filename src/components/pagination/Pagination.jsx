@@ -1,16 +1,14 @@
-
 import React, { useState  } from "react";
-
 import "./pagination.css";
 
 const Pagination = ({ currentPage, setPage, max }) => {
 	const [input, setInput] = useState(currentPage);
 	let pages = [];
 
-	
+
 	for (let i = 0; i < max; i++) {
 		pages.push(i + 1);
-		
+
 	}
 
 	const netPage = () => {
@@ -23,7 +21,7 @@ const Pagination = ({ currentPage, setPage, max }) => {
 		setPage(parseInt(currentPage) - 1);
 	};
 
-	
+
 
 	return (
 		<div className="pagination">
@@ -50,7 +48,7 @@ const Pagination = ({ currentPage, setPage, max }) => {
 				);
 			})}
 			<button disabled={currentPage === max ||currentPage < 1 } onClick={netPage} className="btnNP">
-			
+
 				Next
 			</button>
 		</div>
