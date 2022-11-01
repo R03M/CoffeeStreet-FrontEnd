@@ -459,6 +459,13 @@ export default function rootReducer(state = initialState, action) {
 				...state,
 				detailsOrder: action.payload
 			};
+
+		case "CLEAR_INFO_GET_EMAIL":
+			return {
+				...state,
+				checkEmail: {}
+			};
+
 		case "GET_REVIEW_BY_USER":
 			return {
 				...state,
@@ -469,6 +476,7 @@ export default function rootReducer(state = initialState, action) {
 				...state,
 				reviews: action.payload
 			}
+
 		default:
 			return state;
 	}

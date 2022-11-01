@@ -373,7 +373,6 @@ export function changeStatus(productStock, productId) {
 }
 
 export function checkOut(cart) {
-
 	// console.log(cart);
 	return async function (dispatch) {
 		try {
@@ -562,7 +561,6 @@ export function clearErrorUpdateN() {
 }
 
 export function getOrdersByUser(id) {
-
 	// console.log(id);
 
 	try {
@@ -638,6 +636,13 @@ export function changeRoleUser(id, role) {
 		} catch (error) {
 			return error;
 		}
+	};
+}
+
+
+export function clearGetInfEmail() {
+	return {
+		type: "CLEAR_INFO_GET_EMAIL"
 	};
 }
 
@@ -718,3 +723,4 @@ export function deleteReviews (id){
 		}
 	}
 }
+
