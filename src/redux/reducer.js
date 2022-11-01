@@ -29,6 +29,8 @@ const initialState = {
 	resSendNewsL: "",
 	resUpdateNews: "",
 	reviews: [],
+	reviewsUser:[],
+
 	productsWithDiscounts: [],
 	detailsOrder: []
 };
@@ -129,7 +131,7 @@ export default function rootReducer(state = initialState, action) {
 			if (action.payload === "All") {
 				return {
 					...state,
-					ordenesFilter: ordenesDeCliente,
+					ordenesFilter: [],
 					filterUserOrden: false
 				};
 			} else if (action.payload === "pending") {
@@ -465,16 +467,31 @@ export default function rootReducer(state = initialState, action) {
 				...state,
 				checkEmail: {}
 			};
+			case "DELETE_REVIEW":
+				return {
+					...state,
+					reviewsUser : []
+				}
+			case "CREATE_REVIEW":
+				return {
+					...state,
+					reviewsUser : action.payload
+				}
 
 		case "GET_REVIEW_BY_USER":
 			return {
 				...state,
-				reviews: action.payload
+				reviewsUser: action.payload
 			}
 		case "CHANGE_REVIEW_RAT":
 			return {
 				...state,
-				reviews: action.payload
+				reviewsUser: action.payload
+			}
+		case "CHANGE_REVIEW_DESC":
+			return {
+				...state,
+				reviewsUser: action.payload
 			}
 
 		default:
