@@ -6,7 +6,6 @@
 	object-fit: cover;
 	overflow-y: scroll;
 	background-image: linear-gradient(to bottom, #40404041 0%, #3231315f 100%);
-	/* url(../../../media/mk18.jpg) */
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: center;
@@ -19,10 +18,11 @@
 	flex-direction: column;
 	justify-content: center;
 	align-content: center;
-	background-image: linear-gradient(to bottom, #40404041 0%, #3231315f 0%),
-		url("https://www.nadaincluido.com/wp-content/uploads/Paisaje-de-Bali-Indonesia.jpg");
+	background: linear-gradient(to bottom, #7d383841 100%, #0000005f 0%),
+		url("../../../media/mk03.jpg");
 	background-size: cover;
 	background-position: center;
+	box-shadow: rgb(253, 188, 37) 0px 0px 25px;
 }
 
 .titleCurrentNew {
@@ -41,16 +41,15 @@
 
 .body1CurrentNew {
 	display: grid;
-	grid-template-columns: repeat(2, 1fr);
 	align-items: center;
 	justify-items: center;
 	height: 420px;
 	max-height: 420px;
 	width: 90%;
 	margin: 1rem;
-	background-color: rgba(141, 183, 111, 0.616);
+	background-color: #ddc592;
 	backdrop-filter: blur(5px);
-	border-radius: 15px;
+	border-radius: 10px;
 	padding: 2rem;
 }
 
@@ -60,20 +59,29 @@
 	font-style: oblique;
 }
 
-.img1CurrentNew {
-	width: 80%;
-	height: 80%;
+.bodyImageCurrentNew {
+	display: flex;
+	justify-items: center;
+	align-items: center;
+	justify-content: center;
+	height: 420px;
+	max-height: 420px;
+	width: 90%;
 	margin: 1rem;
-	border-radius: 15px;
-	background: url(https://media.istockphoto.com/photos/kopi-luwak-or-civet-coffee-coffee-beans-excreted-by-the-civet-on-picture-id843888026?k=20&m=843888026&s=170667a&w=0&h=YUwp4osNLUWkyrdin3h14tYqcSJkUNxtOnz5q7AmPy8=);
-	background-repeat: no-repeat;
-	background-position: center;
-	background-size: cover;
+	background-color: rgba(128, 81, 34, 0.616);
+	backdrop-filter: blur(5px);
+	border-radius: 10px;
+	padding: 2rem;
+}
+
+.imageCurrentNews {
+	height: 420px;
+	max-height: 420px;
+	border-radius: 4px;
 }
 
 .body2CurrentNew {
 	display: grid;
-	grid-template-columns: repeat(2, 1fr);
 	align-items: center;
 	justify-items: center;
 	height: 420px;
@@ -82,7 +90,7 @@
 	margin: 1rem;
 	background-color: rgba(128, 81, 34, 0.616);
 	backdrop-filter: blur(5px);
-	border-radius: 15px;
+	border-radius: 10px;
 	padding: 2rem;
 }
 
@@ -91,29 +99,17 @@
 	font-weight: 600;
 }
 
-.img2CurrentNew {
-	width: 90%;
-	height: 80%;
-	margin: 1rem;
-	border-radius: 15px;
-	background: url(https://www.cafetearte.es/img/cms/Fotos%20Blog%20Caf%C3%A9/planta-cafe-cafe-te-arte.jpeg);
-	background-repeat: no-repeat;
-	background-position: center;
-	background-size: cover;
-}
-
 .body3CurrentNew {
 	display: grid;
-	grid-template-columns: repeat(2, 1fr);
 	align-items: center;
 	justify-items: center;
-	height: 640px;
-	max-height: 640px;
+	height: 420px;
+	max-height: 420px;
 	width: 90%;
 	margin: 1rem;
 	background-color: rgba(184, 175, 70, 0.616);
 	backdrop-filter: blur(5px);
-	border-radius: 15px;
+	border-radius: 10px;
 	padding: 2rem;
 }
 
@@ -123,23 +119,19 @@
 }
 
 .buttonCurrentNewsC {
-	margin: 1rem;
-	padding: 0.2rem 1rem;
-	font-size: 2rem;
-	border-radius: 5px;
-	background-color: black;
-	color: aliceblue;
+	color: rgb(245, 192, 77);
+	background-color: #541911;
+	padding: 0.7rem;
+	border-radius: 15px;
+	font-size: 1.5rem;
 	cursor: pointer;
 	font-weight: bold;
-}
-
-.btnDivCurrentNewsC {
+	margin: 2rem;
 	transition: all 0.25s cubic-bezier(0.65, 0, 0.076, 1);
-	margin: 1rem;
 }
 
 .buttonCurrentNewsC:hover {
-	color: black;
+	background-color: rgb(245, 192, 77);
+	color: #541911;
 	transition: all 0.25s cubic-bezier(0.65, 0, 0.076, 1);
-	background-color: aliceblue;
 }

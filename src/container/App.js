@@ -21,7 +21,7 @@ import OrdersDetails from "../components/orders/ordersDetails.jsx";
 // import TempNd from "../components/tempNoDelete/TempNd";
 import "./App.css";
 
-const url = "http://localhost:3001";
+const url = process.env.REACT_APP_FRONT_URL;
 
 function App() {
 	const [loaded, setLoaded] = useState(false);
@@ -57,7 +57,7 @@ function App() {
 				<Routes>
 					<Route path="/" element={<Landing />} />
 					<Route path="/home" element={<Home />} />
-					<Route path="/home/currentNews" element={<CurrentNews />} />
+					<Route path="/home/blogCS" element={<CurrentNews />} />
 					<Route path="/menu" element={<Products />} />
 					<Route path="/products/:id" element={<ProductsDetails />} />
 					<Route path="/signUp" element={<SignUp />} />
