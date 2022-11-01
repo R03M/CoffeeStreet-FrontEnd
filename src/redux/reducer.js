@@ -29,11 +29,11 @@ const initialState = {
 	resSendNewsL: "",
 	resUpdateNews: "",
 	reviews: [],
-	reviewsUser:[],
+	reviewsUser: [],
 
 	productsWithDiscounts: [],
 	detailsOrder: [],
-	dataNews: [],
+	dataNews: []
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -472,36 +472,32 @@ export default function rootReducer(state = initialState, action) {
 				...state,
 				checkEmail: {}
 			};
-			case "DELETE_REVIEW":
-				return {
-					...state,
-					reviewsUser : []
-				}
-			case "CREATE_REVIEW":
-				return {
-					...state,
-					reviewsUser : action.payload
-				}
+		case "DELETE_REVIEW":
+			return {
+				...state,
+				reviewsUser: []
+			};
+		case "CREATE_REVIEW":
+			return {
+				...state,
+				reviewsUser: action.payload
+			};
 
 		case "GET_REVIEW_BY_USER":
 			return {
 				...state,
 
 				reviewsUser: action.payload
-			}
+			};
 		case "CHANGE_REVIEW_RAT":
 			return {
 				...state,
 				reviewsUser: action.payload
-			}
+			};
 		case "CHANGE_REVIEW_DESC":
 			return {
 				...state,
 				reviewsUser: action.payload
-			}
-
-
-				reviews: action.payload
 			};
 		case "CHANGE_REVIEW_RAT":
 			return {
