@@ -539,10 +539,10 @@ export function clearErrorSendNL() {
 	};
 }
 
-export function updateNews(payload) {
+export function updateNews(id, payload) {
 	return async function (dispatch) {
 		try {
-			const response = await axios.put(`${url}/updateNews`, payload);
+			const response = await axios.put(`${url}/news/${id}`, payload);
 			dispatch({
 				type: "PUT_UPDATE_NEWS",
 				payload: response.data.message

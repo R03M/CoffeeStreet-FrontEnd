@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Formik, Form, Field, ErrorMessage, isString } from "formik";
-import { updateNews, clearErrorUpdateN } from "../../../redux/action";
+import { updateNews, clearErrorUpdateN, getDataNews } from "../../../redux/action";
 import { uploadImage } from "../../../utils/cloudinary";
 import * as Yup from "yup";
 import swal from "sweetalert";
@@ -11,17 +11,19 @@ const UpdateNews = () => {
 	const dispatch = useDispatch();
 	const resUpdate = useSelector(state => state.resUpdateNews);
 	const [errorNoti, setErrorNoti] = useState(false);
+	const dataNews = useSelector(state => state.dataNews);
+	const data = dataNews[0];
+
 	const [img, setImg] = useState("");
 
 	const initialValues = {
-		title: "",
-		image: "",
-		description: "",
-		paragraph1: "",
-		paragraph2: "",
-		paragraph3: ""
+		title: dataNews.length ? (data.title ? data.title : "") : null,
+		image: dataNews.length ? (data.image ? data.image : "") : null,
+		description: dataNews.length ? (data.description ? data.description : "") : null,
+		paragraph1: dataNews.length ? (data.paragraph1 ? data.paragraph1 : "") : null,
+		paragraph2: dataNews.length ? (data.paragraph2 ? data.paragraph2 : "") : null,
+		paragraph3: dataNews.length ? (data.paragraph3 ? data.paragraph3 : "") : null
 	};
-
 	const newsUSchema = Yup.object().shape({
 		title: Yup.string()
 			.min(5, "Name too short")
@@ -57,7 +59,7 @@ const UpdateNews = () => {
 	};
 
 	const notiSwal = () => {
-		if (resUpdate === "Updated success") {
+		if (resUpdate === "The news has been updated successfully") {
 			swal({
 				title: "Updated successfully",
 				icon: "success",
@@ -87,7 +89,7 @@ const UpdateNews = () => {
 
 	const submUpdateNews = values => {
 		setErrorNoti(true);
-		let data = {
+		let dataNews = {
 			title: values.title,
 			image: selectUrlImg(values.image, img),
 			description: values.description,
@@ -95,8 +97,11 @@ const UpdateNews = () => {
 			paragraph2: values.paragraph2.length !== "" ? values.paragraph2 : null,
 			paragraph3: values.paragraph3.length !== "" ? values.paragraph3 : null
 		};
-		console.log(data);
-		// dispatch(updateNews(data));
+		console.log(data.id, dataNews);
+		dispatch(updateNews(data.id, dataNews));
+		setTimeout(()=>{
+			dispatch(getDataNews())
+		},500)
 	};
 	notiSwal();
 
