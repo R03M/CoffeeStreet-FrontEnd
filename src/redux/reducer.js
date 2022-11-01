@@ -30,7 +30,6 @@ const initialState = {
 	resUpdateNews: "",
 	reviews: [],
 	reviewsUser: [],
-
 	productsWithDiscounts: [],
 	detailsOrder: [],
 	dataNews: []
