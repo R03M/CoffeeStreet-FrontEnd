@@ -459,7 +459,11 @@ export default function rootReducer(state = initialState, action) {
 				...state,
 				detailsOrder: action.payload
 			};
-
+		case "CLEAR_INFO_GET_EMAIL":
+			return {
+				...state,
+				checkEmail: {}
+			};
 		default:
 			return state;
 	}

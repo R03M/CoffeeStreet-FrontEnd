@@ -1,10 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
-import { LoginUser, checkEmailUser, logPostData } from "../../../redux/action.js";
+import {
+	LoginUser,
+	checkEmailUser,
+	logPostData,
+	clearGetInfEmail
+} from "../../../redux/action.js";
 import { useNavigate } from "react-router-dom";
 import swal from "sweetalert";
-
+import { BsFillCheckCircleFill } from "react-icons/bs";
+import { AiFillCloseCircle } from "react-icons/ai";
 // import { useAuth0 } from "@auth0/auth0-react";
 import "./formLogin.css";
 const url = "http://localhost:3001";
@@ -18,9 +24,11 @@ const FormLogin = () => {
 	const tokenAcc = useSelector(state => state.accessToken);
 	const navigate = useNavigate();
 
-	let validEmail = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
+	let validEmail =
+		/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/g; // eslint-disable-next-line
 
 	const loginUser = async e => {
+		e.preventDefault();
 		// console.log("email", email);
 		if (!email) {
 			swal("Write an email", {
@@ -80,8 +88,8 @@ const FormLogin = () => {
 						console.log(error);
 					}
 				}
-			} else {
-				swal("Account invalid", {
+			} else if (email === "" || password === "") {
+				swal("You need to enter your credentials, email and password", {
 					button: false,
 					timer: 2500,
 					icon: "error"
@@ -102,14 +110,13 @@ const FormLogin = () => {
 	}, [dispatch, tokenAcc, navigate]);
 
 	const handleEmail = e => {
+		dispatch(clearGetInfEmail());
 		if (validEmail.test(e.target.value)) {
 			dispatch(checkEmailUser(e.target.value));
 
 			if (checkEmail.isGoogle === false) {
 				setEmail(e.target.value);
 			}
-		} else {
-			dispatch(checkEmailUser(e.target.value));
 		}
 	};
 
@@ -128,6 +135,18 @@ const FormLogin = () => {
 	};
 	// console.log(forgot);
 
+	const iconCheck = () => {
+		if (checkEmail.email === false || checkEmail.isGoogle === true) {
+			return (
+				<div>
+					<AiFillCloseCircle className="btnDinamicFalseFormLC" />
+				</div>
+			);
+		} else if (checkEmail.email === true || checkEmail.isGoogle === false) {
+			return <BsFillCheckCircleFill className="btnDinamicTrueFormLC" />;
+		}
+	};
+
 	return (
 		<div className="contenedor-principal-login">
 			{!forgot ? (
@@ -138,43 +157,65 @@ const FormLogin = () => {
 					<div>Write your email and we'll send you the steps to get it back:)</div>
 				</p>
 			)}
-			<div className="label-imput-email">
-				<label className="labelsFomrLC">Email</label>
-				<input
-					className="inputsFormLogC"
-					type="email"
-					name="email"
-					placeholder="coffeeStreet@gmail.com"
-					onChange={handleEmail}
-				/>
-				{checkEmail.isGoogle === true ? (
-					<p>This email is registered with Google</p>
-				) : null}
-			</div>
-			{!forgot && (
-				<div className="label-imput-password">
-					<label className="labelsFomrLC">Password</label>
-					<input
-						className="inputsFormLogC"
-						type="password"
-						name="password"
-						placeholder="●●●●●●●●"
-						onChange={handlePassword}
-					/>
-					{password.length === 0 || password.length > 2 ? null : (
-						<p>password too short</p>
+
+			<form className="label-imput-email">
+				<div className="labelsFormLC">
+					<div className="labelEmailPassWLC">
+						<label>Email</label>
+						<div className="dicInputAndIconCkeck">
+							<input
+								className="inputsFormLogC"
+								type="email"
+								name="email"
+								placeholder="coffeeStreet@gmail.com"
+								onChange={handleEmail}
+							/>
+							{iconCheck()}
+						</div>
+						<div>
+							{checkEmail.email === false
+								? "There is no active account with this email address"
+								: null}
+						</div>
+						{checkEmail.isGoogle === true ? (
+							<p className="errorMSGGoogle">This email is registered with Google</p>
+						) : null}
+					</div>
+
+					{!forgot && (
+						<div className="labelEmailPassWLC">
+							<label>Password</label>
+							<input
+								className="inputsFormLogC"
+								type="password"
+								name="password"
+								placeholder="●●●●●●●●"
+								onChange={handlePassword}
+							/>
+							{password.length === 0 || password.length > 2 ? null : (
+								<p>password too short</p>
+							)}
+						</div>
 					)}
+					<button
+						disabled={checkEmail.isGoogle === true}
+						className="button-login"
+						onClick={loginUser}
+					>
+						{!forgot ? "Login" : "Send"}
+					</button>
 				</div>
-			)}
-			{!forgot && <button onClick={forgotPass}>Forgot Password?</button>}
-			{forgot && <button onClick={back}>Regresar a Login</button>}
-			<button
-				disabled={checkEmail.isGoogle === true}
-				className="button-login"
-				onClick={loginUser}
-			>
-				{!forgot ? "Login" : "Send"}
-			</button>
+				{!forgot && (
+					<button onClick={forgotPass} type="button" className="button-login">
+						Forgot Password?
+					</button>
+				)}
+				{forgot && (
+					<button onClick={back} className="button-login">
+						Back to Login
+					</button>
+				)}
+			</form>
 		</div>
 	);
 };
