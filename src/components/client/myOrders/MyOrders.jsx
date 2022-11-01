@@ -2,7 +2,7 @@ import React, { useState,useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import "./myOrders.css";
 import {getOrdersByUser,getReviewByUser,deleteReviews} from "../../../redux/action";
-import Reviews from "./reviews";
+import Reviews from "./reviews/reviews";
 import ChangeDescriptionR from "./changeDescriptionR";
 import ChangeRating from "./changeRating";
 import swal from "sweetalert";
@@ -10,11 +10,12 @@ import swal from "sweetalert";
 
 const MyOrders = () => {
 	const dispatch = useDispatch();
-	const ordenes = useSelector((state) => state.ordenesFilter);
+	const ordenes = useSelector((state) => state.ordenes);
+	const ordenesFilter = useSelector((state) => state.ordenesFilter);
 	const filter = useSelector((state) => state.filterUserOrden);
 	const user = useSelector((state) => state.user);
-	const reviewCreated = useSelector((state) => state.reviews);
-	const[review, setReview] = useState(false);
+	const reviewCreated = useSelector((state) => state.reviewsUser);
+	const [review, setReview] = useState(false);
 	const [changeDescription, setChangeDescription] = useState(false);
 	const [changeRating, setChangeRating] = useState(false);
 
@@ -73,45 +74,66 @@ console.log("rc", reviewCreated)
 	return (
 		<div className='contenedor-principal'>
 			<div	className='filtros-orden'>
-				<div className='buttons-orden'>
-				<button  onClick={filterOrdenClient} value="All">All</button>
-				<button  onClick={filterOrdenClient} value="complete">Completed</button>
-				<button  onClick={filterOrdenClient} value="pending">Pending</button>
-				{/* <button  onClick={filterOrdenClient} value="cancelado">Cancelled</button> */}
+			  <div className="titleFilter">
+					<label>Filter by status</label>
 				</div>
-							{ordenes  ? (
-								<div className='review-orden'>
-									<button onClick={handleReview}>Review</button>
-								</div>) : null}
-							{review ? (
-								<div className='review-orden'>
-								{reviewCreated ? (
-									<div>
-										<button onClick={handleDelete}> Delete Reviews</button>
-										<p>Description : {reviewCreated[0].description}</p>
-										<p>Rating : {reviewCreated[0].rating}</p>
-										<button onClick={changeDescriptions}>Change Description</button>
-										{changeDescription ? (
-											<div>
-												<ChangeDescriptionR/>
-												
-											</div>
-												) : null}
-													<button onClick={changeRatings}>Change Rating</button>
-												{changeRating ? (
-													<div>
-														<ChangeRating/>
-													</div>) : null}
-									</div>
-								)  
-									: <Reviews/>} 
+				<div className='buttons-orden'>
+					<button  onClick={filterOrdenClient} value="All">All</button>
+					<button  onClick={filterOrdenClient} value="complete">Completed</button>
+					<button  onClick={filterOrdenClient} value="pending">Pending</button>
+				</div>	
+				<div className="contenedor-review">
+				    {ordenes.length === 0 ? (
+							<div>
+								<h1>debe hacer una compra para hacer una review</h1>
+							</div>
+						) :  reviewCreated.length === 0 ? (
+							<div className="contenedor-review-inputs">
+								<button onClick={handleReview}>Make a review</button>
+								{ review ? <Reviews /> : null}
+							</div>
+						) : (
+							<div className="contenedor-user-review">
+								<div className="contenedor-data-review">
+									{changeDescription ? <ChangeDescriptionR setChangeDescription={setChangeDescription}  /> : <p>{reviewCreated[0].description}</p>}
+									{/* <p>{reviewCreated[0].description}</p> */}
+									{changeRating ? <ChangeRating setChangeRating ={setChangeRating} /> : <p>{reviewCreated[0].rating}</p>}
+									{/* <p>{reviewCreated[0].rating}</p> */}
+									<button onClick={handleDelete}>Delete Review</button>
 								</div>
-							) : null }
+								
+								<div className="btn-change-review">
+									<button onClick={changeDescriptions}>Change Description</button>
+									<button onClick={changeRatings}>Change Rating</button>
+								</div>
+						
+							</div>
+						)}
+				</div>				
 			</div>
-
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
 			<div className='contenedor-ordenes'>
-			{ordenes.length > 0 ? (
-				ordenes.map(orden => {
+			{filter ? (
+				ordenesFilter.map(orden => {
 					return (
 						<div className='Contenedor-Orden'>
 						  <div className={orden.statusDelivery === "pending"? "status-orden-pending" : orden.statusDelivery === "complete" ? "status-orden-completed" : "status-orden-cancelado" }>
@@ -139,7 +161,41 @@ console.log("rc", reviewCreated)
 
 				})
 			) : (
-				<div>You still don't have orders</div>
+				ordenes.map(orden => {
+					return (
+						<div className='Contenedor-Orden'>
+						  <div className={orden.statusDelivery === "pending"? "status-orden-pending" : orden.statusDelivery === "complete" ? "status-orden-completed" : "status-orden-cancelado" }>
+									<h2>{orden.statusDelivery}</h2>
+							</div>
+							<div className='cuerpo-Orden'>
+							<thead>
+							<tr className="title-orden">
+								<th className="name-product-orden" >Name</th>
+								<th  className="quantity-product-orden">quantity</th>
+								<th className="price-product-orden" >price</th>
+							</tr>
+						</thead>
+						 <tbody>
+								{orden.order_product.map(item => {
+									return (
+										<div className='item-orden'>
+											<h4>{item.product.name}</h4>
+											<h4> {item.quantity}</h4>
+											<h2 className='price-item'>{item.total / item.quantity}$</h2>
+										</div>
+									)
+								})}
+							</tbody>
+
+							<div className='total-orden'>
+								<h1>Total: {orden.total}$</h1>
+							</div>
+							</div>
+							
+						</div>
+					)
+
+				})
 			)}
 
 			</div>
@@ -148,3 +204,34 @@ console.log("rc", reviewCreated)
 }
 
 export default MyOrders;
+
+
+
+// {ordenes  ? (
+// 	<div className='review-orden'>
+// 		<button onClick={handleReview}>Review</button>
+// 	</div>) : null}
+// {review ? (
+// 	<div className='review-orden'>
+// 	{reviewCreated.length > 0 ? (
+// 		<div>
+// 			<button onClick={handleDelete}> Delete Reviews</button>
+// 			<p>Description : {reviewCreated[0].description}</p>
+// 			<p>Rating : {reviewCreated[0].rating}</p>
+// 			<button onClick={changeDescriptions}>Change Description</button>
+// 			{changeDescription ? (
+// 				<div>
+// 					<ChangeDescriptionR/>
+					
+// 				</div>
+// 					) : null}
+// 						<button onClick={changeRatings}>Change Rating</button>
+// 					{changeRating ? (
+// 						<div>
+// 							<ChangeRating/>
+// 						</div>) : null}
+// 		</div>
+// 	)  
+// 		: <Reviews/>} 
+// 	</div>
+// ) : null }

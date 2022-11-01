@@ -651,10 +651,14 @@ export function createReview(payload) {
 			const response = await axios.post(`${url}/review/create`, payload);
 			dispatch({
 				type: "CREATE_REVIEW",
-				payload: response.data.review
-			});
-		} catch (error) {
-			return error;
+
+				payload: [response.data.review]
+			})
+			console.log(response.data)
+		}
+		catch(error){
+			return error
+
 		}
 	};
 }
@@ -669,10 +673,13 @@ export function changeReviewDesc(id, description) {
 			);
 			dispatch({
 				type: "CHANGE_REVIEW_DESC",
-				payload: response.data
-			});
-		} catch (error) {
-			return error;
+
+				payload: [response.data.updatedDescription]
+			})
+		}
+		catch(error){
+			return error
+
 		}
 	};
 }
@@ -683,10 +690,13 @@ export function changeReviewRat(id, rating) {
 			const response = await axios.put(`${url}/review/${id}/changerating`, rating);
 			dispatch({
 				type: "CHANGE_REVIEW_RAT",
-				payload: response.data.updatedRating
-			});
-		} catch (error) {
-			return error;
+
+				payload: [response.data.updatedRating]
+			})
+		}
+		catch(error){
+			return error
+
 		}
 	};
 }
@@ -713,10 +723,12 @@ export function deleteReviews(id) {
 			const response = await axios.delete(`${url}/review/${id}/remove`);
 			dispatch({
 				type: "DELETE_REVIEW",
-				payload: response.data
-			});
-		} catch (error) {
-			return error;
+
+			})
+		}
+		catch(error){
+			return error
+
 		}
 	};
 }
