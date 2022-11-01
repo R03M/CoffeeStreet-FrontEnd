@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { getProducts } from "../../redux/action";
-import { useDispatch } from "react-redux";
+import { getProducts, getDataNews } from "../../redux/action";
+import { useDispatch, useSelector } from "react-redux";
 import { MdOutlineInventory, MdAddBusiness } from "react-icons/md";
 import { ImUsers } from "react-icons/im";
 import { BiMailSend } from "react-icons/bi";
@@ -22,6 +22,8 @@ import MyAccount from "../myAccount/MyAccount";
 import "./admin.css";
 
 const Admin = () => {
+	const dataNews = useSelector(state => state.dataNews);
+	const allProducts = useSelector(state => state.products);
 	const dispatch = useDispatch();
 	let [cards, setCards] = useState(true);
 	let [nav, setNav] = useState(false);
@@ -431,8 +433,13 @@ const Admin = () => {
 	}
 
 	useEffect(() => {
-		dispatch(getProducts());
-	}, []);
+		if (allProducts.length < 1) {
+			dispatch(getProducts());
+		}
+		if (dataNews.length < 1) {
+			dispatch(getDataNews());
+		}
+	}, [dispatch]);
 
 	return (
 		<div className="adminDiv">

@@ -5,19 +5,17 @@ import { LoginUser, logPostData } from "../../../redux/action.js";
 import * as Yup from "yup";
 import { ROLES } from "../../../models/roles.enum";
 import { User } from "../../../models/user.class";
-
+import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import swal from "sweetalert";
 import "./formS.css";
-import { useNavigate } from "react-router-dom";
-const url = "http://localhost:3001";
 
+const url = process.env.REACT_APP_FRONT_URL;
 
 const FormS = () => {
 	const dispatch = useDispatch();
 	const accessToken = useSelector(state => state.accessToken);
-	const navigate = useNavigate()
-
+	const navigate = useNavigate();
 
 	const initialValues = {
 		name: String,
@@ -29,16 +27,16 @@ const FormS = () => {
 	const addUser = async e => {
 		let user = new User(e.name, e.surname, e.role, e.email, e.password);
 		const response = await axios.post(`${url}/register`, user);
-		console.log(response)
-		if(response){
+		console.log(response);
+		if (response) {
 			dispatch(
-			LoginUser ({
-				email: response.data.data.email,
-				password: response.data.data.password,
-				reg: true
-			})
-		);
-		}else{
+				LoginUser({
+					email: response.data.data.email,
+					password: response.data.data.password,
+					reg: true
+				})
+			);
+		} else {
 			// console.log("error at register")
 		}
 	};
@@ -47,14 +45,10 @@ const FormS = () => {
 		if (accessToken) {
 			dispatch(logPostData(accessToken));
 			setTimeout(() => {
-          navigate("/menu", { replace: true });
-        }, 500);
+				navigate("/menu", { replace: true });
+			}, 500);
 		}
-
-
 	}, [dispatch, accessToken]);
-
-
 
 	const userSchema = Yup.object().shape({
 		name: Yup.string()

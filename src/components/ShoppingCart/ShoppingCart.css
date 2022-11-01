@@ -162,3 +162,17 @@
 	color: rgb(245, 192, 77);
 	background-color: #541911;
 }
+
+.cartEmptySCC {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	height: 310px;
+	width: 600px;
+	background-color: rgba(247, 195, 81, 0.35);
+	backdrop-filter: blur(5px);
+	box-shadow: #541911 0px 0px 8px;
+	border-radius: 4px;
+	padding: 1rem;
+	margin-top: 1.5rem;
+}

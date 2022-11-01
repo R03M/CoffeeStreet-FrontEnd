@@ -5,7 +5,8 @@ import {
 	clearErrorSUser,
 	getAllUsers,
 	changeRoleUser,
-	filterUsersByRole
+	filterUsersByRole,
+	deleteUserIdAdmin
 } from "../../../redux/action";
 import NavbarUsers from "./navbarUsers/NavbarUsers";
 import RowUser from "./rows/RowUser";
@@ -45,12 +46,15 @@ const UsersE = () => {
 			icon: "warning"
 		}).then(value => {
 			if (value) {
-				// dispatch(deleteUser(e.id))
+				dispatch(deleteUserIdAdmin(e.auth.email));
 				swal("Removed", {
 					button: false,
 					timer: 1000,
 					icon: "success"
 				});
+				setTimeout(() => {
+					dispatch(getAllUsers());
+				}, 500);
 			} else {
 				swal("Operation cancelled", {
 					button: false,
@@ -102,6 +106,7 @@ const UsersE = () => {
 							<th>row</th>
 							<th>name</th>
 							<th>surname</th>
+							<th>email</th>
 							<th>role</th>
 							<th>switch to</th>
 							<th>account</th>
@@ -109,15 +114,17 @@ const UsersE = () => {
 					</thead>
 					<tbody className="tbodyUsersC">
 						{currentUsers.map(user => {
-							return (
-								<RowUser
-									key={user.id}
-									user={user}
-									deleteU={deleteUser}
-									changeRole={changeRole}
-									rows={rows++}
-								/>
-							);
+							if (user.state !== "inactive") {
+								return (
+									<RowUser
+										key={user.id}
+										user={user}
+										deleteU={deleteUser}
+										changeRole={changeRole}
+										rows={rows++}
+									/>
+								);
+							}
 						})}
 					</tbody>
 				</table>

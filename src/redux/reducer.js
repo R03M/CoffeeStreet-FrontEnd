@@ -30,7 +30,8 @@ const initialState = {
 	resUpdateNews: "",
 	reviews: [],
 	productsWithDiscounts: [],
-	detailsOrder: []
+	detailsOrder: [],
+	dataNews: [],
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -135,13 +136,17 @@ export default function rootReducer(state = initialState, action) {
 			} else if (action.payload === "pending") {
 				return {
 					...state,
-					ordenesFilter: ordenesDeCliente.filter(orden => orden.statusDelivery === "pending"),
+					ordenesFilter: ordenesDeCliente.filter(
+						orden => orden.statusDelivery === "pending"
+					),
 					filterUserOrden: true
 				};
 			} else if (action.payload === "complete") {
 				return {
 					...state,
-					ordenesFilter: ordenesDeCliente.filter(orden => orden.statusDelivery === "complete"),
+					ordenesFilter: ordenesDeCliente.filter(
+						orden => orden.statusDelivery === "complete"
+					),
 					filterUserOrden: true
 				};
 			} else if (action.payload === "cancelado") {
@@ -470,13 +475,17 @@ export default function rootReducer(state = initialState, action) {
 			return {
 				...state,
 				reviews: action.payload
-			}
+			};
 		case "CHANGE_REVIEW_RAT":
 			return {
 				...state,
 				reviews: action.payload
-			}
-
+			};
+		case "GET_DATA_NEWS":
+			return {
+				...state,
+				dataNews: action.payload
+			};
 		default:
 			return state;
 	}

@@ -12,8 +12,8 @@ import { useDispatch, useSelector } from "react-redux";
 import NavBar from "../navbar/Navbar";
 import swal from "sweetalert";
 import Footter from "../footter/Footter";
-import "./ShoppingCart.css";
 import { Link } from "react-router-dom";
+import "./ShoppingCart.css";
 
 const ShoppingCart = () => {
 	const dispatch = useDispatch();
@@ -32,6 +32,7 @@ const ShoppingCart = () => {
 			swal({
 				title: "You must be logged in to access your shopping cart",
 				text: "You will be redirected to the menu",
+				closeOnClickOutside: false,
 				icon: "info",
 				button: "Ok"
 			}).then(() => {
@@ -135,7 +136,16 @@ const ShoppingCart = () => {
 	};
 
 	const headerCart = () => {
-		if (cart.length) {
+		if (!cart.items || cart.items.length === 0) {
+			return (
+				<div className="cartEmptySCC">
+					<h1>Your cart is empty, go to menu to start adding products</h1>
+					<Link to={"/menu"}>
+						<button className="cartBtnESC">Menu</button>
+					</Link>
+				</div>
+			);
+		} else {
 			return (
 				<div className="headerCartSC">
 					<div>
@@ -154,15 +164,6 @@ const ShoppingCart = () => {
 							</button>
 						)}
 					</div>
-				</div>
-			);
-		} else {
-			return (
-				<div>
-					<p>Your cart is empty, go to menu to start adding products</p>
-					<Link to={"/menu"}>
-						<button>Menu</button>
-					</Link>
 				</div>
 			);
 		}
