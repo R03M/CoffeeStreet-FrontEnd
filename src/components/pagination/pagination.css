@@ -13,6 +13,11 @@
 	font-weight: bold;
 }
 
+.btnPageActive{
+	background-color: rgb(173, 121, 30);
+}
+
+
 .btnNP {
 	margin: 0.5rem;
 	background-color: aliceblue;

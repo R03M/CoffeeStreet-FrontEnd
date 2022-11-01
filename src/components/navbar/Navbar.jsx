@@ -9,7 +9,7 @@ const NavBar = () => {
 	const statusCart = useSelector(state => state.cart);
 	const user = useSelector(state => state.user.user);
 	const [viewUser, setViewUser] = useState(false);
-	// console.log(user)
+	console.log(statusCart.items.length);
 
 	const handlerUser = () => {
 		if (viewUser === false) {
@@ -35,7 +35,7 @@ const NavBar = () => {
 
 				<Link to={"/cart"}>
 					<button className="btnNBCU">
-						<BsFillCartFill /> {statusCart.length}
+						<BsFillCartFill /> {statusCart.items.length}
 					</button>
 				</Link>
 				{user ? (

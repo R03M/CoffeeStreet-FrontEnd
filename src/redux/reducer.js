@@ -135,13 +135,13 @@ export default function rootReducer(state = initialState, action) {
 			} else if (action.payload === "pending") {
 				return {
 					...state,
-					ordenesFilter: ordenesDeCliente.filter(orden => orden.status === "pending"),
+					ordenesFilter: ordenesDeCliente.filter(orden => orden.statusDelivery === "pending"),
 					filterUserOrden: true
 				};
-			} else if (action.payload === "Completed") {
+			} else if (action.payload === "complete") {
 				return {
 					...state,
-					ordenesFilter: ordenesDeCliente.filter(orden => orden.status === "Completed"),
+					ordenesFilter: ordenesDeCliente.filter(orden => orden.statusDelivery === "complete"),
 					filterUserOrden: true
 				};
 			} else if (action.payload === "cancelado") {
@@ -459,11 +459,24 @@ export default function rootReducer(state = initialState, action) {
 				...state,
 				detailsOrder: action.payload
 			};
+
 		case "CLEAR_INFO_GET_EMAIL":
 			return {
 				...state,
 				checkEmail: {}
 			};
+
+		case "GET_REVIEW_BY_USER":
+			return {
+				...state,
+				reviews: action.payload
+			}
+		case "CHANGE_REVIEW_RAT":
+			return {
+				...state,
+				reviews: action.payload
+			}
+
 		default:
 			return state;
 	}
