@@ -13,7 +13,8 @@ import { BsFillCheckCircleFill } from "react-icons/bs";
 import { AiFillCloseCircle } from "react-icons/ai";
 // import { useAuth0 } from "@auth0/auth0-react";
 import "./formLogin.css";
-const url = "http://localhost:3001";
+
+const url = process.env.REACT_APP_BACK_URL;
 
 const FormLogin = () => {
 	const checkEmail = useSelector(state => state.checkEmail);

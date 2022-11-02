@@ -21,7 +21,7 @@ import OrdersDetails from "../components/orders/ordersDetails.jsx";
 // import TempNd from "../components/tempNoDelete/TempNd";
 import "./App.css";
 
-const url = process.env.REACT_APP_FRONT_URL;
+const url = process.env.REACT_APP_BACK_URL;
 
 function App() {
 	const [loaded, setLoaded] = useState(false);
