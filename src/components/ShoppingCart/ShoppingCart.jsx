@@ -13,6 +13,7 @@ import NavBar from "../navbar/Navbar";
 import swal from "sweetalert";
 import Footter from "../footter/Footter";
 import { Link } from "react-router-dom";
+import { FaRegHandshake } from "react-icons/fa";
 import "./ShoppingCart.css";
 
 const ShoppingCart = () => {
@@ -152,12 +153,14 @@ const ShoppingCart = () => {
 						<p className="titleCartSC">Added products</p>
 						<h2>Total $ {cart.cartTotal}</h2>
 					</div>
-					<div>
+					<div className="btnsDeletAndCheckCreSCC">
 						<button className="deleteBtnAllCartSC" onClick={() => handleClear()}>
 							Delete All
 						</button>
 						{checkoutCart ? (
-							<a href={checkoutCart}>Pay with Mercado Pago</a>
+							<a href={checkoutCart} className="btnMPShopingCartC">
+								Pay with Mercado Pago <FaRegHandshake className="iconHandsMPSCC" />
+							</a>
 						) : (
 							<button className="btnBCartTemp" onClick={() => handleCheckout()}>
 								Create Order
@@ -168,7 +171,6 @@ const ShoppingCart = () => {
 			);
 		}
 	};
-	console.log(cart)
 
 	const cardsShopping = () => {
 		return cart.items?.map(e => (
@@ -193,7 +195,9 @@ const ShoppingCart = () => {
 				</div>
 				<div className="totalCardSC">
 					<h2>Subtotal</h2>
-					<h2>{e.discount === null ? e.price : Math.round(e.discountedPrice * 100) / 100 }</h2>
+					<h2>
+						{e.discount === null ? e.price : Math.round(e.discountedPrice * 100) / 100}
+					</h2>
 				</div>
 			</div>
 		));

@@ -251,7 +251,8 @@ const CardP = ({ product }) => {
 			<div className="divTempCart">
 				{linkMp ? (
 					<a className="btnMercadoPago" href={checkoutCart}>
-						<FaRegHandshake className="iconHandsMPBTNCP" /> Pay MP
+						Pay MP
+						<FaRegHandshake className="iconHandsMPBTNCP" />
 					</a>
 				) : (
 					<button
