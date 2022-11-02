@@ -397,7 +397,6 @@ export function deleteItemCompletedCart(cart) {
 }
 
 export function updateUser(id, payload) {
-	console.log(id,payload)
 	return async function () {
 		try {
 			await axios.put(`${url}/users/update/${id}`, payload);
@@ -617,8 +616,6 @@ export function detailsOrder(id) {
 	return async function (dispatch) {
 		try {
 			const response = await axios.get(`${url}/order/${id}`);
-			console.log(response.data);
-
 			dispatch({
 				type: "GET_DETAILS_ORDER",
 				payload: response.data
@@ -653,18 +650,15 @@ export function createReview(payload) {
 				type: "CREATE_REVIEW",
 
 				payload: [response.data.review]
-			})
-			console.log(response.data)
-		}
-		catch(error){
-			return error
-
+			});
+			console.log(response.data);
+		} catch (error) {
+			return error;
 		}
 	};
 }
 
 export function changeReviewDesc(id, description) {
-	console.log(id, description);
 	return async function (dispatch) {
 		try {
 			const response = await axios.put(
@@ -675,11 +669,9 @@ export function changeReviewDesc(id, description) {
 				type: "CHANGE_REVIEW_DESC",
 
 				payload: [response.data.updatedDescription]
-			})
-		}
-		catch(error){
-			return error
-
+			});
+		} catch (error) {
+			return error;
 		}
 	};
 }
@@ -692,21 +684,17 @@ export function changeReviewRat(id, rating) {
 				type: "CHANGE_REVIEW_RAT",
 
 				payload: [response.data.updatedRating]
-			})
-		}
-		catch(error){
-			return error
-
+			});
+		} catch (error) {
+			return error;
 		}
 	};
 }
 
 export function getReviewByUser(id) {
-	console.log(id);
 	return async function (dispatch) {
 		try {
 			const response = await axios.get(`${url}/review/${id}/user`);
-			console.log("response", response);
 			dispatch({
 				type: "GET_REVIEW_BY_USER",
 				payload: response.data
@@ -722,13 +710,10 @@ export function deleteReviews(id) {
 		try {
 			const response = await axios.delete(`${url}/review/${id}/remove`);
 			dispatch({
-				type: "DELETE_REVIEW",
-
-			})
-		}
-		catch(error){
-			return error
-
+				type: "DELETE_REVIEW"
+			});
+		} catch (error) {
+			return error;
 		}
 	};
 }

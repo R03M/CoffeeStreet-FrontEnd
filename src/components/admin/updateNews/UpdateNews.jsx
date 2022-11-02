@@ -97,7 +97,6 @@ const UpdateNews = () => {
 			paragraph2: values.paragraph2.length !== "" ? values.paragraph2 : null,
 			paragraph3: values.paragraph3.length !== "" ? values.paragraph3 : null
 		};
-		console.log(data.id, dataNews);
 		dispatch(updateNews(data.id, dataNews));
 		setTimeout(()=>{
 			dispatch(getDataNews())

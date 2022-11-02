@@ -86,9 +86,8 @@ const SendNewsletter = () => {
 			image: selectUrlImg(values.image, img),
 			description: values.description
 		};
-		console.log(data);
 		dispatch(sendNewsLetter(data));
-		// resetForm();
+		resetForm();
 	};
 	notiSwal();
 
