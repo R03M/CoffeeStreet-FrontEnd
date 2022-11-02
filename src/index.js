@@ -8,7 +8,7 @@ import { Auth0Provider } from "@auth0/auth0-react";
 import "./index.css";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-
+const url = process.env.REACT_APP_FRONT_URL;
 const domain = process.env.REACT_APP_AUTH0_DOMAIN;
 const clientId = process.env.REACT_APP_AUTH0_CLIENT_ID;
 
@@ -19,7 +19,7 @@ root.render(
 				<Auth0Provider
 					domain={domain}
 					clientId={clientId}
-					redirectUri="http://localhost:3000/menu"
+					redirectUri={`${url}/menu`}
 				>
 					<App />
 				</Auth0Provider>
