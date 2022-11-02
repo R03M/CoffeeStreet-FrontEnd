@@ -33,10 +33,7 @@ const SendNewsletter = () => {
 	};
 
 	const notiSwal = () => {
-		if (
-			resSendNL ===
-			"The newsletter was successfully sentThe newsletter was successfully sent"
-		) {
+		if (resSendNL.length > 1) {
 			swal({
 				title: "Sent successfully",
 				icon: "success",
@@ -65,7 +62,7 @@ const SendNewsletter = () => {
 		),
 		description: Yup.string()
 			.min(15, "Description too short")
-			.max(500, "Description too long")
+			.max(1500, "Description too long")
 			.required("Description is required")
 	});
 
@@ -88,6 +85,7 @@ const SendNewsletter = () => {
 		};
 		dispatch(sendNewsLetter(data));
 		resetForm();
+		setImg("");
 	};
 	notiSwal();
 
@@ -100,10 +98,15 @@ const SendNewsletter = () => {
 			>
 				{({ values, touched, errors }) => (
 					<Form className="formSendNLC">
-
 						<div className="titleFieldSendNC">
 							<label htmlFor="title">Title</label>
-							<Field id="title" type="text" name="title" placeholder="" className="inputTitleFSNC"/>
+							<Field
+								id="title"
+								type="text"
+								name="title"
+								placeholder=""
+								className="inputTitleFSNC"
+							/>
 							{errors.title && touched.title && (
 								<ErrorMessage name="title" component="div" className="colorErrorMsgSNC" />
 							)}
@@ -111,7 +114,13 @@ const SendNewsletter = () => {
 
 						<div className="descriptionFieldSendNC">
 							<label htmlFor="description">Description</label>
-							<Field as="textarea" id="description" name="description" placeholder="" className="inputDescripFSNC"/>
+							<Field
+								as="textarea"
+								id="description"
+								name="description"
+								placeholder=""
+								className="inputDescripFSNC"
+							/>
 							{errors.description && touched.description && (
 								<ErrorMessage
 									name="description"

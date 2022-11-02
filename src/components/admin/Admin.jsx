@@ -68,6 +68,7 @@ const Admin = () => {
 	};
 
 	const handlerProducts = () => {
+		dispatch(getProducts());
 		if (products === false) {
 			setProducts(true);
 			setNav(true);
@@ -206,6 +207,7 @@ const Admin = () => {
 	};
 
 	const handlerDiscounts = () => {
+		dispatch(getProducts());
 		if (discounts === false) {
 			setDiscounts(true);
 			setNav(true);

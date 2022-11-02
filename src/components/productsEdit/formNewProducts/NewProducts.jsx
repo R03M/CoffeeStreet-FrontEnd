@@ -149,6 +149,7 @@ const NewProducts = () => {
 			color: values.category === CATEGORIES.COFFEE_READY_TO_DRINK ? values.color : null
 		};
 		dispatch(postNewProduct(newProduct));
+		setImg("");
 		resetForm();
 	};
 	notiSwal();
