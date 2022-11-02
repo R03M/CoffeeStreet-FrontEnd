@@ -44,7 +44,7 @@ const Products = () => {
 	// console.log('newlyCreated')
 	// console.log(newlyCreated)
 	// console.log('usuario')
-	console.log(accessToken);
+	// console.log(accessToken);
 
 	const [currentPage, setCurrentPage] = useState(1);
 	const [productsPerPage, setProductsPerPage] = useState(9);
