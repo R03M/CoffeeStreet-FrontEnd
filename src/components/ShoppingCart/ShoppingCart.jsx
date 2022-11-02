@@ -151,7 +151,7 @@ const ShoppingCart = () => {
 				<div className="headerCartSC">
 					<div>
 						<p className="titleCartSC">Added products</p>
-						<h2>Total $ {cart.cartTotal}</h2>
+						<h2>Total $ { Math.round(cart.cartTotal * 100) / 100 }</h2>
 					</div>
 					<div className="btnsDeletAndCheckCreSCC">
 						<button className="deleteBtnAllCartSC" onClick={() => handleClear()}>
@@ -176,7 +176,7 @@ const ShoppingCart = () => {
 		return cart.items?.map(e => (
 			<div key={e.id} className="cardCartSC">
 				<div className="titleCardSC">
-					<h3>ud ${e.price / e.qty}</h3>
+					<h3>ud ${Math.round(e.price / e.qty * 100)/100}</h3>
 					<h2>{e.name}</h2>
 					<button className="removeBtnCardSC" onClick={() => handleRemove(e)}>
 						X
@@ -196,10 +196,10 @@ const ShoppingCart = () => {
 				<div className="totalCardSC">
 					<h2>Subtotal</h2>
 					<h2>
-						{e.discount === null ? e.price : Math.round(e.discountedPrice * 100) / 100}
-					</h2>
-				</div>
-			</div>
+						{e.discount === null ? e.price : Math.round(e.discountedPrice * 100) /100  } $
+					</h2>														  											
+				</div>										
+			</div>																
 		));
 	};
 
