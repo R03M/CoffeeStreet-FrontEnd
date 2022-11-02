@@ -1,0 +1,49 @@
+.ordersDetailsDivC {
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-items: center;
+	object-fit: cover;
+	font-weight: 600;
+	margin-top: 5rem;
+}
+
+.tableOrdersDetailsC {
+	width: 80%;
+	background-color: #eed9ad;
+	box-shadow: #541911 0px 0px 4px;
+	padding: 1rem;
+}
+
+.theadPOrdersDetailsC {
+	background-color: #541911;
+	box-shadow: #f5c04d 0px 0px 2px;
+	color: #f5c04d;
+	font-size: 1.5rem;
+	text-transform: uppercase;
+}
+
+.tbodyOrdersDetailsC {
+	font-size: 1.1rem;
+}
+
+.btnDivGoBackOrdersDetailsC {
+	margin: 1rem;
+}
+
+.btnGoBackOrdersDetails {
+	background-color: #f5c04d;
+	color: #541911;
+	font-size: 2rem;
+	font-weight: 700;
+	width: 100%;
+	cursor: pointer;
+	margin-left: 2px;
+	margin-right: 2px;
+}
+
+.btnGoBackOrdersDetails:hover {
+	color: #f5c04d;
+	background-color: #541911;
+}

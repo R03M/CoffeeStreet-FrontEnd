@@ -17,8 +17,7 @@ import About from "../components/About/About.jsx";
 import ProductsDetails from "../components/productsDetails/ProductsDetails.jsx";
 import ShoppingCart from "../components/ShoppingCart/ShoppingCart.jsx";
 import ResetPassword from "../components/resetPassword/resetPassword.jsx";
-import OrdersDetails from "../components/orders/ordersDetails.jsx";
-// import TempNd from "../components/tempNoDelete/TempNd";
+import OrdersDetails from "../components/orders/ordersDetails/ordersDetails.jsx";
 import "./App.css";
 
 const url = process.env.REACT_APP_BACK_URL;
@@ -70,7 +69,6 @@ function App() {
 					<Route path="/resetPass/:token" element={<ResetPassword />} />
 					<Route path="*" element={<Error />} />
 					<Route path="/order/:id" element={<OrdersDetails />} />
-					{/* <Route path="/test1" element={<TempNd />} /> */}
 				</Routes>
 			) : (
 				<h4>Loading...</h4>
