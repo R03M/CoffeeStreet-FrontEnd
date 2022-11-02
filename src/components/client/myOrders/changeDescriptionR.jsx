@@ -17,12 +17,10 @@ const ChangeDescriptionR = ({setChangeDescription}) => {
     const initialValues = {
             description : '',
     }
-    
+
     const onSubmit = (values) => {
-        console.log(reviewCreated)
         dispatch(changeReviewDesc(reviewCreated[0].id ,values))
         setChangeDescription(false)
-        console.log("entreeeeeeeeeeeeeeeeee")
         swal({
             title: "Description changed!",
             icon: "success",
@@ -31,7 +29,7 @@ const ChangeDescriptionR = ({setChangeDescription}) => {
     }
 
     return (
-        <div> 
+        <div>
             <Formik
                 initialValues={initialValues}
                 validationSchema={validationSchema}

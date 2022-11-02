@@ -16,6 +16,7 @@ const FormS = () => {
 	const dispatch = useDispatch();
 	const accessToken = useSelector(state => state.accessToken);
 	const navigate = useNavigate();
+	const imgDefault = "https://res.cloudinary.com/db6aq84ze/image/upload/v1667006954/coffeeStreetData/userD.jpg_csdmut.png";
 
 	const initialValues = {
 		name: String,
@@ -25,9 +26,8 @@ const FormS = () => {
 		password: String
 	};
 	const addUser = async e => {
-		let user = new User(e.name, e.surname, e.role, e.email, e.password);
+		let user = new User(e.name, e.surname, e.role, e.email, e.password, imgDefault);
 		const response = await axios.post(`${url}/register`, user);
-		console.log(response);
 		if (response) {
 			dispatch(
 				LoginUser({

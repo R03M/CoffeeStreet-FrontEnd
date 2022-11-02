@@ -32,7 +32,7 @@ const MyOrders = () => {
 
 	const filterOrdenClient =(e) =>{
 		dispatch({type: "FILTER_ORDEN_CLIENT", payload: e.target.value})
-		
+
 	}
 
 	const handleReview = () => {
@@ -68,8 +68,8 @@ const MyOrders = () => {
 		})
 	}
 
-console.log("ordenes", ordenes)
-console.log("rc", reviewCreated)
+// console.log("ordenes", ordenes)
+// console.log("rc", reviewCreated)
 
 	return (
 		<div className='contenedor-principal'>
@@ -81,7 +81,7 @@ console.log("rc", reviewCreated)
 					<button  onClick={filterOrdenClient} value="All">All</button>
 					<button  onClick={filterOrdenClient} value="complete">Completed</button>
 					<button  onClick={filterOrdenClient} value="pending">Pending</button>
-				</div>	
+				</div>
 				<div className="contenedor-review">
 				    {ordenes.length === 0 ? (
 							<div>
@@ -101,36 +101,36 @@ console.log("rc", reviewCreated)
 									{/* <p>{reviewCreated[0].rating}</p> */}
 									<button onClick={handleDelete}>Delete Review</button>
 								</div>
-								
+
 								<div className="btn-change-review">
 									<button onClick={changeDescriptions}>Change Description</button>
 									<button onClick={changeRatings}>Change Rating</button>
 								</div>
-						
+
 							</div>
 						)}
-				</div>				
+				</div>
 			</div>
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 			<div className='contenedor-ordenes'>
 			{filter ? (
 				ordenesFilter.map(orden => {
@@ -155,7 +155,7 @@ console.log("rc", reviewCreated)
 								<h1>Total: {orden.total}$</h1>
 							</div>
 							</div>
-							
+
 						</div>
 					)
 
@@ -191,7 +191,7 @@ console.log("rc", reviewCreated)
 								<h1>Total: {orden.total}$</h1>
 							</div>
 							</div>
-							
+
 						</div>
 					)
 
@@ -222,7 +222,7 @@ export default MyOrders;
 // 			{changeDescription ? (
 // 				<div>
 // 					<ChangeDescriptionR/>
-					
+
 // 				</div>
 // 					) : null}
 // 						<button onClick={changeRatings}>Change Rating</button>
@@ -231,7 +231,7 @@ export default MyOrders;
 // 							<ChangeRating/>
 // 						</div>) : null}
 // 		</div>
-// 	)  
-// 		: <Reviews/>} 
+// 	)
+// 		: <Reviews/>}
 // 	</div>
 // ) : null }
