@@ -168,6 +168,7 @@ const ShoppingCart = () => {
 			);
 		}
 	};
+	console.log(cart)
 
 	const cardsShopping = () => {
 		return cart.items?.map(e => (
@@ -192,7 +193,7 @@ const ShoppingCart = () => {
 				</div>
 				<div className="totalCardSC">
 					<h2>Subtotal</h2>
-					<h2>{e.price}</h2>
+					<h2>{e.discount === null ? e.price : Math.round(e.discountedPrice * 100) / 100 }</h2>
 				</div>
 			</div>
 		));
