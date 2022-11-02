@@ -4,6 +4,7 @@ import { BiDrink, BiHeart } from "react-icons/bi";
 import { RiHeart3Fill } from "react-icons/ri";
 import { GiMilkCarton, GiWheat } from "react-icons/gi";
 import { BsInfo, BsFillCartPlusFill } from "react-icons/bs";
+import { FaRegHandshake } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import {
 	addProductFavourite,
@@ -23,10 +24,9 @@ const CardP = ({ product }) => {
 	const user = useSelector(state => state.user.user);
 	const checkoutCart = useSelector(state => state.checkOut);
 	const accessToken = useSelector(state => state.accessToken);
-	const [linkMp , setLinkMp] = useState(false);
+	const [linkMp, setLinkMp] = useState(false);
 
 	const cart = useSelector(state => state.cart);
-
 
 	const alcohol = () => {
 		if (product.alcohol === true) {
@@ -94,7 +94,7 @@ const CardP = ({ product }) => {
 				icon: "info",
 				button: "Ok"
 			});
-		} else {
+		} else if (product.stock === true) {
 			dispatch(addItemShoppingCart({ idCart: cart.cartId, idProduct: product.id }));
 			swal({
 				title: "Product added to cart",
@@ -102,10 +102,10 @@ const CardP = ({ product }) => {
 				icon: "success",
 				button: "Ok"
 			});
-			if(accessToken){
-			setTimeout(() => {
-			dispatch(getOrCreateShoppingCart(user.auth.id))
-			}, 500);
+			if (accessToken) {
+				setTimeout(() => {
+					dispatch(getOrCreateShoppingCart(user.auth.id));
+				}, 500);
 			}
 		}
 	};
@@ -154,7 +154,7 @@ const CardP = ({ product }) => {
 	};
 
 	const handleCheckout = () => {
-		if (user) {
+		if (user && product.stock === true) {
 			swal({
 				title: "Are you sure you want to buy this product?",
 				icon: "warning",
@@ -190,7 +190,7 @@ const CardP = ({ product }) => {
 					});
 				}
 			});
-		} else {
+		} else if (!user) {
 			swal({
 				title: "You must be logged in to buy products",
 				icon: "info",
@@ -249,13 +249,18 @@ const CardP = ({ product }) => {
 			<p className="priceCardPC">Price by unit $ {product.price}</p>
 
 			<div className="divTempCart">
-				{linkMp?
-				<a className="btnMercadoPago" href={checkoutCart} >Pay MP</a> : <button
-					className={product.stock === true ? "btnBCartTemp" : "btnBCartTempNSCP"}
-					onClick={e => handleCheckout()}
-				>
-					Buy
-				</button>}
+				{linkMp ? (
+					<a className="btnMercadoPago" href={checkoutCart}>
+						<FaRegHandshake className="iconHandsMPBTNCP" /> Pay MP
+					</a>
+				) : (
+					<button
+						className={product.stock === true ? "btnBCartTemp" : "btnBCartTempNSCP"}
+						onClick={e => handleCheckout()}
+					>
+						Buy
+					</button>
+				)}
 				<button
 					className={product.stock === true ? "btnACartTemp" : "btnACartTempNSCP"}
 					onClick={() => handleAdd(product)}
