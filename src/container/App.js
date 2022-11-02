@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, Navigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logPostData } from "../redux/action";
 import Home from "../components/home/Home.jsx";
@@ -27,6 +27,8 @@ function App() {
 	const dispatch = useDispatch();
 	const refresh = useSelector(state => state.refreshToken);
 	const accessToken = useSelector(state => state.accessToken);
+	const userData = useSelector(state => state.user);
+	const [role, setRole] = useState("");
 
 	useEffect(() => {
 		const refreshToken = async function () {
@@ -46,9 +48,28 @@ function App() {
 			}
 			setLoaded(true);
 		};
-
 		refreshToken();
 	}, []);
+
+	useEffect(() => {
+		setTimeout(() => {
+			if (userData.length !== 0) {
+				setRole(userData.user.role);
+			}
+		}, 500);
+	}, [role]);
+
+	const accessPanel = rol => {
+		if (rol === "") {
+			return <Navigate to="/home" />;
+		} else if (rol === "admin") {
+			return <Admin />;
+		} else if (rol === "employee") {
+			return <Employee />;
+		} else if (rol === "client") {
+			return <Client />;
+		}
+	};
 
 	return (
 		<div className="App">
@@ -61,9 +82,9 @@ function App() {
 					<Route path="/products/:id" element={<ProductsDetails />} />
 					<Route path="/signUp" element={<SignUp />} />
 					<Route path="/signIn" element={<LogIn />} />
-					<Route path="/admin" element={<Admin />} />
-					<Route path="/employee" element={<Employee />} />
-					<Route path="/client" element={<Client />} />
+					<Route path="/admin" element={accessPanel(role)} />
+					<Route path="/employee" element={accessPanel(role)} />
+					<Route path="/client" element={accessPanel(role)} />
 					<Route path="/about" element={<About />} />
 					<Route path="/cart" element={<ShoppingCart />} />
 					<Route path="/resetPass/:token" element={<ResetPassword />} />
