@@ -110,6 +110,7 @@
 .tempPDbuyA {
 	display: flex;
 	justify-content: center;
+	align-items: center;
 	margin: 1rem;
 }
 
@@ -227,4 +228,33 @@
 	margin-top: 1px;
 	font-weight: 500;
 	font-size: 1.1rem;
+}
+
+
+.btnMPProductsDetailsC {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 10px 20px;
+	margin: 1rem;
+	width: 100%;
+	font-weight: bold;
+	font-size: 1.2rem;
+	cursor: pointer;
+	transition: 0.5s;
+	border-radius: 4px;
+	border: solid 2px #000000;
+	text-decoration: none;
+	color: white;
+	background-color: rgb(0, 158, 227);
+}
+
+.btnMPProductsDetailsC:hover {
+	background-color: white;
+	color: rgb(0, 158, 227);
+}
+
+.iconHandsMPPDC {
+	font-size: 2rem;
+	margin-left: 6px;
 }

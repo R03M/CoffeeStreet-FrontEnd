@@ -16,7 +16,7 @@ const NavBar = () => {
 	useEffect(() => {
 		if (accessToken) {
 			setTimeout(() => {
-			dispatch(getOrCreateShoppingCart(user.auth.id));
+				dispatch(getOrCreateShoppingCart(user.auth.id));
 			}, 500);
 		}
 	}, [accessToken]);
@@ -52,7 +52,7 @@ const NavBar = () => {
 						<img
 							onClick={handlerUser}
 							className="imgUserNC"
-							src={user.image}
+							srcSet={user.image}
 							alt={user.name}
 						/>
 						{viewUser ? (

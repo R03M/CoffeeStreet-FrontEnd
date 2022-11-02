@@ -20,8 +20,8 @@ import Pagination from "../pagination/Pagination";
 import Loading from "../loading/Loading";
 import ErrorSearch from "../errorSearch/ErrorSearch";
 import { useAuth0 } from "@auth0/auth0-react";
-import "./products.css";
 import Footter from "../footter/Footter";
+import "./products.css";
 
 // import ShoppingCart from "../ShoppingCart/ShoppingCart.jsx";
 
@@ -125,7 +125,7 @@ const Products = () => {
 		if (usuario.user) {
 			dispatch(getMyFavorites(usuario.user.id));
 		}
-		setCurrentPage(1);
+		// setCurrentPage(1);
 		dispatch(clearError());
 		dispatch(clearDetails());
 	}, [dispatch]);
@@ -140,7 +140,7 @@ const Products = () => {
 		} else {
 			if (allProducts.length) {
 				return (
-					<div>
+					<>
 						<div className="navbarProduc">
 							<NavbarProduc currentPage={currentPage} />
 							<div className="cardsProd">
@@ -150,7 +150,7 @@ const Products = () => {
 							</div>
 						</div>
 						<Pagination currentPage={currentPage} setPage={setCurrentPage} max={max} />
-					</div>
+					</>
 				);
 			} else {
 				return <Loading />;
