@@ -10,7 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import swal from "sweetalert";
 import "./formS.css";
 
-const url = process.env.REACT_APP_FRONT_URL;
+const url = process.env.REACT_APP_BACK_URL;
 
 const FormS = () => {
 	const dispatch = useDispatch();
