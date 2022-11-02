@@ -88,7 +88,7 @@ const CardP = ({ product }) => {
 	};
 
 	const handleAdd = () => {
-		if (!user) {
+		if (!user && product.stock === true) {
 			swal({
 				title: "You must be logged in to add products to your cart",
 				icon: "info",
@@ -190,7 +190,7 @@ const CardP = ({ product }) => {
 					});
 				}
 			});
-		} else if (!user) {
+		} else if (!user && product.stock === true) {
 			swal({
 				title: "You must be logged in to buy products",
 				icon: "info",
