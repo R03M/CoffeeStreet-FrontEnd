@@ -1,0 +1,31 @@
+.btnChangeStatusOC {
+	background-color: #f5c04d;
+	color: #541911;
+	font-size: 1.2rem;
+	font-weight: 600;
+	width: 80%;
+	cursor: pointer;
+	margin-left: 2px;
+	margin-right: 2px;
+}
+
+.btnChangeStatusOC:hover {
+	color: #f5c04d;
+	background-color: #541911;
+}
+
+.btnDetailsOC {
+	background-color: #f5c04d;
+	color: #541911;
+	font-size: 2.2rem;
+	font-weight: 600;
+	width: 80%;
+	cursor: pointer;
+	margin-left: 2px;
+	margin-right: 2px;
+}
+
+.btnDetailsOC:hover {
+	color: #f5c04d;
+	background-color: #541911;
+}

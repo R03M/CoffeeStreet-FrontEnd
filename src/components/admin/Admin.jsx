@@ -19,6 +19,7 @@ import Profits from "./profits/Profits";
 import NewProducts from "../productsEdit/formNewProducts/NewProducts";
 import Orders from "../orders/Orders";
 import MyAccount from "../myAccount/MyAccount";
+import OrdersDetails from "../orders/ordersDetails/ordersDetails";
 import "./admin.css";
 
 const Admin = () => {
@@ -38,6 +39,7 @@ const Admin = () => {
 	let [profits, setProfits] = useState(false);
 	let [myAcc, setMyAcc] = useState(false);
 	let [formEdit, setFormEdit] = useState(false);
+	let [detailsOrders, setDetailsOrders] = useState(false);
 
 	const handlerStock = () => {
 		if (orders === false) {
@@ -326,6 +328,27 @@ const Admin = () => {
 			setProducts(true);
 		}
 	}
+
+	function handledetailsOrders() {
+		if (detailsOrders === false) {
+			setDetailsOrders(true);
+			setNav(false);
+			setCards(false);
+			setProducts(false);
+			setUsers(false);
+			setNews(false);
+			setDiscounts(false);
+			setProfits(false);
+			setMyAcc(false);
+			setSwitchNewProduct(false);
+			setOrders(false);
+			setupdateNews(false);
+		} else if (detailsOrders === true) {
+			setDetailsOrders(false);
+			setNav(true);
+			setOrders(true);
+		}
+	}
 	function cardsAdmin() {
 		if (cards === true) {
 			return (
@@ -459,13 +482,16 @@ const Admin = () => {
 
 			{switchNewProduct === true && nav === true ? <NewProducts /> : null}
 			{users === true && nav === true ? <UsersE /> : null}
-			{orders === true && nav === true ? <Orders /> : null}
+			{orders === true && nav === true ? <Orders viewDetails={handledetailsOrders}/> : null}
 			{updateNews === true && nav === true ? <UpdateNews /> : null}
 			{news === true && nav === true ? <SendNewletter /> : null}
 			{discounts === true && nav === true ? <Discounts /> : null}
 			{profits === true && nav === true ? <Profits /> : null}
 			{myAcc === true && nav === true ? <MyAccount /> : null}
 			{formEdit === true ? <FormEditProducts exitF={handleFormEditProduct} /> : null}
+			{detailsOrders === true ? (
+				<OrdersDetails exitF={handledetailsOrders} />
+			) : null}
 		</div>
 	);
 };
