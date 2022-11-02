@@ -1,17 +1,32 @@
-.container{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+.ordersDivC {
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-items: center;
+	object-fit: cover;
+	font-weight: 600;
+	margin-top: 2rem;
 }
 
-table {
-    border: 1px solid black;
-    border-collapse: collapse;
+.tableOrdersC {
+	width: 80%;
+	background-color: #eed9ad;
+	box-shadow: #541911 0px 0px 4px;
+	padding: 1rem;
 }
 
-th, td {
-    border: 1px solid black;
-    padding: 10px;
+.theadPOrdersC {
+	background-color: #541911;
+	box-shadow: #f5c04d 0px 0px 2px;
+	color: #f5c04d;
+	font-size: 1.5rem;
+	text-transform: uppercase;
 }
+
+.tbodyOrdersC {
+	font-size: 1.1rem;
+}
+
+
 

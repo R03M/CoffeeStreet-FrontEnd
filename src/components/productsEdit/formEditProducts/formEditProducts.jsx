@@ -681,7 +681,7 @@ const EditProducts = ({ exitF }) => {
 								Cancel
 							</button>
 							<button type="submit" className="btnSubmitEp">
-								To Create
+								To update
 							</button>
 						</div>
 					</Form>
