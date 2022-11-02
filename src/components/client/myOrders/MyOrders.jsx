@@ -111,26 +111,6 @@ const MyOrders = () => {
 						)}
 				</div>
 			</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 			<div className='contenedor-ordenes'>
 			{filter ? (
 				ordenesFilter.map(orden => {
@@ -140,16 +120,24 @@ const MyOrders = () => {
 									<h2>{orden.statusDelivery}</h2>
 							</div>
 							<div className='cuerpo-Orden'>
+							<thead>
+							<tr className="title-orden">
+								<th className="name-product-orden" >Name</th>
+								<th  className="quantity-product-orden">quantity</th>
+								<th className="price-product-orden" >price</th>
+							</tr>
+						</thead>
+						 <tbody>
 								{orden.order_product.map(item => {
 									return (
 										<div className='item-orden'>
-											<p>{item.product.name}</p>
-											{/* <img className='image' src={item.image} alt={item.name}/> */}
-											<p> Qty : {item.quantity}</p>
+											<h4>{item.product.name}</h4>
+											<h4> {item.quantity}</h4>
 											<h2 className='price-item'>{item.total / item.quantity}$</h2>
 										</div>
 									)
 								})}
+							</tbody>
 
 							<div className='total-orden'>
 								<h1>Total: {orden.total}$</h1>
@@ -204,34 +192,3 @@ const MyOrders = () => {
 }
 
 export default MyOrders;
-
-
-
-// {ordenes  ? (
-// 	<div className='review-orden'>
-// 		<button onClick={handleReview}>Review</button>
-// 	</div>) : null}
-// {review ? (
-// 	<div className='review-orden'>
-// 	{reviewCreated.length > 0 ? (
-// 		<div>
-// 			<button onClick={handleDelete}> Delete Reviews</button>
-// 			<p>Description : {reviewCreated[0].description}</p>
-// 			<p>Rating : {reviewCreated[0].rating}</p>
-// 			<button onClick={changeDescriptions}>Change Description</button>
-// 			{changeDescription ? (
-// 				<div>
-// 					<ChangeDescriptionR/>
-
-// 				</div>
-// 					) : null}
-// 						<button onClick={changeRatings}>Change Rating</button>
-// 					{changeRating ? (
-// 						<div>
-// 							<ChangeRating/>
-// 						</div>) : null}
-// 		</div>
-// 	)
-// 		: <Reviews/>}
-// 	</div>
-// ) : null }

@@ -58,6 +58,7 @@ const MyAccount = () => {
 			}).then(value => {
 				if (value) {
 					dispatch(updateUser(user.user.id, {name: userEdited.name, surname: userEdited.lastName, image: userEdited.image}));
+					setEdit(false);
 					swal("Updated", {
 						button: false,
 						timer: 1500,
