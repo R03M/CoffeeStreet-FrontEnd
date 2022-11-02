@@ -49,15 +49,13 @@ function App() {
 			setLoaded(true);
 		};
 		refreshToken();
-	}, []);
+	}, []); // eslint-disable-next-line
 
-	useEffect(() => {
-		setTimeout(() => {
-			if (userData.length !== 0) {
-				setRole(userData.user.role);
-			}
-		}, 500);
-	}, [role]);
+	setTimeout(() => {
+		if (userData.length !== 0) {
+			setRole(userData.user.role);
+		}
+	}, 1000);
 
 	const accessPanel = rol => {
 		if (rol === "") {
