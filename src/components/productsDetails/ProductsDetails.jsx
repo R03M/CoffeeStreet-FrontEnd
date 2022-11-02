@@ -3,10 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { addItemShoppingCart, productDetails, checkOut } from "../../redux/action";
 import { BsFillCartPlusFill } from "react-icons/bs";
+import { FaRegHandshake } from "react-icons/fa";
 import NavBar from "../navbar/Navbar";
 import swal from "sweetalert";
-import "./ProductsDetails.css";
 import Footter from "../footter/Footter";
+import "./ProductsDetails.css";
 // import ShoppingCart from "../ShoppingCart/ShoppingCart";
 
 const ProductsDetails = () => {
@@ -21,17 +22,6 @@ const ProductsDetails = () => {
 		dispatch(productDetails(id));
 	}, [dispatch, id]);
 
-	const handlerTemp = () => {
-		if (product.stock === true) {
-			swal({
-				title: "Proximamente...",
-				text: "Tal vez en el segundo Sprint",
-				icon: "info",
-				button: "Ok"
-			});
-		}
-	};
-
 	const handleAdd = product => {
 		if (!user) {
 			swal({
@@ -40,7 +30,7 @@ const ProductsDetails = () => {
 				icon: "info",
 				button: "Ok"
 			});
-		} else {
+		} else if(product.stock === true) {
 			dispatch(addItemShoppingCart({ idCart: cart.cartId, idProduct: product.id }));
 			swal({
 				title: "Product added to cart",
@@ -86,7 +76,7 @@ const ProductsDetails = () => {
 				icon: "info",
 				button: "Ok"
 			});
-		} else {
+		} else if (product.stock === true){
 			swal({
 				title: "Are you sure?",
 				text: "Once you buy, you will not be able to change your order",
@@ -172,16 +162,21 @@ const ProductsDetails = () => {
 					>
 						Add to <BsFillCartPlusFill />
 					</button>
-					{checkoutCart ? (
-						<a href={checkoutCart}>Pay with Mercado Pago</a>
-					) : (
-						<button
-							className={product.stock === true ? "tempPDbuyABuy" : "tempPDbuyABuyNSPD"}
-							onClick={() => handleCheckOut()}
-						>
-							Buy now
-						</button>
-					)}
+					<div>
+						{checkoutCart ? (
+							<a href={checkoutCart} className="btnMPProductsDetailsC">
+								Pay with Mercado Pago
+								<FaRegHandshake className="iconHandsMPPDC" />
+							</a>
+						) : (
+							<button
+								className={product.stock === true ? "tempPDbuyABuy" : "tempPDbuyABuyNSPD"}
+								onClick={() => handleCheckOut()}
+							>
+								Buy now
+							</button>
+						)}
+					</div>
 				</div>
 			</div>
 			<Footter />

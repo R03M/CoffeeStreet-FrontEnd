@@ -176,3 +176,36 @@
 	padding: 1rem;
 	margin-top: 1.5rem;
 }
+
+.btnsDeletAndCheckCreSCC {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.btnMPShopingCartC {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 6px 10px;
+	margin: 1rem;
+	font-weight: bold;
+	font-size: 1.2rem;
+	cursor: pointer;
+	transition: 0.5s;
+	border-radius: 4px;
+	border: solid 2px #000000;
+	text-decoration: none;
+	color: white;
+	background-color: rgb(0, 158, 227);
+}
+
+.btnMPShopingCartC:hover {
+	background-color: white;
+	color: rgb(0, 158, 227);
+}
+
+.iconHandsMPSCC {
+	font-size: 2rem;
+	margin-left: 6px;
+}
