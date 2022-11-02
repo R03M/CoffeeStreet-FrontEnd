@@ -124,7 +124,7 @@ const ShoppingCart = () => {
 						timer: 1500,
 						icon: "success"
 					});
-					// dispatch(emptyCart({ idCart: cart.cartId }));
+					dispatch(emptyCart({ idCart: cart.cartId }));
 				} else {
 					swal("Operation cancelled", {
 						button: false,
