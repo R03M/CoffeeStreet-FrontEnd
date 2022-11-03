@@ -173,7 +173,10 @@ const ShoppingCart = () => {
 	};
 
 	const cardsShopping = () => {
-		return cart.items?.map(e => (
+		const cartItems = cart.items?.sort((a, b) => {
+    return b.name.localeCompare(a.name);
+		})
+		return cartItems?.map(e => (
 			<div key={e.id} className="cardCartSC">
 				<div className="titleCardSC">
 					<h3>ud ${Math.round(e.price / e.qty * 100)/100}</h3>
@@ -197,9 +200,9 @@ const ShoppingCart = () => {
 					<h2>Subtotal</h2>
 					<h2>
 						{e.discount === null ? e.price : Math.round(e.discountedPrice * 100) /100  } $
-					</h2>														  											
-				</div>										
-			</div>																
+					</h2>
+				</div>
+			</div>
 		));
 	};
 
