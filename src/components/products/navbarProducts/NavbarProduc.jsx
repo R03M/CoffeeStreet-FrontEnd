@@ -17,6 +17,16 @@ const NavbarProduc = () => {
 	const dispatch = useDispatch();
 	const contProducts = useSelector(state => state.products);
 
+	let isTLactose = contProducts.map(l => l.lactose);
+	let isTGluten = contProducts.map(l => l.gluten);
+	let isTAlcohol = contProducts.map(l => l.alcohol);
+
+	let includesValue = value => {
+		if (value.includes(true) && value.includes(false)) return "all";
+		if (value.includes(true)) return "true";
+		if (value.includes(false)) return "false";
+	};
+
 	const [category, setCategory] = useState({
 		status: false,
 		value: ""
@@ -48,28 +58,80 @@ const NavbarProduc = () => {
 			status: true,
 			value: e
 		});
+		setType1(false);
+		setType2(false);
+		setType3(false);
+		setOrderP(false);
 	};
 
 	const filterType1 = e => {
-		dispatch(filterByType(e));
-		setType1({
-			status: true,
-			value: e
-		});
+		if (includesValue(isTAlcohol) === "all") {
+			dispatch(filterByType(e));
+			setType1({
+				status: true,
+				value: e
+			});
+		}
+		if (includesValue(isTAlcohol) === "true" && e === "alcohol") {
+			dispatch(filterByType(e));
+			setType1({
+				status: true,
+				value: e
+			});
+		}
+		if (includesValue(isTAlcohol) === "false" && e === "alcoholFree") {
+			dispatch(filterByType(e));
+			setType1({
+				status: true,
+				value: e
+			});
+		}
 	};
 	const filterType2 = e => {
-		dispatch(filterByType(e));
-		setType2({
-			status: true,
-			value: e
-		});
+		if (includesValue(isTLactose) === "all") {
+			dispatch(filterByType(e));
+			setType2({
+				status: true,
+				value: e
+			});
+		}
+		if (includesValue(isTLactose) === "true" && e === "lactose") {
+			dispatch(filterByType(e));
+			setType2({
+				status: true,
+				value: e
+			});
+		}
+		if (includesValue(isTLactose) === "false" && e === "lactoseFree") {
+			dispatch(filterByType(e));
+			setType2({
+				status: true,
+				value: e
+			});
+		}
 	};
 	const filterType3 = e => {
-		dispatch(filterByType(e));
-		setType3({
-			status: true,
-			value: e
-		});
+		if (includesValue(isTGluten) === "all") {
+			dispatch(filterByType(e));
+			setType3({
+				status: true,
+				value: e
+			});
+		}
+		if (includesValue(isTGluten) === "true" && e === "gluten") {
+			dispatch(filterByType(e));
+			setType3({
+				status: true,
+				value: e
+			});
+		}
+		if (includesValue(isTGluten) === "false" && e === "glutenFree") {
+			dispatch(filterByType(e));
+			setType3({
+				status: true,
+				value: e
+			});
+		}
 	};
 
 	const filterPrepared = e => {
@@ -78,12 +140,16 @@ const NavbarProduc = () => {
 			status: true,
 			value: e
 		});
+		setType1(false);
+		setType2(false);
+		setType3(false);
+		setOrderP(false);
 	};
 	const orderPrice = e => {
-		dispatch(orderByPrice(e.target.value));
+		dispatch(orderByPrice(e));
 		setOrderP({
 			status: true,
-			value: e.target.value
+			value: e
 		});
 	};
 
@@ -152,49 +218,90 @@ const NavbarProduc = () => {
 						<p>With</p>
 					</div>
 					<p className="tagsCNBC">
-						<BiDrink className="falseBtnNB" onClick={() => filterType1("alcoholFree")} />{" "}
+						<BiDrink
+							className={
+								includesValue(isTAlcohol) === "false" ||
+								includesValue(isTAlcohol) === "all"
+									? "falseBtnNB"
+									: "noExitProduct"
+							}
+							onClick={() => filterType1("alcoholFree")}
+						/>{" "}
 						Alcohol{" "}
-						<BiDrink className="trueBtnNB" onClick={() => filterType1("alcohol")} />
+						<BiDrink
+							className={
+								includesValue(isTAlcohol) === "true" ||
+								includesValue(isTAlcohol) === "all"
+									? "trueBtnNB"
+									: "noExitProduct"
+							}
+							onClick={() => filterType1("alcohol")}
+						/>
 					</p>
 					<p className="tagsCNBC">
 						<GiMilkCarton
-							className="falseBtnNB"
+							className={
+								includesValue(isTLactose) === "false" ||
+								includesValue(isTLactose) === "all"
+									? "falseBtnNB"
+									: "noExitProduct"
+							}
 							onClick={() => filterType2("lactoseFree")}
 						/>{" "}
 						Lactose
-						<GiMilkCarton className="trueBtnNB" onClick={() => filterType2("lactose")} />
+						<GiMilkCarton
+							className={
+								includesValue(isTLactose) === "true" ||
+								includesValue(isTLactose) === "all"
+									? "trueBtnNB"
+									: "noExitProduct"
+							}
+							onClick={() => filterType2("lactose")}
+						/>
 					</p>
 					<p className="tagsCNBC">
-						<GiWheat className="falseBtnNB" onClick={() => filterType3("glutenFree")} />{" "}
-						Gluten <GiWheat className="trueBtnNB" onClick={() => filterType3("gluten")} />
+						<GiWheat
+							className={
+								includesValue(isTGluten) === "false" || includesValue(isTGluten) === "all"
+									? "falseBtnNB"
+									: "noExitProduct"
+							}
+							onClick={() => filterType3("glutenFree")}
+						/>{" "}
+						Gluten{" "}
+						<GiWheat
+							className={
+								includesValue(isTGluten) === "true" ||
+								includesValue(isTGluten) === "all"
+									? "trueBtnNB"
+									: "noExitProduct"
+							}
+							onClick={() => filterType3("gluten")}
+						/>
 					</p>
 				</div>
-				<select onChange={e => orderPrice(e)} className="selectNavProd">
-					<option className="selectNavProdOption" hidden>
-						Order by price
-					</option>
-					<option
-						className="selectNavProdOption"
-						disabled="disabled"
-						default={true}
-						value=""
-					>
-						Order by price
-					</option>
-					<option className="selectNavProdOption" value="asc">
-						{" "}
-						Lower price{" "}
-					</option>
-					<option className="selectNavProdOption" value="desc">
-						{" "}
-						Higher price{" "}
-					</option>
-				</select>
+
+				<div className="selectNavProd">
+					<p>Order by price</p>
+					<button onClick={() => orderPrice("asc")} className="btnProdOption">
+						Lower price
+					</button>
+					<button onClick={() => orderPrice("desc")} className="btnProdOption">
+						Higher price
+					</button>
+				</div>
 
 				<div className="navProductCatagory">
 					<p className="titlesNavbarP">Categories</p>
 					<button className="btnProductCategory" onClick={() => filterCategory("coffee")}>
-						Coffee
+						Coffee ready to drink
+					</button>
+
+					<button
+						className="btnProductIsPrepared"
+						onClick={() => filterPrepared("prepared")}
+					>
+						Coffee to prepare
 					</button>
 					<button className="btnProductCategory" onClick={() => filterCategory("tea")}>
 						Tea
@@ -213,22 +320,6 @@ const NavbarProduc = () => {
 						onClick={() => filterCategory("saltyBakery")}
 					>
 						Salty Bakery
-					</button>
-				</div>
-
-				<div className="navProductIsPrepared">
-					<p className="titlesNavbarP">Status</p>
-					<button
-						className="btnProductIsPrepared"
-						onClick={() => filterPrepared("prepared")}
-					>
-						To prepare
-					</button>
-					<button
-						className="btnProductIsPrepared"
-						onClick={() => filterPrepared("consumption")}
-					>
-						Ready to eat
 					</button>
 				</div>
 			</div>
