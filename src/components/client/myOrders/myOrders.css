@@ -1,192 +1,104 @@
-.contenedor-principal {
+.myOrdersDivC {
 	display: flex;
-  flex-direction: column;
-  align-items: center;
-  height: 100%;
-  height: 100%;
+	flex-direction: column;
+	align-items: center;
+	height: 100%;
+	height: 100%;
 }
-.filtros-orden {
-	display: flex;
-  align-items: center;
+
+.reviewOrdersDivC {
+	margin: 1rem;
+	background-color: #f2f2f2;
+}
+
+.bodyMyOrdersC {
 	width: 90%;
-  height: 20%;
+	display: flex;
+	flex-direction: column;
+	background-color: #541911;
+	padding: 2rem;
+	border-radius: 4px;
+	box-shadow: #541911 0px 0px 2px;
+	margin: 1rem;
+}
+
+.navOrdersC {
+	display: flex;
+	align-items: center;
+	justify-content: center;
 	background-color: #f2f2f2;
 	padding: 10px;
 	margin: 10px;
-	border-radius: 10px;
-  gap: 20px;
+	border-radius: 4px;
+	gap: 10px;
+	font-size: 1.2rem;
 }
 
-.titleFilter{
-  display: flex;
-  width: auto;
-}
-.buttons-orden{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  width: 40%;
- 
-}
-.contenedor-review{
-  display: flex;
-  width: 90%;
-  height: 80%;
-  
-  justify-content: center;
-
-  
-  
-
-}
-.contenedor-user-review{
-  display:flex;
-  justify-content: space-between;
-  width: 100%;
-  gap: 20px;
-}
-.btn-change-review{
-  display:flex;
-  justify-content: center;
-
-  align-items: flex-end;
-  flex-direction: column;
-  gap: 20px;
+.cardsMyOrdersC {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
 }
 
-
-.contenedor-ordenes{
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
-  width: 80%;
-  height: auto;
-  background-color: #F2F2F2;
-  
-  margin: 0px;
-  padding: 10px;
-  background-color: #541911;
-  border-radius: 10px;
-
+.tableCardMyOrdersC {
+	background-color: #eed9ad;
+	box-shadow: #541911 0px 0px 4px;
+	padding: 0.5rem;
+	border-radius: 4px;
+	margin: 1rem;
 }
 
-.Contenedor-Orden {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	width: 40%;
-	height: auto;
-	border-radius: 10px;
-  margin: 20px;
+.theadMyOrdersC {
+	background-color: #541911;
+	box-shadow: #f5c04d 0px 0px 2px;
+	color: #f5c04d;
+	font-size: 1.5rem;
 }
 
-.status-orden-pending{
-  display: flex;
-  justify-content: center;
-  width: 60%;
-  height: fit-content ;
-  background: rgb(227,213,49);
-background: linear-gradient(180deg, rgba(227,213,49,1) 53%, rgba(237,219,179,1) 100%);
-  border-left: 2px black solid;
-  border-top: 2px black solid;
-  border-right: 2px black solid;
-  border-bottom: 2px #eddbb3 solid;
-  border-radius: 20px;
-  position: relative;
-  top: 8px;
-}
-.status-orden-completed{
-display: flex;
-justify-content: center;
-width: 60%;
-height: fit-content ;
-background: rgb(109,227,49);
-background: linear-gradient(180deg, rgba(109,227,49,1) 53%, rgba(237,219,179,1) 100%);
-border-left: 2px black solid;
-border-top: 2px black solid;
-border-right: 2px black solid;
-
-border-radius: 20px;
-position: relative;
-top: 8px;
+.totalMyOrderTC {
+	background-color: rgba(255, 255, 255, 0.943);
+	border-radius: 4px;
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	justify-items: center;
+	box-shadow: #f54d4d 0px 0px 2px;
 }
 
-.status-orden-cancelado{
-  display: flex;
-  justify-content: center;
-  width: 60%;
-  height: fit-content ;
-  background-color: rgb(234, 20, 0);
-  border-left: 2px black solid;
-  border-top: 2px black solid;
-  border-right: 2px black solid;
-  border-bottom: 2px rgb(234, 20, 0) solid;
-  border-radius: 20px;
-  position: relative;
-  top: 8px;
+.statusMyOrderC {
+	font-weight: 600;
+	font-size: 1.2rem;
 }
 
-
-
-.cuerpo-Orden{
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  height: 100%;
-  background-color: #eddbb3;
-  border : 2px solid black;
-  border-radius: 20px 20px 20px 20px;
-  box-shadow: #F2F2F2 0px 0px 10px 0px;
-  
-
-
+.totalMyOrderC {
+	font-weight: 600;
+	font-size: 1.2rem;
 }
 
-.title-orden{
-  display:flex  ;
-  justify-content: space-between;
-  border-bottom: 2px solid black;
-
-}
-.name-product-orden{
-  display: flex;
-
-  border: 0px;
-}
-.price-product-orden{
-  border: 0px;
- 
-}
-.quantity-product-orden{
-  border: 0px;
-  
+.completeStyleMyOrdC {
+	color: green;
+	font-size: 1.3rem;
+	font-weight: 700;
+	text-transform: uppercase;
 }
 
-
-
-.item-orden {
-	display: flex;
-	align-items: center;
-  justify-content: space-between;
-	border-bottom: 1px black solid;
-	width: auto;
-	height: auto;
-	gap: 2%;
-	padding: 20px;
+.pendingStyleMyOrdC {
+	color: red;
+	font-size: 1.3rem;
+	font-weight: 700;
+	text-transform: uppercase;
 }
 
-.price-item {
-	display: flex;
-	align-items: flex-end;
-}
-.image {
-	display: flex;
+.btnNavbarMyOrdersC {
+	background-color: #f5c04d;
+	color: #541911;
+	font-size: 1.2rem;
+	font-weight: 600;
 	width: 30%;
-	border-radius: 20%;
+	border-radius: 4px;
+	cursor: pointer;
+	margin: 4px;
 }
-.total-orden {
-	display: flex;
-	
+
+.btnNavbarMyOrdersC:hover {
+	color: #f5c04d;
+	background-color: #541911;
 }

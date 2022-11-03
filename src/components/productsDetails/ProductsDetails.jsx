@@ -23,7 +23,7 @@ const ProductsDetails = () => {
 	}, [dispatch, id]);
 
 	const handleAdd = product => {
-		if (!user) {
+		if (!user && product.stock === true) {
 			swal({
 				title: "Loging required",
 				text: "You must be logged in to add products to your cart",
@@ -69,7 +69,7 @@ const ProductsDetails = () => {
 	}
 
 	const handleCheckOut = () => {
-		if (!user) {
+		if (!user && product.stock === true) {
 			swal({
 				title: "Log in",
 				text: "To be able to buy",

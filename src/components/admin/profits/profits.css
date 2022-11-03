@@ -1,34 +1,37 @@
-.profitsDivC{
+.profitsDivC {
 	height: 100%;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	object-fit: cover;
+	justify-content: center;
 }
-.top-sellers{
-	
+
+/* .top-sellers {
 	display: flex;
 	width: 100%;
 	height: 40%;
 	justify-content: center;
 	border-bottom: 3px solid rgb(0, 0, 0);
-	
-
 }
-.top-sellers-title-page{	
+.top-sellers-title-page {
 	background-color: rgba(0, 0, 0, 0.373);
 	width: 90%;
 	border-radius: 20px;
 	color: white;
-	
-	
-	position:absolute;
+
+	position: absolute;
 }
 
-.top-sellers-div1{
+.top-sellers-div1 {
 	display: flex;
-	background: rgb(164,102,0);
-	background: linear-gradient(90deg, rgba(164,102,0,1) 0%, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 100%);
+	background: rgb(164, 102, 0);
+	background: linear-gradient(
+		90deg,
+		rgba(164, 102, 0, 1) 0%,
+		rgba(255, 255, 255, 1) 0%,
+		rgba(255, 255, 255, 1) 100%
+	);
 
 	background-image: url("https://res.cloudinary.com/dniicx4yf/image/upload/v1665603409/640px-A_small_cup_of_coffee-removebg-preview_pfntvj.png");
 	background-repeat: no-repeat;
@@ -39,9 +42,8 @@
 	border-right: 1px solid rgb(0, 0, 0);
 	justify-content: center;
 	align-items: center;
-
 }
-.top-sellers-div2{
+.top-sellers-div2 {
 	display: flex;
 	background-image: url("https://res.cloudinary.com/dniicx4yf/image/upload/v1665603878/Wet_Cappuccino_with_heart_latte_art-removebg-preview_w5nu1b.png");
 	background-repeat: no-repeat;
@@ -53,7 +55,7 @@
 	justify-content: center;
 	align-items: center;
 }
-.top-sellers-div3{
+.top-sellers-div3 {
 	display: flex;
 	background-image: url("https://res.cloudinary.com/dniicx4yf/image/upload/v1665604715/1280px-Gal%C3%A3o-removebg-preview_etpcfm.png");
 	background-repeat: no-repeat;
@@ -64,45 +66,42 @@
 	justify-content: center;
 	align-items: center;
 }
-.graphics-visualization{
+.graphics-visualization {
 	display: flex;
 	width: 100%;
 	height: 60%;
 	justify-content: space-between;
 	border-bottom: 3px solid rgb(0, 0, 0);
 }
-.graphic-line{
-	display: flex;
-	width: 100%;
-	height: 100%;
-	justify-content: center;
-	align-items: center;
-	
-}
-.graphic-Line{
+.graphic-line {
 	display: flex;
 	width: 100%;
 	height: 100%;
 	justify-content: center;
 	align-items: center;
 }
-.graphic-torta{
+.graphic-Line {
 	display: flex;
 	width: 100%;
 	height: 100%;
 	justify-content: center;
 	align-items: center;
-
 }
-.graphic-barras{
+.graphic-torta {
 	display: flex;
 	width: 100%;
 	height: 100%;
 	justify-content: center;
 	align-items: center;
-
 }
-.line{
+.graphic-barras {
+	display: flex;
+	width: 100%;
+	height: 100%;
+	justify-content: center;
+	align-items: center;
+}
+.line {
 	display: flex;
 	background-image: url("https://res.cloudinary.com/dmpqjroj5/image/upload/v1666978186/imagenes%20Proyecto%20final%20henry/graficodebarradeedadesparani%C3%B1os-e1556425717797_ohz7n7.jpg");
 	background-size: cover;
@@ -114,14 +113,12 @@
 	align-items: center;
 	border-radius: 20px;
 }
-.top:hover{
+.top:hover {
 	cursor: pointer;
 	border: 2px solid rgb(0, 0, 0);
-
 }
 
-
-.torta{
+.torta {
 	display: flex;
 	background-image: url("https://res.cloudinary.com/dmpqjroj5/image/upload/v1666978380/imagenes%20Proyecto%20final%20henry/3349622_syypig.png");
 	background-size: cover;
@@ -134,30 +131,28 @@
 	border-radius: 20px;
 }
 
-.torta:hover{
+.torta:hover {
 	cursor: pointer;
 	border: 2px solid rgb(0, 0, 0);
-
 }
 
-.barras{
+.barras {
 	display: flex;
 	background-image: url("https://res.cloudinary.com/dmpqjroj5/image/upload/v1666978933/imagenes%20Proyecto%20final%20henry/interpretacion-de-grafico-de-barras_xbxbvn.png");
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-position: center;
-	
+
 	background-position: center;
 
 	width: 70%;
-	height:40%;
+	height: 40%;
 	justify-content: center;
 	align-items: center;
 	border-radius: 20px;
 }
 
-.barras:hover{
+.barras:hover {
 	cursor: pointer;
 	border: 2px solid rgb(0, 0, 0);
-
-}
+} */
