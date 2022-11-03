@@ -50,6 +50,7 @@ const CardDiscount = ({ product, changeDiscount, removeDiscount }) => {
 				<button
 					onClick={() => removeDiscount(0, product.id)}
 					className="btnDiscontCardDC"
+					disabled={product.discount === null || product.discount === 0}
 				>
 					Remove discount
 				</button>

@@ -1,7 +1,12 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import CardDiscount from "./cardDiscount/CardDiscount";
-import { clearError, getProducts, updateDiscountProduct } from "../../redux/action";
+import {
+	clearError,
+	getProducts,
+	updateDiscountProduct,
+	filterByDiscount
+} from "../../redux/action";
 import ErrorSearch from "../errorSearch/ErrorSearch";
 import swal from "sweetalert";
 import NavbarDisc from "./navbarDiscount/NavbarDisc";
@@ -11,6 +16,12 @@ const Discounts = () => {
 	const dispatch = useDispatch();
 	const products = useSelector(state => state.products);
 	const errorS = useSelector(state => state.errorSProducts);
+	const [active, setActive] = useState("all");
+
+	const handlerDiscount = v => {
+		dispatch(filterByDiscount(v));
+		setActive(v);
+	};
 
 	const changeDiscountP = (valueP, productId) => {
 		swal({
@@ -31,6 +42,7 @@ const Discounts = () => {
 				setTimeout(() => {
 					dispatch(getProducts());
 				}, 500);
+				setActive("all");
 			} else {
 				swal("The discount was not applied", {
 					button: false,
@@ -60,6 +72,7 @@ const Discounts = () => {
 				setTimeout(() => {
 					dispatch(getProducts());
 				}, 500);
+				setActive("all");
 			} else {
 				swal("Operation cancelled", {
 					button: false,
@@ -99,7 +112,7 @@ const Discounts = () => {
 
 	return (
 		<div className="discountsDiC">
-			<NavbarDisc />
+			<NavbarDisc handlerDiscount={handlerDiscount} active={active} />
 			{bodyDiscounts()}
 		</div>
 	);
