@@ -1,52 +1,14 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import {
-	getProducts,
-	getProductsId,
-	deleteProduct,
-	changeStatus
-} from "../../../redux/action";
-import swal from "sweetalert";
+import { useDispatch } from "react-redux";
+import { getProductsId } from "../../../redux/action";
 import "./cardPe.css";
 
 const urlBase = process.env.REACT_APP_FRONT_URL;
 
-const CardPe = ({ product, editC }) => {
+const CardPe = ({ product, editC, handlerChangeStock, handlerDelete }) => {
 	const dispatch = useDispatch();
-	let stockCurret = product.stock;
-	let stockName = stockCurret ? "with stock" : "out of stock";
 	const urlC = `${urlBase}/admin`;
 	const currentURL = window.location.href;
-
-	const handlerStock = () => {
-		swal({
-			text: `Are you sure you want to change from ${stockName} to ${
-				!stockCurret ? "with stock" : "out of stock"
-			}?`,
-			buttons: ["cancel", "confirm"],
-			dangerMode: true,
-			closeOnClickOutside: false,
-			icon: "warning"
-		}).then(value => {
-			if (value) {
-				dispatch(changeStatus(!product.stock, product.id));
-				setTimeout(() => {
-					dispatch(getProducts());
-				}, 500);
-				swal("Updated", {
-					button: false,
-					timer: 1500,
-					icon: "success"
-				});
-			} else {
-				swal("Operation cancelled", {
-					button: false,
-					timer: 1500,
-					icon: "error"
-				});
-			}
-		});
-	};
 
 	const handlerEdit = () => {
 		dispatch(getProductsId(product.id));
@@ -54,34 +16,6 @@ const CardPe = ({ product, editC }) => {
 			editC();
 		}, 100);
 	};
-
-	function handlerDelete(e) {
-		swal({
-			text: `Are you sure to delete the product ${product.name}`,
-			buttons: ["cancel", "confirm"],
-			dangerMode: true,
-			closeOnClickOutside: false,
-			icon: "warning"
-		}).then(value => {
-			if (value) {
-				dispatch(deleteProduct(product.id));
-				swal("Removed", {
-					button: false,
-					timer: 1500,
-					icon: "success"
-				});
-				setTimeout(() => {
-					dispatch(getProducts());
-				}, 500);
-			} else {
-				swal("Operation cancelled", {
-					button: false,
-					timer: 1500,
-					icon: "error"
-				});
-			}
-		});
-	}
 
 	return (
 		<div
@@ -98,7 +32,7 @@ const CardPe = ({ product, editC }) => {
 			<img className="imgCardPe" src={product.image} alt={`Pic to ${product.name}`} />
 
 			<div className="divTempCardPe">
-				<button className="btnBCardPeStock" onClick={() => handlerStock()}>
+				<button className="btnBCardPeStock" onClick={() => handlerChangeStock(product)}>
 					Stock
 				</button>
 
@@ -107,7 +41,7 @@ const CardPe = ({ product, editC }) => {
 						<button className="btnBCardPeEdit" onClick={() => handlerEdit()}>
 							Edit
 						</button>
-						<button className="btnBCardPeDelete" onClick={e => handlerDelete(e)}>
+						<button className="btnBCardPeDelete" onClick={() => handlerDelete(product)}>
 							Delete
 						</button>
 					</>
