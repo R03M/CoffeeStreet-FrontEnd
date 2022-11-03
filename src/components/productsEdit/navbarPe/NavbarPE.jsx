@@ -1,18 +1,10 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getProducts, filterByStock } from "../../../redux/action";
+import React  from "react";
+import { useSelector } from "react-redux";
 import SearchP from "../../products/search/SearchP";
 import "./navbarPE.css";
 
-const NavbarPE = () => {
-	const dispatch = useDispatch();
+const NavbarPE = ({ activeS, handlerStock }) => {
 	const lengthProducts = useSelector(state => state.products);
-	const [activeS, setActiveS] = useState("all");
-
-	const handlerStock = e => {
-		setActiveS(e);
-		dispatch(filterByStock(e));
-	};
 
 	return (
 		<div className="navbarProductsEdit">
