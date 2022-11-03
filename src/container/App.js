@@ -30,6 +30,9 @@ function App() {
 	const userData = useSelector(state => state.user);
 	const [role, setRole] = useState("");
 
+	const [currentPage, setCurrentPage] = useState(1);
+	const [postsPerPage] = useState(9);
+
 	useEffect(() => {
 		const refreshToken = async function () {
 			try {
@@ -76,7 +79,16 @@ function App() {
 					<Route path="/" element={<Landing />} />
 					<Route path="/home" element={<Home />} />
 					<Route path="/home/blogCS" element={<CurrentNews />} />
-					<Route path="/menu" element={<Products />} />
+					<Route
+						path="/menu"
+						element={
+							<Products
+								currentPage={currentPage}
+								setCurrentPage={setCurrentPage}
+								postsPerPage={postsPerPage}
+							/>
+						}
+					/>
 					<Route path="/products/:id" element={<ProductsDetails />} />
 					<Route path="/signUp" element={<SignUp />} />
 					<Route path="/signIn" element={<LogIn />} />

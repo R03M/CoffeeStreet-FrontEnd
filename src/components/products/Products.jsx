@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import "../pagination/pagination.css";
 
 import {
 	clearError,
@@ -16,7 +17,6 @@ import {
 import NavBar from "../navbar/Navbar";
 import CardP from "./card/CardP";
 import NavbarProduc from "./navbarProducts/NavbarProduc";
-import Pagination from "../pagination/Pagination";
 import Loading from "../loading/Loading";
 import ErrorSearch from "../errorSearch/ErrorSearch";
 import { useAuth0 } from "@auth0/auth0-react";
@@ -25,7 +25,7 @@ import "./products.css";
 
 // import ShoppingCart from "../ShoppingCart/ShoppingCart.jsx";
 
-const Products = () => {
+const Products = ({ currentPage, setCurrentPage, postsPerPage }) => {
 	const dispatch = useDispatch();
 	const allProducts = useSelector(state => state.products);
 	const errorMessage = useSelector(state => state.errorSProducts);
@@ -46,15 +46,27 @@ const Products = () => {
 	// console.log('usuario')
 	// console.log(accessToken);
 
-	const [currentPage, setCurrentPage] = useState(1);
-	const [productsPerPage, setProductsPerPage] = useState(9);
-	const max = Math.ceil(allProducts.length / productsPerPage);
-	const dataEnd = allProducts.length
-		? allProducts.slice(
-				(currentPage - 1) * productsPerPage,
-				(currentPage - 1) * productsPerPage + productsPerPage
-		  )
-		: null;
+	//    ↧    ↧    ↧    ↧    ↧    ↧    ↧    PAGINATION    ↧    ↧    ↧    ↧    ↧    ↧    ↧
+
+	const indexOfLastPost = currentPage * postsPerPage;
+
+	const indexOfFirstPost = indexOfLastPost - postsPerPage;
+
+	const currentPosts = allProducts.slice(indexOfFirstPost, indexOfLastPost);
+
+	const pageNumbers = [];
+
+	const totalLength = allProducts.length;
+
+	for (let i = 1; i <= Math.ceil(totalLength / postsPerPage); i += 1) {
+		pageNumbers.push(i);
+	}
+
+	function setPage(pageNumber) {
+		setCurrentPage(pageNumber);
+	}
+
+	//    ↥    ↥    ↥    ↥    ↥    ↥    ↥    PAGINATION    ↥    ↥    ↥    ↥    ↥    ↥    ↥
 
 	useEffect(() => {
 		if (isAuthenticated) {
@@ -113,10 +125,10 @@ const Products = () => {
 	useEffect(() => {
 		if (accessToken) {
 			setTimeout(() => {
-			dispatch(getOrCreateShoppingCart(usuario.user.auth.id));
+				dispatch(getOrCreateShoppingCart(usuario.user.auth.id));
 			}, 500);
 		}
-	}, [ dispatch, accessToken, usuario]);
+	}, [dispatch, accessToken, usuario]);
 
 	useEffect(() => {
 		if (allProducts.length === 0) {
@@ -144,12 +156,44 @@ const Products = () => {
 						<div className="navbarProduc">
 							<NavbarProduc currentPage={currentPage} />
 							<div className="cardsProd">
-								{dataEnd.map(data => {
+								{currentPosts.map(data => {
 									return <CardP key={data.id} product={data} />;
 								})}
 							</div>
 						</div>
-						<Pagination currentPage={currentPage} setPage={setCurrentPage} max={max} />
+
+						<div className="pagination">
+							<button
+								type="button"
+								disabled={currentPage === 1}
+								onClick={() => setPage(currentPage - 1)}
+								className="pagination"
+							>
+								PREV
+							</button>
+
+							{pageNumbers.map((pageNumber, i) => (
+								<button
+									key={i}
+									type="button"
+									onClick={() => {
+										setPage(pageNumber);
+									}}
+									className={pageNumber === currentPage ? "btnPageActive" : "btnPage"}
+								>
+									{pageNumber}
+								</button>
+							))}
+
+							<button
+								type="button"
+								disabled={currentPage === Math.ceil(allProducts.length / postsPerPage)}
+								onClick={() => setPage(currentPage + 1)}
+								className="btnNP"
+							>
+								NEXT
+							</button>
+						</div>
 					</>
 				);
 			} else {
