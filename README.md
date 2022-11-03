@@ -41,21 +41,21 @@ Api de proyecto final para Soy Henry - FT-29a
 | Form New Client       | active |
 | Sign Up               | active |
 | Log In                | active |
-| Profits(Admin)        | pending |
+| Profits(Admin)        | active |
 | My account(Admin)     | active |
 | Employee dashboard    | active |
 | My account(Employee)  | active |
 | Client dashboard      | active |
 | My account(Client)    | active |
 | Favoritos(clients)    | active |
-| My Orders(clients)    | pending |
+| My Orders(clients)    | active |
 | **END SPRINT 2**      | ******* |
 | **START SPRINT 3**    | ******* |
 | Edit Products(Admin)  | active |
-| All Orders(Admin)     | pending |
+| All Orders(Admin)     | active |
 | All Users(Admin)      | active |
-| Edit discounts(Admin) | pending |
+| Edit discounts(Admin) | active |
 | Shopping cart         | active |
-| payment market        | pending |
+| payment market        | active |
 | **END SPRINT 3**      | ******* |
 ----------------------
