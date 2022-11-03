@@ -84,6 +84,7 @@ const UsersE = () => {
 					setTimeout(() => {
 						dispatch(getAllUsers());
 					}, 500);
+					setState()
 				} else {
 					swal("Operation cancelled", {
 						button: false,

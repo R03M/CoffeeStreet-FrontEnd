@@ -174,9 +174,11 @@ const FormLogin = () => {
 							{iconCheck()}
 						</div>
 						<div>
-							{checkEmail.email === false
-								? "There is no active account with this email address"
-								: null}
+							{checkEmail.email === false ? (
+								<p style={{ color: "red" }}>
+									There is no active account with this email address
+								</p>
+							) : null}
 						</div>
 						{checkEmail.isGoogle === true ? (
 							<p className="errorMSGGoogle">This email is registered with Google</p>
