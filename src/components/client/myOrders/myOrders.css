@@ -8,7 +8,48 @@
 
 .reviewOrdersDivC {
 	margin: 1rem;
-	background-color: #f2f2f2;
+	background-color: #d4cbca;
+	border-radius: 4px;
+	padding: 0.5rem;
+	font-size: 1.2rem;
+}
+
+.titleReviewMOC {
+	font-weight: 700;
+}
+
+.reviewDivMyOrderC {
+	background-color: #eed9ad;
+}
+
+.btn-delete-review {
+	background-color: #d22a14;
+	color: white;
+	font-size: 1.1rem;
+	font-weight: 600;
+	border-radius: 4px;
+	cursor: pointer;
+	margin: 4px;
+}
+
+.btn-delete-review:hover {
+	color: #c3311d;
+	background-color: white;
+}
+
+.btn-change-review {
+	background-color: #f5c04d;
+	color: #541911;
+	font-size: 1.1rem;
+	font-weight: 600;
+	border-radius: 4px;
+	cursor: pointer;
+	margin: 4px;
+}
+
+.btn-change-review:hover {
+	color: #f5c04d;
+	background-color: #541911;
 }
 
 .bodyMyOrdersC {
