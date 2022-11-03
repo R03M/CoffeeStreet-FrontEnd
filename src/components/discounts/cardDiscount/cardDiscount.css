@@ -82,8 +82,7 @@
 	transform: rotate(-45deg);
 }
 
-
-.triangleDiscountCardDC{
+.triangleDiscountCardDC {
 	position: absolute;
 	top: 0px;
 	right: 0px;
@@ -122,6 +121,12 @@
 .btnDiscontCardDC:hover {
 	background-color: rgb(245, 192, 77);
 	color: #541911;
+}
+
+.btnDiscontCardDC:disabled {
+	color: red;
+	background-color: black;
+	cursor: no-drop;
 }
 
 .applyDiscountCardDC {

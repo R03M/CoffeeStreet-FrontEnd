@@ -7,7 +7,7 @@ const RowUser = ({ user, deleteU, changeRole, rows }) => {
 			<th>{rows}</th>
 			<th>{user.name}</th>
 			<th>{user.surname}</th>
-			<th>{user.auth.email}</th>
+			<th>{user.auth && user.auth.email}</th>
 			<th>{user.role}</th>
 			<th>
 				<button

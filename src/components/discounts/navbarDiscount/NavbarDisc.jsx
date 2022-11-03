@@ -1,18 +1,10 @@
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React from "react";
+import { useSelector } from "react-redux";
 import SearchP from "../../products/search/SearchP";
-import { filterByDiscount } from "../../../redux/action";
 import "./navbarDisc.css";
 
-const NavbarDisc = () => {
-	const dispatch = useDispatch();
+const NavbarDisc = ({handlerDiscount, active}) => {
 	const lengthProducts = useSelector(state => state.products);
-	const [active, setActive] = useState("all");
-
-	const handlerDiscount = v => {
-		dispatch(filterByDiscount(v));
-		setActive(v);
-	};
 
 	return (
 		<div className="navbarDiscC">
