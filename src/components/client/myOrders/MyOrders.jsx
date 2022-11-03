@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import "./myOrders.css";
 import { getOrdersByUser, getReviewByUser, deleteReviews } from "../../../redux/action";
 import Reviews from "./reviews/reviews";
+import { AiFillStar } from "react-icons/ai";
 import ChangeDescriptionR from "./changeDescriptionR";
 import ChangeRating from "./changeRating";
 import swal from "sweetalert";
 import RowsMyOrder from "./rowsMyOrder/RowsMyOrder";
+import "./myOrders.css";
 
 const MyOrders = () => {
 	const dispatch = useDispatch();
@@ -74,49 +75,79 @@ const MyOrders = () => {
 			<div className="reviewOrdersDivC">
 				{ordenes.length === 0 ? (
 					<div>
-						<h1>You must make a purchase to review</h1>
+						<h2>
+							You must make a purchase to qualify for Coffee Street
+						</h2>
 					</div>
 				) : reviewCreated.length === 0 ? (
 					<div className="contenedor-review-inputs">
-						<button onClick={handleReview}>Make a review</button>
+						<h2>
+							You can now leave your rating for Coffee Street
+						</h2>
+						<button className="btn-change-review" onClick={handleReview}>Make a review</button>
 						{review ? <Reviews /> : null}
 					</div>
 				) : (
-					<div className="contenedor-user-review">
-						<div className="contenedor-data-review">
-							{changeDescription ? (
-								<ChangeDescriptionR setChangeDescription={setChangeDescription} />
-							) : (
-								<p>{reviewCreated[0].description}</p>
-							)}
-							{/* <p>{reviewCreated[0].description}</p> */}
-							{changeRating ? (
-								<ChangeRating setChangeRating={setChangeRating} />
-							) : (
-								<p>{reviewCreated[0].rating}</p>
-							)}
-							{/* <p>{reviewCreated[0].rating}</p> */}
-							<button onClick={handleDelete}>Delete Review</button>
+					<>
+						<div className="reviewDivMyOrderC">
+							<p className="titleReviewMOC">Your current rating for coffee street</p>
+							<div className="contenedor-data-review">
+								{changeDescription ? (
+									<ChangeDescriptionR setChangeDescription={setChangeDescription} />
+								) : (
+									<p>Description ➡ {reviewCreated[0].description}</p>
+								)}
+								{/* <p>{reviewCreated[0].description}</p> */}
+								{changeRating ? (
+									<ChangeRating setChangeRating={setChangeRating} />
+								) : (
+									<p>
+										Rating ➡ {reviewCreated[0].rating}{" "}
+										<AiFillStar
+											style={{
+												color: "#f5c04d",
+												fontSize: "1.2rem"
+											}}
+										/>
+									</p>
+								)}
+								{/* <p>{reviewCreated[0].rating}</p> */}
+								<button className="btn-delete-review" onClick={handleDelete}>
+									Delete Review
+								</button>
+							</div>
 						</div>
 
-						<div className="btn-change-review">
-							<button onClick={changeDescriptions}>Change Description</button>
-							<button onClick={changeRatings}>Change Rating</button>
+						<div>
+							<button className="btn-change-review" onClick={changeDescriptions}>
+								Change Description
+							</button>
+							<button className="btn-change-review" onClick={changeRatings}>
+								Change Rating
+							</button>
 						</div>
-					</div>
+					</>
 				)}
 			</div>
 
 			<div className="bodyMyOrdersC">
 				<div className="navOrdersC">
-					<p style={{fontWeight: "700"}}>Filter by status</p>
+					<p style={{ fontWeight: "700" }}>Filter by status</p>
 					<button className="btnNavbarMyOrdersC" onClick={filterOrdenClient} value="All">
 						All
 					</button>
-					<button className="btnNavbarMyOrdersC" onClick={filterOrdenClient} value="complete">
+					<button
+						className="btnNavbarMyOrdersC"
+						onClick={filterOrdenClient}
+						value="complete"
+					>
 						Completed
 					</button>
-					<button className="btnNavbarMyOrdersC" onClick={filterOrdenClient} value="pending">
+					<button
+						className="btnNavbarMyOrdersC"
+						onClick={filterOrdenClient}
+						value="pending"
+					>
 						Pending
 					</button>
 				</div>
