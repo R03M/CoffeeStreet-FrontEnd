@@ -148,21 +148,25 @@
 	color: rgb(255, 255, 255);
 	font-size: 1.2rem;
 	box-shadow: rgb(0, 0, 0) 0px 0px 5px;
-	cursor: pointer;
-	background-color: rgb(247, 196, 90);
+	background-color: #eddbb3;
 	color: rgb(84, 25, 17);
 	font-weight: 800;
 }
 
-.selectNavProd:hover {
+.btnProdOption {
 	color: rgb(247, 196, 90);
 	background-color: rgb(84, 25, 17);
+	font-weight: 600;
+	margin: 0.5rem;
+	font-size: 1.1rem;
+	border-radius: 4px;
+	cursor: pointer;
+	padding: 4px;
 }
 
-.selectNavProdOption {
+.btnProdOption:hover {
 	background-color: rgb(247, 196, 90);
 	color: rgb(84, 25, 17);
-	font-weight: 600;
 }
 
 .navProductIsPrepared {
@@ -198,4 +202,13 @@
 	background-color: rgb(247, 196, 90);
 	color: rgb(84, 25, 17);
 	font-weight: 600;
+}
+
+.noExitProduct {
+	color: red;
+	background-color: black;
+	padding: 0.7rem;
+	border-radius: 10px;
+	font-size: 2rem;
+	cursor: no-drop;
 }
