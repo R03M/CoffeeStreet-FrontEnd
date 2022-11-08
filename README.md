@@ -4,15 +4,17 @@
   <img height="350" src="./src/media/coffeeStreet.png" />
 </p>
 
-Api de proyecto final para Soy Henry - FT-29a
+Es una aplicación de comercio electrónico en grado MVP. 
 
 # Arrancar el proyecto de manera local
 
-1. Instalar las dependencias, ejecuta el comando `npm install`.
+0. Para acceder a la data primero deberas descargar el repo <a href="https://github.com/MrBluegru/CoffeeStreet-BackEnd">CoffeeStreet-BackEnd</a> 
 
-2. Clonar el archivo `.env.template` y renombrarlo a `.env`.
+1. Instalar las dependencias, ejecuta el comando `npm install`
 
-3. Ejecutar el comando `npm start`.
+2. Clonar el archivo `.env.template` y renombrarlo a `.env`
+
+3. Ejecutar el comando `npm start`
 
 ## Construido con:
 
