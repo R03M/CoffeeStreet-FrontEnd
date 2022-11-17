@@ -35,9 +35,14 @@
 
 .imgNewC {
 	margin: 1rem;
-	width: 90%;
-	max-width: 90%;
+	height: 20rem;
+	max-height: 20rem;
 	border-radius: 5px;
+}
+
+.divBtnReadMore {
+	display: block;
+	margin-top: -40px;
 }
 
 .buttonNewC {
@@ -48,6 +53,7 @@
 	color: rgb(245, 192, 77);
 	background-color: #541911;
 	transition: all 0.25s cubic-bezier(0.65, 0, 0.076, 1);
+
 }
 
 .buttonNewC:hover {
