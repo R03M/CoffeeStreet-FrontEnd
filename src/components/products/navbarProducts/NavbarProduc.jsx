@@ -62,6 +62,7 @@ const NavbarProduc = () => {
 		setType2(false);
 		setType3(false);
 		setOrderP(false);
+		setPrepared(false);
 	};
 
 	const filterType1 = e => {
@@ -140,6 +141,7 @@ const NavbarProduc = () => {
 			status: true,
 			value: e
 		});
+		setCategory(false);
 		setType1(false);
 		setType2(false);
 		setType3(false);

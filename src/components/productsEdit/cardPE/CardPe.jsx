@@ -14,7 +14,7 @@ const CardPe = ({ product, editC, handlerChangeStock, handlerDelete }) => {
 		dispatch(getProductsId(product.id));
 		setTimeout(() => {
 			editC();
-		}, 100);
+		}, 500);
 	};
 
 	return (
