@@ -651,7 +651,6 @@ export function createReview(payload) {
 
 				payload: [response.data.review]
 			});
-			console.log(response.data);
 		} catch (error) {
 			return error;
 		}

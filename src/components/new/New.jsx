@@ -23,15 +23,19 @@ const New = () => {
 					<div className="titleNew">{data.title}</div>
 					<div className="descripAPicNew">
 						<div className="descripNewBody">{data.description}</div>
-						<img className="imgNewC" src={data.image} width={500} alt="imagen" />
-						<Link to="/home/blogCS">
-							<button className="buttonNewC">
-								<MdReadMore />
-							</button>
-						</Link>
+						<img className="imgNewC" src={data.image} alt="imagen" />
+						<div className="divBtnReadMore">
+							<Link to="/home/blogCS">
+								<button className="buttonNewC">
+									<MdReadMore />
+								</button>
+							</Link>
+						</div>
 					</div>
 				</>
-			) : "Loading..."}
+			) : (
+				"Loading..."
+			)}
 		</div>
 	);
 };
