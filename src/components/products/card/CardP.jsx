@@ -102,7 +102,6 @@ const CardP = ({ product }) => {
 		if (!user) {
 			swal({
 				title: "To add to favorites you must first register or log in",
-				icon: "info",
 				buttons: ["Maybe later", "Sign in"],
 				dangerMode: true,
 				closeOnClickOutside: false,

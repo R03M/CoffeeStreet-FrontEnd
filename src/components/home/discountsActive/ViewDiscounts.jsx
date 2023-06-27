@@ -13,7 +13,7 @@ const ViewDiscounts = () => {
 
 	useEffect(() => {
 		dispatch(getProductsWDiscounts());
-	}, []); // eslint-disable-next-line
+	}, [dispatch]);
 
 	const handlerNext = () => {
 		setProduct(product === countProducts - 1 ? 0 : product + 1);
@@ -57,7 +57,7 @@ const ViewDiscounts = () => {
 												</div>
 											</div>
 											<div>
-												<img src={e.image} className="imgViewDiscountDC" />
+												<img src={e.image} className="imgViewDiscountDC" alt={`Pic of ${e.name}`}/>
 											</div>
 											<div className="descripAndNameDiscountC">
 												<p className="descripDiscountsC">{e.description}</p>

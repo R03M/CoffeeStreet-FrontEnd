@@ -32,7 +32,7 @@ const CardDiscount = ({ product, changeDiscount, removeDiscount }) => {
 			<p className="titleCardDC">{product.name}</p>
 			<p className="priceTextCardDC">$ {product.price}</p>
 
-			<img className="imgCardDC" src={product.image} />
+			<img className="imgCardDC" src={product.image} alt={`Pic of ${product.name}`} />
 			<p className="categoryCardDC">Category: {product.category}</p>
 			<div className="sectorDiscountCardDC">
 				<button
