@@ -39,7 +39,6 @@ function App() {
 					{ headers: { authorization: `Bearer ${accessToken}` } }
 				);
 				if (response.data.accessToken) {
-					// console.log("aaaa");
 					localStorage.setItem("accessToken", JSON.stringify(response.data.accessToken));
 					dispatch(logPostData(accessToken));
 				}
@@ -49,22 +48,25 @@ function App() {
 			setLoaded(true);
 		};
 		refreshToken();
-	}, []); // eslint-disable-next-line
+	}, [accessToken, dispatch, refresh]);
 
 	setTimeout(() => {
-		if (userData.length !== 0) {
-			setRole(userData.user.role);
+		if (Object.keys(userData.length !== 0)) {
+			setRole(userData.user?.role);
 		}
 	}, 1000);
 
 	const accessPanel = rol => {
 		if (rol === "") {
 			return <Navigate to="/home" />;
-		} else if (rol === "admin") {
+		}
+		if (rol === "admin") {
 			return <Admin />;
-		} else if (rol === "employee") {
+		}
+		if (rol === "employee") {
 			return <Employee />;
-		} else if (rol === "client") {
+		}
+		if (rol === "client") {
 			return <Client />;
 		}
 	};
