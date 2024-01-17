@@ -60,11 +60,11 @@ export const teamDev = [
 		devOps: false
 	},
 	{
-		name: "Miguel E. Rodríguez C.",
+		name: "M. Enrique Rodríguez C.",
 		image:
 			"https://res.cloudinary.com/db6aq84ze/image/upload/v1667162341/coffeeStreetData/TPRS7H4PN-U02TTSWQH0V-fb420c706257-512_ayf9dt.png",
-		linkedIn: "https://www.linkedin.com/in/mrbluegru/",
-		gitHub: "https://github.com/MrBluegru",
+		linkedIn: "https://www.linkedin.com/in/R03M/",
+		gitHub: "https://github.com/R03M",
 		frontEnd: true,
 		backEnd: false,
 		devOps: true
